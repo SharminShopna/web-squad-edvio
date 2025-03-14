@@ -51,7 +51,7 @@ export default function AllCourses() {
             className="mySwiper"
               >
            {
-            courses.map(course=><SwiperSlide key={course.id}>
+            courses.map(course=><SwiperSlide key={course.id} className='h-full flex'>
                <CourseCard course={course}></CourseCard>
             </SwiperSlide>)
            }

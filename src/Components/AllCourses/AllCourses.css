@@ -22,3 +22,11 @@
 .swiper-button-next:hover, .swiper-button-prev:hover{
   color: white !important;
 }
+
+
+
+.swiper-slide {
+    display: flex;
+    height: auto;
+
+}

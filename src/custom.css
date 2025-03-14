@@ -1,0 +1,55 @@
+.tealGreen{
+  color: var(--color-TealGreen);
+}
+.aquamarine{
+  color: var(--color-Aquamarine);
+}
+.lightTeal{
+  color: var(--color-LightTeal);
+}
+.bg-tealGreen {
+  background-color: var(--color-TealGreen);
+  color: white;
+}
+.bg-LightTeal {
+  background-color: var(--color-LightTeal);
+  color: white;
+}
+
+/* Swiper arrows customization */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-TealGreen) !important; 
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+/* Remove default hover color and keep custom color */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--color-TealGreen) !important; 
+}
+
+/* Make sure arrows are positioned correctly */
+.swiper-button-next {
+  right: -50px;
+}
+
+.swiper-button-prev {
+  left: -50px;
+}
+
+/* Optional: Center slides nicely */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Limit review text to 3 lines */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
