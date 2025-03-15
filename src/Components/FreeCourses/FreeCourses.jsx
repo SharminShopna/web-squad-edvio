@@ -22,7 +22,7 @@ export default function FreeCourses() {
       <div>
          {visibleCount < freeCourses.length && (
         <div className="text-center">
-          <button onClick={showAllFreeCourses} className="btnStyle mt-10">
+          <button onClick={showAllFreeCourses} className="btnStyle mt-30">
             See More
           </button>
         </div>

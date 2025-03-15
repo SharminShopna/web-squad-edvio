@@ -4,16 +4,16 @@ import { HiUsers } from "react-icons/hi2";
 export default function FreeCoursesCard({course}) {
  const {course_name,course_image,category,level,duration,instructor,Purchase_order} = course
   return (
-    <div>
-       <div className='w-full border-[1px] border-dashed border-TealGreen p-5 relative hover:scale-105 hover:bg-teal-50 hover:text-white transition-all duration-300 rounded-2xl mt-20'>
+    <div className='mb-30 lg:mb-20'>
+       <div className='w-full border-[1px] border-dashed border-TealGreen p-5 relative hover:scale-105 hover:bg-teal-50 hover:text-white transition-all duration-300 rounded-2xl mt-20 h-full flex flex-col justify-between'>
          <div className='relative'>
          <div className='rounded-3xl mt-[-100px] overflow-hidden relative'>
             <img src={course_image} alt="" className='w-full h-44 rounded-lg  hover:scale-125 transition-all duration-300'/>
             <h3 className='absolute top-0 right-0 bg-TealGreen p-2 pl-5 pb-5 text-white rounded-bl-full rounded-rt-3xl'>Free</h3>
          </div>
          </div>
-          <div className='mt-5'>
-                <div className='flex items-center justify-between'>
+          <div className='-mt-14'>
+                <div className='flex flex-col lg:flex-row  justify-between '>
                   <h2 className="text-TealGreen font-medium text-lg lg:text-xl">{category}</h2>
                   <p className="text-LightTeal text-sm lg:base">{level}</p>
                 </div>
