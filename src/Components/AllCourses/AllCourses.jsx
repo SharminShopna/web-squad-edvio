@@ -11,6 +11,7 @@ import "./AllCourses.css";
 // Import required modules
 import { Navigation } from "swiper/modules";
 import CourseCard from "./CourseCard";
+import SectionTitle from "../../Shared/SectionTitle";
 
 export default function AllCourses() {
   const { courses } = useCourses();
@@ -18,7 +19,10 @@ export default function AllCourses() {
 
   return (
     <div className=" mx-auto">
-      <div className="flex flex-col lg:flex-row justify-between gap-10">
+     <div className="my-32">
+        <SectionTitle subHeading={'Explore a variety of courses and expand your knowledge. Learn at your own pace and enhance your skills for a brighter future'} heading={'Our All Courses'}></SectionTitle>
+     </div>
+      <div className="flex flex-col lg:flex-row justify-between gap-10 ">
         <div className="lg:w-[40%]">
           <h2 className="text-4xl font-semibold">Our All Courses</h2>
           <div className="border-[2px] border-TealGreen w-[30%] my-3"></div>
@@ -44,7 +48,7 @@ export default function AllCourses() {
             engagement, efficiency, and accessibility in modern education.
           </p>
           <div>
-            <button className="mt-5 border-[1px] border-TealGreen py-2 px-5 text-lg hover:bg-TealGreen hover:text-white transition-all duration-300">
+            <button className="mt-5 btnStyle">
               View All Courses
             </button>
           </div>

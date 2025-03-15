@@ -13,3 +13,9 @@
 .inter{
   font-family: "Inter", sans-serif;
 }
+
+@layer components{
+  .btnStyle{
+    @apply border-[1px] border-TealGreen py-2 px-5 text-lg hover:bg-TealGreen hover:text-white transition-all duration-300
+  }
+}
