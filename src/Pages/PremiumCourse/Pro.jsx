@@ -57,11 +57,9 @@ export default function Pro() {
                 <FaCheck className="text-green-500 inline-block mr-2" />
                 <span className="font-bold">Duration:</span> {d.duration}
               </p>
+
               <p className="text-gray-600 mb-2">
-                <span className="font-bold">About Course: </span>
-                {d.description.slice(0, 120)}...
-              </p>
-              <p className="text-gray-600 mb-2">
+                <FaCheck className="text-green-500 inline-block mr-2" />
                 <span className="font-bold">Enrolled:</span> {d.Purchase_order}
               </p>
 
@@ -76,8 +74,12 @@ export default function Pro() {
                         className="w-10 h-10 object-cover rounded-full"
                       />
                       <div>
-                        <p className="text-sm">{d.instructor.name}</p>
-                        <p className="text-sm">{d.instructor.email}</p>
+                        <p className="text-sm text-gray-600">
+                          {d.instructor.name}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {d.instructor.email}
+                        </p>
                       </div>
                     </div>
                   )}

@@ -7,6 +7,7 @@ import AllCourses from "../Components/AllCourses/AllCourses";
 import Pro from "./PremiumCourse/Pro";
 import FreeCourses from "../Components/FreeCourses/FreeCourses";
 import WhyUs from "../Components/WhyUs/WhyUs";
+import PopularCourse from "../Components/MostPopular/PopularCourse";
 
 export default function HomePage() {
   return (
@@ -17,9 +18,10 @@ export default function HomePage() {
           <AllCourses></AllCourses>
         </section>
         <section>
-         <FreeCourses></FreeCourses>
+          <FreeCourses></FreeCourses>
         </section>
         <Pro />
+        <PopularCourse />
         <WhyUs></WhyUs>
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
