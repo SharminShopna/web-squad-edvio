@@ -4,7 +4,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 export default function CourseCard({course}){
   const {course_name,course_image,category,level,price,duration,instructor} = course;
   return (
-    <div className="border-[1px] border-TealGreen h-full flex flex-col">
+    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full">
     <div className="h-52 overflow-hidden">
         <img src={course_image} alt="" className="w-full h-52 object-cover hover:scale-125 transition-all duration-300"/>
     </div>
