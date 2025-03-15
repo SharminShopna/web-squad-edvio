@@ -5,6 +5,7 @@ import ContactUs from "../components/ContactUs";
 import Reviews from "../components/Reviews";
 import AllCourses from "../Components/AllCourses/AllCourses";
 import Pro from "./PremiumCourse/Pro";
+import WhyUs from "../Components/WhyUs/WhyUs";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
         </section>
         <Pro />
         <CommonQuestion></CommonQuestion>
+        <WhyUs></WhyUs>
         <Reviews></Reviews>
         <ContactUs></ContactUs>
       </div>
