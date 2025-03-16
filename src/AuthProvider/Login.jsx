@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "./SocialLogin";
 import UseAuth from "../Hook/UseAuth";
 import { Slide } from "react-awesome-reveal";
-
+import "../Shared/Pro.css";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -54,9 +54,11 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center bg-TealGreen justify-center px-4">
       <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl shadow-lg rounded-xl px-8 py-4 border border-white/20">
-        <h2 className="text-2xl font-bold text-center text-white mb-4 ">Login</h2>
+        <h2 className="text-2xl font-bold text-center text-white mb-4 ">
+          Login
+        </h2>
         <p className="text-center text-white/80 mb-6">Sign in to continue</p>
-        
+
         <form onSubmit={handleLogin} className="space-y-4">
           <Slide direction="up" triggerOnce>
             <div>
@@ -103,13 +105,13 @@ const Login = () => {
           <button
             type="submit"
             disabled={disabled}
-            className="w-full py-3 text-white font-semibold rounded-full transition-all bg-[#5fa79f] hover:bg-LightTeal backdrop-blur-md"
+            className="w-full proCardButton"
           >
             Log In
           </button>
         </form>
         <p className="text-center mt-4 text-white/80">
-          New here? {" "}
+          New here?{" "}
           <Link to="/register" className="text-green-300 hover:underline">
             Create an account
           </Link>

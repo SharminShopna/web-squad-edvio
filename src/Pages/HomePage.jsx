@@ -1,13 +1,14 @@
 import React from "react";
-import Banner from "./Banner/Banner";
+import Banner from "../Components/Banner/Banner";
 import CommonQuestion from "../components/CommonQuestion";
 import ContactUs from "../components/ContactUs";
 import Reviews from "../components/Reviews";
 import AllCourses from "../Components/AllCourses/AllCourses";
-import Pro from "./PremiumCourse/Pro";
+import "../Shared/Pro.css";
 import FreeCourses from "../Components/FreeCourses/FreeCourses";
 import WhyUs from "../Components/WhyUs/WhyUs";
 import PopularCourse from "../Components/MostPopular/PopularCourse";
+import Pro from "../Components/PremiumCourse/Pro";
 
 export default function HomePage() {
   return (

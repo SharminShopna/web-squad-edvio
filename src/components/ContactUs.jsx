@@ -7,7 +7,7 @@ import "../../src/index.css";
 import email from "../../src/assets/email.json";
 import Lottie from "lottie-react";
 import SectionTitle from "../Shared/SectionTitle";
-
+import "../Shared/Pro.css";
 const ContactUs = () => {
   const form = useRef();
 
@@ -105,10 +105,7 @@ const ContactUs = () => {
                 ></textarea>
               </div>
 
-              <button
-                type="submit"
-                className="px-6 py-2 bg-tealGreen text-lg font-semibold rounded-lg hover:bg-LightTeal focus:outline-none focus:ring-2 focus:bg-LightTeal dark:bg-white dark:hover:bg-gray-50"
-              >
+              <button type="submit" className="proCardButton">
                 Send
               </button>
             </form>
