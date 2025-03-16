@@ -34,12 +34,35 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
+     const database = client.db('Edvio');
+     const coursesCollection = database.collection('allCourses');
+     const reviewsCollection = database.collection('reviews');
 
+
+    //  all courses data ===========================
+      app.get('/allCourses',async(req,res)=>{
+     try{
+        const result = await coursesCollection.find().toArray();
+        res.status(200).json({
+        success:true,
+        data:result
+       });
+     }
+     catch(err){
+      console.error("Error fetching courses:", err);
+      res.status(500).json({
+        success:false,
+        message:"Failed to fetch courses. Please try again later."
+      })
+     }
+    })
   
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
+
+  
   }
 }
 run().catch(console.dir);
