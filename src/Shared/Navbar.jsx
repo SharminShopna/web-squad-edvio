@@ -4,8 +4,8 @@ import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
-
-// Navbar menu items
+import "../Shared/Pro.css";
+import "../index.css";
 const menuItems = [
   { name: "Home", link: "/", subMenu: ["Option 1", "Option 2"] },
   { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
@@ -16,10 +16,9 @@ const menuItems = [
 ];
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(null); // Track which dropdown is open
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Track mobile menu
+  const [openMenu, setOpenMenu] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Toggle Mobile Menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -34,27 +33,21 @@ const Navbar = () => {
       {/* Top Bar */}
       <div className="text-sm py-2 px-4 md:flex justify-between items-center">
         <span>
-          Course Location: Johor, Johor Bahru, Desa Cemerlang 8100, Malaysia
+          <span className="font-bold text-TealGreen">Our Location:</span> Mirpur
+          Rd, Savar, Dhaka, Bangladesh
         </span>
         <div className="flex gap-4 items-center mt-3 md:mt-0">
-          <NavLink
-            to={"/login"}
-            className=" cursor-pointer hover:bg-blue-500 bg-TealGreen text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          >
+          <NavLink to={"/login"} className=" proCardButton">
             Sign In
           </NavLink>
-          <NavLink
-            to={"/register"}
-            className="bg-TealGreen cursor-pointer hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          >
+          <NavLink to={"/register"} className="proCardButton">
             Sign Up
           </NavLink>
         </div>
       </div>
 
-      {/* Navbar */}
       <div className="flex justify-between items-center py-4 px-6 bg-TealGreen">
-        <h1 className="text-2xl font-bold text-white">Course BD</h1>
+        <h1 className="text-2xl font-bold text-white Logo">EDVIO</h1>
 
         {/* Navigation Menu */}
         <nav className="py-3 px-6 flex justify-between items-center  z-50">

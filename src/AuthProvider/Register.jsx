@@ -6,7 +6,7 @@ import UseAuth from "../Hook/UseAuth";
 import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import "../Shared/Pro.css";
 const Register = () => {
   const { createUser, updateUserProfile } = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -105,10 +105,7 @@ const Register = () => {
             <span className="text-red-500">Invalid password format</span>
           )}
 
-          <button
-            type="submit"
-            className="w-full bg-[#5fa79f] hover:bg-LightTeal text-white font-semibold py-2 rounded-full backdrop-blur-md"
-          >
+          <button type="submit" className="w-full proCardButton">
             Sign Up
           </button>
         </form>

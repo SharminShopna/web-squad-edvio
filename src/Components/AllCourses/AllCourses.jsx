@@ -2,24 +2,44 @@ import useCourses from "../../Hooks/useCourses";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+import "../../Shared/Pro.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation"; // Import Navigation styles
 import "./AllCourses.css";
 
-// Import required modules
 import { Navigation } from "swiper/modules";
 import CourseCard from "./CourseCard";
+import SectionTitle from "../../Shared/SectionTitle";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function AllCourses() {
   const { courses } = useCourses();
   console.log(courses);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100,
+    });
+  }, []);
+
   return (
-    <div className=" mx-auto">
+    <div className="mx-auto">
+      <div className="my-32">
+        <SectionTitle
+          subHeading={
+            "Explore a variety of courses and expand your knowledge. Learn at your own pace and enhance your skills for a brighter future"
+          }
+          heading={"Our All Courses"}
+        ></SectionTitle>
+      </div>
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="lg:w-[40%]">
+        <div className="lg:w-[40%]" data-aos="fade-up">
           <h2 className="text-4xl font-semibold">Our All Courses</h2>
           <div className="border-[2px] border-TealGreen w-[30%] my-3"></div>
           <h3 className="text-xl font-medium mb-2 mt-10">About Courses</h3>
@@ -44,12 +64,10 @@ export default function AllCourses() {
             engagement, efficiency, and accessibility in modern education.
           </p>
           <div>
-            <button className="mt-5 border-[1px] border-TealGreen py-2 px-5 text-lg hover:bg-TealGreen hover:text-white transition-all duration-300">
-              View All Courses
-            </button>
+            <button className="proCardButton">View All Courses</button>
           </div>
         </div>
-        <div className="lg:w-[50%]">
+        <div className="lg:w-[50%]" data-aos="fade-left">
           <Swiper
             slidesPerView={2}
             spaceBetween={30}
@@ -58,7 +76,7 @@ export default function AllCourses() {
             className="mySwiper"
           >
             {courses.map((course) => (
-              <SwiperSlide key={course.id}>
+              <SwiperSlide key={course.id} data-aos="flip-left">
                 <CourseCard course={course}></CourseCard>
               </SwiperSlide>
             ))}
