@@ -48,10 +48,10 @@ const CommonQuestion = () => {
             aria-expanded={selectedQuestionIndex === index}
           >
             <div className="flex justify-between items-center cursor-pointer">
-              <div className="font-medium text-gray-800 dark:text-gray-200">
+              <div className="font-medium text-gray-800">
                 {item.question}
               </div>
-              <div className="text-gray-600 dark:text-gray-400">
+              <div className="text-gray-600">
                 {selectedQuestionIndex === index ? (
                   <FaChevronUp />
                 ) : (
@@ -60,7 +60,7 @@ const CommonQuestion = () => {
               </div>
             </div>
             {selectedQuestionIndex === index && (
-              <div className="mt-3 text-gray-600 dark:text-gray-400 transition-all duration-300 ease-in-out">
+              <div className="mt-3 text-gray-600 transition-all duration-300 ease-in-out">
                 {item.answer}
               </div>
             )}
