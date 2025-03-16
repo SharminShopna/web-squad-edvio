@@ -1,19 +1,19 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import { motion } from 'framer-motion';
-import img1 from '../../assets/img1.jpg';
-import img2 from '../../assets/img3.jpg';
-import img3 from '../../assets/img4.jpeg';
-import img4 from '../../assets/img6.jpg';
-
+import { Carousel } from "react-responsive-carousel";
+import { motion } from "framer-motion";
+import img1 from "../../assets/img1.jpg";
+import img2 from "../../assets/img3.jpg";
+import img3 from "../../assets/img4.jpeg";
+import img4 from "../../assets/img6.jpg";
+import "../../Shared/Pro.css";
 const Banner = () => {
   return (
     <Carousel
-    autoPlay={true}
-    stopOnHover={true}       
-    infiniteLoop={true}       
-    showThumbs={false}        
-    interval={3000} 
+      autoPlay={true}
+      stopOnHover={true}
+      infiniteLoop={true}
+      showThumbs={false}
+      interval={3000}
     >
       {/* First Slide */}
       <motion.div
@@ -40,11 +40,13 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              EDVIO uses AI to simplify task management, helping you stay organized, meet deadlines, and boost productivity. Let EDVIO handle your tasks so you can focus on what really matters.
+              EDVIO uses AI to simplify task management, helping you stay
+              organized, meet deadlines, and boost productivity. Let EDVIO
+              handle your tasks so you can focus on what really matters.
             </motion.p>
             <motion.a
               href="#about-us"
-              className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
+              className="inline-block mt-4 px-6 py-3 text-lg proCardButton"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }} // More delay for button
@@ -53,7 +55,11 @@ const Banner = () => {
             </motion.a>
           </div>
         </div>
-        <img src={img1} alt="Banner Image 1" className="object-cover w-full h-full" />
+        <img
+          src={img1}
+          alt="Banner Image 1"
+          className="object-cover w-full h-full"
+        />
       </motion.div>
 
       {/* Second Slide */}
@@ -81,11 +87,13 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Get smarter with your tasks using EDVIO. Our AI-driven platform organizes and automates your tasks, making your workflow more efficient and less stressful.
+              Get smarter with your tasks using EDVIO. Our AI-driven platform
+              organizes and automates your tasks, making your workflow more
+              efficient and less stressful.
             </motion.p>
             <motion.a
               href="#about-us"
-              className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
+              className="inline-block mt-4 px-6 py-3 text-lg proCardButton"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }} // More delay for button
@@ -94,7 +102,11 @@ const Banner = () => {
             </motion.a>
           </div>
         </div>
-        <img src={img2} alt="Banner Image 2" className="object-cover w-full h-full" />
+        <img
+          src={img2}
+          alt="Banner Image 2"
+          className="object-cover w-full h-full"
+        />
       </motion.div>
 
       {/* Third Slide */}
@@ -122,11 +134,13 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              EDVIO combines AI and task management to help you stay on top of your goals, prioritize effortlessly, and get more done with less effort.
+              EDVIO combines AI and task management to help you stay on top of
+              your goals, prioritize effortlessly, and get more done with less
+              effort.
             </motion.p>
             <motion.a
               href="#about-us"
-              className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
+              className="inline-block mt-4 px-6 py-3 text-lg proCardButton"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }} // More delay for button
@@ -135,7 +149,11 @@ const Banner = () => {
             </motion.a>
           </div>
         </div>
-        <img src={img3} alt="Banner Image 3" className="object-cover w-full h-full" />
+        <img
+          src={img3}
+          alt="Banner Image 3"
+          className="object-cover w-full h-full"
+        />
       </motion.div>
 
       {/* Fourth Slide */}
@@ -163,11 +181,13 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Let EDVIO's AI simplify your task management. Stay organized, meet deadlines, and focus on what truly matters, all while boosting your efficiency.
+              Let EDVIO's AI simplify your task management. Stay organized, meet
+              deadlines, and focus on what truly matters, all while boosting
+              your efficiency.
             </motion.p>
             <motion.a
               href="#about-us"
-              className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
+              className="inline-block mt-4 px-6 py-3 text-lg proCardButton"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }} // More delay for button
@@ -176,7 +196,11 @@ const Banner = () => {
             </motion.a>
           </div>
         </div>
-        <img src={img4} alt="Banner Image 4" className="object-cover w-full h-full" />
+        <img
+          src={img4}
+          alt="Banner Image 4"
+          className="object-cover w-full h-full"
+        />
       </motion.div>
     </Carousel>
   );
