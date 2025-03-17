@@ -74,7 +74,7 @@ const ContactUs = () => {
                 <input
                   type="text"
                   name="user_name"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Name"
                   required
                 />
@@ -87,7 +87,7 @@ const ContactUs = () => {
                 <input
                   type="email"
                   name="user_email"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Email"
                   required
                 />
@@ -99,7 +99,7 @@ const ContactUs = () => {
                 </label>
                 <textarea
                   name="message"
-                  className="w-full p-2 h-32 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Message"
                   required
                 ></textarea>
