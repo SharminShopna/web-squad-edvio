@@ -11,6 +11,7 @@ const menuItems = [
   { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
   { name: "Feture", link: "/pages", subMenu: ["Page 1", "Page 2"] },
   { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
+  // { name: "Dashboard", link: "/dashboard", subMenu: [] },
   { name: "About Us", link: "/about", subMenu: [] },
   { name: "Contact Us", link: "/contact", subMenu: [] },
 ];
@@ -75,7 +76,8 @@ const Navbar = () => {
                       className="absolute -left-12 top-[55px] bg-TealGreen text-white shadow-md py-2 w-40 "
                     >
                       {item.subMenu.map((subItem, subIndex) => (
-                        <li
+                        <div>
+                          <li
                           key={subIndex}
                           className="px-4 py-2 mx-2 rounded-lg hover:bg-gray-600 cursor-pointer"
                         >
@@ -87,7 +89,12 @@ const Navbar = () => {
                           >
                             {subItem}
                           </Link>
+                          
                         </li>
+                        <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
+                        </div>
+                        
+                        
                       ))}
                     </motion.ul>
                   )}

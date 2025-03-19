@@ -4,6 +4,7 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
+import DashboardLayOut from "../DashboardLayOut/DashboardLayOut";
 
 export default function RouterProvider() {
   return (
@@ -14,6 +15,7 @@ export default function RouterProvider() {
       <Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
+        <Route path="dashboard" element={<DashboardLayOut />}></Route>
       </Route>
     </Routes>
   );
