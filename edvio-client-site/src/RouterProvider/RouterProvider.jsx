@@ -7,6 +7,7 @@ import Register from "../AuthProvider/Register";
 import FreeCoursesDetails from "../Components/CourseDetails/FreeCoursesDetails";
 import ProCourse from "../Components/CourseDetails/ProCourse";
 import PopularCourseDetails from "../Components/CourseDetails/popularCourseDetails";
+import AllCoursesDetails from "../Components/CourseDetails/AllCoursesDetails";
 export default function RouterProvider() {
   return (
     <Routes>
@@ -18,6 +19,7 @@ export default function RouterProvider() {
         />
         <Route path="pro-course/:id" element={<ProCourse />} />
         <Route path="popular-course/:id" element={<PopularCourseDetails />} />
+        <Route path="Courses-Details/:id" element={<AllCoursesDetails />} />
       </Route>
       <Route>
         <Route path="login" element={<Login />}></Route>
