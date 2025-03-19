@@ -18,7 +18,6 @@ import { useEffect } from "react";
 
 export default function AllCourses() {
   const { courses } = useCourses();
-  console.log(courses);
 
   useEffect(() => {
     AOS.init({
