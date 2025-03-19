@@ -17,11 +17,9 @@ export default function useCourseDetails() {
       if (!id) throw new Error("No course ID provided");
 
       try {
-        const response = await axios.get(
-          `http://localhost:5000/courseDetails/${id}`
-        );
-        console.log("Course Data:", response.data); // Debugging
-        return response.data; // Ensure correct return value
+        const response = await axiosPublic.get(`/courseDetails/${id}`);
+        console.log("Course Data:", response.data);
+        return response.data;
       } catch (error) {
         console.error("Error fetching course details:", error);
         return null;
