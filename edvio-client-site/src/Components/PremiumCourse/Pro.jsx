@@ -8,6 +8,26 @@ import "./PriceAnimation.css";
 import { NavLink } from "react-router-dom";
 import useCourses from "../../Hooks/useCourses";
 export default function Pro() {
+
+  const [demo, setDemo] = useState([]);
+
+  useEffect(() => {
+    fetch("/demo.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setDemo(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100,
+    });
+  }, []);
+
   const { courses } = useCourses();
 
   return (
