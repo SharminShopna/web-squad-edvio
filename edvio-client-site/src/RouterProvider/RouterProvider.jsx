@@ -8,6 +8,7 @@ import FreeCoursesDetails from "../Components/CourseDetails/FreeCoursesDetails";
 import ProCourse from "../Components/CourseDetails/ProCourse";
 import PopularCourseDetails from "../Components/CourseDetails/popularCourseDetails";
 import AllCoursesDetails from "../Components/CourseDetails/AllCoursesDetails";
+import AboutUs from "@/Components/AboutUs/AboutUs";
 export default function RouterProvider() {
   return (
     <Routes>
@@ -24,6 +25,9 @@ export default function RouterProvider() {
       <Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
+      </Route>
+      <Route>
+        <Route path="about" element={<AboutUs />}></Route>
       </Route>
     </Routes>
   );
