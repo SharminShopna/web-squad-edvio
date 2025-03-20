@@ -12,7 +12,6 @@ export default function Pro() {
     fetch("/demo.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched Data:", data);
         setDemo(data);
       })
       .catch((error) => console.error("Error fetching data:", error));

@@ -7,6 +7,7 @@ import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../Shared/Pro.css";
+import axios from "axios";
 const Register = () => {
   const { createUser, updateUserProfile } = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -17,20 +18,61 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    createUser(data.email, data.password).then(() => {
-      updateUserProfile(data.name, data.photoURL);
-      Swal.fire({
-        position: "top-center",
-        icon: "success",
-        title: "Registration Successful!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate("/");
-    });
-  };
+  // const onSubmit = (data) => {
+  //   createUser(data.email, data.password).then((res) => {
+  //     const user = res.user;
 
+  //     updateUserProfile(data.name, data.photoURL)
+  //     .then(() => {
+  //       const userInfo = { name: data.name, email: data.email,firebaseUid:user.uid , role:'user'};
+
+  //       axios.post("http://localhost:5000/addUser", userInfo).then((res) => {
+  //         console.log("res",res)
+  //         if (res.data.insertedId) {
+  //           Swal.fire({
+  //             position: "top-center",
+  //             icon: "success",
+  //             title: "Your sign-up has been saved",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //           });
+  //           navigate("/");
+  //         }
+  //       }); 
+  //     });
+  //   });
+  // };
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await createUser(data.email, data.password);
+      const user = res.user;
+  
+      await updateUserProfile(data.name, data.photoURL);
+  
+      const userInfo = { name: data.name, email: data.email, firebaseUid: user.uid, role: "user" };
+      const response = await axios.post("http://localhost:5000/addUser", userInfo);
+  
+      if (response.data.insertedId) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your sign-up has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Sign-up error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Sign-up Failed",
+        text: error.message || "Something went wrong",
+      });
+    }
+  };
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-TealGreen px-4">
       <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl shadow-lg rounded-xl px-8 py-4 border border-white/20">
