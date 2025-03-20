@@ -7,17 +7,23 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve -s dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@radix-ui/react-accordion": "^1.2.3",
     "@tailwindcss/vite": "^4.0.13",
+    "@tanstack/react-query": "^5.69.0",
     "aos": "^2.3.4",
     "axios": "^1.8.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "emailjs-com": "^3.2.0",
     "firebase": "^11.4.0",
     "framer-motion": "^12.5.0",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^0.483.0",
     "react": "^19.0.0",
     "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.0.0",
@@ -29,7 +35,9 @@
     "react-simple-captcha": "^9.3.1",
     "sweetalert2": "^11.6.13",
     "swiper": "^11.2.5",
-    "tailwindcss": "^4.0.13"
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.13",
+    "tw-animate-css": "^1.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

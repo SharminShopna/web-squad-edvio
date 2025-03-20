@@ -18,6 +18,7 @@ import { useEffect } from "react";
 
 export default function AllCourses() {
   const { courses } = useCourses();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
