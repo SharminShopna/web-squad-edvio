@@ -26,10 +26,6 @@ return (
             transform: scale(1);
           }
         }
-
-
-
-
         .animate-zoom-in-out {
           animation: zoom-in-out 15s ease-in-out infinite; /* Faster zoom */
         }
