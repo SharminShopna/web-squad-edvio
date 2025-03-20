@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { HiUsers } from "react-icons/hi2";
+import { NavLink } from "react-router-dom";
 export default function FreeCoursesCard({ course }) {
   const {
     course_name,
@@ -10,6 +11,7 @@ export default function FreeCoursesCard({ course }) {
     duration,
     instructor,
     Purchase_order,
+    _id,
   } = course;
   return (
     <div className="mb-30 lg:mb-20">
@@ -56,7 +58,10 @@ export default function FreeCoursesCard({ course }) {
                 />
                 <p className=" text-sm text-gray-500">{instructor.name}</p>
               </div>
-              <FaArrowUpRightFromSquare className="text-TealGreen text-sm lg:text-2xl cursor-pointer ml-auto" />
+              <NavLink to={`/free-course-details/${_id}`}>
+                {" "}
+                <FaArrowUpRightFromSquare className="text-TealGreen text-sm lg:text-2xl cursor-pointer ml-auto" />
+              </NavLink>
             </div>
           </div>
         </div>
