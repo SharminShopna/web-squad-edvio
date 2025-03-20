@@ -13,6 +13,7 @@ import AllCoursesDetails from "../Components/CourseDetails/AllCoursesDetails";
 export default function RouterProvider() {
   return (
     <Routes>
+      {/* Main Layout router */}
       <Route path="/" element={<MainLayOut></MainLayOut>}>
         <Route index element={<HomePage></HomePage>}></Route>
         <Route
@@ -23,11 +24,13 @@ export default function RouterProvider() {
         <Route path="popular-course/:id" element={<PopularCourseDetails />} />
         <Route path="Courses-Details/:id" element={<AllCoursesDetails />} />
       </Route>
+      {/* Auth router */}
       <Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
-        <Route path="dashboard" element={<DashboardLayOut />}></Route>
       </Route>
+      {/* Dashboard Layout router */}
+      <Route path="dashboard" element={<DashboardLayOut />}></Route>
     </Routes>
   );
 }
