@@ -6,9 +6,6 @@ import img2 from '../../assets/img3.jpg';
 import img3 from '../../assets/img4.jpeg';
 import img4 from '../../assets/img6.jpg';
 
-
-
-
 const Banner = () => {
 return (
   <>
@@ -27,17 +24,11 @@ return (
           }
         }
 
-
-
-
         .animate-zoom-in-out {
           animation: zoom-in-out 15s ease-in-out infinite; /* Faster zoom */
         }
       `}
     </style>
-
-
-
 
     <Carousel
       autoPlay={true}
@@ -75,6 +66,7 @@ return (
             >
               EDVIO uses AI to simplify task management, helping you stay organized, meet deadlines, and boost productivity. Let EDVIO handle your tasks so you can focus on what really matters.
             </motion.p>
+
             <motion.a
               href="#about-us"
               className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
@@ -88,9 +80,6 @@ return (
         </div>
         <img src={img1} alt="Banner Image 1" className="object-cover w-full h-full" />
       </motion.div>
-
-
-
 
       {/* Second Slide */}
       <motion.div
@@ -132,10 +121,6 @@ return (
         </div>
         <img src={img2} alt="Banner Image 2" className="object-cover w-full h-full" />
       </motion.div>
-
-
-
-
       {/* Third Slide */}
       <motion.div
         key="slide-3"
