@@ -6,56 +6,86 @@ import {
   FaClock,
   FaMoneyBillAlt,
 } from "react-icons/fa";
+import BgImage from "../../Shared/BgImage";
+import { IoPeopleSharp } from "react-icons/io5";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { FaHeadSideVirus } from "react-icons/fa6";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const detailsCourseReusable = ({ course }) => {
+    const {
+    course_name,
+    course_image,
+    category,
+    level,
+    price,
+    duration,
+    instructor,
+    Purchase_order,
+    supportEmail,
+    content,
+    _id,
+  } = course;
   if (!course)
     return (
       <p className="text-center text-gray-600">No course data available</p>
     );
 
   return (
-    <div className="max-w-5xl mx-auto p-8 bg-white my-5 shadow-2xl rounded-xl border border-gray-100">
-      {/* Course Header */}
-      <div className="text-center mb-8">
-        <img
-          src={course.course_image}
-          alt={course.course_name}
-          className="w-full h-64 object-cover rounded-lg mb-6"
-        />
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-3">
-          {course?.course_name || "N/A"}
-        </h1>
-        <p className="text-lg text-gray-600">
-          {course?.description || "No description available"}
-        </p>
-      </div>
+    <div className="w-full">
+       <BgImage bgImg={course_image}>
+      <div className="container w-11/12 mx-auto py-30 grid grid-cols-1 lg:grid-cols-2">
+          <div>
+          <h3 className="w-fit bg-TealGreen text-white text-sm py-2 px-5 rounded-2xl">{category}</h3>
+            <h1 className="text-6xl font-semibold text-white my-3">
+           {course_name || "N/A"}
+          </h1>
+        <div className="flex items-center gap-2 text-white py-2 rounded-lg ">
+        <IoPeopleSharp className="text-xl text-TealGreen" />
+        <p className="text-lg font-semibold">Learners: {Purchase_order}</p>
+     </div>
 
-      {/* Course Details */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="bg-gray-50 p-6 rounded-lg">
-          <div className="flex items-center mb-4">
-            <FaBook className="text-xl text-blue-500 mr-2" />
+        </div>
+        <div>
+          
+        </div>
+      </div>
+       </BgImage>
+    <div className="container w-11/12 mx-auto p-8 my-5">
+       
+       <div className="flex justify-between">
+       <div className="flex items-center gap-20">
+         <div>
+            <div className="flex items-center mb-4">
+            <FaBook className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Category:{" "}
               <span className="font-normal">{course?.category || "N/A"}</span>
             </p>
           </div>
           <div className="flex items-center mb-4">
-            <FaChartLine className="text-xl text-blue-500 mr-2" />
+            <FaChartLine className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Level:{" "}
               <span className="font-normal">{course?.level || "N/A"}</span>
             </p>
           </div>
-          <div className="flex items-center mb-4">
-            <FaClock className="text-xl text-blue-500 mr-2" />
+       </div>
+          <div>
+            <div className="flex items-center mb-4">
+            <FaClock className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Duration:{" "}
               <span className="font-normal">{course?.duration || "N/A"}</span>
             </p>
           </div>
           <div className="flex items-center">
-            <FaMoneyBillAlt className="text-xl text-blue-500 mr-2" />
+            <FaMoneyBillAlt className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Price:{" "}
               <span className="font-normal">
@@ -63,18 +93,34 @@ const detailsCourseReusable = ({ course }) => {
               </span>
             </p>
           </div>
+          </div>
+      </div>
+      <div className="bg-white shadow-xl w-fit h-fit p-5 rounded-lg -mt-44 text-center">
+      <p className="text-TealGreen font-semibold text-3xl">
+                {course?.price === 0 ? "Free" : `$${course?.price || "N/A"}`}
+            </p>
+        <button className="bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto">Add To Card <MdOutlineShoppingCart className="text-xl"/></button>
+        <div className="border-[1px] border-LightTeal"></div>
+        <div>
+          <p className="my-3 text-sm text-gray-700">Have any questions? <br /> Reach out to our support team for assistance!</p>
+         <a href={`mailto:${supportEmail}`} className="text-LightTeal hover:text-blue-500 transition">
+          {supportEmail}
+            </a>
         </div>
+      </div>
+       </div>
+
 
         {/* Instructor Section */}
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="bg-gray-50 p-6 rounded-lg my-10 border-[1px] border-LightTeal">
           <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-            <FaUser className="text-xl text-blue-500 mr-2" /> Instructor
+            <FaUser className="text-xl text-TealGreen mr-2" /> Instructor
           </h2>
           <div className="flex items-center mb-4">
             <img
               src={course.instructor.instructor_image}
               alt={course.instructor.name}
-              className="w-12 h-12 rounded-full mr-3"
+              className="w-12 h-12 rounded-full object-cover mr-3"
             />
             <div>
               <p className="text-gray-700 font-semibold">
@@ -86,13 +132,16 @@ const detailsCourseReusable = ({ course }) => {
             </div>
           </div>
           <p className="text-gray-600">{course?.instructor?.about_course}</p>
+          <div>
+            <p className="text-TealGreen text-lg font-medium mt-3 mb-1">Why you should take this course:</p>
+          <p className="text-gray-600">{course?.instructor?.why_take_this_course}</p>
+          </div>
         </div>
-      </div>
 
       {/* Learning Outcomes */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-          <FaCertificate className="text-xl text-blue-500 mr-2" /> What You Will
+        <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
+          <FaCertificate className="text-xl text-TealGreen mr-2" /> What You Will
           Learn
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -102,7 +151,7 @@ const detailsCourseReusable = ({ course }) => {
                 key={index}
                 className="bg-gray-50 p-4 rounded-lg flex items-center"
               >
-                <FaBook className="text-lg text-blue-500 mr-2" />
+                <FaBook className="text-lg text-TealGreen mr-2" />
                 <p className="text-gray-700">{outcome}</p>
               </li>
             ))
@@ -114,8 +163,8 @@ const detailsCourseReusable = ({ course }) => {
 
       {/* Career Benefits */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-          <FaChartLine className="text-xl text-blue-500 mr-2" /> Career Benefits
+        <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
+          <FaChartLine className="text-xl text-TealGreen mr-2" /> Career Benefits
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {course?.career_benefits?.length > 0 ? (
@@ -124,7 +173,7 @@ const detailsCourseReusable = ({ course }) => {
                 key={index}
                 className="bg-gray-50 p-4 rounded-lg flex items-center"
               >
-                <FaCertificate className="text-lg text-blue-500 mr-2" />
+                <FaCertificate className="text-lg text-TealGreen mr-2" />
                 <p className="text-gray-700">{benefit}</p>
               </li>
             ))
@@ -136,59 +185,31 @@ const detailsCourseReusable = ({ course }) => {
 
       {/* Course Content */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-          <FaBook className="text-xl text-blue-500 mr-2" /> Course Content
+        <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
+          <FaHeadSideVirus  className="text-xl text-TealGreen mr-2" />What you can learn from this course
         </h2>
-        {course?.content?.length > 0 ? (
-          course?.content?.map((day, index) => (
-            <div key={index} className="mb-6 bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Day {day?.day || "N/A"}: {day?.title || "No title"}
-              </h3>
-              <ul className="list-disc ml-5">
-                {day?.topics?.length > 0 ? (
-                  day?.topics?.map((topic, i) => (
-                    <li key={i} className="text-gray-700 mb-2">
-                      {topic}
-                    </li>
-                  ))
-                ) : (
-                  <li className="text-gray-600">No topics available</li>
-                )}
-              </ul>
-              {day?.quiz?.available && day?.quiz?.questions?.length > 0 && (
-                <div className="mt-4">
-                  <p className="font-bold text-gray-900 mb-2">
-                    Quiz Questions:
-                  </p>
-                  {day?.quiz?.questions?.map((q, i) => (
-                    <div key={i} className="mb-4">
-                      <p className="text-gray-700 font-semibold">
-                        {q?.question || "No question available"}
-                      </p>
-                      <ul className="list-disc ml-5">
-                        {q?.options?.length > 0 ? (
-                          q?.options?.map((opt, j) => (
-                            <li key={j} className="text-gray-600">
-                              {opt}
-                            </li>
-                          ))
-                        ) : (
-                          <li className="text-gray-600">
-                            No options available
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-600">No course content available</p>
-        )}
+        <div>
+          {
+          content?.map(item =>
+         <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+          <AccordionTrigger>{item?.title}</AccordionTrigger>
+         <AccordionContent>
+          <ul >
+            {
+              item?.topics?.map(topic=><li className="list-disc">{topic}</li>)
+            }
+          </ul>
+         </AccordionContent>
+        </AccordionItem>
+        </Accordion>
+            )
+          }
+      
+
+        </div>
       </div>
+    </div>
     </div>
   );
 };

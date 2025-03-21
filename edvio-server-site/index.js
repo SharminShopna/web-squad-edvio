@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
+
 
 app.use(cors());
 app.use(express.json());
@@ -35,10 +36,38 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
-    const database = client.db("Edvio");
+     const database = client.db('Edvio');
+     const usersCollection = database.collection('users');
     const coursesCollection = database.collection("allCourses");
     const reviewsCollection = database.collection("reviews");
 
+
+    //   Users data Post===========================
+    app.post('/addUser',async(req,res)=>{
+      const user = req.body;
+      const filter ={email: user.email}
+      const exitingUser = await usersCollection.findOne(filter);
+      if(exitingUser){
+        return res.send(exitingUser)
+      }
+        const result = await usersCollection.insertOne(filter);
+        res.send(result)
+    })
+
+    // all users data ===========================
+    app.get('/allUser',async(req,res)=>{
+       try{
+        const result = await usersCollection.find().toArray();
+        res.send(result)
+       }
+       catch(err){
+        console.error("Error fetching users:", err);
+        res.status(500).json({
+          success:false,
+          message:"Failed to fetch users. Please try again later."
+        })
+       }
+    })
     //  all courses data ===========================
     app.get("/allCourses", async (req, res) => {
       try {

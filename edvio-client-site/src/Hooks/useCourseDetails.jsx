@@ -8,7 +8,7 @@ export default function useCourseDetails() {
   const axiosPublic = useAxiosPublic();
 
   const {
-    data: courseDetails,
+    data: courseDetails = [],
     isLoading,
     error,
   } = useQuery({
