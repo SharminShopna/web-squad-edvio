@@ -21,7 +21,7 @@ const SocialLogin = () => {
           role:'user'
         };
 
-        axios.post("http://localhost:5000/addUser", userInfo)
+        axios.post("http://localhost:4000/addUser", userInfo)
         .then((res) => {
           if (res.data.insertedId) {
             Swal.fire({
