@@ -1,41 +1,60 @@
 import React from 'react';
-import "../DashboardLayOut/DashboardLayOut.css"
-import { NavLink, Outlet } from 'react-router-dom';
-import { SiDiscourse } from "react-icons/si";
- import icon from "../../src/assets/icon.png"
- import "../index.css"
-
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import { SiDiscourse } from 'react-icons/si';
+import { FaArrowLeft, FaHome } from 'react-icons/fa';
+import { GrLogout } from 'react-icons/gr';
+import icon from '../../src/assets/icon.png';
+import '../DashboardLayOut/DashboardLayOut.css';
+import '../index.css';
 
 const DashboardLayOut = () => {
-    // console.log(icon)
-    // const icon = "https://i.ibb.co.com/JWJTQ30X/ev.png"
+    
+
     return (
         <>
-        
-            {/* <h1 className='text-3xl'>This is Dashboard</h1> */}
             <div className='flex'>
                 <div className='w-44 md:w-64 min-h-screen tealGreen pt-12'>
-                    <div className='flex gap-4'>
-                       <img src={icon }alt="" className='w-8 h-8 bg-white rounded-full'/>
+                    <div className='flex gap-2 justify-center items-center relative'>
+                        <Link to='/'>
+                            <div className='relative flex items-center justify-center bg-white rounded-full p-2 w-16 h-16 cursor-pointer'>
+                                <FaArrowLeft className='green text-xl' />
+                                <img src={icon} alt="" className='w-8 h-8 ml-2' />
+                            </div>
+                        </Link>
                         <h1 className='text-2xl text-white Logo'>EdVio</h1>
                     </div>
                     <ul className='p-4 text-gray-100 space-y-2'>
                         <li>
-                            <NavLink to='/dashboard'
-                                        className={({ isActive }) =>
-                                            `flex font-semibold items-center gap-2 md:px-4 px-2 md:py-2 rounded ${isActive ? 'bg-white green' : 'hover:tealGreen'
-                                            }`
-                                        }><SiDiscourse />Course Management</NavLink>
+                            <NavLink
+                                to='/dashboard/home-dashboard'
+                                className={({ isActive }) =>
+                                    `flex font-semibold items-center gap-2 md:px-4 px-2 md:py-2 rounded ${isActive ? 'bg-white green' : 'hover:tealGreen'}`
+                                }
+                            >
+                                <FaHome />Dashboard
+                            </NavLink>
                         </li>
-
-
+                        <li>
+                            <NavLink
+                                to='/dashboard/course-management'
+                                className={({ isActive }) =>
+                                    `flex font-semibold items-center gap-2 md:px-4 px-2 md:py-2 rounded ${isActive ? 'bg-white green' : 'hover:tealGreen'}`
+                                }
+                            >
+                                <SiDiscourse />Course Management
+                            </NavLink>
+                        </li>
                     </ul>
-
+                    <button
+                        className='flex w-full items-center px-4 py-2 mt-5 text-white hover:bg-white hover:text-[rgb(54,143,139)] transition-colors duration-300 transform'
+                    >
+                        <GrLogout className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Logout</span>
+                    </button>
                 </div>
-                <div className="flex-1 p-8">
+                <div className='flex-1 p-8'>
                     <Outlet />
                 </div>
-
             </div>
         </>
     );
