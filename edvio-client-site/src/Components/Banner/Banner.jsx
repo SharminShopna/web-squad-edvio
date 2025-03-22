@@ -6,9 +6,6 @@ import img2 from '../../assets/img3.jpg';
 import img3 from '../../assets/img4.jpeg';
 import img4 from '../../assets/img6.jpg';
 
-
-
-
 const Banner = () => {
 return (
   <>
@@ -20,29 +17,25 @@ return (
             transform: scale(1);
           }
           50% {
-            transform: scale(1.05); /* More zoom */
+            transform: scale(1.05); 
           }
           100% {
             transform: scale(1);
           }
         }
         .animate-zoom-in-out {
-          animation: zoom-in-out 15s ease-in-out infinite; /* Faster zoom */
+          animation: zoom-in-out 15s ease-in-out infinite;
         }
       `}
     </style>
-
-
-
-
     <Carousel
       autoPlay={true}
       stopOnHover={true}     
       infiniteLoop={true}     
       showThumbs={false}      
       interval={3000}
-      showArrows={false}  // Hide left and right arrows
-      swipeable={true}   // Optional: Allows swiping to change slides
+      showArrows={false}  
+      swipeable={true}  
     >
       {/* First Slide */}
       <motion.div
@@ -84,10 +77,6 @@ return (
         </div>
         <img src={img1} alt="Banner Image 1" className="object-cover w-full h-full" />
       </motion.div>
-
-
-
-
       {/* Second Slide */}
       <motion.div
         key="slide-2"
@@ -128,10 +117,6 @@ return (
         </div>
         <img src={img2} alt="Banner Image 2" className="object-cover w-full h-full" />
       </motion.div>
-
-
-
-
       {/* Third Slide */}
       <motion.div
         key="slide-3"

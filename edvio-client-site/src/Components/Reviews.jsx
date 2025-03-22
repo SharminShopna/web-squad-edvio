@@ -6,13 +6,15 @@ import "../../src/index.css";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  
 
   useEffect(() => {
-    fetch("/reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
+    fetch("http://localhost:4000/allReviews")
+    .then(res => res.json())
+    .then(data => setReviews(data.data))
   }, []);
-
+  console.log(reviews);
+  
   return (
     <div className="max-w-6xl mx-auto p-4">
       <SectionTitle
@@ -29,7 +31,7 @@ const Reviews = () => {
           >
             <div className="flex items-center gap-4 mb-2">
               <img
-                src={review.image}
+                src={review.photoURL}
                 alt={review.name}
                 className="w-12 h-12 rounded-full object-cover"
               />
