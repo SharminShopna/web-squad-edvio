@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import useAxiosSecure from "./useAxiosSecure";
 
 export default function useCourseDetails() {
   const { id } = useParams();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const {
-    data: courseDetails = [],
+    data: course = [],
     isLoading,
     error,
   } = useQuery({
@@ -17,8 +17,7 @@ export default function useCourseDetails() {
       if (!id) throw new Error("No course ID provided");
 
       try {
-        const response = await axiosPublic.get(`/courseDetails/${id}`);
-        console.log("Course Data:", response.data);
+        const response = await axiosSecure.get(`/courseDetails/${id}`);
         return response.data;
       } catch (error) {
         console.error("Error fetching course details:", error);
@@ -28,5 +27,5 @@ export default function useCourseDetails() {
     staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
 
-  return { courseDetails: courseDetails || {}, isLoading, error };
+  return {  course, isLoading, error };
 }
