@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
+import { motion } from 'framer-motion';  // Import motion from framer-motion
 import aboutImg from '../../assets/about2.jpg';
 import mission from '../../assets/mission.jpg';
 import vision from '../../assets/vision.jpg';
 import SectionTitle from '@/Shared/SectionTitle';
 import { AuthContext } from '@/AuthProvider/AuthProvider';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify'; // Import react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AboutUs = () => {
     const { user } = useContext(AuthContext);
@@ -98,46 +99,82 @@ const AboutUs = () => {
 
     return (
         <div className='w-10/12 mx-auto'>
-            <SectionTitle heading={"Edvio"} subHeading={"About us"}></SectionTitle>
-            <img src={aboutImg} alt="" className='w-full h-[500px] mt-2'/>
-            
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <SectionTitle heading={"Edvio"} subHeading={"About us"}></SectionTitle>
+                <img src={aboutImg} alt="" className='w-full h-[500px] mt-2'/>
+            </motion.div>
+
             {/* Our Approach */}
-            <div className='text-center mt-20 mb-10'>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className='text-center mt-20 mb-10'
+            >
                 <SectionTitle heading={'Our Approach'} subHeading={"Edvio"}></SectionTitle>
                 <p className='pt-5'>
                     At the heart of our AI-Powered Course Management System is a commitment to making education smarter, more accessible, and tailored to the needs of every student and educator. We combine cutting-edge AI technology with a user-centered design to create an experience that is efficient, scalable, and adaptive. Our approach focuses on three key pillars
                 </p>
-            </div>
+            </motion.div>
 
             {/* Approach Cards */}
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6 justify-center'>
+            <motion.div
+                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6 justify-center'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.4 }}
+            >
                 {/* Personalization Card */}
-                <div className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2">
+                <motion.div
+                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                >
                     <h2 className="text-2xl font-semibold text-center text-teal-600 mb-4">Personalization</h2>
                     <p className="text-lg text-gray-700 text-center mb-6">
                         We believe that each learner is unique. Our AI-driven analytics deliver personalized course recommendations and learning paths tailored to each student.
                     </p>
-                </div>
-                
+                </motion.div>
+
                 {/* Efficiency Card */}
-                <div className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2">
+                <motion.div
+                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                >
                     <h2 className="text-2xl font-semibold text-center text-teal-700 mb-4">Efficiency</h2>
                     <p className="text-lg text-gray-700 text-center mb-6">
                         Education should be about learning, not admin tasks. We automate grading, scheduling, and progress tracking to allow more time for growth and knowledge.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Scalability Card */}
-                <div className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2">
+                <motion.div
+                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.9 }}
+                >
                     <h2 className="text-2xl font-semibold text-center text-teal-800 mb-4">Scalability</h2>
                     <p className="text-lg text-gray-700 text-center mb-6">
                         Whether it's a small classroom or a large institution, our platform scales effortlessly to meet your needs and grow with your educational offerings.
                     </p>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
             {/* Mission */}
-            <div className='mt-20'>
+            <motion.div
+                className='mt-20'
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1 }}
+            >
                 <div className='flex flex-col lg:flex-row items-center gap-10'>
                     {/* Image */}
                     <img src={mission} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
@@ -148,10 +185,15 @@ const AboutUs = () => {
                         <button className='btn md:w-1/5 rounded-lg bg-teal-700 text-white'>Learn More</button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Vision */}
-            <div className='mt-10 md:mt-20'>
+            <motion.div
+                className='mt-10 md:mt-20'
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.3 }}
+            >
                 <div className='flex flex-col lg:flex-row  items-center gap-10'>
                     {/* Vision Info */}
                     <div className='flex flex-col gap-5 items-center justify-center'>
@@ -162,44 +204,40 @@ const AboutUs = () => {
                     {/* Image */}
                     <img src={vision} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Meet Our Team */}
-            <div className="mt-20">
+            <motion.div
+                className="mt-20"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.6 }}
+            >
                 <SectionTitle subHeading={"Our Creative Team"} heading="Meet Our Team"></SectionTitle>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-y-10">
                     {teamMembers.map((member, index) => (
-                        <div key={index} className='flex flex-col gap-2 items-center'>
+                        <motion.div
+                            key={index}
+                            className='flex flex-col gap-2 items-center'
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 1.8 + index * 0.2 }}
+                        >
                             <img src={member.image} alt="" className='rounded-full h-[200px] w-[200px]'/>
                             <p className='font-bold'>{member.name}</p>
                             <p>{member.role}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-            </div>
-
-            {/* Inline CSS for the Zoom-in and Zoom-out animation */}
-            <style>
-                {`
-                    @keyframes zoom-in-out {
-                        0% {
-                            transform: scale(1);
-                        }
-                        50% {
-                            transform: scale(1.05); 
-                        }
-                        100% {
-                            transform: scale(1);
-                        }
-                    }
-                    .animate-zoom-in-out {
-                        animation: zoom-in-out 15s ease-in-out infinite;
-                    }
-                `}
-            </style>
+            </motion.div>
 
             {/* Review Form */}
-            <div className="mt-20 W-9/12 mx-auto">
+            <motion.div
+                className="mt-20 W-9/12 mx-auto"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 2 }}
+            >
                 <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"}></SectionTitle>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -265,7 +303,7 @@ const AboutUs = () => {
 
                     <button type="submit" className="w-full bg-teal-700 text-white py-3 rounded-lg">Submit Review</button>
                 </form>
-            </div>
+            </motion.div>
 
             {/* ToastContainer will render the toast notifications */}
             <ToastContainer />
