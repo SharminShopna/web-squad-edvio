@@ -1,11 +1,21 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 
 
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -40,7 +50,7 @@ async function run() {
      const usersCollection = database.collection('users');
     const coursesCollection = database.collection("allCourses");
     const reviewsCollection = database.collection("reviews");
-
+    const courseReviewCollection = database.collection('courseReview')
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -100,7 +110,7 @@ async function run() {
       if(exitingUser){
         return res.send(exitingUser)
       }
-        const result = await usersCollection.insertOne(filter);
+        const result = await usersCollection.insertOne(user);
         res.send(result)
     })
 
@@ -146,6 +156,43 @@ async function run() {
         console.log(e.message);
       }
     });
+    // get course review base on course id =========================
+    app.get('/course_review/:id',async(req,res)=>{
+      const course_id = req.params.id;
+      const query = {course_id : course_id};
+      try{
+        const result = await courseReviewCollection.find(query).toArray();
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      }catch(err){
+        console.error("Error fetching courses:", err);
+        res.status(500).json({
+        success: false,
+          message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+
+    })
+  // course review post base on id ============================
+app.post('/course_review', async (req, res) => {
+    try {
+        const new_course_review = req.body;
+        if(!new_course_review.rating){
+          return res.status(400).json({error: "Give Your Ration"})
+        }
+        if (!new_course_review || !new_course_review.opinion) {
+            return res.status(400).json({error: "Give Your Review"});
+        }
+        const result = await courseReviewCollection.insertOne(new_course_review);
+        res.status(201).json({success: true, message: "Review added successfully", data: result});
+    } catch (error) {
+        console.error("Error inserting review:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

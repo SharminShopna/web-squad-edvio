@@ -3,16 +3,17 @@ import Marquee from "react-fast-marquee";
 import { IoLocation } from "react-icons/io5";
 import SectionTitle from "../Shared/SectionTitle";
 import "../../src/index.css"; 
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  const axiosPublic = useAxiosPublic();
   
 
   useEffect(() => {
-    fetch("http://localhost:4000/allReviews")
-    .then(res => res.json())
+    axiosPublic.get(`/allReviews`)
     .then(data => setReviews(data.data))
-  }, []);
+  }, [axiosPublic]);
   console.log(reviews);
   
   return (

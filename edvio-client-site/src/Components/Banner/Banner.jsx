@@ -23,11 +23,19 @@ return (
             transform: scale(1);
           }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/development
         .animate-zoom-in-out {
           animation: zoom-in-out 15s ease-in-out infinite;
         }
       `}
     </style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/development
     <Carousel
       autoPlay={true}
       stopOnHover={true}     
@@ -64,6 +72,7 @@ return (
             >
               EDVIO uses AI to simplify task management, helping you stay organized, meet deadlines, and boost productivity. Let EDVIO handle your tasks so you can focus on what really matters.
             </motion.p>
+
             <motion.a
               href="#about-us"
               className="inline-block mt-4 px-6 py-3 text-lg font-semibold text-white bg-[#368f8b] hover:bg-[#2d7770] rounded-lg shadow-md"
@@ -77,6 +86,10 @@ return (
         </div>
         <img src={img1} alt="Banner Image 1" className="object-cover w-full h-full" />
       </motion.div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/development
       {/* Second Slide */}
       <motion.div
         key="slide-2"

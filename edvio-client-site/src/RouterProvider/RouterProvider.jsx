@@ -4,28 +4,34 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
+import DashboardLayOut from "../DashboardLayOut/DashboardLayOut";
 import FreeCoursesDetails from "../Components/CourseDetails/FreeCoursesDetails";
 import ProCourse from "../Components/CourseDetails/ProCourse";
 import PopularCourseDetails from "../Components/CourseDetails/popularCourseDetails";
 import AllCoursesDetails from "../Components/CourseDetails/AllCoursesDetails";
-import AboutUs from "@/Components/AboutUs/AboutUs";
+import HomeDashboard from "@/Components/Dashboard/Home/HomeDashboard";
+import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
+
+
 export default function RouterProvider() {
   return (
     <Routes>
+      {/* Main Layout router */}
       <Route path="/" element={<MainLayOut></MainLayOut>}>
         <Route index element={<HomePage></HomePage>}></Route>
-        <Route
-          path="free-course-details/:id"
-          element={<FreeCoursesDetails />}
-        />
-        <Route path="pro-course/:id" element={<ProCourse />} />
-        <Route path="popular-course/:id" element={<PopularCourseDetails />} />
-        <Route path="Courses-Details/:id" element={<AllCoursesDetails />} />
-        <Route path="about" element={<AboutUs />}></Route>
+        <Route path="/courseDetails/:id" element={<DetailsCoursePage></DetailsCoursePage>}></Route>
       </Route>
+      {/* Auth router */}
       <Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
+      </Route>
+      {/* Dashboard Layout router */}
+      <Route path="dashboard" element={<DashboardLayOut />}>
+      <Route index element={<HomeDashboard />} />
+      <Route path="home-dashboard" element={<HomeDashboard />} />
+      <Route path="course-management" element={<CourseManagement />} />
+      
       </Route>
     </Routes>
   );

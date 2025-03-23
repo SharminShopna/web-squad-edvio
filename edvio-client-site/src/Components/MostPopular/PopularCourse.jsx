@@ -95,7 +95,7 @@ const PopularCourse = () => {
                   <span className="text-lg font-semibold text-TealGreen">
                     ${item.price}
                   </span>
-                  <NavLink to={`/popular-course/${item._id}`}>
+                  <NavLink to={`/courseDetails/${item._id}`}>
                     {" "}
                     <button className="proCardButton">Enroll Now</button>
                   </NavLink>
