@@ -4,6 +4,7 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
+<<<<<<< HEAD
 import DashboardLayOut from "../DashboardLayOut/DashboardLayOut";
 import FreeCoursesDetails from "../Components/CourseDetails/FreeCoursesDetails";
 import ProCourse from "../Components/CourseDetails/ProCourse";
@@ -13,19 +14,16 @@ import HomeDashboard from "@/Components/Dashboard/Home/HomeDashboard";
 import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
 
 
+=======
+import DetailsCoursePage from '../Pages/DetailsCoursePage';
+>>>>>>> upstream/development
 export default function RouterProvider() {
   return (
     <Routes>
       {/* Main Layout router */}
       <Route path="/" element={<MainLayOut></MainLayOut>}>
         <Route index element={<HomePage></HomePage>}></Route>
-        <Route
-          path="free-course-details/:id"
-          element={<FreeCoursesDetails />}
-        />
-        <Route path="pro-course/:id" element={<ProCourse />} />
-        <Route path="popular-course/:id" element={<PopularCourseDetails />} />
-        <Route path="Courses-Details/:id" element={<AllCoursesDetails />} />
+        <Route path="/courseDetails/:id" element={<DetailsCoursePage></DetailsCoursePage>}></Route>
       </Route>
       {/* Auth router */}
       <Route>

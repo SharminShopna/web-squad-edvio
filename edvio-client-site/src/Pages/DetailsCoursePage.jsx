@@ -6,18 +6,19 @@ import {
   FaClock,
   FaMoneyBillAlt,
 } from "react-icons/fa";
-import BgImage from "../../Shared/BgImage";
+
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { FaHeadSideVirus } from "react-icons/fa6";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-const detailsCourseReusable = ({ course }) => {
+import { FaCommentDots } from "react-icons/fa";
+import Lottie from "lottie-react";
+import lottieFile from '../assets/review.json'
+import BgImage from "@/Shared/BgImage";
+import ReviewForm from "@/Components/CourseDetails/ReviewForm";
+import useCourseDetails from "@/Hooks/useCourseDetails";
+import CourseContent from "@/Components/CourseDetails/CourseContent";
+import CourseReviews from "@/Components/CourseDetails/CourseReviews";
+const DetailsCoursePage = () => {
+  const { course, error } = useCourseDetails();
     const {
     course_name,
     course_image,
@@ -35,7 +36,7 @@ const detailsCourseReusable = ({ course }) => {
     return (
       <p className="text-center text-gray-600">No course data available</p>
     );
-
+  
   return (
     <div className="w-full">
        <BgImage bgImg={course_image}>
@@ -57,7 +58,6 @@ const detailsCourseReusable = ({ course }) => {
       </div>
        </BgImage>
     <div className="container w-11/12 mx-auto p-8 my-5">
-       
        <div className="flex justify-between">
        <div className="flex items-center gap-20">
          <div>
@@ -65,14 +65,14 @@ const detailsCourseReusable = ({ course }) => {
             <FaBook className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Category:{" "}
-              <span className="font-normal">{course?.category || "N/A"}</span>
+              <span className="font-normal">{category || "N/A"}</span>
             </p>
           </div>
           <div className="flex items-center mb-4">
             <FaChartLine className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Level:{" "}
-              <span className="font-normal">{course?.level || "N/A"}</span>
+              <span className="font-normal">{level || "N/A"}</span>
             </p>
           </div>
        </div>
@@ -81,7 +81,7 @@ const detailsCourseReusable = ({ course }) => {
             <FaClock className="text-xl text-TealGreen mr-2" />
             <p className="text-gray-700 font-semibold">
               Duration:{" "}
-              <span className="font-normal">{course?.duration || "N/A"}</span>
+              <span className="font-normal">{duration || "N/A"}</span>
             </p>
           </div>
           <div className="flex items-center">
@@ -89,7 +89,7 @@ const detailsCourseReusable = ({ course }) => {
             <p className="text-gray-700 font-semibold">
               Price:{" "}
               <span className="font-normal">
-                {course?.price === 0 ? "Free" : `$${course?.price || "N/A"}`}
+                {price === 0 ? "Free" : `$${price || "N/A"}`}
               </span>
             </p>
           </div>
@@ -97,7 +97,7 @@ const detailsCourseReusable = ({ course }) => {
       </div>
       <div className="bg-white shadow-xl w-fit h-fit p-5 rounded-lg -mt-44 text-center">
       <p className="text-TealGreen font-semibold text-3xl">
-                {course?.price === 0 ? "Free" : `$${course?.price || "N/A"}`}
+                {price === 0 ? "Free" : `$${price || "N/A"}`}
             </p>
         <button className="bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto">Add To Card <MdOutlineShoppingCart className="text-xl"/></button>
         <div className="border-[1px] border-LightTeal"></div>
@@ -110,7 +110,6 @@ const detailsCourseReusable = ({ course }) => {
       </div>
        </div>
 
-
         {/* Instructor Section */}
         <div className="bg-gray-50 p-6 rounded-lg my-10 border-[1px] border-LightTeal">
           <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
@@ -118,23 +117,23 @@ const detailsCourseReusable = ({ course }) => {
           </h2>
           <div className="flex items-center mb-4">
             <img
-              src={course.instructor.instructor_image}
-              alt={course.instructor.name}
+              src={instructor?.instructor_image}
+              alt={instructor?.name}
               className="w-12 h-12 rounded-full object-cover mr-3"
             />
             <div>
               <p className="text-gray-700 font-semibold">
-                {course?.instructor?.name || "Unknown Instructor"}
+                {instructor?.name || "Unknown Instructor"}
               </p>
               <p className="text-gray-600">
-                {course?.instructor?.profile || "No profile available"}
+                {instructor?.profile || "No profile available"}
               </p>
             </div>
           </div>
-          <p className="text-gray-600">{course?.instructor?.about_course}</p>
+          <p className="text-gray-600">{instructor?.about_course}</p>
           <div>
             <p className="text-TealGreen text-lg font-medium mt-3 mb-1">Why you should take this course:</p>
-          <p className="text-gray-600">{course?.instructor?.why_take_this_course}</p>
+          <p className="text-gray-600">{instructor?.why_take_this_course}</p>
           </div>
         </div>
 
@@ -184,34 +183,29 @@ const detailsCourseReusable = ({ course }) => {
       </div>
 
       {/* Course Content */}
-      <div>
-        <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
-          <FaHeadSideVirus  className="text-xl text-TealGreen mr-2" />What you can learn from this course
-        </h2>
-        <div>
-          {
-          content?.map(item =>
-         <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-          <AccordionTrigger>{item?.title}</AccordionTrigger>
-         <AccordionContent>
-          <ul >
-            {
-              item?.topics?.map(topic=><li className="list-disc">{topic}</li>)
-            }
-          </ul>
-         </AccordionContent>
-        </AccordionItem>
-        </Accordion>
-            )
-          }
-      
+       <CourseContent content={content}></CourseContent>
+     {/* Course review */}
 
+      <CourseReviews></CourseReviews>
+
+        {/* review add */}
+        <div className="mt-20">
+           <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
+          <FaCommentDots className="text-xl text-TealGreen mr-2" />Add Review
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <ReviewForm  _id={_id}></ReviewForm>
+           <div className="w-full h-full">
+             <Lottie animationData={lottieFile}></Lottie>
+           </div>
         </div>
+        </div>
+      <div>
+      
       </div>
     </div>
     </div>
   );
 };
 
-export default detailsCourseReusable;
+export default DetailsCoursePage;

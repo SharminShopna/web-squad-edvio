@@ -42,7 +42,10 @@ export default function Pro() {
         {courses
           .filter((d) => d.isPremium)
           .map((d, index) => {
+<<<<<<< HEAD
             // console.log(d._id);
+=======
+>>>>>>> upstream/development
             return (
               <div
                 key={index}
@@ -113,7 +116,7 @@ export default function Pro() {
                   </div>
 
                   {/* Enroll Button */}
-                  <NavLink to={`/pro-course/${d._id}`}>
+                  <NavLink to={`/courseDetails/${d._id}`}>
                     <button className="proCardButton w-full mt-4">
                       {" "}
                       Enroll Now
