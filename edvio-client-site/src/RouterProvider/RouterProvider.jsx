@@ -4,7 +4,6 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
-<<<<<<< HEAD
 import DashboardLayOut from "../DashboardLayOut/DashboardLayOut";
 import FreeCoursesDetails from "../Components/CourseDetails/FreeCoursesDetails";
 import ProCourse from "../Components/CourseDetails/ProCourse";
@@ -14,9 +13,6 @@ import HomeDashboard from "@/Components/Dashboard/Home/HomeDashboard";
 import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
 
 
-=======
-import DetailsCoursePage from '../Pages/DetailsCoursePage';
->>>>>>> upstream/development
 export default function RouterProvider() {
   return (
     <Routes>
