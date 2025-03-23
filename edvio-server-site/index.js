@@ -1,11 +1,21 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 
 
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -50,7 +60,7 @@ async function run() {
       if(exitingUser){
         return res.send(exitingUser)
       }
-        const result = await usersCollection.insertOne(filter);
+        const result = await usersCollection.insertOne(user);
         res.send(result)
     })
 

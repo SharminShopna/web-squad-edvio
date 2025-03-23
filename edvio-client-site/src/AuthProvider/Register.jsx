@@ -8,10 +8,12 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../Shared/Pro.css";
 import axios from "axios";
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const Register = () => {
   const { createUser, updateUserProfile } = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -47,17 +49,17 @@ const Register = () => {
     try {
       const res = await createUser(data.email, data.password);
       const user = res.user;
-
       await updateUserProfile(data.name, data.photoURL);
 
       const userInfo = {
-        name: data.name,
-        email: data.email,
+        name: data?.name,
+        email: data?.email,
         firebaseUid: user.uid,
+        image: data?.photoURL,
         role: "user",
       };
-      const response = await axios.post(
-        "http://localhost:4000/addUser",
+      const response = await axiosPublic.post(
+        "addUser",
         userInfo
       );
 
