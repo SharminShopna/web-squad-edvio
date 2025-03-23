@@ -21,13 +21,11 @@ export default function RouterProvider() {
         <Route path="pro-course/:id" element={<ProCourse />} />
         <Route path="popular-course/:id" element={<PopularCourseDetails />} />
         <Route path="Courses-Details/:id" element={<AllCoursesDetails />} />
+        <Route path="about" element={<AboutUs />}></Route>
       </Route>
       <Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
-      </Route>
-      <Route>
-        <Route path="about" element={<AboutUs />}></Route>
       </Route>
     </Routes>
   );

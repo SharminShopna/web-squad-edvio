@@ -98,7 +98,7 @@ const AboutUs = () => {
     };
 
     return (
-        <div className='w-10/12 mx-auto'>
+        <div className='w-10/12 mx-auto mt-5 mb-5'>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
