@@ -2,8 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = process.env.PORT || 4000;
-
+const port = process.env.PORT || 5000;
 
 // app.use(cors());
 app.use(
@@ -18,6 +17,7 @@ app.use(
 );
 app.use(express.json());
 
+<<<<<<< HEAD
 app.get('/', (req, res) => {
   res.send('Edvio server is running');
 })
@@ -25,6 +25,8 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`)
 })
+=======
+>>>>>>> upstream/development
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
 });
@@ -32,7 +34,10 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`);
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/development
 
 // DB_USER : edVio
 // DB_PASSWORD : ZjjcxkvD0uusSqsL
@@ -54,11 +59,19 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
+<<<<<<< HEAD
     const database = client.db('Edvio');
     const coursesCollection = database.collection('allCourses');
     const reviewsCollection = database.collection('reviews'); 
      const usersCollection = database.collection('users');
     const courseReviewCollection = database.collection('courseReview')
+=======
+    const database = client.db("Edvio");
+    const usersCollection = database.collection("users");
+    const coursesCollection = database.collection("allCourses");
+    const reviewsCollection = database.collection("reviews");
+    const courseReviewCollection = database.collection("courseReview");
+>>>>>>> upstream/development
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -107,36 +120,40 @@ async function run() {
         });
       }
     });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> upstream/development
 
     //   Users data Post===========================
-    app.post('/addUser',async(req,res)=>{
+    app.post("/addUser", async (req, res) => {
+      console.log("Received data:", req.body);
       const user = req.body;
-      const filter ={email: user.email}
+      const filter = { email: user.email };
       const exitingUser = await usersCollection.findOne(filter);
-      if(exitingUser){
-        return res.send(exitingUser)
+      if (exitingUser) {
+        return res.send(exitingUser);
       }
-        const result = await usersCollection.insertOne(user);
-        res.send(result)
-    })
+      const result = await usersCollection.insertOne(user);
+      res.send(result);
+    });
 
     // all users data ===========================
-    app.get('/allUser',async(req,res)=>{
-       try{
+    app.get("/allUser", async (req, res) => {
+      try {
         const result = await usersCollection.find().toArray();
-        res.send(result)
-       }
-       catch(err){
+        res.send(result);
+      } catch (err) {
         console.error("Error fetching users:", err);
         res.status(500).json({
-          success:false,
-          message:"Failed to fetch users. Please try again later."
-        })
-       }
-    })
+          success: false,
+          message: "Failed to fetch users. Please try again later.",
+        });
+      }
+    });
     //  all courses data ===========================
+<<<<<<< HEAD
     // Modify your existing /allCourses route
     app.get('/allCourses', async (req, res) => {
       try {
@@ -159,6 +176,8 @@ async function run() {
           success: true,
           data: courses,
           totalCourses
+=======
+>>>>>>> upstream/development
     app.get("/allCourses", async (req, res) => {
       try {
         const result = await coursesCollection.find().toArray();
@@ -170,19 +189,26 @@ async function run() {
         console.error("Error fetching courses:", err);
         res.status(500).json({
           success: false,
+<<<<<<< HEAD
 
           message: "Failed to fetch courses"
 
           message: "Failed to fetch courses. Please try again later.",
 
+=======
+          message: "Failed to fetch courses. Please try again later.",
+>>>>>>> upstream/development
         });
       }
     });
 
+<<<<<<< HEAD
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
 
+=======
+>>>>>>> upstream/development
     // id wise course details
     app.get("/courseDetails/:id", async (req, res) => {
       const id = req.params.id;
@@ -195,46 +221,56 @@ async function run() {
       }
     });
     // get course review base on course id =========================
-    app.get('/course_review/:id',async(req,res)=>{
+    app.get("/course_review/:id", async (req, res) => {
       const course_id = req.params.id;
-      const query = {course_id : course_id};
-      try{
-        const result = await courseReviewCollection.find(query).sort({_id:-1}).toArray();
+      const query = { course_id: course_id };
+      try {
+        const result = await courseReviewCollection
+          .find(query)
+          .sort({ _id: -1 })
+          .toArray();
         res.status(200).json({
           success: true,
           data: result,
         });
-      }catch(err){
+      } catch (err) {
         console.error("Error fetching courses:", err);
         res.status(500).json({
-        success: false,
+          success: false,
           message: "Failed to fetch courses. Please try again later.",
         });
       }
-
-    })
-  // course review post base on id ============================
-app.post('/course_review', async (req, res) => {
-    try {
+    });
+    // course review post base on id ============================
+    app.post("/course_review", async (req, res) => {
+      try {
         const new_course_review = req.body;
-        if(!new_course_review.rating){
-          return res.status(400).json({error: "Give Your Ration"})
+        if (!new_course_review.rating) {
+          return res.status(400).json({ error: "Give Your Ration" });
         }
         if (!new_course_review || !new_course_review.opinion) {
-            return res.status(400).json({error: "Give Your Review"});
+          return res.status(400).json({ error: "Give Your Review" });
         }
-        const result = await courseReviewCollection.insertOne(new_course_review);
-        res.status(201).json({success: true, message: "Review added successfully", data: result});
-    } catch (error) {
+        const result = await courseReviewCollection.insertOne(
+          new_course_review
+        );
+        res.status(201).json({
+          success: true,
+          message: "Review added successfully",
+          data: result,
+        });
+      } catch (error) {
         console.error("Error inserting review:", error);
         res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
+      }
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/development
   }
 }
 run().catch(console.dir);
