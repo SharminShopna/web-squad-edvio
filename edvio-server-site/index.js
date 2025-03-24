@@ -18,7 +18,6 @@ app.use(
 );
 app.use(express.json());
 
-<<<<<<< HEAD
 app.get('/', (req, res) => {
   res.send('Edvio server is running');
 })
@@ -26,7 +25,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`)
 })
-=======
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
 });
@@ -34,7 +32,7 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`);
 });
->>>>>>> upstream/development
+
 
 // DB_USER : edVio
 // DB_PASSWORD : ZjjcxkvD0uusSqsL
@@ -56,11 +54,9 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
-<<<<<<< HEAD
     const database = client.db('Edvio');
     const coursesCollection = database.collection('allCourses');
     const reviewsCollection = database.collection('reviews');
-=======
      const database = client.db('Edvio');
      const usersCollection = database.collection('users');
     const coursesCollection = database.collection("allCourses");
@@ -114,7 +110,6 @@ async function run() {
         });
       }
     });
->>>>>>> upstream/development
 
 
 
@@ -145,7 +140,6 @@ async function run() {
        }
     })
     //  all courses data ===========================
-<<<<<<< HEAD
     // Modify your existing /allCourses route
     app.get('/allCourses', async (req, res) => {
       try {
@@ -168,35 +162,30 @@ async function run() {
           success: true,
           data: courses,
           totalCourses
-=======
     app.get("/allCourses", async (req, res) => {
       try {
         const result = await coursesCollection.find().toArray();
         res.status(200).json({
           success: true,
           data: result,
->>>>>>> upstream/development
         });
       } catch (err) {
         console.error("Error fetching courses:", err);
         res.status(500).json({
           success: false,
-<<<<<<< HEAD
+
           message: "Failed to fetch courses"
-=======
+
           message: "Failed to fetch courses. Please try again later.",
->>>>>>> upstream/development
+
         });
       }
     });
 
-<<<<<<< HEAD
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
 
-
-=======
     // id wise course details
     app.get("/courseDetails/:id", async (req, res) => {
       const id = req.params.id;
@@ -248,7 +237,7 @@ app.post('/course_review', async (req, res) => {
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
->>>>>>> upstream/development
+
   }
 }
 run().catch(console.dir);
