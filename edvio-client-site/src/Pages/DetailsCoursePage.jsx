@@ -36,7 +36,7 @@ const DetailsCoursePage = () => {
     return (
       <p className="text-center text-gray-600">No course data available</p>
     );
-  
+   console.log(course_name)
   return (
     <div className="w-full">
        <BgImage bgImg={course_image}>
