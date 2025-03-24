@@ -22,7 +22,7 @@ export default function RouterProvider() {
           element={<DetailsCoursePage></DetailsCoursePage>}
         ></Route>
         <Route path="/about-us" element={<AboutUs></AboutUs>}></Route>
-        <Route path="/all-courses" element={<AllCourses></AllCourses>}></Route>
+        <Route path="/all-Courses" element={<AllCourses></AllCourses>}></Route>
       </Route>
       {/* Auth router */}
       <Route>
