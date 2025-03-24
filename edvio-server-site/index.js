@@ -56,11 +56,8 @@ async function run() {
     // await client.connect();
     const database = client.db('Edvio');
     const coursesCollection = database.collection('allCourses');
-    const reviewsCollection = database.collection('reviews');
-     const database = client.db('Edvio');
+    const reviewsCollection = database.collection('reviews'); 
      const usersCollection = database.collection('users');
-    const coursesCollection = database.collection("allCourses");
-    const reviewsCollection = database.collection("reviews");
     const courseReviewCollection = database.collection('courseReview')
 
     // POST route for adding a review
