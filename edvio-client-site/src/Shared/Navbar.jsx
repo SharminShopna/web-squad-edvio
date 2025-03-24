@@ -1,23 +1,14 @@
 import { useContext, useState } from "react";
-import "../index.css";
 import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import "../Shared/Pro.css";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 import "../index.css";
-import { AuthContext } from "@/AuthProvider/AuthProvider";
-const menuItems = [
-  { name: "Home", link: "/", subMenu: ["Option 1", "Option 2"] },
-  { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
-  { name: "Feture", link: "/pages", subMenu: ["Page 1", "Page 2"] },
-  { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
-  { name: "About Us", link: "/about-us", subMenu: [] },
-  { name: "Contact Us", link: "/contact", subMenu: [] },
-  { name: "Dashboard", link: "/dashboard", subMenu: [] },
-];
+import "../Shared/Pro.css";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [openMenu, setOpenMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,8 +19,45 @@ const Navbar = () => {
   const handleMenuClick = (index) => {
     setOpenMenu(openMenu === index ? null : index);
   };
-  const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+
+  const menuItems = [
+    {
+      name: "Home",
+      link: "/",
+      subMenu: [
+        { name: "Option 1", path: "/option-1" },
+        { name: "Option 2", path: "/option-2" },
+      ],
+    },
+    {
+      name: "Courses",
+      link: "/courses",
+      subMenu: [
+        { name: "Category 1", path: "/courses/category-1" },
+        { name: "Category 2", path: "/courses/category-2" },
+      ],
+    },
+    {
+      name: "Feature",
+      link: "/pages",
+      subMenu: [
+        { name: "Page 1", path: "/pages/page-1" },
+        { name: "Page 2", path: "/pages/page-2" },
+      ],
+    },
+    {
+      name: "Blogs",
+      link: "/blog",
+      subMenu: [
+        { name: "Blog 1", path: "/blog/blog-1" },
+        { name: "Blog 2", path: "/blog/blog-2" },
+      ],
+    },
+    { name: "About Us", link: "/about-us", subMenu: [] },
+    { name: "Contact Us", link: "/contact", subMenu: [] },
+    ...(user ? [{ name: "Dashboard", link: "/dashboard", subMenu: [] }] : []),
+  ];
+
   return (
     <header className="w-full shadow-md z-50">
       <div className="text-sm py-2 px-4 flex justify-between items-center">
@@ -38,7 +66,7 @@ const Navbar = () => {
           Rd, Savar, Dhaka, Bangladesh
         </span>
         {user ? (
-          <button className="proCardButton" onClick={() => logOut()}>
+          <button className="proCardButton" onClick={logOut}>
             Log Out
           </button>
         ) : (
@@ -84,12 +112,10 @@ const Navbar = () => {
                           className="px-4 py-2 mx-2 rounded-lg hover:bg-gray-600 cursor-pointer"
                         >
                           <NavLink
-                            to={`${item.link}/${subItem
-                              .toLowerCase()
-                              .replace(/ /g, "-")}`}
+                            to={subItem.path}
                             onClick={() => setOpenMenu(null)}
                           >
-                            {subItem}
+                            {subItem.name}
                           </NavLink>
                         </li>
                       ))}
@@ -132,12 +158,10 @@ const Navbar = () => {
                                 className="px-4 py-2 cursor-pointer hover:text-white rounded-lg hover:bg-gray-600"
                               >
                                 <NavLink
-                                  to={`${item.link}/${subItem
-                                    .toLowerCase()
-                                    .replace(/ /g, "-")}`}
+                                  to={subItem.path}
                                   onClick={() => setOpenMenu(null)}
                                 >
-                                  {subItem}
+                                  {subItem.name}
                                 </NavLink>
                               </li>
                             ))}
