@@ -25,6 +25,7 @@ export default function HomePage() {
         <PopularCourse />
         <WhyUs></WhyUs>
         <CommonQuestion></CommonQuestion>
+        <WhyUs></WhyUs>
         <Reviews></Reviews>
         <ContactUs></ContactUs>
       </div>

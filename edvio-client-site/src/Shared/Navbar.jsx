@@ -8,7 +8,7 @@ import "../Shared/Pro.css";
 import "../index.css";
 const menuItems = [
   { name: "Home", link: "/", subMenu: ["Option 1", "Option 2"] },
-  { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
+  { name: "Courses", link: "/all-courses", subMenu: ["Category 1", "Category 2"] },
   { name: "Feture", link: "/pages", subMenu: ["Page 1", "Page 2"] },
   { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
   { name: "About Us", link: "/about-us", subMenu: [] },
