@@ -14,48 +14,51 @@ export default function CourseCard({ course }) {
     Purchase_order,
     _id,
   } = course;
+
   return (
-    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full ">
-      <div className="h-52 overflow-hidden">
-        <div>
-          <img
-            src={course_image}
-            alt=""
-            className="w-full h-52 object-cover hover:scale-125 transition-all duration-300"
-          />
-          <h3 className="absolute top-0 left-0 bg-TealGreen p-2 pr-5 pb-5 text-white rounded-br-full">
-            ${price}
-          </h3>
-        </div>
+    <div className="relative group bg-white shadow-lg rounded-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl w-full max-w-md lg:max-w-lg">
+      {/* Course Image */}
+      <div className="relative h-56 overflow-hidden rounded-t-xl">
+        <img
+          src={course_image}
+          alt={course_name}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+        />
+        <span className="absolute top-4 left-4 bg-TealGreen text-white px-4 py-2 text-sm font-semibold rounded-full">
+          ${price}
+        </span>
       </div>
-      <div className="p-5 h-[60%] flex flex-col justify-between">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-          <h2 className="text-TealGreen font-medium text-lg lg:text-xl">
-            {category}
-          </h2>
-          <p className="text-LightTeal text-sm lg:base">{level}</p>
+
+      {/* Course Content */}
+      <div className="p-6 flex flex-col gap-3">
+        {/* Category & Level */}
+        <div className="flex justify-between items-center">
+          <h2 className="text-TealGreen font-semibold text-lg">{category}</h2>
+          <p className="text-LightTeal text-sm bg-gray-100 px-3 py-1 rounded-full">
+            {level}
+          </p>
         </div>
-        <div className="text-gray-500 text-sm lg:base">
-          <h3 className="my-2">{course_name}</h3>
-          <p className="mb-2">Price : ${price}</p>
-          <div className="flex items-center justify-between">
-            <p>Duration : {duration}</p>
-            <p className="flex items-center gap-2">
-              <HiUsers className="text-lg" /> {Purchase_order}
-            </p>
-          </div>
+
+        {/* Course Title */}
+        <h3 className="text-xl font-bold text-gray-800">{course_name}</h3>
+
+        {/* Duration & Enrollments */}
+        <div className="flex justify-between text-gray-500 text-sm">
+          <p>⏳ {duration}</p>
+          <p className="flex items-center gap-2">
+            <HiUsers className="text-lg" /> {Purchase_order} students
+          </p>
         </div>
-        <p className="text-base lg:text-lg font-medium my-3 text-TealGreen">
-          Instructor
-        </p>
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between mt-auto">
+
+        {/* Instructor Info */}
+        <div className="flex justify-between items-center mt-4">
           <div className="flex items-center gap-3">
             <img
               src={instructor?.instructor_image}
-              alt=""
-              className="w-10 h-10 object-cover rounded-full"
+              alt={instructor?.name}
+              className="w-12 h-12 object-cover rounded-full border-2 border-TealGreen"
             />
-            <p className=" text-sm text-gray-500">{instructor.name}</p>
+            <p className="text-sm text-gray-600">{instructor?.name}</p>
           </div>
           <NavLink to={`/courseDetails/${_id}`}>
             {" "}
