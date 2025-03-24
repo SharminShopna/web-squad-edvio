@@ -112,7 +112,7 @@ export default function Pro() {
                   </div>
 
                   {/* Enroll Button */}
-                  <NavLink to={`/pro-course/${d._id}`}>
+                  <NavLink to={`/courseDetails/${d._id}`}>
                     <button className="proCardButton w-full mt-4">
                       {" "}
                       Enroll Now

@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../Hook/UseAuth";
 import "../Shared/Pro.css";
-import axios from "axios";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleLogin } = UseAuth();
