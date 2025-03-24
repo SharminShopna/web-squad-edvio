@@ -4,16 +4,13 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
-
 import DashboardLayOut from "../DashboardLayOut/DashboardLayOut";
- import FreeCoursesDetails from "../"
-import ProCourse from "../Components/CourseDetails/ProCourse";
-import PopularCourseDetails from "../Components/CourseDetails/popularCourseDetails";
-import AllCoursesDetails from "../Components/CourseDetails/AllCoursesDetails";
 import HomeDashboard from "@/Components/Dashboard/Home/HomeDashboard";
 import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
+import DetailsCoursePage from "@/Pages/DetailsCoursePage";
+import AboutUs from "@/Components/AboutUs/AboutUs";
 
-import DetailsCoursePage from '../Pages/DetailsCoursePage';
+
 export default function RouterProvider() {
   return (
     <Routes>
@@ -21,6 +18,7 @@ export default function RouterProvider() {
       <Route path="/" element={<MainLayOut></MainLayOut>}>
         <Route index element={<HomePage></HomePage>}></Route>
         <Route path="/courseDetails/:id" element={<DetailsCoursePage></DetailsCoursePage>}></Route>
+        <Route path="/about-us" element={<AboutUs></AboutUs>}></Route>
       </Route>
       {/* Auth router */}
       <Route>

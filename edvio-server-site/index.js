@@ -52,6 +52,56 @@ async function run() {
     const reviewsCollection = database.collection("reviews");
     const courseReviewCollection = database.collection('courseReview')
 
+    // POST route for adding a review
+    app.post("/addReview", async (req, res) => {
+      const { name, location, rating, review, photoURL } = req.body;
+
+      try {
+        const newReview = {
+          name,
+          location,
+          rating,
+          review,
+          photoURL,
+          createdAt: new Date(),
+        };
+
+        // Insert review into the reviews collection
+        const result = await reviewsCollection.insertOne(newReview);
+
+        res.status(201).json({
+          success: true,
+          message: "Review added successfully",
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error adding review:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to add review. Please try again later.",
+        });
+      }
+    });
+
+    // GET route for fetching all reviews
+    app.get("/allReviews", async (req, res) => {
+      try {
+        const result = await reviewsCollection.find().toArray();
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch reviews. Please try again later.",
+        });
+      }
+    });
+
+
+
     //   Users data Post===========================
     app.post('/addUser',async(req,res)=>{
       const user = req.body;
@@ -111,7 +161,7 @@ async function run() {
       const course_id = req.params.id;
       const query = {course_id : course_id};
       try{
-        const result = await courseReviewCollection.find(query).toArray();
+        const result = await courseReviewCollection.find(query).sort({_id:-1}).toArray();
         res.status(200).json({
           success: true,
           data: result,

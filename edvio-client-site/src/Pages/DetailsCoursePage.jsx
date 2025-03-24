@@ -184,10 +184,7 @@ const DetailsCoursePage = () => {
 
       {/* Course Content */}
        <CourseContent content={content}></CourseContent>
-     {/* Course review */}
-
-      <CourseReviews></CourseReviews>
-
+    
         {/* review add */}
         <div className="mt-20">
            <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
@@ -200,6 +197,9 @@ const DetailsCoursePage = () => {
            </div>
         </div>
         </div>
+         {/* Course review */}
+
+      <CourseReviews></CourseReviews>
       <div>
       
       </div>
