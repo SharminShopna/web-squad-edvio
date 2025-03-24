@@ -9,6 +9,7 @@ import HomeDashboard from "@/Components/Dashboard/DashboardHomeForAll/HomeDashbo
 import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
 import DetailsCoursePage from "@/Pages/DetailsCoursePage";
 import AboutUs from "@/Components/AboutUs/AboutUs";
+import AllCourses from "@/Pages/All-Courses/AllCourses";
 
 export default function RouterProvider() {
   return (
@@ -21,6 +22,7 @@ export default function RouterProvider() {
           element={<DetailsCoursePage></DetailsCoursePage>}
         ></Route>
         <Route path="/about-us" element={<AboutUs></AboutUs>}></Route>
+        <Route path="/all-courses" element={<AllCourses></AllCourses>}></Route>
       </Route>
       {/* Auth router */}
       <Route>
