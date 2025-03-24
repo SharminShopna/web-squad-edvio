@@ -11,7 +11,7 @@ const menuItems = [
   { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
   { name: "Feture", link: "/pages", subMenu: ["Page 1", "Page 2"] },
   { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
-  { name: "About Us", link: "/about", subMenu: [] },
+  { name: "About Us", link: "/about-us", subMenu: [] },
   { name: "Contact Us", link: "/contact", subMenu: [] },
   { name: "Dashboard", link: "/dashboard", subMenu: [] },
 ];

@@ -23,19 +23,11 @@ return (
             transform: scale(1);
           }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/development
         .animate-zoom-in-out {
           animation: zoom-in-out 15s ease-in-out infinite;
         }
       `}
     </style>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/development
     <Carousel
       autoPlay={true}
       stopOnHover={true}     
@@ -86,10 +78,6 @@ return (
         </div>
         <img src={img1} alt="Banner Image 1" className="object-cover w-full h-full" />
       </motion.div>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/development
       {/* Second Slide */}
       <motion.div
         key="slide-2"
