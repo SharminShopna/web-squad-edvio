@@ -4,39 +4,39 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../Hook/UseAuth";
 import "../Shared/Pro.css";
+import axios from "axios";
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleLogin } = UseAuth();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
 
   const navigate = useNavigate();
   const handlelogin = () => {
-    googleLogin().then((res) => {
-      // server side add  করার পর এইটা  বাদ দিতে হবে
-      if (res.user) {
-        Swal.fire("Good job!", "You logged in successfully!", "success");
-        navigate(location.state ? location.state : "/");
-      }
-      //   const user =res.user;
-      //   const userInfo = {
-      //     email: res?.user?.email,
-      //     name: res?.user?.displayName,
-      //     firebaseUid:user.uid,
-      //     role:'user'
-      //   };
-
-      //   axios.post("/user", userInfo).then((res) => {
-      //     if (res.data.insertedId) {
-      //       Swal.fire({
-      //         position: "top-center",
-      //         icon: "success",
-      //         title: "Your signUp has been saved",
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       });
-      //     }
-      //     console.log("social login")
-      //   });
+    googleLogin()
+    .then((res) => {
+        const user =res.user;
+        const userInfo = {
+          email: res?.user?.email,
+          name: res?.user?.displayName,
+          firebaseUid:user.uid,
+          image: res?.user?.photoURL,
+          role:'user'
+        };
+        axiosPublic.post("addUser", userInfo)
+        .then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Your signUp has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+        
       navigate(from, { replace: true } || "/");
     });
   };

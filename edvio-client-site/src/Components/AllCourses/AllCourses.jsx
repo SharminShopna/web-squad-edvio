@@ -18,7 +18,6 @@ import { useEffect } from "react";
 
 export default function AllCourses() {
   const { courses } = useCourses();
-  console.log(courses);
 
   useEffect(() => {
     AOS.init({
@@ -38,6 +37,7 @@ export default function AllCourses() {
           heading={"Our All Courses"}
         ></SectionTitle>
       </div>
+
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="lg:w-[40%]" data-aos="fade-up">
           <h2 className="text-4xl font-semibold">Our All Courses</h2>
@@ -70,7 +70,7 @@ export default function AllCourses() {
         <div className="lg:w-[50%]" data-aos="fade-left">
           <Swiper
             slidesPerView={2}
-            spaceBetween={30}
+            spaceBetween={20}
             navigation={true} // Enable navigation
             modules={[Navigation]} // Add Navigation module
             className="mySwiper"

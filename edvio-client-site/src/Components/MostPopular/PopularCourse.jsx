@@ -6,6 +6,7 @@ import "../../Shared/Pro.css";
 import useCourses from "../../Hooks/useCourses";
 import SectionTitle from "../../Shared/SectionTitle";
 import { FaStar, FaClock, FaUser } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const PopularCourse = () => {
   const [demo, setDemo] = useState([]);
@@ -94,7 +95,10 @@ const PopularCourse = () => {
                   <span className="text-lg font-semibold text-TealGreen">
                     ${item.price}
                   </span>
-                  <button className="proCardButton">Enroll Now</button>
+                  <NavLink to={`/courseDetails/${item._id}`}>
+                    {" "}
+                    <button className="proCardButton">Enroll Now</button>
+                  </NavLink>
                 </div>
               </div>
             </motion.div>
