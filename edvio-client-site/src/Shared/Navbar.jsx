@@ -13,7 +13,7 @@ const menuItems = [
   { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
   { name: "About Us", link: "/about", subMenu: [] },
   { name: "Contact Us", link: "/contact", subMenu: [] },
-  { name: "Deshboard", link: "/deshboard", subMenu: [] },
+  { name: "Dashboard", link: "/dashboard", subMenu: [] },
 ];
 
 const Navbar = () => {
