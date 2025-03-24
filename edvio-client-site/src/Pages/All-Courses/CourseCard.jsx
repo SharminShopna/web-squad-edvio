@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaUserGraduate, FaArrowRight } from "react-icons/fa";
 import { GiAlarmClock } from "react-icons/gi";
+import { Link, NavLink } from "react-router-dom";
 // import "animate.css";
 
 export default function CourseCard({ course }) {
@@ -13,6 +14,7 @@ export default function CourseCard({ course }) {
     duration,
     instructor,
     Purchase_order,
+    _id,
   } = course;
 
   return (
@@ -75,10 +77,13 @@ export default function CourseCard({ course }) {
 
         {/* Hover Action Button */}
         <div className="absolute bottom-0 left-0 right-0 bg-indigo-500 text-white p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-          <button className="w-full flex items-center justify-between">
+          <Link
+            to={`/courseDetails/${_id}`}
+            className="w-full flex items-center justify-between"
+          >
             <span>View Course</span>
             <FaArrowRight className="transform group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </div>
 
