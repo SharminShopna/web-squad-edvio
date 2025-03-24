@@ -111,7 +111,7 @@ async function run() {
       const course_id = req.params.id;
       const query = {course_id : course_id};
       try{
-        const result = await courseReviewCollection.find(query).toArray();
+        const result = await courseReviewCollection.find(query).sort({_id:-1}).toArray();
         res.status(200).json({
           success: true,
           data: result,
