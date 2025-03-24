@@ -60,14 +60,10 @@ export default function CourseCard({ course }) {
             />
             <p className="text-sm text-gray-600">{instructor?.name}</p>
           </div>
-<<<<<<< HEAD
-          <FaArrowUpRightFromSquare className="text-TealGreen text-xl cursor-pointer hover:scale-110 transition-transform" />
-=======
           <NavLink to={`/courseDetails/${_id}`}>
             {" "}
             <FaArrowUpRightFromSquare className="text-TealGreen text-sm lg:text-2xl cursor-pointer ml-auto" />
           </NavLink>
->>>>>>> upstream/development
         </div>
       </div>
     </div>

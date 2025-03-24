@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import CourseCard from './CourseCard';
+import useAxiosPublic from '../../Hooks/useAxiosPublic'; // Update import path
 
 const AllCourses = () => {
+  const axiosPublic = useAxiosPublic();
   const [courses, setCourses] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit] = useState(8); // Courses per page
+  const [limit] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
   const [sortField, setSortField] = useState('price');
   const [sortOrder, setSortOrder] = useState('asc');
@@ -14,13 +16,16 @@ const AllCourses = () => {
     const fetchCourses = async () => {
       try {
         setLoading(true);
-        const url = `http://localhost:5000/allCourses?page=${page}&limit=${limit}&sortField=${sortField}&sortOrder=${sortOrder}`;
-        
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Failed to fetch courses');
-        
-        const { data, totalCourses } = await response.json();
-        
+        const response = await axiosPublic.get('/allCourses', {
+          params: {
+            page,
+            limit,
+            sortField,
+            sortOrder
+          }
+        });
+
+        const { data, totalCourses } = response.data;
         setCourses(data);
         setTotalPages(Math.ceil(totalCourses / limit));
       } catch (error) {
@@ -31,15 +36,13 @@ const AllCourses = () => {
     };
 
     fetchCourses();
-  }, [page, sortField, sortOrder, limit]);
-
-
+  }, [page, sortField, sortOrder, limit, axiosPublic]);
 
   const handleSortChange = (e) => {
     const [field, order] = e.target.value.split('-');
     setSortField(field);
     setSortOrder(order);
-    setPage(1); // Reset to first page when sorting changes
+    setPage(1);
   };
 
   return (
@@ -50,6 +53,7 @@ const AllCourses = () => {
         <select 
           onChange={handleSortChange}
           className="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-TealGreen"
+          value={`${sortField}-${sortOrder}`}
         >
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
@@ -72,19 +76,19 @@ const AllCourses = () => {
             <button
               onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50"
+              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50 hover:bg-TealGreen/90 transition-colors"
             >
               Previous
             </button>
             
-            <span className="px-4 py-2">
+            <span className="px-4 py-2 text-gray-700">
               Page {page} of {totalPages}
             </span>
 
             <button
               onClick={() => setPage(p => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50"
+              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50 hover:bg-TealGreen/90 transition-colors"
             >
               Next
             </button>
