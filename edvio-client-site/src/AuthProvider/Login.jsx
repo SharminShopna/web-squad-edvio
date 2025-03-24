@@ -53,7 +53,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center bg-TealGreen justify-center px-4">
-      <div className="md:flex md:justify-center shadow-lg rounded-2xl border-white/20 bg-white/10 md:items-center"> 
+      <div className="md:flex md:justify-center shadow-lg rounded-2xl border-white/20 bg-white/10 md:items-center">
         {/* step 1*/}
         <div className="w-full max-w-lg    px-8 py-4  ">
           <h2 className="text-2xl font-bold text-center text-white mb-4 ">

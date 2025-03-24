@@ -58,21 +58,18 @@ const Register = () => {
         image: data?.photoURL,
         role: "user",
       };
-      const response = await axiosPublic.post(
-        "addUser",
-        userInfo
-      );
 
-      if (response.data.insertedId) {
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Your sign-up has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
-      }
+      const response = await axiosPublic.post("/addUser", userInfo);
+
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Your sign-up has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/");
     } catch (error) {
       console.error("Sign-up error:", error);
       Swal.fire({
@@ -89,11 +86,11 @@ const Register = () => {
         <div className="w-3/4 mx-auto mt-4 md:ml-4 text-card space-y-2 text-center">
           <h3 className="md:text-3xl text-2xl font-bold">Welcome Back !</h3>
           <p>To keep Connected with us please login with your personal info</p>
-         <div className="w-3/4 mx-auto">
-         <button type="submit" className="w-full proCardButton">
-             <NavLink to="/login">Sign In</NavLink>
+          <div className="w-3/4 mx-auto">
+            <button type="submit" className="w-full proCardButton">
+              <NavLink to="/login">Sign In</NavLink>
             </button>
-         </div>
+          </div>
         </div>
         {/* 2nd part */}
         <div className="w-full max-w-lg  px-8 py-4 ">
