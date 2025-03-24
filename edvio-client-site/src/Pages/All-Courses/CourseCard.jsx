@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaUserGraduate, FaArrowRight } from "react-icons/fa";
 import { GiAlarmClock } from "react-icons/gi";
-import "animate.css";
+// import "animate.css";
 
 export default function CourseCard({ course }) {
   const {
@@ -16,7 +16,7 @@ export default function CourseCard({ course }) {
   } = course;
 
   return (
-    <motion.div 
+    <motion.div
       className="relative group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden animate__animated animate__fadeInUp"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -30,12 +30,12 @@ export default function CourseCard({ course }) {
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
-        
+
         {/* Price Chip */}
         <span className="absolute top-4 right-4 px-4 py-2 bg-indigo-500 text-white rounded-full text-sm font-bold shadow-md">
           ${price}
         </span>
-        
+
         {/* Category Tag */}
         <span className="absolute bottom-4 left-4 px-3 py-1 bg-white text-indigo-600 rounded-full text-xs font-semibold">
           {category}
