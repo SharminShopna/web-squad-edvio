@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { SiDiscourse } from "react-icons/si";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
-import { MdManageAccounts } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa";
+import {
+  MdManageAccounts,
+  MdOutlineAddTask,
+  MdHome,
+  MdSupervisedUserCircle,
+} from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 import icon from "../../../assets/icon.png";
 import "./DashboardLayOut.css";
@@ -13,10 +18,10 @@ const DashboardLayOut = () => {
   // const role = "instractor";
   // const role = "user";
   const Admin = [
-    { path: "/", icon: <FaHome />, label: "Home" },
+    { path: "/", icon: <MdHome />, label: "Home" },
     {
       path: "/dashboard/home-dashboard",
-      icon: <FaHome />,
+      icon: <MdHome />,
       label: "Admin Dashboard",
     },
     {
@@ -26,12 +31,12 @@ const DashboardLayOut = () => {
     },
     {
       path: "/dashboard/add-courses",
-      icon: <SiDiscourse />,
+      icon: <MdOutlineAddTask />,
       label: "Add New Courses",
     },
     {
       path: "/dashboard/manage-users",
-      icon: <SiDiscourse />,
+      icon: <MdSupervisedUserCircle />,
       label: "Manage Users",
     },
   ];
