@@ -42,6 +42,7 @@ export default function Pro() {
         {courses
           .filter((d) => d.isPremium)
           .map((d, index) => {
+            // console.log(d._id);
             return (
               <div
                 key={index}

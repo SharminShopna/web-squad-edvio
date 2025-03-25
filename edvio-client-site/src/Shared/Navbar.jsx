@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../index.css";
 import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
@@ -6,14 +6,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import "../Shared/Pro.css";
 import "../index.css";
+import { AuthContext } from "@/AuthProvider/AuthProvider";
 const menuItems = [
   { name: "Home", link: "/", subMenu: ["Option 1", "Option 2"] },
-  { name: "Courses", link: "/courses", subMenu: ["Category 1", "Category 2"] },
+  { name: "Courses", link: "/all-courses", subMenu: ["Category 1", "Category 2"] },
   { name: "Feture", link: "/pages", subMenu: ["Page 1", "Page 2"] },
   { name: "Blogs", link: "/blog", subMenu: ["Blog 1", "Blog 2"] },
-  { name: "About Us", link: "/about", subMenu: [] },
+  { name: "About Us", link: "/about-us", subMenu: [] },
   { name: "Contact Us", link: "/contact", subMenu: [] },
-  { name: "Deshboard", link: "/deshboard", subMenu: [] },
+  { name: "Dashboard", link: "/dashboard", subMenu: [] },
 ];
 
 const Navbar = () => {
@@ -27,22 +28,29 @@ const Navbar = () => {
   const handleMenuClick = (index) => {
     setOpenMenu(openMenu === index ? null : index);
   };
-
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   return (
     <header className="w-full shadow-md z-50">
-      <div className="text-sm py-2 px-4 md:flex justify-between items-center">
+      <div className="text-sm py-2 px-4 flex justify-between items-center">
         <span>
           <span className="font-bold text-TealGreen">Our Location:</span> Mirpur
           Rd, Savar, Dhaka, Bangladesh
         </span>
-        <div className="flex gap-4 items-center mt-3 md:mt-0">
-          <NavLink to="/login" className="proCardButton">
-            Sign In
-          </NavLink>
-          <NavLink to="/register" className="proCardButton">
-            Sign Up
-          </NavLink>
-        </div>
+        {user ? (
+          <button className="proCardButton" onClick={() => logOut()}>
+            Log Out
+          </button>
+        ) : (
+          <div className="flex gap-4 items-center mt-3 md:mt-0">
+            <NavLink to="/login" className="proCardButton">
+              Sign In
+            </NavLink>
+            <NavLink to="/register" className="proCardButton">
+              Sign Up
+            </NavLink>
+          </div>
+        )}
       </div>
       <div className="flex justify-between items-center py-4 px-6 bg-TealGreen">
         <h1 className="text-2xl font-bold text-white Logo">EDVIO</h1>

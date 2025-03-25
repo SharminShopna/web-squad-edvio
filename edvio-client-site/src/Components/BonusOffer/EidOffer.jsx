@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import img from "../../assets/Eid2.jpg";
 
 const EidOffer = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const savedClose = localStorage.getItem("eidPopupClosed");
-    if (!savedClose) {
-      setShowPopup(true);
-      const countdownDate = new Date("2025-04-10T00:00:00").getTime(); // Eid countdown target date
-      const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
-        if (distance <= 0) {
-          clearInterval(interval);
-          setShowPopup(false);
-        } else {
-          setTimeLeft(distance);
-        }
-      }, 1000);
-      return () => clearInterval(interval);
-    }
+    setShowPopup(true);
+    const countdownDate = new Date("2025-04-01T23:59:59").getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      if (distance <= 0) {
+        clearInterval(interval);
+        setShowPopup(false);
+      } else {
+        setTimeLeft(distance);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const formatTime = (ms) => {
@@ -28,30 +31,97 @@ const EidOffer = () => {
     const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    return { days, hours, minutes, seconds };
   };
 
-  const closePopup = () => {
+  const { days, hours, minutes, seconds } = formatTime(timeLeft);
+
+  const handleClose = () => {
     setShowPopup(false);
-    localStorage.setItem("eidPopupClosed", true);
   };
 
   return (
-    showPopup && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg text-center w-80">
-          <h2 className="text-xl font-bold text-green-600">Eid Special Discount!</h2>
-          <p className="mt-2">Enjoy exclusive discounts this Eid. Hurry up!</p>
-          <div className="mt-4 text-lg font-semibold text-red-500">{formatTime(timeLeft)}</div>
-          <button
-            onClick={closePopup}
-            className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+    <AnimatePresence>
+      {showPopup && (
+        <motion.div
+          className="fixed inset-0 flex items-center justify-center  bg-opacity-50 z-50"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1, transition: { duration: 0.5 } }}
+          exit={{ scale: 0.5, opacity: 0, transition: { duration: 0.8 } }}
+        >
+          {/* Content Box */}
+          <motion.div
+            className="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl text-center border overflow-hidden"
           >
-            Close
-          </button>
-        </div>
-      </div>
-    )
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
+            <div
+              style={{ backgroundImage: `url(${img})` }}
+              className="absolute inset-0 bg-cover bg-center opacity-60"
+            ></div>
+
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-3 bg-red-500 text-white w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-700 transition duration-300 shadow-md z-20"
+            >
+              ❌
+            </button>
+
+            {/* Content */}
+            <div className="relative z-10">
+              {/* Gradient Text */}
+              <h2 className="text-lg md:text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-red-500 to-purple-500">
+                🎉 এই ঈদে বিশেষ অফার! 🎉
+              </h2>
+              <p className="mt-2 text-sm md:text-lg text-gray-100">
+                অফার শেষ হওয়ার আগেই নিয়ে নিন!
+              </p>
+
+              {/* Countdown Timer */}
+              <div className="mt-4 flex justify-center">
+                <div className="grid grid-cols-4 gap-4">
+                  {[
+                    { label: "Days", value: days },
+                    { label: "Hours", value: hours },
+                    { label: "Minutes", value: minutes },
+                    { label: "Seconds", value: seconds },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-yellow-500 text-white w-16 h-16 md:w-20 md:h-20 flex flex-col items-center justify-center 
+                    rounded-full text-xs md:text-lg font-bold shadow-lg"
+                    >
+                      {item.value} <br />
+                      <span className="text-[10px] md:text-sm">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Coupon Code */}
+              <p className="mt-4 text-sm text-white md:text-lg">
+                কুপন কোড:{" "}
+                <span className="bg-red-500 text-white px-3 py-1 rounded-lg font-bold shadow-md">
+                  EID20
+                </span>
+              </p>
+
+              {/* Navigate Button */}
+              <button
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/all-courses");
+                }}
+                className="mt-4 bg-red-500 text-white px-4 md:px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300 shadow-lg"
+              >
+                কোর্স গুলো দেখুন 📚
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
