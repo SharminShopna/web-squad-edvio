@@ -11,6 +11,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
+      "https://jade-horse-d72d87.netlify.app"
     ],
     credentials: true,
   })
@@ -82,6 +83,13 @@ async function run() {
       }
     });
 
+    // Role
+    app.get("/getRole/:email", async (req, res) => {
+      const email = req.params.email;
+      const result = await usersCollection.find({ email: email }).toArray();
+      res.send(result);
+      console.log(result);
+    });
     // GET route for fetching all reviews
     app.get("/allReviews", async (req, res) => {
       try {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import img from "../../assets/Eid2.jpg";
+import { MdCancel } from "react-icons/md";
 
 const EidOffer = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -44,7 +45,7 @@ const EidOffer = () => {
     <AnimatePresence>
       {showPopup && (
         <motion.div
-          className="fixed inset-0 flex items-center justify-center  bg-opacity-50 z-50"
+          className="fixed inset-0 flex items-center justify-center  bg-opacity-50 z-50 mx-4 md:mx-0"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1, transition: { duration: 0.5 } }}
           exit={{ scale: 0.5, opacity: 0, transition: { duration: 0.8 } }}
@@ -63,9 +64,9 @@ const EidOffer = () => {
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-3 right-3 bg-red-500 text-white w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-700 transition duration-300 shadow-md z-20"
+              className="absolute top-3 right-3 bg-red-500 text-white w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full text-2xl  hover:bg-red-700 transition duration-300 shadow-md z-20"
             >
-              ❌
+              <MdCancel className="text-2xl md:text-3xl" />
             </button>
 
             {/* Content */}
@@ -89,11 +90,11 @@ const EidOffer = () => {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="bg-yellow-500 text-white w-16 h-16 md:w-20 md:h-20 flex flex-col items-center justify-center 
-                    rounded-full text-xs md:text-lg font-bold shadow-lg"
+                      className="bg-gradient-to-b from-yellow-500  to-purple-500 text-white w-16 h-16  flex flex-col items-center justify-center 
+                    rounded-full text-xs  font-bold shadow-lg"
                     >
                       {item.value} <br />
-                      <span className="text-[10px] md:text-sm">{item.label}</span>
+                      <span className="text-[10px] ">{item.label}</span>
                     </div>
                   ))}
                 </div>

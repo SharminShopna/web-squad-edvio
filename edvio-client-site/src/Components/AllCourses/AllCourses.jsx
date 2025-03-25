@@ -15,6 +15,7 @@ import SectionTitle from "../../Shared/SectionTitle";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function AllCourses() {
   const { courses } = useCourses();
@@ -63,8 +64,8 @@ export default function AllCourses() {
             journey while integrating the latest AI advancements to enhance
             engagement, efficiency, and accessibility in modern education.
           </p>
-          <div>
-            <button className="proCardButton">View All Courses</button>
+          <div className="mt-10">
+            <Link to={'/all-Courses'} className="proCardButton">View All Courses</Link>
           </div>
         </div>
         <div className="lg:w-[50%]" data-aos="fade-left">
