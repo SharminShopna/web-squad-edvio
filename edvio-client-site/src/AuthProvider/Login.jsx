@@ -29,6 +29,23 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+
+    const banTime = localStorage.getItem("banTime");
+    const currentTime = Date.now();
+
+    if (banTime && currentTime < parseInt(banTime)) {
+      const remainingTime = Math.ceil(
+        (parseInt(banTime) - currentTime) / 60000
+      );
+      return Swal.fire({
+        icon: "error",
+        title: "Too Many Failed Attempts",
+        text: `You are temporarily banned. Try again in ${remainingTime} minutes.`,
+      });
+    }
+
+    let failedAttempts = parseInt(localStorage.getItem("failedAttempts")) || 0;
+
     try {
       const result = await signIn(email, password);
       Swal.fire({
@@ -36,13 +53,34 @@ const Login = () => {
         title: "Login Successful",
         text: `Welcome back, ${result.user.email}!`,
       });
-      navigate(from, { replace: true } || "/");
+
+      localStorage.removeItem("failedAttempts");
+      localStorage.removeItem("banTime");
+
+      navigate(from, { replace: true });
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: error.message,
-      });
+      failedAttempts++;
+
+      if (failedAttempts >= 3) {
+        const banDuration = 60 * 60 * 1000;
+        localStorage.setItem("banTime", currentTime + banDuration);
+        localStorage.removeItem("failedAttempts");
+
+        return Swal.fire({
+          icon: "error",
+          title: "Account Temporarily Locked",
+          text: "You have entered the wrong password 3 times. Please try again after 1 hour.",
+        });
+      } else {
+        localStorage.setItem("failedAttempts", failedAttempts);
+        return Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: `Wrong password. ${
+            3 - failedAttempts
+          } attempts left before ban.`,
+        });
+      }
     }
   };
 
