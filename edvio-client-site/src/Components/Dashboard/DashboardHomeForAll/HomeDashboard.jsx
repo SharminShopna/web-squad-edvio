@@ -1,6 +1,10 @@
 import React from 'react';
 import bg from '../../../assets/db.jpg';
+<<<<<<< HEAD
 import '../../../DashboardLayOut/DashboardLayOut.css';
+=======
+import '../DashboardLayOut/DashboardLayOut.css'
+>>>>>>> upstream/development
 
 const HomeDashboard = () => {
     return (

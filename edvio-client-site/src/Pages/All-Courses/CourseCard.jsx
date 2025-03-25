@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { FaUserGraduate, FaArrowRight } from "react-icons/fa";
 import { GiAlarmClock } from "react-icons/gi";
-import "animate.css";
+import { Link, NavLink } from "react-router-dom";
+// import "animate.css";
 
 export default function CourseCard({ course }) {
   const {
@@ -13,10 +14,11 @@ export default function CourseCard({ course }) {
     duration,
     instructor,
     Purchase_order,
+    _id,
   } = course;
 
   return (
-    <motion.div 
+    <motion.div
       className="relative group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden animate__animated animate__fadeInUp"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -30,12 +32,12 @@ export default function CourseCard({ course }) {
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
-        
+
         {/* Price Chip */}
         <span className="absolute top-4 right-4 px-4 py-2 bg-indigo-500 text-white rounded-full text-sm font-bold shadow-md">
           ${price}
         </span>
-        
+
         {/* Category Tag */}
         <span className="absolute bottom-4 left-4 px-3 py-1 bg-white text-indigo-600 rounded-full text-xs font-semibold">
           {category}
@@ -75,10 +77,13 @@ export default function CourseCard({ course }) {
 
         {/* Hover Action Button */}
         <div className="absolute bottom-0 left-0 right-0 bg-indigo-500 text-white p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-          <button className="w-full flex items-center justify-between">
+          <Link
+            to={`/courseDetails/${_id}`}
+            className="w-full flex items-center justify-between"
+          >
             <span>View Course</span>
             <FaArrowRight className="transform group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </div>
 
