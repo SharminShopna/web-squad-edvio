@@ -100,30 +100,18 @@ export default function DashBoardSideBar() {
   const roleMenu = menus[userData?.role] || [];
 
   return (
-    <div className="p-4 mb-7">
-      <ul>
-        {roleMenu.length > 0 ? (
-          roleMenu.map((item, index) => (
-            <li
-              className="flex mb-3 items-center gap-2  hover:bg-yellow-800 p-2 rounded-lg"
-              key={index}
-            >
-              <span className="text-lg text-white">{item.icon}</span>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? "font-semibold hover:text-white text-yellow-600"
-                    : "text-white hover:text-white"
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
+    <>
+    <div>
+      <ul className="list-none ml-5">
+         {
+        roleMenu.length > 0 ? (
+          roleMenu.map((item,index)=>(
+            <li key={index} className="flex items-center gap-2">{item.icon} <NavLink to={item.path}>{item.label}</NavLink></li>
           ))
         ) : (
-          <li className="text-gray-500">No menu available</li>
-        )}
+          <li>No menu available</li>
+        )
+       }
       </ul>
     </div>
   );
