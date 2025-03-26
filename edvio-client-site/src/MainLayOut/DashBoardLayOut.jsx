@@ -20,7 +20,7 @@ export default function DashBoard() {
 
         {/* Sidebar */}
         <div
-          className={`fixed inset-y-0 left-0 w-64 bg-TealGreen text-white p-4 z-40 transform ${
+          className={`fixed inset-y-0 left-0 w-64 bg-neutral text-white p-4 z-40 transform ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform lg:relative lg:translate-x-0 lg:h-full lg:overflow-y-auto`}
           style={{ maxHeight: "100vh" }}

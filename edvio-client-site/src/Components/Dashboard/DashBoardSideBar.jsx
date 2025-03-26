@@ -10,7 +10,7 @@ export default function DashBoardSideBar() {
         { path: "/dashBoard/adminProfile", icon: <IoHome />, label: "My Profile" },
       ],
       instructor: [
-
+        { path: "/dashBoard/instructorProfile", icon: <IoHome />, label: "My Profile" },
       ],
       user: [
         

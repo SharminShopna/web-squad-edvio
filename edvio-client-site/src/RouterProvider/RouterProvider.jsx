@@ -8,6 +8,8 @@ import DetailsCoursePage from "@/Pages/DetailsCoursePage";
 import AboutUs from "@/Components/AboutUs/AboutUs";
 import AllCourses from "@/Pages/All-Courses/AllCourses";
 import DashBoardLayOut from "@/MainLayOut/DashBoardLayOut";
+import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
+import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 
 
 export default function RouterProvider() {
@@ -29,8 +31,9 @@ export default function RouterProvider() {
         <Route path="register" element={<Register />}></Route>
       </Route>
       {/* Dashboard Layout router */}
-      <Route path="dashboard" element={<DashBoardLayOut/>}>
-        
+      <Route path="dashBoard" element={<DashBoardLayOut/>}>
+         <Route path="/dashBoard/adminProfile" element={<AdminProfile/>}></Route>
+         <Route path="/dashBoard/instructorProfile" element={<InstructorProfile/>}></Route>
       </Route>
     </Routes>
   );

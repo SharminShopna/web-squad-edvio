@@ -1,11 +1,12 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
+import icon from '../assets/icon.png'
 export default function TopNavBar() {
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
+    <div className='shadow-2xl sticky top-0 left-0 z-50 w-full bg-neutral'>
+      <div className="navbar px-10">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <Link><img src={icon} alt="" className='w-12 h-12'/></Link>
   </div>
   <div className="flex-none">
     <div className="dropdown dropdown-end">
