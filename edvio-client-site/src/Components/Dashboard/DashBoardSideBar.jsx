@@ -22,15 +22,17 @@ export default function DashBoardSideBar() {
   return (
     <>
     <div>
-       {
+      <ul className="list-none ml-5">
+         {
         roleMenu.length > 0 ? (
           roleMenu.map((item,index)=>(
-            <li key={index}>{item.icon} <NavLink to={item.path}>{item.label}</NavLink></li>
+            <li key={index} className="flex items-center gap-2">{item.icon} <NavLink to={item.path}>{item.label}</NavLink></li>
           ))
         ) : (
           <li>No menu available</li>
         )
        }
+      </ul>
     </div>
     
     </>
