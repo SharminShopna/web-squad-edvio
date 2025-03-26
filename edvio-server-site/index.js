@@ -133,6 +133,24 @@ async function run() {
         });
       }
     });
+    // get one user base on email =============================
+    app.get('/user/byEmail/:email',async(req,res)=>{
+    const email = req.params.email;
+    const query = {email : email}
+    try{
+      const result = await usersCollection.findOne(query);
+      res.status(200).json({
+          success: true,
+          data: result,
+        });
+    }catch(err){
+        console.error("Error fetching courses:", err);
+        res.status(500).json({
+        success: false,
+        message: "Failed to fetch courses. Please try again later.",
+        });
+    }
+    })
     //  all courses data ===========================
     app.get("/allCourses", async (req, res) => {
       try {
