@@ -4,12 +4,11 @@ import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
 import Register from "../AuthProvider/Register";
-import DashboardLayOut from "../Components/Dashboard/DashboardLayOut/DashboardLayOut";
-import HomeDashboard from "@/Components/Dashboard/DashboardHomeForAll/HomeDashboard";
-import CourseManagement from "@/Components/Dashboard/AdminDashboard/CourseManagement";
 import DetailsCoursePage from "@/Pages/DetailsCoursePage";
 import AboutUs from "@/Components/AboutUs/AboutUs";
 import AllCourses from "@/Pages/All-Courses/AllCourses";
+import DashBoardLayOut from "@/MainLayOut/DashBoardLayOut";
+
 
 export default function RouterProvider() {
   return (
@@ -30,9 +29,8 @@ export default function RouterProvider() {
         <Route path="register" element={<Register />}></Route>
       </Route>
       {/* Dashboard Layout router */}
-      <Route path="dashboard" element={<DashboardLayOut />}>
-        <Route index element={<HomeDashboard />} />
-        <Route path="course-management" element={<CourseManagement />} />
+      <Route path="dashboard" element={<DashBoardLayOut/>}>
+        
       </Route>
     </Routes>
   );

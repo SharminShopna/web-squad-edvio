@@ -15,7 +15,7 @@ export default function CourseCard({ course }) {
     _id,
   } = course;
   return (
-    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full ">
+    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full bg-neutral">
       <div className="h-52 overflow-hidden">
         <div>
           <img

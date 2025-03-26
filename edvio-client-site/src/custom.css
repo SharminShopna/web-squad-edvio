@@ -53,3 +53,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.bottom-left-gradient {
+  background: linear-gradient(to top right, rgb(54, 143, 139), rgb(10, 17, 40));
+}
