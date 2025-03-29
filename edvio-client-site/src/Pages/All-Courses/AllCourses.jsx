@@ -1,8 +1,25 @@
 import { useEffect, useState } from "react";
 import CourseCard from "./CourseCard";
-import useAxiosPublic from "../../Hooks/useAxiosPublic"; // Update import path
+import useAxiosPublic from "../../Hooks/useAxiosPublic"; 
+import GreetingGenerator from "@/Components/BonusOffer/GretingGenerator";
+
+
+
 
 const AllCourses = () => {
+
+//   const particlesInit = useCallback(async engine => {
+//     console.log(engine);
+
+//     await loadSlim(engine);
+// }, []);
+
+// const particlesLoaded = useCallback(async container => {
+//     await console.log(container);
+// }, []);
+
+
+
   const axiosPublic = useAxiosPublic();
   const [courses, setCourses] = useState([]);
   const [page, setPage] = useState(1);
@@ -47,11 +64,11 @@ const AllCourses = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <GreetingGenerator/>
       <div className="mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <h1 className="text-3xl font-bold text-TealGreen">
           Our Available Courses
         </h1>
-
         <select
           onChange={handleSortChange}
           className="p-2 border cursor-pointer rounded-lg focus:outline-none focus:ring-2 focus:ring-TealGreen"
@@ -63,7 +80,6 @@ const AllCourses = () => {
           <option value="duration-asc">Shortest Duration</option>
         </select>
       </div>
-
       {loading ? (
         <div className="text-center text-TealGreen">Loading courses...</div>
       ) : (
@@ -73,7 +89,7 @@ const AllCourses = () => {
               <CourseCard key={course._id} course={course} />
             ))}
           </div>
-
+            
           <div className="mt-8 flex justify-center gap-4">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
@@ -93,7 +109,7 @@ const AllCourses = () => {
               className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50 hover:bg-TealGreen/90 transition-colors"
             >
               Next
-            </button>
+            </button> 
           </div>
         </>
       )}

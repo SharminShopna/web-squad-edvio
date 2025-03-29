@@ -73,10 +73,10 @@ const EidOffer = () => {
             <div className="relative z-10">
               {/* Gradient Text */}
               <h2 className="text-lg md:text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-red-500 to-purple-500">
-                🎉 এই ঈদে বিশেষ অফার! 🎉
+                🎉 Special offer this Eid! 🎉
               </h2>
               <p className="mt-2 text-sm md:text-lg text-gray-100">
-                অফার শেষ হওয়ার আগেই নিয়ে নিন!
+              Grab it before the offer ends!
               </p>
 
               {/* Countdown Timer */}
