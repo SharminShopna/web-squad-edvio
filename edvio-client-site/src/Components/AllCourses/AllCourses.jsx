@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "../../Shared/Pro.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation"; // Import Navigation styles
+import "swiper/css/navigation"; 
 import "./AllCourses.css";
 
 import { Navigation } from "swiper/modules";
@@ -38,7 +38,7 @@ export default function AllCourses() {
           heading={"Our All Courses"}
         ></SectionTitle>
       </div>
-
+        
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="lg:w-[40%]" data-aos="fade-up">
           <h2 className="text-4xl font-semibold">Our All Courses</h2>
@@ -68,6 +68,8 @@ export default function AllCourses() {
             <Link to={'/all-Courses'} className="proCardButton">View All Courses</Link>
           </div>
         </div>
+
+        
         <div className="lg:w-[50%]" data-aos="fade-left">
           <Swiper
             slidesPerView={2}
