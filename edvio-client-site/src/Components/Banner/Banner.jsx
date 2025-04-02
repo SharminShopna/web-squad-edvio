@@ -159,9 +159,6 @@ return (
         <img src={img3} alt="Banner Image 3" className="object-cover w-full h-full" />
       </motion.div>
 
-
-
-
       {/* Fourth Slide */}
       <motion.div
         key="slide-4"

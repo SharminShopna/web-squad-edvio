@@ -1,11 +1,4 @@
-import {
-  FaUser,
-  FaChartLine,
-  FaBook,
-  FaCertificate,
-  FaClock,
-  FaMoneyBillAlt,
-} from "react-icons/fa";
+import {FaUser,FaChartLine,FaBook,FaCertificate,FaClock,FaMoneyBillAlt} from "react-icons/fa";
 
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -36,7 +29,7 @@ const DetailsCoursePage = () => {
     return (
       <p className="text-center text-gray-600">No course data available</p>
     );
-   console.log(course_name)
+
   return (
     <div className="w-full">
       <BgImage bgImg={course_image}>
