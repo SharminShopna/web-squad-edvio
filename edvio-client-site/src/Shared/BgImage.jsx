@@ -1,5 +1,5 @@
 
-export default function BgImage({bgImg,children,height}) {
+export default function BgImage({bgImg,children,height,round}) {
   const bgStyle = {
     backgroundImage: `url(${bgImg})`, 
     backgroundSize: 'cover', 
@@ -7,6 +7,7 @@ export default function BgImage({bgImg,children,height}) {
     backgroundRepeat: 'no-repeat',
     // backgroundAttachment: "fixed",
     height : height, 
+    borderRadius: round,
     }
   return (
     <div style={bgStyle} className="w-full overflow-hidden">

@@ -10,6 +10,7 @@ import AllCourses from "@/Pages/All-Courses/AllCourses";
 import DashBoardLayOut from "@/MainLayOut/DashBoardLayOut";
 import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
+import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 
 
 export default function RouterProvider() {
@@ -32,7 +33,10 @@ export default function RouterProvider() {
       </Route>
       {/* Dashboard Layout router */}
       <Route path="dashBoard" element={<DashBoardLayOut/>}>
+      {/* admin route */}
          <Route path="/dashBoard/adminProfile" element={<AdminProfile/>}></Route>
+         <Route path="/dashBoard/edit-profile" element={<AdminProfileEdit></AdminProfileEdit>}></Route>
+         {/* instructor route */}
          <Route path="/dashBoard/instructorProfile" element={<InstructorProfile/>}></Route>
       </Route>
     </Routes>

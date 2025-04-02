@@ -30,28 +30,28 @@ export default function TopNavBar() {
   </div>
   <div className="flex items-center gap-2">
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen">
+      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen hover:text-white">
         <div className="indicator">
         <IoSettingsOutline   className='text-xl'/>
         </div>
       </div>
     </div>
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen">
+      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen hover:text-white">
         <div className="indicator">
         <BsChatLeftText  className='text-lg'/>
         </div>
       </div>
     </div>
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen">
+      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen hover:text-white">
         <div className="indicator">
         <MdNightlightRound className='text-lg'/>
         </div>
       </div>
     </div>
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen">
+      <div tabIndex={0} role="button" className="btn btn-ghost  btn-circle hover:bg-TealGreen hover:text-white">
         <div className="indicator">
         <FaRegBell className='text-xl'/>
           {/* <span className="badge badge-sm indicator-item">8</span> */}
