@@ -11,17 +11,13 @@ import DashBoardLayOut from "@/MainLayOut/DashBoardLayOut";
 import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 
-
 export default function RouterProvider() {
   return (
     <Routes>
       {/* Main Layout router */}
       <Route path="/" element={<MainLayOut></MainLayOut>}>
         <Route index element={<HomePage></HomePage>}></Route>
-        <Route
-          path="/courseDetails/:id"
-          element={<DetailsCoursePage></DetailsCoursePage>}
-        ></Route>
+        <Route path="/courseDetails/:id" element={<DetailsCoursePage></DetailsCoursePage>}></Route>
         <Route path="/about-us" element={<AboutUs></AboutUs>}></Route>
         <Route path="/all-Courses" element={<AllCourses></AllCourses>}></Route>
       </Route>
@@ -31,9 +27,15 @@ export default function RouterProvider() {
         <Route path="register" element={<Register />}></Route>
       </Route>
       {/* Dashboard Layout router */}
-      <Route path="dashBoard" element={<DashBoardLayOut/>}>
-         <Route path="/dashBoard/adminProfile" element={<AdminProfile/>}></Route>
-         <Route path="/dashBoard/instructorProfile" element={<InstructorProfile/>}></Route>
+      <Route path="dashBoard" element={<DashBoardLayOut />}>
+        <Route
+          path="/dashBoard/adminProfile"
+          element={<AdminProfile />}
+        ></Route>
+        <Route
+          path="/dashBoard/instructorProfile"
+          element={<InstructorProfile />}
+        ></Route>
       </Route>
     </Routes>
   );

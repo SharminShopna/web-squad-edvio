@@ -11,19 +11,20 @@ const EidOffer = () => {
 
   useEffect(() => {
     setShowPopup(true);
-    const countdownDate = new Date("2025-04-01T23:59:59").getTime();
+    const countdownDate = new Date("2025-04-08T23:59:59").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
       if (distance <= 0) {
+        // সময় শেষ হলে countdown বন্ধ করা
         clearInterval(interval);
         setShowPopup(false);
       } else {
         setTimeLeft(distance);
       }
     }, 1000);
-
+    // component unmount হলে interval বন্ধ করা
     return () => clearInterval(interval);
   }, []);
 
