@@ -18,37 +18,41 @@ import {
   IoChevronDown,
   IoChevronUp,
 } from "react-icons/io5";
+import { IoIosApps } from "react-icons/io";
 
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
+  console.log(userData);
+
+  // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
 
   const menus = {
     admin: [
-      { path: "/dashBoard", icon: <IoHome />, label: "Dashboard Home" },
+      { path: "/dashboard", icon: <IoHome />, label: "Dashboard Home" },
       {
-        path: "/dashBoard/adminProfile",
-        icon: <IoPerson />,
-        label: "My Profile",
+        path: "#",
+        icon: <IoIosApps />,
+        label: "Apps",
         subMenu: [
-          { name: "Option 1", path: "/dashBoard/adminProfile/option-1" },
-          { name: "Option 2", path: "/dashBoard/adminProfile/option-2" },
+          { name: "My Profile", path: "/dashboard/adminProfile" },
+          { name: "Edit Profile", path: "/dashboard/edit-profile" },
         ],
       },
     ],
     instructor: [
       { path: "/", icon: <IoHome />, label: "Home" },
-      { path: "/dashBoard/instructorProfile", icon: <IoPerson />, label: "My Profile" },
-      { path: "/dashBoard/instructor/add-course", icon: <IoAddCircle />, label: "Add Course" },
-      { path: "/dashBoard/instructor/my-courses", icon: <IoLibrary />, label: "My Courses" },
-      { path: "/dashBoard/instructor/students", icon: <IoPeople />, label: "My Students" },
-      { path: "/dashBoard/instructor/assignments", icon: <IoDocumentText />, label: "Assignments" },
-      { path: "/dashBoard/instructor/schedule", icon: <IoCalendar />, label: "Teaching Schedule" },
-      { path: "/dashBoard/instructor/analytics", icon: <IoStatsChart />, label: "Course Analytics" },
-      { path: "/dashBoard/instructor/reviews", icon: <IoChatbubbleEllipses />, label: "Student Feedback" },
-      { path: "/dashBoard/instructor/resources", icon: <IoBook />, label: "Resources" },
-      { path: "/dashBoard/instructor/earnings", icon: <IoCard />, label: "Earnings" },
-      { path: "/dashBoard/instructor/settings", icon: <IoSettings />, label: "Settings" },
+      { path: "/dashboard/instructorProfile", icon: <IoPerson />, label: "My Profile" },
+      { path: "/dashboard/instructor/add-course", icon: <IoAddCircle />, label: "Add Course" },
+      { path: "/dashboard/instructor/my-courses", icon: <IoLibrary />, label: "My Courses" },
+      { path: "/dashboard/instructor/students", icon: <IoPeople />, label: "My Students" },
+      { path: "/dashboard/instructor/assignments", icon: <IoDocumentText />, label: "Assignments" },
+      { path: "/dashboard/instructor/schedule", icon: <IoCalendar />, label: "Teaching Schedule" },
+      { path: "/dashboard/instructor/analytics", icon: <IoStatsChart />, label: "Course Analytics" },
+      { path: "/dashboard/instructor/reviews", icon: <IoChatbubbleEllipses />, label: "Student Feedback" },
+      { path: "/dashboard/instructor/resources", icon: <IoBook />, label: "Resources" },
+      { path: "/dashboard/instructor/earnings", icon: <IoCard />, label: "Earnings" },
+      { path: "/dashboard/instructor/settings", icon: <IoSettings />, label: "Settings" },
       { path: "/logout", icon: <IoLogOut />, label: "Logout" },
     ],
     user: [],
@@ -67,15 +71,26 @@ export default function DashBoardSideBar() {
           roleMenu.map((item, index) => (
             <li key={index} className="flex flex-col gap-2 mb-3">
               <div className="flex items-center gap-2 cursor-pointer" onClick={() => toggleSubMenu(index)}>
-                {item.icon} 
-                <NavLink to={item.path} className="hover:text-primary transition duration-200">{item.label}</NavLink>
+                <span className="text-xl">{item.icon}</span>
+                {item.path !== "#" ? (
+                  <NavLink to={item.path} className="text-lg font-medium">
+                    {item.label}
+                  </NavLink>
+                ) : (
+                  <span className="text-lg font-medium">{item.label}</span>
+                )}
                 {item.subMenu && (openMenu === index ? <IoChevronUp /> : <IoChevronDown />)}
               </div>
+
               {item.subMenu && openMenu === index && (
-                <ul className="ml-6 list-disc text-sm">
+                <ul className="ml-6 text-sm">
                   {item.subMenu.map((subItem, subIndex) => (
-                    <li key={subIndex}>
-                      <NavLink to={subItem.path} className="hover:text-secondary transition duration-200">
+                    <li key={subIndex} className="mt-2">
+                      <NavLink
+                        to={subItem.path}
+                        className="text-base group flex items-center gap-2 transition duration-300 hover:text-aquamarine"
+                      >
+                        <span className="h-[2px] w-5 inline-block bg-aquamarine transition-all duration-300 group-hover:w-8"></span>
                         {subItem.name}
                       </NavLink>
                     </li>
