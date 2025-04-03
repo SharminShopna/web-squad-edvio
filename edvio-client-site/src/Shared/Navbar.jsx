@@ -16,6 +16,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // index er সমান হলে openMenu off হবে, নাহলে index সেট হবে। 
   const handleMenuClick = (index) => {
     setOpenMenu(openMenu === index ? null : index);
   };
@@ -60,6 +61,7 @@ const Navbar = () => {
 
   return (
     <header className="w-full shadow-md z-50">
+      {/* Location  and SignUp and SignOut*/}
       <div className="text-sm py-2 px-4 flex justify-between items-center">
         <span>
           <span className="font-bold text-TealGreen">Our Location:</span> Mirpur
@@ -80,17 +82,22 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      
       <div className="flex justify-between items-center py-4 px-6 bg-TealGreen">
         <h1 className="text-2xl font-bold text-white Logo">EDVIO</h1>
+        {/* -------    menu ---------*/}
         <nav className="py-3 px-6 flex justify-between items-center z-50">
+        {/*এটি শুধুমাত্র md স্ক্রিন থেকে দৃশ্যমান হবে, মোবাইলে hidden থাকবে। */}
           <ul className="hidden md:flex gap-6">
             {menuItems.map((item, index) => (
               <li
                 key={index}
                 className="relative group"
+                //  মাউস li এর উপর গেলে openMenu সেট করবে এবং সাবমেনু দেখাবে।
                 onMouseEnter={() => setOpenMenu(index)}
+                //  মাউস সরলে openMenu null হয়ে যাবে এবং সাবমেনু হাইড হবে।
                 onMouseLeave={() => setOpenMenu(null)}
-              >
+              > 
                 <NavLink
                   to={item.link}
                   className="flex items-center text-white cursor-pointer gap-1 text-[18px] hover:text-yellow-400 transition-colors"
@@ -98,6 +105,7 @@ const Navbar = () => {
                 >
                   {item.name} {item.subMenu.length > 0 && <IoIosArrowDown />}
                 </NavLink>
+                {/* সাবমেনু থাকলে IoIosArrowDown আইকন দেখাবে। */}
                 <AnimatePresence>
                   {openMenu === index && item.subMenu.length > 0 && (
                     <motion.ul
@@ -125,6 +133,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          {/*মোবাইলে dekhabeee  */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
@@ -175,6 +184,7 @@ const Navbar = () => {
             )}
           </AnimatePresence>
         </nav>
+        {/* ------- icon ---------*/}
         <div className="flex items-center gap-6">
           <FaHeart className="text-xl text-white cursor-pointer hover:text-yellow-400" />
           <div className="relative cursor-pointer text-white hover:text-yellow-400">

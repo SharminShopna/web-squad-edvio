@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CourseCard from "./CourseCard";
 import useAxiosPublic from "../../Hooks/useAxiosPublic"; 
 import GreetingGenerator from "@/Components/BonusOffer/GretingGenerator";
+import HangingTime from "@/Components/BonusOffer/HangingTime";
 
 
 
@@ -63,7 +64,11 @@ const AllCourses = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+
+    <>
+      <HangingTime/>
+      <div className="container mx-auto p-4">
+      
       <GreetingGenerator/>
       <div className="mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <h1 className="text-3xl font-bold text-TealGreen">
@@ -80,6 +85,7 @@ const AllCourses = () => {
           <option value="duration-asc">Shortest Duration</option>
         </select>
       </div>
+    
       {loading ? (
         <div className="text-center text-TealGreen">Loading courses...</div>
       ) : (
@@ -114,6 +120,7 @@ const AllCourses = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

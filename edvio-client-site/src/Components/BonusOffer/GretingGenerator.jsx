@@ -25,7 +25,7 @@ export default function GreetingGenerator() {
 
   return (
     <motion.div
-      className="fixed bottom-10 z-50 right-5  bg-black bg-opacity-50 rounded-2xl 
+      className="fixed md:bottom-10 bottom-0 z-50 right-5  bg-black bg-opacity-50 rounded-2xl 
       w-64 md:w-80 lg:w-96 p-6 shadow-xl text-center border text-white"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}

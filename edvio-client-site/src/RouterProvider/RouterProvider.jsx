@@ -12,32 +12,29 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 
-
 export default function RouterProvider() {
   return (
     <Routes>
-      {/* Main Layout router */}
-      <Route path="/" element={<MainLayOut></MainLayOut>}>
-        <Route index element={<HomePage></HomePage>}></Route>
-        <Route
-          path="/courseDetails/:id"
-          element={<DetailsCoursePage></DetailsCoursePage>}
-        ></Route>
-        <Route path="/about-us" element={<AboutUs></AboutUs>}></Route>
-        <Route path="/all-Courses" element={<AllCourses></AllCourses>}></Route>
+      {/* Main Layout Routes */}
+      <Route path="/" element={<MainLayOut />}>
+        <Route index element={<HomePage />} />
+        <Route path="courseDetails/:id" element={<DetailsCoursePage />} />
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="all-courses" element={<AllCourses />} />
       </Route>
-      {/* Auth router */}
-      <Route>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="register" element={<Register />}></Route>
-      </Route>
-      {/* Dashboard Layout router */}
-      <Route path="dashBoard" element={<DashBoardLayOut/>}>
-      {/* admin route */}
-         <Route path="/dashBoard/adminProfile" element={<AdminProfile/>}></Route>
-         <Route path="/dashBoard/edit-profile" element={<AdminProfileEdit></AdminProfileEdit>}></Route>
-         {/* instructor route */}
-         <Route path="/dashBoard/instructorProfile" element={<InstructorProfile/>}></Route>
+
+      {/* Authentication Routes */}
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+
+      {/* Dashboard Layout Routes */}
+      <Route path="dashboard" element={<DashBoardLayOut />}>
+        {/* Admin Routes */}
+        <Route path="admin-profile" element={<AdminProfile />} />
+        <Route path="edit-profile" element={<AdminProfileEdit />} />
+
+        {/* Instructor Routes */}
+        <Route path="instructor-profile" element={<InstructorProfile />} />
       </Route>
     </Routes>
   );
