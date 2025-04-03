@@ -4,7 +4,11 @@ import { PiInstagramLogoLight } from "react-icons/pi";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoLogoGithub } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import EditProfileForm from './EditProfileForm';
+import BasicInfo from '../ShareComponent/BasicInfo';
+import AdditionalInfo from '../ShareComponent/AdditionalInfo';
+import Address from '../ShareComponent/Address';
+import Education from '../ShareComponent/Education';
+import ImportantLinks from '../ShareComponent/ImportantLinks';
 export default function AdminProfileEdit() {
   const {userData} = useOneUser();
    const socialLink = [
@@ -17,7 +21,7 @@ export default function AdminProfileEdit() {
     <div className='w-full'>
       <div className='m-10'>
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-10'>
-        <div className='lg:col-span-3 bg-neutral rounded-lg p-6'>
+        <div className='lg:col-span-3 h-fit bg-neutral rounded-lg p-6'>
            <img src={userData?.image} alt="" className='w-30 h-30 rounded-full mx-auto'/>
            <div className='text-center mt-5'>
             <h3 className="text-xl font-medium text-TealGreen">{userData?.name}</h3>
@@ -38,8 +42,12 @@ export default function AdminProfileEdit() {
            <div className='w-full border-b-[2px] border-dashed border-TealGreen my-10'></div>
 
         </div>
-        <div className='lg:col-span-9 bg-neutral rounded-lg'>
-          <EditProfileForm></EditProfileForm>
+        <div className='lg:col-span-9 rounded-lg'>
+            <BasicInfo></BasicInfo>
+          <AdditionalInfo></AdditionalInfo>
+          <Address></Address>
+          <Education></Education>
+          <ImportantLinks></ImportantLinks>
         </div>
         </div>
       </div>
