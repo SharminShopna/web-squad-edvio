@@ -7,7 +7,6 @@ import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../Shared/Pro.css";
-import axios from "axios";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const Register = () => {
   const { createUser, updateUserProfile } = UseAuth();
@@ -20,31 +19,6 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => {
-  //   createUser(data.email, data.password).then((res) => {
-  //     const user = res.user;
-
-  //     updateUserProfile(data.name, data.photoURL)
-  //     .then(() => {
-  //       const userInfo = { name: data.name, email: data.email,firebaseUid:user.uid , role:'user'};
-
-  //       axios.post("http://localhost:5000/addUser", userInfo).then((res) => {
-  //         console.log("res",res)
-  //         if (res.data.insertedId) {
-  //           Swal.fire({
-  //             position: "top-center",
-  //             icon: "success",
-  //             title: "Your sign-up has been saved",
-  //             showConfirmButton: false,
-  //             timer: 1500,
-  //           });
-  //           navigate("/");
-  //         }
-  //       });
-  //     });
-  //   });
-  // };
-
   const onSubmit = async (data) => {
     try {
       const res = await createUser(data.email, data.password);
@@ -55,7 +29,7 @@ const Register = () => {
         name: data?.name,
         email: data?.email,
         firebaseUid: user.uid,
-        image: data?.photoURL,
+        number: data?.number,
         role: "user",
       };
 
@@ -111,20 +85,26 @@ const Register = () => {
             {errors.name && (
               <span className="text-red-500">Name is required</span>
             )}
-
             <Slide direction="right" triggerOnce>
               <div>
                 <input
-                  type="text"
-                  {...register("photoURL", { required: true })}
-                  placeholder="Photo URL"
+                  type="tel" 
+                  {...register("number", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10,15}$/, 
+                      message: "Invalid phone number format",
+                    },
+                  })}
+                  placeholder="Phone Number"
                   className="w-full px-4 py-2 bg-white/20 text-white border border-white/30 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-white/70"
                 />
+                {errors.number && (
+                  <p className="text-red-500">{errors.number.message}</p>
+                )}
               </div>
+              
             </Slide>
-            {errors.photoURL && (
-              <span className="text-red-500">Photo URL is required</span>
-            )}
 
             <Slide direction="left" triggerOnce>
               <div>
