@@ -4,7 +4,7 @@ import { FaUsersGear } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { FeesChart } from '../ShareComponent/FeesChart';
+
 
 export default function DashBoardHome() {
   const dashBoardData = {
