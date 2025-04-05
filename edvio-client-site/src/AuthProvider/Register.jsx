@@ -31,6 +31,7 @@ const Register = () => {
         firebaseUid: user.uid,
         number: data?.number,
         role: "user",
+        date: new Date(),
       };
 
       const response = await axiosPublic.post("/addUser", userInfo);

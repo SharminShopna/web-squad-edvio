@@ -21,7 +21,8 @@ const SocialLogin = () => {
           name: res?.user?.displayName,
           firebaseUid:user.uid,
           image: res?.user?.photoURL,
-          role:'user'
+          role:'user',
+          date: new Date(),
         };
         axiosPublic.post("addUser", userInfo)
         .then((res) => {

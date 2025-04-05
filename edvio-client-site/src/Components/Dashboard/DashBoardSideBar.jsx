@@ -29,7 +29,7 @@ export default function DashBoardSideBar() {
 
   const menus = {
     admin: [
-      { path: "/dashboard", icon: <IoHome />, label: "Dashboard Home" },
+      { path: "/dashboard/admin-home", icon: <IoHome />, label: "Dashboard Home" },
       {
         path: "#",
         icon: <IoIosApps />,
