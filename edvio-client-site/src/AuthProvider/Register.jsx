@@ -46,11 +46,12 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       console.error("Sign-up error:", error);
+      const backendMessage = error?.response?.data?.message;
       Swal.fire({
         icon: "error",
         title: "Sign-up Failed",
-        text: error.message || "Something went wrong",
-      });
+        text: backendMessage || error.message || "Something went wrong",
+      })
     }
   };
 

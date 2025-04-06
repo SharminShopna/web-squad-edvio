@@ -35,7 +35,7 @@ export default function DashBoardSideBar() {
         icon: <IoIosApps />,
         label: "Apps",
         subMenu: [
-          { name: "My Profile", path: "/dashboard/adminProfile" },
+          { name: "My Profile", path: "/dashboard/Profile" },
           { name: "Edit Profile", path: "/dashboard/edit-profile" },
         ],
       },
@@ -86,13 +86,14 @@ export default function DashBoardSideBar() {
                 <ul className="ml-6 text-sm">
                   {item.subMenu.map((subItem, subIndex) => (
                     <li key={subIndex} className="mt-2">
-                      <NavLink
-                        to={subItem.path}
-                        className="text-base group flex items-center gap-2 transition duration-300 hover:text-aquamarine"
-                      >
-                        <span className="h-[2px] w-5 inline-block bg-aquamarine transition-all duration-300 group-hover:w-8"></span>
-                        {subItem.name}
-                      </NavLink>
+                    <NavLink 
+  to={subItem.path} 
+  className="text-base group flex items-center gap-2 transition duration-300 hover:text-Aquamarine"
+>
+  <span className="h-[2px] w-5 inline-block bg-Aquamarine transition-all duration-300 group-hover:w-8"></span>
+  {subItem.name}
+</NavLink>
+
                     </li>
                   ))}
                 </ul>
