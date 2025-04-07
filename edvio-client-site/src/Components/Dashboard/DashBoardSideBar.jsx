@@ -22,7 +22,7 @@ import { IoIosApps } from "react-icons/io";
 
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
-  console.log(userData);
+
 
   // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
