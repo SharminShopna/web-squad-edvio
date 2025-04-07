@@ -54,12 +54,12 @@ export default function DashBoardHome() {
            </div>
          </div>
         {/* part -2 */}
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 mt-10 h-[500px] '>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 mt-10 h-[600px] '>
           <div className='col-span-4 bg-neutral rounded-lg mb-10 overflow-y-auto'>
             <InstructorListOne></InstructorListOne>
       
           </div>
-          <div className='col-span-8 bg-neutral rounded-lg mb-10'>
+          <div className='col-span-8 bg-neutral rounded-lg mb-10 overflow-y-auto'>
             <StudentsListOne></StudentsListOne>
           </div>
         </div>
