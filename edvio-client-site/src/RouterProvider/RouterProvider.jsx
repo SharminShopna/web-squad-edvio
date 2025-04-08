@@ -11,6 +11,7 @@ import DashBoardLayOut from "@/MainLayOut/DashBoardLayOut";
 import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
+import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
 
 export default function RouterProvider() {
   return (
@@ -30,6 +31,7 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
+        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
 
