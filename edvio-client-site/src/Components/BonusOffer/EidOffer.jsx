@@ -10,22 +10,29 @@ const EidOffer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setShowPopup(true);
-    const countdownDate = new Date("2025-04-08T23:59:59").getTime();
+    const today = new Date().toISOString().split("T")[0];
+    // ইউজারের ব্রাউজারে আগের কোনো তারিখ সেভ আছে কিনা
+    const lastShowDate = localStorage.getItem("eidPopupShown");
 
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-      if (distance <= 0) {
-        // সময় শেষ হলে countdown বন্ধ করা
-        clearInterval(interval);
-        setShowPopup(false);
-      } else {
-        setTimeLeft(distance);
-      }
-    }, 1000);
-    // component unmount হলে interval বন্ধ করা
-    return () => clearInterval(interval);
+    if (lastShowDate !== today) {
+      setShowPopup(true);
+      localStorage.setItem("eidPopupShown", today);
+      const countdownDate = new Date("2025-04-29T23:59:59").getTime();
+
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance <= 0) {
+          clearInterval(interval);
+          setShowPopup(false);
+        } else {
+          setTimeLeft(distance);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const formatTime = (ms) => {
@@ -52,9 +59,7 @@ const EidOffer = () => {
           exit={{ scale: 0.5, opacity: 0, transition: { duration: 0.8 } }}
         >
           {/* Content Box */}
-          <motion.div
-            className="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl text-center border overflow-hidden"
-          >
+          <motion.div className="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl text-center border overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
             <div
@@ -77,7 +82,7 @@ const EidOffer = () => {
                 🎉 Special offer this Eid! 🎉
               </h2>
               <p className="mt-2 text-sm md:text-lg text-gray-100">
-              Grab it before the offer ends!
+                Grab it before the offer ends!
               </p>
 
               {/* Countdown Timer */}

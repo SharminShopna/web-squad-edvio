@@ -109,17 +109,35 @@ async function run() {
 
     //   Users data Post===========================
     app.post("/addUser", async (req, res) => {
-      console.log("Received data:", req.body);
-      const user = req.body;
-      const filter = { email: user.email };
-      const exitingUser = await usersCollection.findOne(filter);
-      if (exitingUser) {
-        return res.send(exitingUser);
+      try {
+        const user = req.body;
+        // Ensure number is a string (if needed)
+        user.number = user.number?.toString().trim();
+        const filter = {
+          $or: [
+            { email: user.email },
+            { number: user.number }
+          ]
+        };
+        const existingUser = await usersCollection.findOne(filter);
+    
+        if (existingUser) {
+          return res.status(409).send({
+            message: "User already exists",
+            user: existingUser
+          });
+        }
+        const result = await usersCollection.insertOne(user);
+        res.status(201).send(result);
+      } catch (error) {
+        console.error("Add user error:", error);
+        res.status(500).send({
+          message: "Internal server error",
+          error: error.message
+        });
       }
-      const result = await usersCollection.insertOne(user);
-      res.send(result);
     });
-
+    
     // all users data ===========================
     app.get("/allUser", async (req, res) => {
       try {
@@ -133,6 +151,7 @@ async function run() {
         });
       }
     });
+    
     // get one user base on email =============================
     app.get('/user/byEmail/:email',async(req,res)=>{
     const email = req.params.email;
