@@ -4,6 +4,11 @@ import { FaUsersGear } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { BarChartFees } from '../ShareComponent/BarChartFees';
+import InstructorListOne from '../ShareComponent/InstructorListOne';
+import StudentsListOne from '../ShareComponent/StudentsListOne';
+
+
 
 
 export default function DashBoardHome() {
@@ -20,11 +25,15 @@ export default function DashBoardHome() {
 
 
   }
+
+ 
+
   return (
-    <div className='w-full'>
+    <div className='w-full h-full'>
       <div className='m-10'>
-         <div className='grid grid-cols-1 lg:grid-cols-12 gap-10'>
-           <div className='lg:col-span-5'>
+        {/* part -1 */}
+         <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 h-full'>
+           <div className='lg:col-span-5 h-full'>
              <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
               <div className='bg-neutral rounded-lg'>
                 <TotalInfoCard icon={<FaUsersGear />} title={"Total Students"} totalCount={dashBoardData?.totalStudents} rate={dashBoardData?.studentGrowthRate}></TotalInfoCard>
@@ -40,10 +49,20 @@ export default function DashBoardHome() {
               </div>
              </div>
            </div>
-           <div className='col-span-7 bg-neutral rounded-lg'>
-        
+           <div className='col-span-7 bg-neutral rounded-lg h-full'>
+            <BarChartFees></BarChartFees>
            </div>
          </div>
+        {/* part -2 */}
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 mt-10 h-[600px] '>
+          <div className='col-span-4 bg-neutral rounded-lg mb-10 overflow-y-auto'>
+            <InstructorListOne></InstructorListOne>
+      
+          </div>
+          <div className='col-span-8 bg-neutral rounded-lg mb-10 overflow-y-auto'>
+            <StudentsListOne></StudentsListOne>
+          </div>
+        </div>
       </div>
     </div>
   )

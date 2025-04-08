@@ -12,7 +12,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 export default function TopNavBar() {
   const {user} = UseAuth();
   const {userData} = useOneUser();
-  console.log(user)
   const menu = [
       { path: "/dashBoard/adminProfile", icon: <IoPersonOutline/> , label: "My Profile" },
       { path: "/dashBoard/adminProfile", icon: <BiLogOut/>, label: "Logout" },
