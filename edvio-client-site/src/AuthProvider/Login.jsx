@@ -138,9 +138,113 @@ const Login = () => {
   
 
   return (
-    <div className="min-h-screen flex items-center bg-TealGreen justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center bg-TealGreen px-4">
+    <div className="md:flex md:justify-center shadow-lg bg-Aquamarine rounded-2xl border-white/20 md:items-center">
+      {/* Left Side - Form Section with White Background */}
+      <div className="w-full max-w-lg bg-white px-8 py-6 rounded-l-2xl">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+          Sign In
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <Slide direction="up" triggerOnce>
+            <input
+              ref={emailRef}
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
+              required
+            />
+          </Slide>
+  
+          <Slide direction="up" triggerOnce>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-600"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </Slide>
+  
+          <Slide direction="down" triggerOnce>
+            <div>
+              <LoadCanvasTemplate />
+              <input
+                type="text"
+                name="captcha"
+                placeholder="Type the captcha above"
+                onBlur={handleValidateCaptcha}
+                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
+                required
+              />
+            </div>
+          </Slide>
+  
+          <div
+            onClick={handleForgotPassword}
+            className="flex items-center justify-between mb-2"
+          >
+            <a href="#" className="text-gray-600 underline hover:text-teal-600">
+              Forgot Password?
+            </a>
+          </div>
+  
+          <button
+            type="submit"
+            disabled={disabled}
+            className="w-full proCardButton"
+          >
+            Log In
+          </button>
+        </form>
+  
+        <p className="text-center mt-4 text-gray-700">
+          New here?{" "}
+          <Link to="/register" className="text-teal-600 hover:underline">
+            Create an account
+          </Link>
+        </p>
+  
+        <div className="divider my-4 text-gray-400">OR</div>
+  
+        <SocialLogin />
+      </div>
+  
+      {/* Right Side - Info Panel with TealGreen Background */}
+      <div className="w-3/4 md:w-[450px]  mx-auto mt-4 md:mr-4 text-white space-y-4 text-center py-6">
+        <h3 className="md:text-3xl text-2xl font-bold">Hello, Friends</h3>
+        <p className="text-white/80">
+          Enter your personal details and start your journey with us
+        </p>
+        <div className="w-3/4 mx-auto">
+          <button type="button" className="w-full mb-4 proCardButton">
+            <NavLink to="/register">Sign Up</NavLink>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  );
+};
+
+export default Login;
+
+
+
+{/* <div className="min-h-screen flex items-center bg-TealGreen justify-center px-4">
       <div className="md:flex md:justify-center shadow-lg rounded-2xl border-white/20 bg-white/10 md:items-center">
-        {/* Form Section */}
+       
         <div className="w-full max-w-lg px-8 py-4">
           <h2 className="text-2xl font-bold text-center text-white mb-4">
             Sign In
@@ -210,7 +314,7 @@ const Login = () => {
           <SocialLogin />
         </div>
 
-        {/* Side Panel */}
+      
         <div className="w-3/4 mx-auto mt-4 md:mr-4 text-card space-y-2 text-center">
           <h3 className="md:text-3xl text-2xl font-bold">Hello, Friends</h3>
           <p>Enter your personal details and start journey with us</p>
@@ -221,8 +325,4 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default Login;
+    </div>  */}
