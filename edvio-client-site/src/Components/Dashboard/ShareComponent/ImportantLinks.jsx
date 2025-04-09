@@ -9,14 +9,14 @@ export default function ImportantLinks() {
     <div className="rounded-lg bg-neutral my-10">
             <div className={`${isExist && 'bg-TealGreen'} rounded-lg py-3 px-6`}>
             <div className="flex items-center justify-between">
-              <h3 className={`text-2xl font-medium ${isExist && "text-white"}`}>Important Links</h3>
+              <h3 className={`text-2xl font-medium ${isExist && "text-white"} `}>Important Links</h3>
             {
             isExist &&
             (<FaRegEdit  className="text-2xl cursor-pointer text-white"/>)
           }
             </div>
               {
-        isExist || <div className='w-full border-b-[2px] border-dashed border-TealGreen mt-10'></div>
+        isExist || <div className='h-[1px] bg-base-content opacity-[0.1] mt-5'></div>
       }
           </div>
           <div className="p-6">
@@ -41,8 +41,8 @@ export default function ImportantLinks() {
             </div>
            </div>
          
-           <div className='w-full border-b-[2px] border-dashed border-TealGreen my-10'></div>
           </div>
+           <div className='h-[1px] bg-base-content opacity-[0.1] my-5 p-5'></div>
         </div>
   )
 }

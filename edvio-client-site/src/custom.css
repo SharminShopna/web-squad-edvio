@@ -62,3 +62,6 @@
 
 
 }
+.clip-path-triangle {
+  clip-path: polygon(0 0, 95% 0, 100% 80%, 0 100%);
+}

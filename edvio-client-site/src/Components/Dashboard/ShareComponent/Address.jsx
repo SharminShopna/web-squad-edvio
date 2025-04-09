@@ -18,10 +18,10 @@ export default function Address() {
           }
         </div>
           {
-        isExist || <div className='w-full border-b-[2px] border-dashed border-TealGreen mt-10'></div>
+        isExist || <div className='h-[1px] bg-base-content opacity-[0.1] mt-5'></div>
       }
       </div>
-      <div className="p-6">
+      <div className="p-6 ">
         <div>
           <h4 className='text-xl font-medium mb-5'>Present Address</h4>
         </div>
@@ -51,7 +51,7 @@ export default function Address() {
           <p className="mt-2">N/A</p>
         </div>
        </div>
-       <div className='w-full border-b-[2px] border-dashed border-TealGreen my-10'></div>
+       <div className='h-[1px] bg-base-content opacity-[0.1] my-5'></div>
          <div>
           <h4 className='text-xl font-medium mb-5'>Permanent Address</h4>
         </div>
@@ -82,6 +82,7 @@ export default function Address() {
         </div>
        </div>
       </div>
+        <div className='h-[1px] bg-base-content opacity-[0.1] my-5 p-5'></div>
     </div>
   )
 }
