@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../Hook/UseAuth";
 import "../Shared/Pro.css";
-import axios from "axios";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleLogin } = UseAuth();
@@ -22,7 +21,8 @@ const SocialLogin = () => {
           name: res?.user?.displayName,
           firebaseUid:user.uid,
           image: res?.user?.photoURL,
-          role:'user'
+          role:'user',
+          date: new Date(),
         };
         axiosPublic.post("addUser", userInfo)
         .then((res) => {
@@ -42,7 +42,7 @@ const SocialLogin = () => {
   };
   return (
     <div>
-      <div className="flex justify-center py-2 ">
+      <div className="flex justify-center pb-2 ">
         <button
           onClick={handlelogin}
           className="w-full flex items-center justify-center gap-2 py-2 proCardButton"

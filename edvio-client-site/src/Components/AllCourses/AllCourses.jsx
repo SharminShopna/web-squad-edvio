@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "../../Shared/Pro.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation"; // Import Navigation styles
+import "swiper/css/navigation"; 
 import "./AllCourses.css";
 
 import { Navigation } from "swiper/modules";
@@ -15,6 +15,7 @@ import SectionTitle from "../../Shared/SectionTitle";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function AllCourses() {
   const { courses } = useCourses();
@@ -37,7 +38,7 @@ export default function AllCourses() {
           heading={"Our All Courses"}
         ></SectionTitle>
       </div>
-
+        
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="lg:w-[40%]" data-aos="fade-up">
           <h2 className="text-4xl font-semibold">Our All Courses</h2>
@@ -63,10 +64,12 @@ export default function AllCourses() {
             journey while integrating the latest AI advancements to enhance
             engagement, efficiency, and accessibility in modern education.
           </p>
-          <div>
-            <button className="proCardButton">View All Courses</button>
+          <div className="mt-10">
+            <Link to={'/all-Courses'} className="proCardButton">View All Courses</Link>
           </div>
         </div>
+
+        
         <div className="lg:w-[50%]" data-aos="fade-left">
           <Swiper
             slidesPerView={2}
