@@ -1,9 +1,9 @@
 import React from 'react';
 import bg from '../../../assets/db.jpg';
 
-import '../../../DashboardLayOut/DashboardLayOut.css';
+// import '../../../DashboardLayOut/DashboardLayOut.css';
 
-import '../DashboardLayOut/DashboardLayOut.css'
+ import '../DashboardLayOut/DashboardLayOut.css'
 
 
 const HomeDashboard = () => {

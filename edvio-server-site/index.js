@@ -18,16 +18,6 @@ app.use(
 );
 app.use(express.json());
 
-<<<<<<< HEAD
-app.get('/', (req, res) => {
-  res.send('Edvio server is running');
-})
-
-app.listen(port, () => {
-  console.log(`Server is running on PORT : ${port}`)
-})
-=======
->>>>>>> upstream/development
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
 });
@@ -35,10 +25,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`);
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/development
 
 // DB_USER : edVio
 // DB_PASSWORD : ZjjcxkvD0uusSqsL
@@ -60,19 +46,11 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
-<<<<<<< HEAD
-    const database = client.db('Edvio');
-    const coursesCollection = database.collection('allCourses');
-    const reviewsCollection = database.collection('reviews'); 
-     const usersCollection = database.collection('users');
-    const courseReviewCollection = database.collection('courseReview')
-=======
     const database = client.db("Edvio");
     const usersCollection = database.collection("users");
     const coursesCollection = database.collection("allCourses");
     const reviewsCollection = database.collection("reviews");
     const courseReviewCollection = database.collection("courseReview");
->>>>>>> upstream/development
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -128,11 +106,6 @@ async function run() {
         });
       }
     });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> upstream/development
 
     //   Users data Post===========================
     app.post("/addUser", async (req, res) => {
@@ -161,31 +134,6 @@ async function run() {
       }
     });
     //  all courses data ===========================
-<<<<<<< HEAD
-    // Modify your existing /allCourses route
-    app.get('/allCourses', async (req, res) => {
-      try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-        const sortField = req.query.sortField || 'price';
-        const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
-        const skip = (page - 1) * limit;
-
-        const [courses, totalCourses] = await Promise.all([
-          coursesCollection.find()
-            .sort({ [sortField]: sortOrder })
-            .skip(skip)
-            .limit(limit)
-            .toArray(),
-          coursesCollection.countDocuments()
-        ]);
-
-        res.status(200).json({
-          success: true,
-          data: courses,
-          totalCourses
-=======
->>>>>>> upstream/development
     app.get("/allCourses", async (req, res) => {
       try {
         const result = await coursesCollection.find().toArray();
@@ -197,26 +145,11 @@ async function run() {
         console.error("Error fetching courses:", err);
         res.status(500).json({
           success: false,
-<<<<<<< HEAD
-
-          message: "Failed to fetch courses"
-
           message: "Failed to fetch courses. Please try again later.",
-
-=======
-          message: "Failed to fetch courses. Please try again later.",
->>>>>>> upstream/development
         });
       }
     });
 
-<<<<<<< HEAD
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-
-=======
->>>>>>> upstream/development
     // id wise course details
     app.get("/courseDetails/:id", async (req, res) => {
       const id = req.params.id;
@@ -275,10 +208,6 @@ async function run() {
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/development
   }
 }
 run().catch(console.dir);
