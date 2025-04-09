@@ -20,10 +20,11 @@ import { useContext, useState } from "react"; // Added useState
 import { AuthContext } from "@/AuthProvider/AuthProvider";
 import axios from "axios"; // Import axios
 import { toast } from "react-toastify"; // For better notifications
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 
 const DetailsCoursePage = () => {
   const { user } = useContext(AuthContext);
-
+  const axiosPublic = useAxiosPublic();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
   const { course, error } = useCourseDetails();
@@ -49,47 +50,36 @@ const DetailsCoursePage = () => {
   }
 
   const handleAddToCart = async () => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existingItem = cartItems.find((item) => item.courseId === _id);
+
+    if (existingItem) {
+      toast.info("This course is already in your cart");
+      return; // Stop here, no need to add again
+    }
+
     setIsAddingToCart(true);
 
     try {
-      if (user) {
-        await axios.post(
-          "/pore/debo",
-          {
-            courseId: _id,
-            courseName: course_name,
-            price: price,
-            image: course_image,
-          }
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${user.token}`, // Include auth token
-          //   },
-          // }
-        );
+      const response = await axiosPublic.post("/add-cart", {
+        courseId: _id,
+        courseName: course_name,
+        price: price,
+        image: course_image,
+      });
 
-        toast.success("Course added to your cart!");
-      } else {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      toast.success("Course added to your cart!");
 
-        const existingItem = cartItems.find((item) => item.courseId === _id);
+      cartItems.push({
+        courseId: _id,
+        courseName: course_name,
+        price: price,
+        image: course_image,
+      });
 
-        if (!existingItem) {
-          cartItems.push({
-            courseId: _id,
-            courseName: course_name,
-            price: price,
-            image: course_image,
-          });
-
-          localStorage.setItem("cart", JSON.stringify(cartItems));
-          toast.success(
-            "Course added to local cart! Login to save permanently."
-          );
-        } else {
-          toast.info("This course is already in your cart");
-        }
-      }
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      toast.success("Course added to local cart! Login to save permanently.");
     } catch (error) {
       console.error("Cart error:", error);
       toast.error(error.response?.data?.message || "Failed to add to cart");

@@ -11,7 +11,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
-      "https://jade-horse-d72d87.netlify.app"
+      "https://jade-horse-d72d87.netlify.app",
     ],
     credentials: true,
   })
@@ -51,6 +51,7 @@ async function run() {
     const coursesCollection = database.collection("allCourses");
     const reviewsCollection = database.collection("reviews");
     const courseReviewCollection = database.collection("courseReview");
+    const addToCart = database.collection("addToCart");
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -114,17 +115,14 @@ async function run() {
         // Ensure number is a string (if needed)
         user.number = user.number?.toString().trim();
         const filter = {
-          $or: [
-            { email: user.email },
-            { number: user.number }
-          ]
+          $or: [{ email: user.email }, { number: user.number }],
         };
         const existingUser = await usersCollection.findOne(filter);
-    
+
         if (existingUser) {
           return res.status(409).send({
             message: "User already exists",
-            user: existingUser
+            user: existingUser,
           });
         }
         const result = await usersCollection.insertOne(user);
@@ -133,11 +131,11 @@ async function run() {
         console.error("Add user error:", error);
         res.status(500).send({
           message: "Internal server error",
-          error: error.message
+          error: error.message,
         });
       }
     });
-    
+
     // all users data ===========================
     app.get("/allUser", async (req, res) => {
       try {
@@ -151,25 +149,25 @@ async function run() {
         });
       }
     });
-    
+
     // get one user base on email =============================
-    app.get('/user/byEmail/:email',async(req,res)=>{
-    const email = req.params.email;
-    const query = {email : email}
-    try{
-      const result = await usersCollection.findOne(query);
-      res.status(200).json({
+    app.get("/user/byEmail/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      try {
+        const result = await usersCollection.findOne(query);
+        res.status(200).json({
           success: true,
           data: result,
         });
-    }catch(err){
+      } catch (err) {
         console.error("Error fetching courses:", err);
         res.status(500).json({
-        success: false,
-        message: "Failed to fetch courses. Please try again later.",
+          success: false,
+          message: "Failed to fetch courses. Please try again later.",
         });
-    }
-    })
+      }
+    });
     //  all courses data ===========================
     app.get("/allCourses", async (req, res) => {
       try {
@@ -218,6 +216,18 @@ async function run() {
           message: "Failed to fetch courses. Please try again later.",
         });
       }
+    });
+
+    // ADD TO CART
+
+    app.post("/add-cart", async (req, res) => {
+      const body = req.body;
+      const response = await addToCart.insertOne(body);
+      res.send(response);
+    });
+    app.get("/cart-item", async (req, res) => {
+      const response = await addToCart.find().toArray();
+      res.send(response);
     });
     // course review post base on id ============================
     app.post("/course_review", async (req, res) => {
