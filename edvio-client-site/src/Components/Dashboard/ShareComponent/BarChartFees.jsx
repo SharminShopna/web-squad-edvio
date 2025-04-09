@@ -56,7 +56,6 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null
 }
 
-
 export function BarChartFees() {
   return (
     <Card className="h-full flex flex-col">
