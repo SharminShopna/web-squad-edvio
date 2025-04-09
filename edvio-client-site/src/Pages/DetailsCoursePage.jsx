@@ -16,16 +16,17 @@ import ReviewForm from "@/Components/CourseDetails/ReviewForm";
 import useCourseDetails from "@/Hooks/useCourseDetails";
 import CourseContent from "@/Components/CourseDetails/CourseContent";
 import CourseReviews from "@/Components/CourseDetails/CourseReviews";
-import { useContext, useState } from "react"; // Added useState
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/AuthProvider/AuthProvider";
-import axios from "axios"; // Import axios
-import { toast } from "react-toastify"; // For better notifications
+import { toast } from "react-toastify";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
+import Buy from "./Buy";
 
 const DetailsCoursePage = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   const { course, error } = useCourseDetails();
 
@@ -43,6 +44,26 @@ const DetailsCoursePage = () => {
     _id,
   } = course || {};
 
+  // Fetch cart items when user changes
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      if (user?.email) {
+        try {
+          const response = await axiosPublic.get(`/cart-item/${user.email}`);
+          setCartItems(response.data);
+        } catch (error) {
+          console.error("Error fetching cart items:", error);
+        }
+      } else {
+        // For non-logged in users, use localStorage
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCartItems(localCart);
+      }
+    };
+
+    fetchCartItems();
+  }, [user?.email, axiosPublic]);
+
   if (!course) {
     return (
       <p className="text-center text-gray-600">No course data available</p>
@@ -50,36 +71,34 @@ const DetailsCoursePage = () => {
   }
 
   const handleAddToCart = async () => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const alreadyInCart = cartItems.some((item) => item.courseId === _id);
 
-    const existingItem = cartItems.find((item) => item.courseId === _id);
-
-    if (existingItem) {
+    if (alreadyInCart) {
       toast.info("This course is already in your cart");
-      return; // Stop here, no need to add again
+      return;
     }
 
     setIsAddingToCart(true);
 
     try {
-      const response = await axiosPublic.post("/add-cart", {
+      const cartItem = {
         courseId: _id,
         courseName: course_name,
         price: price,
         image: course_image,
-      });
+        student_email: user?.email,
+      };
 
-      toast.success("Course added to your cart!");
-
-      cartItems.push({
-        courseId: _id,
-        courseName: course_name,
-        price: price,
-        image: course_image,
-      });
-
-      localStorage.setItem("cart", JSON.stringify(cartItems));
-      toast.success("Course added to local cart! Login to save permanently.");
+      if (!user) {
+        const updatedCart = [...cartItems, cartItem];
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCartItems(updatedCart);
+        toast.success("Course added to local cart! Login to save permanently.");
+      } else {
+        await axiosPublic.post("/add-cart", cartItem);
+        setCartItems((prev) => [...prev, cartItem]);
+        toast.success("Course added to your cart!");
+      }
     } catch (error) {
       console.error("Cart error:", error);
       toast.error(error.response?.data?.message || "Failed to add to cart");
@@ -152,16 +171,21 @@ const DetailsCoursePage = () => {
             <p className="text-TealGreen font-semibold text-3xl">
               {price === 0 ? "Free" : `$${price || "N/A"}`}
             </p>
-            <button
-              onClick={handleAddToCart}
-              disabled={isAddingToCart}
-              className={`bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto cursor-pointer hover:bg-DarkTeal transition-colors ${
-                isAddingToCart ? "opacity-70" : ""
-              }`}
-            >
-              {isAddingToCart ? "Adding..." : "Add To Cart"}
-              <MdOutlineShoppingCart className="text-xl" />
-            </button>
+            <div className="flex gap-3">
+              {/*Buy Now Component  */}
+              <Buy Course={course} />
+
+              <button
+                onClick={handleAddToCart}
+                disabled={isAddingToCart}
+                className={`bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto cursor-pointer hover:bg-DarkTeal transition-colors ${
+                  isAddingToCart ? "opacity-70" : ""
+                }`}
+              >
+                {isAddingToCart ? "Adding..." : "Add To Cart"}
+                <MdOutlineShoppingCart className="text-xl" />
+              </button>
+            </div>
             <div className="border-[1px] border-LightTeal"></div>
             <div>
               <p className="my-3 text-sm text-gray-700">

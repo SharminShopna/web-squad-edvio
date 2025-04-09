@@ -52,6 +52,7 @@ async function run() {
     const reviewsCollection = database.collection("reviews");
     const courseReviewCollection = database.collection("courseReview");
     const addToCart = database.collection("addToCart");
+    const buyCourse = database.collection("buyCourse");
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -225,9 +226,32 @@ async function run() {
       const response = await addToCart.insertOne(body);
       res.send(response);
     });
-    app.get("/cart-item", async (req, res) => {
-      const response = await addToCart.find().toArray();
+    app.get("/cart-item/:email", async (req, res) => {
+      const email = req.params.email;
+      const response = await addToCart.find({ student_email: email }).toArray();
       res.send(response);
+    });
+
+    app.post("/buy-course", async (req, res) => {
+      const body = req.body;
+      const courseDetails = await buyCourse.insertOne(body);
+      res.send(courseDetails);
+    });
+
+    app.get("/bougth-courses/:email", async (req, res) => {
+      const email = req.params.email;
+      const bougthCourse = await buyCourse
+        .find({ studentEmail: email })
+        .toArray();
+      const courseIds = bougthCourse.map(
+        (course) => new ObjectId(course.courseId)
+      );
+      const myCourses = await coursesCollection
+        .find({
+          _id: { $in: courseIds },
+        })
+        .toArray();
+      res.send(myCourses);
     });
     // course review post base on id ============================
     app.post("/course_review", async (req, res) => {

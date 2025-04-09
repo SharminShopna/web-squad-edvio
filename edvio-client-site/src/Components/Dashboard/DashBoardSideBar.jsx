@@ -23,13 +23,16 @@ import { IoIosApps } from "react-icons/io";
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
 
-
   // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
 
   const menus = {
     admin: [
-      { path: "/dashboard/admin-home", icon: <IoHome />, label: "Dashboard Home" },
+      {
+        path: "/dashboard/admin-home",
+        icon: <IoHome />,
+        label: "Dashboard Home",
+      },
       {
         path: "#",
         icon: <IoIosApps />,
@@ -99,7 +102,13 @@ export default function DashBoardSideBar() {
       },
       { path: "/logout", icon: <IoLogOut />, label: "Logout" },
     ],
-    user: [],
+    user: [
+      {
+        path: "/",
+        icon: <IoAddCircle />,
+        label: "Add Course",
+      },
+    ],
   };
 
   const roleMenu = menus[userData?.role] || [];
