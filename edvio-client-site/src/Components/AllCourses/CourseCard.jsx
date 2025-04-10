@@ -32,12 +32,12 @@ export default function CourseCard({ course }) {
       
       <div className="p-5 h-[60%] flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-          <h2 className="text-TealGreen font-medium text-lg lg:text-xl">
+          <h2 className="text-base-content font-medium text-lg lg:text-xl">
             {category}
           </h2>
-          <p className="text-LightTeal text-sm lg:base">{level}</p>
+          <p className="text-gray-100 text-sm lg:base">{level}</p>
         </div>
-        <div className="text-gray-500 text-sm lg:base">
+        <div className="text-gray-300 text-sm lg:base">
           <h3 className="my-2">{course_name}</h3>
           <p className="mb-2">Price : ${price}</p>
           <div className="flex items-center justify-between">
@@ -47,7 +47,7 @@ export default function CourseCard({ course }) {
             </p>
           </div>
         </div>
-        <p className="text-base lg:text-lg font-medium my-3 text-TealGreen">
+        <p className="text-base lg:text-lg font-medium my-3 text-base-content">
           Instructor
         </p>
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mt-auto">
@@ -57,11 +57,11 @@ export default function CourseCard({ course }) {
               alt=""
               className="w-10 h-10 object-cover rounded-full"
             />
-            <p className=" text-sm text-gray-500">{instructor.name}</p>
+            <p className=" text-sm text-gray-300">{instructor.name}</p>
           </div>
           <NavLink to={`/courseDetails/${_id}`}>
             {" "}
-            <FaArrowUpRightFromSquare className="text-TealGreen text-sm lg:text-2xl cursor-pointer ml-auto" />
+            <FaArrowUpRightFromSquare className="text-base-content text-sm lg:text-2xl cursor-pointer ml-auto" />
           </NavLink>
         </div>
       </div>
