@@ -12,6 +12,8 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
+
 
 export default function RouterProvider() {
   return (
@@ -34,10 +36,12 @@ export default function RouterProvider() {
         <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
+        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
         <Route path="instructor-profile" element={<InstructorProfile />} />
       </Route>
+      {/* user routes */}
     </Routes>
   );
 }
