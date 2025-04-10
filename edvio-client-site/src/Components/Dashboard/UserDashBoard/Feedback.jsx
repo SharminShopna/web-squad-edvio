@@ -39,7 +39,7 @@ const Feedback = () => {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center p-6 transition-all bg-teal-700 duration-300 ${submitted ? 'bg-teal-900' : 'bg-gray-100'}`}>
+    <div className={`min-h-screen flex items-center justify-center p-6 transition-all bg-teal-800 duration-300 ${submitted ? 'bg-teal-900' : 'bg-gray-100'}`}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
