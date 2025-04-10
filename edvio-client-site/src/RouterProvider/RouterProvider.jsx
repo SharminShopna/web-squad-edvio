@@ -12,6 +12,12 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
+import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
+import Feedback from "@/Components/Dashboard/UserDashBoard/Feedback";
+import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting";
+import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
+import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 
 export default function RouterProvider() {
   return (
@@ -37,6 +43,14 @@ export default function RouterProvider() {
 
         {/* Instructor Routes */}
         <Route path="instructor-profile" element={<InstructorProfile />} />
+
+        {/* User Routes */}
+        <Route path="/dashboard/user-home" element={<UserHome />} />
+        <Route path="/dashboard/myCourse" element={<MyCourse />} />
+        <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
+        <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
+        <Route path="/dashboard/feedback" element={<Feedback />} />
+        <Route path="/dashboard/settings" element={<AccountSetting />} />
       </Route>
     </Routes>
   );

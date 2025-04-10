@@ -104,9 +104,34 @@ export default function DashBoardSideBar() {
     ],
     user: [
       {
-        path: "/",
-        icon: <IoAddCircle />,
-        label: "Add Course",
+        path: "/dashboard/user-home",
+        icon: <IoHome />,
+        label: "User Home",
+      },
+      {
+        path: "/dashboard/myCourse",
+        icon: <IoLibrary />,
+        label: "My Courses",
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        icon: <IoCard />,
+        label: "Payment History",
+      },
+      {
+        path: "/dashboard/browseCourse",
+        icon: <IoBook />,
+        label: "Browse Courses",
+      },
+      {
+        path: "/dashboard/feedback",
+        icon: <IoChatbubbleEllipses />,
+        label: "Feedback",
+      },
+      {
+        path: "/dashboard/settings",
+        icon: <IoSettings />,
+        label: "Account Settings",
       },
     ],
   };
