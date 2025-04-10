@@ -12,9 +12,9 @@ const Reviews = () => {
 
   useEffect(() => {
     axiosPublic.get(`/allReviews`)
-    .then(data => setReviews(data.data))
+    .then(data => setReviews(data.data?.data))
   }, [axiosPublic]);
-  console.log(reviews);
+
   
   return (
     <div className="max-w-6xl mx-auto p-4">

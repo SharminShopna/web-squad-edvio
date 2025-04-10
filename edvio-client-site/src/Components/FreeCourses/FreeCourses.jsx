@@ -12,7 +12,6 @@ export default function FreeCourses() {
 
   // ফ্রি কোর্স ফিল্টার করা
   const freeCourses = courses?.filter((course) => !course.isPremium) || [];
-
   const showAllFreeCourses = () => {
     setVisibleCount(freeCourses.length);
   };
