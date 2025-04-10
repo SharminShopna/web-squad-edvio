@@ -22,7 +22,7 @@ const PaymentHistory = () => {
 
   return (
     <div className="p-6 bg-darkTeal min-h-screen">
-      <h2 className="text-3xl font-bold text-center text-teal-800 mb-6">Payment History</h2>
+      <h2 className="text-3xl font-bold text-center text-teal-600 mb-6">Payment History</h2>
 
       {/* Filter and Search Section */}
       <div className="flex justify-between items-center mb-6">
@@ -31,7 +31,7 @@ const PaymentHistory = () => {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="p-2 rounded-lg border border-teal-300 text-teal-800"
+            className="p-2 rounded-lg border border-teal-300 text-teal-600"
           >
             <option value="All">All Statuses</option>
             <option value="Completed">Completed</option>
@@ -45,7 +45,7 @@ const PaymentHistory = () => {
             placeholder="Search by Payment ID"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="p-2 rounded-lg border border-teal-300 text-teal-800"
+            className="p-2 rounded-lg border border-teal-300 text-teal-600"
           />
         </div>
       </div>
@@ -66,10 +66,10 @@ const PaymentHistory = () => {
             {filteredPayments.length > 0 ? (
               filteredPayments.map((payment) => (
                 <tr key={payment.id} className="border-b">
-                  <td className="py-2 px-4">{payment.id}</td>
-                  <td className="py-2 px-4">{payment.date}</td>
-                  <td className="py-2 px-4">${payment.amount}</td>
-                  <td className="py-2 px-4">{payment.method}</td>
+                  <td className="py-2 px-4 text-teal-800">{payment.id}</td>
+                  <td className="py-2 px-4 text-teal-800">{payment.date}</td>
+                  <td className="py-2 px-4 text-teal-800">${payment.amount}</td>
+                  <td className="py-2 px-4 text-teal-800">{payment.method}</td>
                   <td className={`py-2 px-4 ${payment.status === 'Completed' ? 'text-green-600' : payment.status === 'Pending' ? 'text-yellow-600' : 'text-red-600'}`}>
                     {payment.status}
                   </td>
