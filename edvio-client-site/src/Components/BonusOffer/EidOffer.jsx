@@ -10,21 +10,29 @@ const EidOffer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setShowPopup(true);
-    const countdownDate = new Date("2025-04-01T23:59:59").getTime();
+    const today = new Date().toISOString().split("T")[0];
+    // ইউজারের ব্রাউজারে আগের কোনো তারিখ সেভ আছে কিনা
+    const lastShowDate = localStorage.getItem("eidPopupShown");
 
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-      if (distance <= 0) {
-        clearInterval(interval);
-        setShowPopup(false);
-      } else {
-        setTimeLeft(distance);
-      }
-    }, 1000);
+    if (lastShowDate !== today) {
+      setShowPopup(true);
+      localStorage.setItem("eidPopupShown", today);
+      const countdownDate = new Date("2025-04-29T23:59:59").getTime();
 
-    return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance <= 0) {
+          clearInterval(interval);
+          setShowPopup(false);
+        } else {
+          setTimeLeft(distance);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const formatTime = (ms) => {
@@ -51,9 +59,7 @@ const EidOffer = () => {
           exit={{ scale: 0.5, opacity: 0, transition: { duration: 0.8 } }}
         >
           {/* Content Box */}
-          <motion.div
-            className="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl text-center border overflow-hidden"
-          >
+          <motion.div className="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl text-center border overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
             <div
@@ -73,10 +79,10 @@ const EidOffer = () => {
             <div className="relative z-10">
               {/* Gradient Text */}
               <h2 className="text-lg md:text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-red-500 to-purple-500">
-                🎉 এই ঈদে বিশেষ অফার! 🎉
+                🎉 Special offer this Eid! 🎉
               </h2>
               <p className="mt-2 text-sm md:text-lg text-gray-100">
-                অফার শেষ হওয়ার আগেই নিয়ে নিন!
+                Grab it before the offer ends!
               </p>
 
               {/* Countdown Timer */}

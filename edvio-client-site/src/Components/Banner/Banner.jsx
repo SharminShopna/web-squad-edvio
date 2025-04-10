@@ -17,7 +17,7 @@ return (
             transform: scale(1);
           }
           50% {
-            transform: scale(1.05); 
+            transform: scale(1.05);
           }
           100% {
             transform: scale(1);
@@ -158,9 +158,6 @@ return (
         </div>
         <img src={img3} alt="Banner Image 3" className="object-cover w-full h-full" />
       </motion.div>
-
-
-
 
       {/* Fourth Slide */}
       <motion.div

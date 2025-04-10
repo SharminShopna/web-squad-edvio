@@ -6,7 +6,6 @@ import {
   FaClock,
   FaMoneyBillAlt,
 } from "react-icons/fa";
-
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaCommentDots } from "react-icons/fa";
@@ -17,8 +16,18 @@ import ReviewForm from "@/Components/CourseDetails/ReviewForm";
 import useCourseDetails from "@/Hooks/useCourseDetails";
 import CourseContent from "@/Components/CourseDetails/CourseContent";
 import CourseReviews from "@/Components/CourseDetails/CourseReviews";
+import { useContext, useState } from "react"; // Added useState
+import { AuthContext } from "@/AuthProvider/AuthProvider";
+import axios from "axios"; // Import axios
+import { toast } from "react-toastify"; // For better notifications
+
 const DetailsCoursePage = () => {
+  const { user } = useContext(AuthContext);
+
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
   const { course, error } = useCourseDetails();
+
   const {
     course_name,
     course_image,
@@ -31,12 +40,64 @@ const DetailsCoursePage = () => {
     supportEmail,
     content,
     _id,
-  } = course;
-  if (!course)
+  } = course || {};
+
+  if (!course) {
     return (
       <p className="text-center text-gray-600">No course data available</p>
     );
-   console.log(course_name)
+  }
+
+  const handleAddToCart = async () => {
+    setIsAddingToCart(true);
+
+    try {
+      if (user) {
+        await axios.post(
+          "/pore/debo",
+          {
+            courseId: _id,
+            courseName: course_name,
+            price: price,
+            image: course_image,
+          }
+          // {
+          //   headers: {
+          //     Authorization: `Bearer ${user.token}`, // Include auth token
+          //   },
+          // }
+        );
+
+        toast.success("Course added to your cart!");
+      } else {
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const existingItem = cartItems.find((item) => item.courseId === _id);
+
+        if (!existingItem) {
+          cartItems.push({
+            courseId: _id,
+            courseName: course_name,
+            price: price,
+            image: course_image,
+          });
+
+          localStorage.setItem("cart", JSON.stringify(cartItems));
+          toast.success(
+            "Course added to local cart! Login to save permanently."
+          );
+        } else {
+          toast.info("This course is already in your cart");
+        }
+      }
+    } catch (error) {
+      console.error("Cart error:", error);
+      toast.error(error.response?.data?.message || "Failed to add to cart");
+    } finally {
+      setIsAddingToCart(false);
+    }
+  };
+
   return (
     <div className="w-full">
       <BgImage bgImg={course_image}>
@@ -48,7 +109,7 @@ const DetailsCoursePage = () => {
             <h1 className="text-6xl font-semibold text-white my-3">
               {course_name || "N/A"}
             </h1>
-            <div className="flex items-center gap-2 text-white py-2 rounded-lg ">
+            <div className="flex items-center gap-2 text-white py-2 rounded-lg">
               <IoPeopleSharp className="text-xl text-TealGreen" />
               <p className="text-lg font-semibold">
                 Learners: {Purchase_order}
@@ -58,6 +119,7 @@ const DetailsCoursePage = () => {
           <div></div>
         </div>
       </BgImage>
+
       <div className="container w-11/12 mx-auto p-8 my-5">
         <div className="flex justify-between">
           <div className="flex items-center gap-20">
@@ -95,12 +157,20 @@ const DetailsCoursePage = () => {
               </div>
             </div>
           </div>
+
           <div className="bg-white shadow-xl w-fit h-fit p-5 rounded-lg -mt-44 text-center">
             <p className="text-TealGreen font-semibold text-3xl">
               {price === 0 ? "Free" : `$${price || "N/A"}`}
             </p>
-            <button className="bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto cursor-pointer">
-              Add To Card <MdOutlineShoppingCart className="text-xl" />
+            <button
+              onClick={handleAddToCart}
+              disabled={isAddingToCart}
+              className={`bg-TealGreen py-2 px-5 text-white rounded-2xl my-5 flex items-center gap-2 mx-auto cursor-pointer hover:bg-DarkTeal transition-colors ${
+                isAddingToCart ? "opacity-70" : ""
+              }`}
+            >
+              {isAddingToCart ? "Adding..." : "Add To Cart"}
+              <MdOutlineShoppingCart className="text-xl" />
             </button>
             <div className="border-[1px] border-LightTeal"></div>
             <div>
@@ -118,7 +188,6 @@ const DetailsCoursePage = () => {
           </div>
         </div>
 
-        {/* Instructor Section */}
         <div className="bg-gray-50 p-6 rounded-lg my-10 border-[1px] border-LightTeal">
           <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
             <FaUser className="text-xl text-TealGreen mr-2" /> Instructor
@@ -147,7 +216,6 @@ const DetailsCoursePage = () => {
           </div>
         </div>
 
-        {/* Learning Outcomes */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
             <FaCertificate className="text-xl text-TealGreen mr-2" /> What You
@@ -170,7 +238,6 @@ const DetailsCoursePage = () => {
           </ul>
         </div>
 
-        {/* Career Benefits */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
             <FaChartLine className="text-xl text-TealGreen mr-2" /> Career
@@ -193,10 +260,8 @@ const DetailsCoursePage = () => {
           </ul>
         </div>
 
-        {/* Course Content */}
         <CourseContent content={content}></CourseContent>
 
-        {/* review add */}
         <div className="mt-20">
           <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
             <FaCommentDots className="text-xl text-TealGreen mr-2" />
@@ -209,10 +274,8 @@ const DetailsCoursePage = () => {
             </div>
           </div>
         </div>
-        {/* Course review */}
 
         <CourseReviews></CourseReviews>
-        <div></div>
       </div>
     </div>
   );

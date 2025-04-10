@@ -15,7 +15,8 @@ export default function CourseCard({ course }) {
     _id,
   } = course;
   return (
-    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full ">
+    <div className="border-[1px] border-TealGreen h-full flex flex-col w-full bg-neutral">
+      {/* image section */}
       <div className="h-52 overflow-hidden">
         <div>
           <img
@@ -28,6 +29,7 @@ export default function CourseCard({ course }) {
           </h3>
         </div>
       </div>
+      
       <div className="p-5 h-[60%] flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between">
           <h2 className="text-TealGreen font-medium text-lg lg:text-xl">

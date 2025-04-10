@@ -21,7 +21,8 @@ const SocialLogin = () => {
           name: res?.user?.displayName,
           firebaseUid:user.uid,
           image: res?.user?.photoURL,
-          role:'user'
+          role:'user',
+          date: new Date(),
         };
         axiosPublic.post("addUser", userInfo)
         .then((res) => {
@@ -41,7 +42,7 @@ const SocialLogin = () => {
   };
   return (
     <div>
-      <div className="flex justify-center py-2 ">
+      <div className="flex justify-center pb-2 ">
         <button
           onClick={handlelogin}
           className="w-full flex items-center justify-center gap-2 py-2 proCardButton"

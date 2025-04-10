@@ -1,13 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth"; 
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAK9dtl8dZvEWVrv_wCffpnUGEzvIoRnJk",
-  authDomain: "a-10-6a586.firebaseapp.com",
-  projectId: "a-10-6a586",
-  storageBucket: "a-10-6a586.firebasestorage.app",
-  messagingSenderId: "965132711768",
-  appId: "1:965132711768:web:43214a26df83ccdfb6572d"
+  apiKey: "AIzaSyCYOiMUELenu0iCkuGsySR8xL_Zud26cm8",
+  authDomain: "edvio-215b5.firebaseapp.com",
+  projectId: "edvio-215b5",
+  storageBucket: "edvio-215b5.firebasestorage.app",
+  messagingSenderId: "449886645485",
+  appId: "1:449886645485:web:8d3b5f076ae4d99ee070e4",
+  measurementId: "G-DG612R3HZ0"
 };
 
 // Initialize Firebase
