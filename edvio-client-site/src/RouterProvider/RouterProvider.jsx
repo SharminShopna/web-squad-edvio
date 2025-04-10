@@ -31,7 +31,6 @@ export default function RouterProvider() {
       <Route index element={<HomeDashboard />} />
       <Route path="home-dashboard" element={<HomeDashboard />} />
       <Route path="course-management" element={<CourseManagement />} />
-      
       </Route>
     </Routes>
   );
