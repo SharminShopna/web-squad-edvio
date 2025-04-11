@@ -1,10 +1,10 @@
 // import Swal from "sweetalert2";
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../Hook/UseAuth";
 import "../Shared/Pro.css";
-import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleLogin } = UseAuth();
   const location = useLocation();
@@ -24,8 +24,11 @@ const SocialLogin = () => {
           role:'user',
           date: new Date(),
         };
-        axiosPublic.post("addUser", userInfo)
+        
+        axiosPublic.post("/addUser", userInfo) 
+        
         .then((res) => {
+          
           if (res.data.insertedId) {
             Swal.fire({
               position: "top-center",
@@ -35,6 +38,7 @@ const SocialLogin = () => {
               timer: 1500,
             });
           }
+          console.log(res.data);
         });
         
       navigate(from, { replace: true } || "/");

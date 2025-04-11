@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+
 import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
@@ -13,16 +14,18 @@ import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/Instru
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
 import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
-
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
 import Feedback from "@/Components/Dashboard/UserDashBoard/Feedback";
 import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting";
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
+import Error from "@/Components/Error/Error";
+
 export default function RouterProvider() {
   return (
     <Routes>
+
       {/* Main Layout Routes */}
       <Route path="/" element={<MainLayOut />}>
         <Route index element={<HomePage />} />
@@ -38,23 +41,25 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="/dashboard" element={<DashBoardHome/>}></Route>
-        <Route path="/dashboard/Profile" element={<AdminProfile />} />
-        <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
-        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
+        <Route path="admin-home" element={<DashBoardHome />} />
+        <Route path="profile" element={<AdminProfile />} />
+        <Route path="edit-profile" element={<AdminProfileEdit />} />
+        <Route path="all-instructor" element={<AllInstructor />} />
 
         {/* Instructor Routes */}
         <Route path="instructor-profile" element={<InstructorProfile />} />
 
         {/* User Routes */}
-        <Route path="/dashboard" element={<UserHome />} />
-        <Route path="/dashboard/myCourse" element={<MyCourse />} />
-        <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
-        <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
-        <Route path="/dashboard/feedback" element={<Feedback />} />
-        <Route path="/dashboard/settings" element={<AccountSetting />} />
+        <Route path="user-home" element={<UserHome />} />
+        <Route path="myCourse" element={<MyCourse />} />
+        <Route path="paymentHistory" element={<PaymentHistory />} />
+        <Route path="browseCourse" element={<BrowsCourse />} />
+        <Route path="feedback" element={<Feedback />} />
+        <Route path="settings" element={<AccountSetting />} />
       </Route>
-      {/* user routes */}
+
+      {/* Error Route */}
+      <Route path="*" element={<Error />} />
     </Routes>
   );
 }
