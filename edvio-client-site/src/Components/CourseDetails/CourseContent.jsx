@@ -8,9 +8,9 @@ import {
 import { FaHeadSideVirus } from 'react-icons/fa'
 export default function CourseContent({content}) {
   return (
-    <div className="border-[1px] border-LightTeal p-10 rounded-lg bg-gray-50 mb-8">
-        <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
-          <FaHeadSideVirus  className="text-xl text-TealGreen mr-2" />Course Curriculum
+    <div className="border-[1px] border-LightTeal p-10 rounded-lg bg-neutral mb-8">
+        <h2 className="text-2xl font-bold text-base-content mb-6 flex items-center">
+          <FaHeadSideVirus  className="text-xl text-base-content mr-2" />Course Curriculum
         </h2>
         <div>
           {
@@ -21,7 +21,7 @@ export default function CourseContent({content}) {
          <AccordionContent>
           <ul >
             {
-              item?.topics?.map((topic,index)=><li key={index} className="list-disc mb-2 text-gray-700">{topic}</li>)
+              item?.topics?.map((topic,index)=><li key={index} className="list-disc mb-2 text-golden2">{topic}</li>)
             }
           </ul>
          </AccordionContent>

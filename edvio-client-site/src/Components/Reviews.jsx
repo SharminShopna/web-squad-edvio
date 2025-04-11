@@ -24,11 +24,11 @@ const Reviews = () => {
       />
 
       {/* Marquee Effect */}
-      <Marquee pauseOnHover={true} speed={80} gradient={true}>
+      <Marquee pauseOnHover={true} speed={80} gradient={false}>
         {reviews.map((review, index) => (
           <div
             key={index}
-            className="p-4 border border-tealGreen rounded-lg shadow-md bg-white w-80 h-60 mx-4 flex flex-col justify-between"
+            className="p-4 border border-tealGreen rounded-lg shadow-md bg-neutral w-80 h-60 mx-4 flex flex-col justify-between"
           >
             <div className="flex items-center gap-4 mb-2">
               <img
@@ -37,15 +37,15 @@ const Reviews = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 className="font-semibold dark:text-gray-800 text-lg">{review.name}</h3>
+                <h3 className="text-base-content font-semibold text-lg">{review.name}</h3>
                 <p className="text-yellow-400 mb-2">{"⭐".repeat(review.stars)}</p>
-                <p className="text-sm text-gray-500 flex gap-1 items-center">
+                <p className="text-sm text-gray-200 flex gap-1 items-center">
                   <IoLocation />
                   {review.location}
                 </p>
               </div>
             </div>
-            <p className="text-gray-700 line-clamp-3">{review.review}</p>
+            <p className="text-gray-300 line-clamp-3">{review.review}</p>
           </div>
         ))}
       </Marquee>

@@ -66,7 +66,7 @@ const DetailsCoursePage = () => {
 
   if (!course) {
     return (
-      <p className="text-center text-gray-600">No course data available</p>
+      <p className="text-center text-gray-300">No course data available</p>
     );
   }
 
@@ -119,7 +119,7 @@ const DetailsCoursePage = () => {
               {course_name || "N/A"}
             </h1>
             <div className="flex items-center gap-2 text-white py-2 rounded-lg">
-              <IoPeopleSharp className="text-xl text-TealGreen" />
+              <IoPeopleSharp className="text-xl text-base-content" />
               <p className="text-lg font-semibold">
                 Learners: {Purchase_order}
               </p>
@@ -134,30 +134,30 @@ const DetailsCoursePage = () => {
           <div className="flex items-center gap-20">
             <div>
               <div className="flex items-center mb-4">
-                <FaBook className="text-xl text-TealGreen mr-2" />
-                <p className="text-gray-700 font-semibold">
+                <FaBook className="text-xl text-base-content mr-2" />
+                <p className="text-gray-300 font-semibold">
                   Category:{" "}
                   <span className="font-normal">{category || "N/A"}</span>
                 </p>
               </div>
               <div className="flex items-center mb-4">
-                <FaChartLine className="text-xl text-TealGreen mr-2" />
-                <p className="text-gray-700 font-semibold">
+                <FaChartLine className="text-xl text-base-content mr-2" />
+                <p className="text-gray-300 font-semibold">
                   Level: <span className="font-normal">{level || "N/A"}</span>
                 </p>
               </div>
             </div>
             <div>
               <div className="flex items-center mb-4">
-                <FaClock className="text-xl text-TealGreen mr-2" />
-                <p className="text-gray-700 font-semibold">
+                <FaClock className="text-xl text-base-content mr-2" />
+                <p className="text-gray-300 font-semibold">
                   Duration:{" "}
                   <span className="font-normal">{duration || "N/A"}</span>
                 </p>
               </div>
               <div className="flex items-center">
-                <FaMoneyBillAlt className="text-xl text-TealGreen mr-2" />
-                <p className="text-gray-700 font-semibold">
+                <FaMoneyBillAlt className="text-xl text-base-content mr-2" />
+                <p className="text-gray-300 font-semibold">
                   Price:{" "}
                   <span className="font-normal">
                     {price === 0 ? "Free" : `$${price || "N/A"}`}
@@ -167,8 +167,8 @@ const DetailsCoursePage = () => {
             </div>
           </div>
 
-          <div className="bg-white shadow-xl w-fit h-fit p-5 rounded-lg -mt-44 text-center">
-            <p className="text-TealGreen font-semibold text-3xl">
+          <div className="bg-neutral shadow-xl border-1 border-LightTeal w-fit h-fit p-5 rounded-lg -mt-44 text-center">
+            <p className="text-base-content font-semibold text-3xl">
               {price === 0 ? "Free" : `$${price || "N/A"}`}
             </p>
             <div className="flex gap-3">
@@ -188,13 +188,13 @@ const DetailsCoursePage = () => {
             </div>
             <div className="border-[1px] border-LightTeal"></div>
             <div>
-              <p className="my-3 text-sm text-gray-700">
+              <p className="my-3 text-sm text-gray-300">
                 Have any questions? <br /> Reach out to our support team for
                 assistance!
               </p>
               <a
                 href={`mailto:${supportEmail}`}
-                className="text-LightTeal hover:text-blue-500 transition"
+                className="text-base-content hover:text-TealGreen transition"
               >
                 {supportEmail}
               </a>
@@ -202,9 +202,9 @@ const DetailsCoursePage = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg my-10 border-[1px] border-LightTeal">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-            <FaUser className="text-xl text-TealGreen mr-2" /> Instructor
+        <div className="bg-neutral p-6 rounded-lg my-10 border-[1px] border-LightTeal">
+          <h2 className="text-xl font-bold text-base-content mb-4 flex items-center">
+            <FaUser className="text-xl mr-2" /> Instructor
           </h2>
           <div className="flex items-center mb-4">
             <img
@@ -213,26 +213,26 @@ const DetailsCoursePage = () => {
               className="w-12 h-12 rounded-full object-cover mr-3"
             />
             <div>
-              <p className="text-gray-700 font-semibold">
+              <p className="text-golden2 font-semibold">
                 {instructor?.name || "Unknown Instructor"}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 {instructor?.profile || "No profile available"}
               </p>
             </div>
           </div>
-          <p className="text-gray-600">{instructor?.about_course}</p>
+          <p className="text-gray-300">{instructor?.about_course}</p>
           <div>
-            <p className="text-TealGreen text-lg font-medium mt-3 mb-1">
+            <p className="text-base-content text-lg font-medium mt-3 mb-1">
               Why you should take this course:
             </p>
-            <p className="text-gray-600">{instructor?.why_take_this_course}</p>
+            <p className="text-gray-300">{instructor?.why_take_this_course}</p>
           </div>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
-            <FaCertificate className="text-xl text-TealGreen mr-2" /> What You
+          <h2 className="text-2xl font-bold text-base-content mb-4 flex items-center">
+            <FaCertificate className="text-xl text-base-content mr-2" /> What You
             Will Learn
           </h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -240,21 +240,21 @@ const DetailsCoursePage = () => {
               course?.learning_outcomes?.map((outcome, index) => (
                 <li
                   key={index}
-                  className="bg-gray-50 p-4 rounded-lg flex items-center"
+                  className="bg-neutral p-4 rounded-lg flex items-center"
                 >
-                  <FaBook className="text-lg text-TealGreen mr-2" />
-                  <p className="text-gray-700">{outcome}</p>
+                  <FaBook className="text-lg text-base-content mr-2" />
+                  <p className="text-gray-300">{outcome}</p>
                 </li>
               ))
             ) : (
-              <li className="text-gray-600">No learning outcomes available</li>
+              <li className="text-gray-300">No learning outcomes available</li>
             )}
           </ul>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-TealGreen mb-4 flex items-center">
-            <FaChartLine className="text-xl text-TealGreen mr-2" /> Career
+          <h2 className="text-2xl font-bold text-base-content mb-4 flex items-center">
+            <FaChartLine className="text-xl text-base-content mr-2" /> Career
             Benefits
           </h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -262,14 +262,14 @@ const DetailsCoursePage = () => {
               course?.career_benefits?.map((benefit, index) => (
                 <li
                   key={index}
-                  className="bg-gray-50 p-4 rounded-lg flex items-center"
+                  className="bg-neutral p-4 rounded-lg flex items-center"
                 >
-                  <FaCertificate className="text-lg text-TealGreen mr-2" />
-                  <p className="text-gray-700">{benefit}</p>
+                  <FaCertificate className="text-lg text-base-content mr-2" />
+                  <p className="text-gray-300">{benefit}</p>
                 </li>
               ))
             ) : (
-              <li className="text-gray-600">No career benefits available</li>
+              <li className="text-gray-300">No career benefits available</li>
             )}
           </ul>
         </div>
@@ -277,8 +277,8 @@ const DetailsCoursePage = () => {
         <CourseContent content={content}></CourseContent>
 
         <div className="mt-20">
-          <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
-            <FaCommentDots className="text-xl text-TealGreen mr-2" />
+          <h2 className="text-2xl font-bold text-base-content mb-6 flex items-center">
+            <FaCommentDots className="text-xl text-base-content mr-2" />
             Add Review
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
