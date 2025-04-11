@@ -37,7 +37,7 @@ const PopularCourse = () => {
           demo.map((item, index) => (
             <motion.div
               key={index}
-              className="max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="max-w-sm mx-auto bg-neutral rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               data-aos="fade-up"
@@ -49,7 +49,7 @@ const PopularCourse = () => {
               />
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm text-TealGreen bg-TealGreen/10 px-3 py-1 rounded-full">
+                  <span className="text-sm text-golden2 bg-TealGreen px-3 py-1 rounded-full">
                     {item.category}
                   </span>
 
@@ -57,21 +57,21 @@ const PopularCourse = () => {
                     Popular
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                <h2 className="text-2xl font-bold text-base-content mb-2">
                   {item.course_name}
                 </h2>
-                <p className="text-gray-600 mb-4">{item.description}</p>
+                <p className="text-gray-300 mb-4">{item.description}</p>
 
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center space-x-2">
-                    <FaClock className="text-gray-500" />
-                    <span className="text-sm text-gray-600">
+                    <FaClock className="text-gray-200" />
+                    <span className="text-sm text-gray-300">
                       {item.duration}
                     </span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <FaUser className="text-gray-500" />
-                    <span className="text-sm text-gray-600">
+                    <FaUser className="text-gray-200" />
+                    <span className="text-sm text-gray-300">
                       {item.Purchase_order} Enrolled
                     </span>
                   </div>
@@ -83,16 +83,16 @@ const PopularCourse = () => {
                     className="w-10 h-10 rounded-full object-cover"
                   />
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">
+                    <p className="text-sm font-semibold text-base-content">
                       {item.instructor.name}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-300">
                       {item.instructor.profile}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-TealGreen">
+                  <span className="text-lg font-semibold text-gray-300">
                     ${item.price}
                   </span>
                   <NavLink to={`/courseDetails/${item._id}`}>

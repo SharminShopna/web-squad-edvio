@@ -83,7 +83,7 @@ export default function Pro() {
                     {d.duration}
                   </p>
                 </div>
-                <p className="text-gray-600 flex items-center">
+                <p className="text-gray-300 flex items-center">
                   <FaUser className="text-green-500 mr-2" />
                   <span className="font-bold">Enrolled:&ensp;</span>{" "}
                   {d.Purchase_order}
@@ -101,10 +101,10 @@ export default function Pro() {
                           className="w-10 h-10 object-cover rounded-full"
                         />
                         <div>
-                          <p className="text-sm text-gray-800">
+                          <p className="text-sm text-golden2">
                             {d.instructor.name}
                           </p>
-                          <p className="text-xs text-gray-600">
+                          <p className="text-xs text-gray-300">
                             {d.instructor.profile}
                           </p>
                         </div>
