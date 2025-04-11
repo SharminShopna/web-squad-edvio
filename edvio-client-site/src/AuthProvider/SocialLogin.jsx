@@ -30,7 +30,6 @@ const SocialLogin = () => {
         .then((res) => {
           
           if (res.data.insertedId) {
-            
             Swal.fire({
               position: "top-center",
               icon: "success",

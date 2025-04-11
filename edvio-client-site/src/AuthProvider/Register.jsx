@@ -56,7 +56,6 @@ const Register = () => {
 
       navigate("/");
     } catch (error) {
-      console.error("Sign-up error:", error);
       const backendMessage = error?.response?.data?.message;
       Swal.fire({
         icon: "error",

@@ -8,8 +8,8 @@ export default function CourseReviews() {
   return (
   
           <div className="my-20">
-                <h2 className="text-2xl font-bold text-TealGreen mb-6 flex items-center">
-                <FaCommentDots   className="text-xl text-TealGreen mr-2" />What Our Learners Say
+                <h2 className="text-2xl font-bold text-base-content mb-6 flex items-center">
+                <FaCommentDots   className="text-xl text-base-content mr-2" />What Our Learners Say
               </h2>
               <div>
                  {
