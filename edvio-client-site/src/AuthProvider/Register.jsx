@@ -11,6 +11,8 @@ import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const Register = () => {
   const { createUser, updateUserProfile } = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const {
@@ -21,6 +23,15 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
+      if (data.password !== confirmPassword) {
+        Swal.fire({
+          icon: "error",
+          title: "Password Mismatch",
+          text: "Password and Confirm Password do not match",
+        });
+        return; 
+      }
+  
       const res = await createUser(data.email, data.password);
       const user = res.user;
       await updateUserProfile(data.name, data.photoURL);
@@ -35,7 +46,6 @@ const Register = () => {
       };
 
       const response = await axiosPublic.post("/addUser", userInfo);
-
       Swal.fire({
         position: "top-center",
         icon: "success",
@@ -46,211 +56,95 @@ const Register = () => {
 
       navigate("/");
     } catch (error) {
-      console.error("Sign-up error:", error);
       const backendMessage = error?.response?.data?.message;
       Swal.fire({
         icon: "error",
         title: "Sign-up Failed",
         text: backendMessage || error.message || "Something went wrong",
-      })
+      });
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-TealGreen px-4">
-    <div className="md:flex md:justify-center bg-Aquamarine shadow-lg rounded-2xl border-white/20 md:items-center">
-      {/* Left Side */}
-      <div className="w-3/4 md:w-[450px] mx-auto mt-4 md:ml-4  text-white space-y-4 text-center py-6">
-        <h3 className="md:text-3xl text-2xl font-bold">Welcome Back!</h3>
-        <p className="text-white/80">
-          To keep connected with us, please login with your personal info
-        </p>
-        <div className="w-3/4 mx-auto">
-          <button type="submit" className="w-full proCardButton">
-            <NavLink to="/login">Sign In</NavLink>
-          </button>
-        </div>
-      </div>
-  
-      {/* Right Side (White Background) */}
-      <div className="w-full max-w-lg bg-white shadow-2xs px-8 py-6 rounded-r-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center my-4 text-gray-800">
-          Create an Account
-        </h2>
-  
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 relative">
-          {/* Name */}
-          <Slide direction="left" triggerOnce>
-            <div>
-              <input
-                type="text"
-                {...register("name", { required: true })}
-                placeholder="Name"
-                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
-              />
-              {errors.name && (
-                <span className="text-red-500">Name is required</span>
-              )}
-            </div>
-          </Slide>
-  
-          {/* Phone Number */}
-          <Slide direction="right" triggerOnce>
-            <div>
-              <input
-                type="tel"
-                {...register("number", {
-                  required: "Phone number is required",
-                  pattern: {
-                    value: /^[0-9]{10,15}$/,
-                    message: "Invalid phone number format",
-                  },
-                })}
-                placeholder="Phone Number"
-                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
-              />
-              {errors.number && (
-                <p className="text-red-500">{errors.number.message}</p>
-              )}
-            </div>
-          </Slide>
-  
-          {/* Email */}
-          <Slide direction="left" triggerOnce>
-            <div>
-              <input
-                type="email"
-                {...register("email", { required: true })}
-                placeholder="Email"
-                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
-              />
-              {errors.email && (
-                <span className="text-red-500">Email is required</span>
-              )}
-            </div>
-          </Slide>
-  
-          {/* Password */}
-          <Slide direction="right" triggerOnce>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                })}
-                placeholder="Password"
-                className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-600"
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-              {errors.password && (
-                <span className="text-red-500 block mt-1">
-                  Invalid password format
-                </span>
-              )}
-            </div>
-          </Slide>
-  
-          {/* Submit Button */}
-          <button type="submit" className="w-full proCardButton">
-            Sign Up
-          </button>
-        </form>
-  
-        <p className="text-center mt-4 text-gray-700">
-          Already have an account?{" "}
-          <Link to="/login" className="text-teal-600 hover:underline">
-            Login
-          </Link>
-        </p>
-        <div className="divider mt-2  text-gray-400">OR</div>
-        <SocialLogin />
-      </div>
-    </div>
-  </div>
-  
-  );
-};
-
-export default Register;
-
-
-
-
-{/* <div className="min-h-screen flex items-center justify-center bg-TealGreen px-4">
-      <div className="md:flex md:justify-center shadow-lg rounded-2xl border-white/20 bg-white/10 md:items-center">
-        <div className="w-3/4 mx-auto mt-4 md:ml-4 text-card space-y-2 text-center">
-          <h3 className="md:text-3xl text-2xl font-bold">Welcome Back !</h3>
-          <p>To keep Connected with us please login with your personal info</p>
-          <div className="w-3/4 mx-auto">
+      <div className="md:flex md:justify-center bg-Aquamarine shadow-lg rounded-2xl border-white/20 md:items-center">
+        {/* Left Side */}
+        <div className="w-3/4 md:w-[450px] mx-auto mt-4 md:ml-4  text-white space-y-4 text-center py-6">
+          <h3 className="md:text-3xl text-2xl font-bold">Welcome Back!</h3>
+          <p className="text-white/80">
+            To keep connected with us, please login with your personal info
+          </p>
+          <div className="w-3/4 mx-auto md:mt-20">
             <button type="submit" className="w-full proCardButton">
               <NavLink to="/login">Sign In</NavLink>
             </button>
           </div>
         </div>
-        
-        <div className="w-full max-w-lg bg-gray-200  px-8 py-4 ">
-          <h2 className="text-2xl md:text-3xl font-bold text-center  my-4">
+
+        {/* Right Side (White Background) */}
+        <div className="w-full max-w-lg bg-white shadow-2xs px-8 py-6 rounded-r-2xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center my-4 text-gray-800">
             Create an Account
           </h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 relative"
+          >
+            {/* Name */}
             <Slide direction="left" triggerOnce>
               <div>
                 <input
                   type="text"
                   {...register("name", { required: true })}
                   placeholder="Name"
-                  className="w-full px-4 py-2 bg-white/20 text-white border border-white/30 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-white/70"
+                  className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
                 />
+                {errors.name && (
+                  <span className="text-red-500">Name is required</span>
+                )}
               </div>
             </Slide>
-            {errors.name && (
-              <span className="text-red-500">Name is required</span>
-            )}
+
+            {/* Phone Number */}
             <Slide direction="right" triggerOnce>
               <div>
                 <input
-                  type="tel" 
+                  type="number"
                   {...register("number", {
                     required: "Phone number is required",
                     pattern: {
-                      value: /^[0-9]{10,15}$/, 
+                      value: /^[0-9]{10,15}$/,
                       message: "Invalid phone number format",
                     },
                   })}
                   placeholder="Phone Number"
-                  className="w-full px-4 py-2 bg-white/20 text-white border border-white/30 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-white/70"
+                  className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
                 />
                 {errors.number && (
                   <p className="text-red-500">{errors.number.message}</p>
                 )}
               </div>
-              
             </Slide>
 
+            {/* Email */}
             <Slide direction="left" triggerOnce>
               <div>
                 <input
                   type="email"
                   {...register("email", { required: true })}
                   placeholder="Email"
-                  className="w-full px-4 py-2 bg-white/20 text-white border border-white/30 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-white/70"
+                  className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
                 />
+                {errors.email && (
+                  <span className="text-red-500">Email is required</span>
+                )}
               </div>
             </Slide>
-            {errors.email && (
-              <span className="text-red-500">Email is required</span>
-            )}
 
+            {/* Password */}
             <Slide direction="right" triggerOnce>
-              <div>
+              <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", {
@@ -259,33 +153,59 @@ export default Register;
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
                   placeholder="Password"
-                  className="w-full px-4 py-2 bg-white/20 text-white border border-white/30 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-white/70"
+                  className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white"
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-600"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+                {errors.password && (
+                  <span className="text-red-500 block mt-1">
+                    Invalid password format
+                  </span>
+                )}
+              </div>
+            </Slide>
+            <Slide direction="left" triggerOnce>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm Password"
+                  className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none placeholder-gray-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-600"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
             </Slide>
-            {errors.password && (
-              <span className="text-red-500">Invalid password format</span>
-            )}
 
+            {/* Submit Button */}
             <button type="submit" className="w-full proCardButton">
               Sign Up
             </button>
           </form>
-          <p className="text-center mt-4 text-white/80">
+
+          <p className="text-center mt-4 text-gray-700">
             Already have an account?{" "}
-            <Link to="/login" className="text-green-300 hover:underline">
+            <Link to="/login" className="text-teal-600 hover:underline">
               Login
             </Link>
           </p>
-          <div className="divider my-4 text-white/50">OR</div>
+          <div className="divider mt-2  text-gray-400">OR</div>
           <SocialLogin />
         </div>
       </div>
-    </div>  */}
+    </div>
+  );
+};
+
+export default Register;

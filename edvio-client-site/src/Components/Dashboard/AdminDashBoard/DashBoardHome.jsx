@@ -23,11 +23,7 @@ export default function DashBoardHome() {
   "courseGrowthRate": -10,
   "feesCollected": 25160,
   "feesGrowthRate": -12
-
-
   }
-
- 
 
   return (
     <div className='w-full h-full'>

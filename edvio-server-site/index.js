@@ -113,13 +113,9 @@ async function run() {
     app.post("/addUser", async (req, res) => {
       try {
         const user = req.body;
-        // Ensure number is a string (if needed)
-        user.number = user.number?.toString().trim();
-        const filter = {
-          $or: [{ email: user.email }, { number: user.number }],
-        };
+        const filter = {firebaseUid: user.firebaseUid || user.email || user.number};
         const existingUser = await usersCollection.findOne(filter);
-
+    
         if (existingUser) {
           return res.status(409).send({
             message: "User already exists",
@@ -127,14 +123,15 @@ async function run() {
           });
         }
         const result = await usersCollection.insertOne(user);
+        console.log(result);
         res.status(201).send(result);
       } catch (error) {
         console.error("Add user error:", error);
         res.status(500).send({
           message: "Internal server error",
           error: error.message,
-        });
-      }
+        });
+      }
     });
 
     // all users data ===========================

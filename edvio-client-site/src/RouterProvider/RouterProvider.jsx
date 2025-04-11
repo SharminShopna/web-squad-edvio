@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+
 import MainLayOut from "../MainLayOut/MainLayOut";
 import HomePage from "../Pages/HomePage";
 import Login from "../AuthProvider/Login";
@@ -13,16 +14,18 @@ import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/Instru
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
 import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
-
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
 import Feedback from "@/Components/Dashboard/UserDashBoard/Feedback";
 import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting";
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
+import Error from "@/Components/Error/Error";
+
 export default function RouterProvider() {
   return (
     <Routes>
+
       {/* Main Layout Routes */}
       <Route path="/" element={<MainLayOut />}>
         <Route index element={<HomePage />} />
@@ -54,7 +57,9 @@ export default function RouterProvider() {
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
       </Route>
-      {/* user routes */}
+
+      {/* Error Route */}
+      <Route path="*" element={<Error />} />
     </Routes>
   );
 }
