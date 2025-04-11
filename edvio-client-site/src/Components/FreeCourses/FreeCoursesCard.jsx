@@ -15,7 +15,7 @@ export default function FreeCoursesCard({ course }) {
   } = course;
   return (
     <div className="mb-20 lg:mb-30">
-      <div className="w-full border-[1px] border-dashed border-TealGreen bg-neutral p-5 relative hover:scale-105 hover:bg-gray-400 transition-all duration-300 rounded-2xl mt-20 h-full flex flex-col justify-between">
+      <div className="w-full border-[1px] border-dashed border-TealGreen bg-neutral p-5 relative hover:scale-105 transition-all duration-300 rounded-2xl mt-20 h-full flex flex-col justify-between">
         {/* image section */}
         <div className="relative">
           <div className="rounded-3xl mt-[-100px] overflow-hidden relative">
