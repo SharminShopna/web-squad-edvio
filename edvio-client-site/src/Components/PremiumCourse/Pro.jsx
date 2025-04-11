@@ -46,7 +46,7 @@ export default function Pro() {
             return (
               <div
                 key={index}
-                className="bg-neutral border relative table-border p-5 rounded-lg transition-shadow duration-300 group flex flex-col"
+                className="bg-neutral border relative border-TealGreen p-5 rounded-lg transition-shadow duration-300 group flex flex-col"
                 style={{ minHeight: "600px" }}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
