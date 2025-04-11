@@ -12,6 +12,7 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import InstructorAddCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorAddCourse";
 
 export default function RouterProvider() {
   return (
@@ -36,7 +37,8 @@ export default function RouterProvider() {
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
 
         {/* Instructor Routes */}
-        <Route path="instructor-profile" element={<InstructorProfile />} />
+        <Route path="/dashboard/instructor-profile" element={<InstructorProfile />} />
+        <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
       </Route>
     </Routes>
   );

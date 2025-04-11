@@ -120,7 +120,7 @@ async function run() {
           ]
         };
         const existingUser = await usersCollection.findOne(filter);
-    
+
         if (existingUser) {
           return res.status(409).send({
             message: "User already exists",
@@ -137,7 +137,7 @@ async function run() {
         });
       }
     });
-    
+
     // all users data ===========================
     app.get("/allUser", async (req, res) => {
       try {
@@ -151,24 +151,24 @@ async function run() {
         });
       }
     });
-    
+
     // get one user base on email =============================
-    app.get('/user/byEmail/:email',async(req,res)=>{
-    const email = req.params.email;
-    const query = {email : email}
-    try{
-      const result = await usersCollection.findOne(query);
-      res.status(200).json({
+    app.get('/user/byEmail/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email }
+      try {
+        const result = await usersCollection.findOne(query);
+        res.status(200).json({
           success: true,
           data: result,
         });
-    }catch(err){
+      } catch (err) {
         console.error("Error fetching courses:", err);
         res.status(500).json({
-        success: false,
-        message: "Failed to fetch courses. Please try again later.",
+          success: false,
+          message: "Failed to fetch courses. Please try again later.",
         });
-    }
+      }
     })
     //  all courses data ===========================
     app.get("/allCourses", async (req, res) => {
@@ -183,6 +183,48 @@ async function run() {
         res.status(500).json({
           success: false,
           message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+    });
+    
+    app.post("/allCourses", async (req, res) => {
+      try {
+        const courseData = req.body;
+
+        // Basic validation
+        if (!courseData.course_name || !courseData.instructor || !courseData.category) {
+          return res.status(400).json({
+            success: false,
+            message: "Missing required fields (course_name, instructor, or category)"
+          });
+        }
+
+        // Add timestamps
+        courseData.createdAt = new Date();
+        courseData.updatedAt = new Date();
+
+        // Set default values if not provided
+        courseData.Purchase_order = courseData.Purchase_order || "0";
+        courseData.isPremium = courseData.isPremium || false;
+        courseData.certification = courseData.certification || false;
+
+        // Insert into MongoDB
+        const result = await coursesCollection.insertOne(courseData);
+
+        res.status(201).json({
+          success: true,
+          message: "Course created successfully",
+          data: {
+            id: result.insertedId,
+            ...courseData
+          }
+        });
+      } catch (error) {
+        console.error("Error creating course:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to create course",
+          error: error.message
         });
       }
     });
