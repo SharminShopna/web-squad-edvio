@@ -37,7 +37,7 @@ const PopularCourse = () => {
           demo.map((item, index) => (
             <motion.div
               key={index}
-              className="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               data-aos="fade-up"

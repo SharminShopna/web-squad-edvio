@@ -11,7 +11,6 @@ export default function InstructorListOne() {
     allUserData();
   },[])
   const instructor = user.filter(item => item.role === 'instructor').slice(0,10);
-  console.log(instructor)
     return (
     <div className='relative'>
       <div className='sticky top-0 bg-neutral shadow-xl p-5 z-50'>

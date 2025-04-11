@@ -89,7 +89,7 @@ export default function StudentsListOne() {
   <TableBody className={'table-border nth-[even]:bg-base-100'}>
     <TableRow>
       <TableCell className={'table-border text-center  opacity-[0.8]'}>{index + 1}</TableCell>
-      <TableCell className={'table-border text-center'}><img src={person?.image} alt="" className='w-12 h-12 rounded-full mx-auto'/></TableCell>
+      <TableCell className={'table-border text-center'}><img src={person?.image} alt="" className='w-12 h-12 rounded-full object-cover mx-auto'/></TableCell>
       <TableCell className={'table-border text-center opacity-[0.8]'}>{person?.name}</TableCell>
       <TableCell className={'table-border text-center  opacity-[0.8]'}>{person?.email}</TableCell>
       <TableCell className={'table-border text-center  opacity-[0.8]'}>{new Date(person?.date).toLocaleDateString()}</TableCell>

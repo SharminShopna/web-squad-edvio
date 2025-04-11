@@ -18,8 +18,11 @@ import {
   IoChevronDown,
   IoChevronUp,
 } from "react-icons/io5";
-import { IoIosApps } from "react-icons/io";
-
+import { LuUser } from "react-icons/lu";
+import { FiUsers } from "react-icons/fi";
+import { IoHomeOutline } from "react-icons/io5";
+import { GrAppsRounded } from "react-icons/gr";
+import { LuBookPlus } from "react-icons/lu";
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
 
@@ -28,20 +31,40 @@ export default function DashBoardSideBar() {
 
   const menus = {
     admin: [
-      {
-        path: "/dashboard/admin-home",
-        icon: <IoHome />,
-        label: "Dashboard Home",
-      },
+      { path: "/dashboard/admin-home", icon: <IoHomeOutline />, label: "Dashboard Home" },
       {
         path: "#",
-        icon: <IoIosApps />,
+        icon: <GrAppsRounded />,
         label: "Apps",
         subMenu: [
           { name: "My Profile", path: "/dashboard/Profile" },
           { name: "Edit Profile", path: "/dashboard/edit-profile" },
         ],
       },
+      { path: "#", icon: <LuUser />, label: "Instructor" ,
+        subMenu: [
+          { name: "All Instructor", path: "/dashboard/all-instructor" },
+          { name: "Add Instructor", path: "/dashboard/add-instructor" },
+          { name: "Edit Instructor", path: "/dashboard/edit-instructor" },
+          { name: "About Instructor", path: "/dashboard/about-instructor" },
+        ],
+      },
+      { path: "#", icon: <FiUsers />, label: "Students",
+        subMenu: [
+          { name: "All Student", path: "/dashboard/all-student" },
+          { name: "Add Student", path: "/dashboard/add-student" },
+          { name: "Edit Student", path: "/dashboard/edit-student" },
+          { name: "About Student", path: "/dashboard/about-student" },
+        ],
+       },
+      { path: "#", icon: <LuBookPlus />, label: "Course",
+        subMenu: [
+          { name: "All Course", path: "/dashboard/all-course" },
+          { name: "Add Course", path: "/dashboard/add-course" },
+          { name: "Edit Course", path: "/dashboard/edit-course" },
+          { name: "About Course", path: "/dashboard/about-course" },
+        ],
+       },
     ],
     instructor: [
       { path: "/", icon: <IoHome />, label: "Home" },
@@ -103,11 +126,7 @@ export default function DashBoardSideBar() {
       { path: "/logout", icon: <IoLogOut />, label: "Logout" },
     ],
     user: [
-      {
-        path: "/",
-        icon: <IoAddCircle />,
-        label: "Add Course",
-      },
+        { path: "/", icon: <IoHome />, label: "Home" },
     ],
   };
 
@@ -122,7 +141,7 @@ export default function DashBoardSideBar() {
       <ul className="list-none ml-5 text-base-content">
         {roleMenu.length > 0 ? (
           roleMenu.map((item, index) => (
-            <li key={index} className="flex flex-col gap-2 mb-3">
+            <li key={index} className="flex flex-col gap-2 mb-5">
               <div
                 className="flex items-center gap-2 cursor-pointer"
                 onClick={() => toggleSubMenu(index)}
