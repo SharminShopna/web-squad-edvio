@@ -15,14 +15,14 @@ const time = date_time.split('T')[1].split('Z')[0];
           style={{ maxWidth: 80 }}
            value={rating}
            readOnly
-           /> 
+           />  
            
         </div>
        </div>
        <div>
-        <p className='text-base text-gray-700'>{opinion}</p>
+        <p className='text-base text-gray-300'>{opinion}</p>
        </div>
-       <div className='flex items-center gap-5 mt-2 text-gray-500'>
+       <div className='flex items-center gap-5 mt-2 text-gray-1 n00'>
         <p>{date}</p>
         <p>{time}</p>
        </div>

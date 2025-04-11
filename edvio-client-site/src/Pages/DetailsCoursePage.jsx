@@ -167,7 +167,7 @@ const DetailsCoursePage = () => {
             </div>
           </div>
 
-          <div className="bg-neutral shadow-xl border-2 border-TealGreen w-fit h-fit p-5 rounded-lg -mt-44 text-center">
+          <div className="bg-neutral shadow-xl border-1 border-LightTeal w-fit h-fit p-5 rounded-lg -mt-44 text-center">
             <p className="text-base-content font-semibold text-3xl">
               {price === 0 ? "Free" : `$${price || "N/A"}`}
             </p>

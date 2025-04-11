@@ -41,13 +41,13 @@ const axiosSecure  = useAxiosSecure();
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <label className="form-control w-full ">
                 <div className="label">
-               <span className="text-lg text-TealGreen font-medium">Name</span>
+               <span className="text-lg text-gray-200 font-medium">Name</span>
                </div> <br />
                <input type="text" value={user?.displayName} readOnly {...register("name", { required: true })} placeholder="Enter Your Name" className="border-[1px] border-LightTeal w-full py-2 px-3 rounded-lg mt-2 focus:outline-TealGreen" />
               </label>
                <label htmlFor="">
                 <div className="label">
-               <span className="text-lg text-TealGreen font-medium">Email Address</span>
+               <span className="text-lg text-gray-200 font-medium">Email Address</span>
                </div> <br />
                 <input type="email" value={user?.email} readOnly {...register("email", { required: true })} placeholder="Enter Your Email Address" className="border-[1px] border-LightTeal w-full py-2 px-3 rounded-lg mt-2 focus:outline-TealGreen" />
                </label>
@@ -55,7 +55,7 @@ const axiosSecure  = useAxiosSecure();
               <div className="mt-6">
                 <label className="form-control w-full ">
                 <div className="label">
-               <span className="text-lg text-TealGreen font-medium">Rating</span>
+               <span className="text-lg text-gray-200 font-medium">Rating</span>
                </div> <br />
                <input type="number" min={1} max={5} step="0.1" {...register("rating", { required: true })} placeholder="Rating" className="border-[1px] border-LightTeal w-full py-2 px-3 rounded-lg mt-2 focus:outline-TealGreen" />
                  {errors.rating && errors.rating.type === 'required' && <span className=" text-red-500 mt-1 inline-block">Give Your Rating</span>}
@@ -64,14 +64,14 @@ const axiosSecure  = useAxiosSecure();
                 <div>
                    <label htmlFor="">
                 <div className="label">
-               <span className="text-lg text-TealGreen font-medium mt-6">Give Your Review</span>
+               <span className="text-lg text-gray-200 font-medium mt-6">Give Your Review</span>
                </div> <br />
                  <textarea {...register("opinion", { required: true })} id="" cols="10" rows="8" className="border-[1px] border-LightTeal w-full py-2 px-3 rounded-lg mt-2 focus:outline-TealGreen"></textarea>
                  {errors.opinion && errors.opinion.type === 'required' && <span className=" text-red-500 mt-1 inline-block">Give Your Review</span>}
                </label>
                 </div>
                 <div>
-                  <button className="border-[1px] border-LightTeal rounded-lg py-2 px-5 mt-6 font-medium text-TealGreen hover:text-white hover:bg-TealGreen transition-all duration-300 cursor-pointer">Add Your Review</button>
+                  <button className="border-[1px] border-LightTeal rounded-lg py-2 px-5 mt-6 font-medium text-gray-200 hover:text-white hover:bg-TealGreen transition-all duration-300 cursor-pointer">Add Your Review</button>
                 </div>
            </form>
     </div>
