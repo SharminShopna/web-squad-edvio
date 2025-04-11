@@ -46,7 +46,7 @@ export default function Pro() {
             return (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-50 to-gray-100 border relative border-TealGreen/20 p-5 rounded-lg hover:shadow-xl transition-shadow duration-300 group flex flex-col"
+                className="bg-neutral border relative table-border p-5 rounded-lg transition-shadow duration-300 group flex flex-col"
                 style={{ minHeight: "600px" }}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
@@ -63,21 +63,21 @@ export default function Pro() {
 
                 {/* Course Category */}
                 <div className="mt-4">
-                  <span className="bg-TealGreen/10 text-TealGreen text-sm px-3 py-1 rounded-full">
+                  <span className="bg-TealGreen/10 text-base-content text-sm px-3 py-1 rounded-full">
                     {d.category}
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-semibold my-4 text-TealGreen">
+                <h2 className="text-2xl font-semibold my-4 text-base-content">
                   {d.course_name}
                 </h2>
 
                 <div className="space-y-2 flex justify-between items-center gap-x-2">
-                  <p className="text-gray-600 flex items-center">
+                  <p className="text-gray-300 flex items-center">
                     <FaCheck className="text-green-500 mr-2" />
                     <span className="font-bold">Level:&ensp;</span> {d.level}
                   </p>
-                  <p className="text-gray-600 flex items-center">
+                  <p className="text-gray-300 flex items-center">
                     <FaClock className="text-green-500 mr-2" />
                     <span className="font-bold">Duration:&ensp;</span>{" "}
                     {d.duration}
@@ -92,7 +92,7 @@ export default function Pro() {
                 <div className="border-b-2 pt-5 border-dotted border-TealGreen"></div>
                 <div className="mt-auto">
                   <div className="my-4">
-                    <h2 className="text-TealGreen font-semibold">Instructor</h2>
+                    <h2 className="text-base-content font-semibold">Instructor</h2>
                     {d.instructor && (
                       <div className="flex items-center gap-2 mt-2">
                         <img
