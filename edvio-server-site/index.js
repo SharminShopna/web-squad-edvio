@@ -111,8 +111,6 @@ async function run() {
     app.post("/addUser", async (req, res) => {
       try {
         const user = req.body;
-        // Ensure number is a string (if needed)
-        user.number = user.number?.toString().trim();
         const filter = {
           $or: [
             { email: user.email },
@@ -120,7 +118,6 @@ async function run() {
           ]
         };
         const existingUser = await usersCollection.findOne(filter);
-    
         if (existingUser) {
           return res.status(409).send({
             message: "User already exists",
