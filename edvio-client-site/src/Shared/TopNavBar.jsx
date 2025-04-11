@@ -24,7 +24,7 @@ export default function TopNavBar() {
       <div className="navbar px-10 justify-between">
   <div className="">
     <div className='flex items-center gap-42'>
-      <Link><img src={icon} alt="" className='w-12 h-12'/></Link>
+      <Link to={'/'}><img src={icon} alt="" className='w-12 h-12'/></Link>
     <RxHamburgerMenu className='text-2xl hidden md:block'/>
     </div>
   </div>

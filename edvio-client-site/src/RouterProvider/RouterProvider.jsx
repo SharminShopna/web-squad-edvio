@@ -38,7 +38,7 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="/dashboard" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
@@ -47,7 +47,7 @@ export default function RouterProvider() {
         <Route path="instructor-profile" element={<InstructorProfile />} />
 
         {/* User Routes */}
-        <Route path="/dashboard" element={<UserHome />} />
+        <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
         <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
