@@ -45,7 +45,7 @@ export default function RouterProvider() {
         <Route path="instructor-profile" element={<InstructorProfile />} />
 
         {/* User Routes */}
-        <Route path="/dashboard/user-home" element={<UserHome />} />
+        <Route path="/dashboard" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
         <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
