@@ -31,7 +31,7 @@ export default function DashBoardSideBar() {
 
   const menus = {
     admin: [
-      { path: "/dashboard/admin-home", icon: <IoHomeOutline />, label: "Dashboard Home" },
+      { path: "/dashboard", icon: <IoHomeOutline />, label: "Dashboard Home" },
       {
         path: "#",
         icon: <GrAppsRounded />,
