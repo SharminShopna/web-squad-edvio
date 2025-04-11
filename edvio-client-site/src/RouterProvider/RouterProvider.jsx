@@ -12,13 +12,14 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
+
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
 import Feedback from "@/Components/Dashboard/UserDashBoard/Feedback";
 import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting";
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
-
 export default function RouterProvider() {
   return (
     <Routes>
@@ -40,6 +41,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
+        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
         <Route path="instructor-profile" element={<InstructorProfile />} />
@@ -52,6 +54,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
       </Route>
+      {/* user routes */}
     </Routes>
   );
 }

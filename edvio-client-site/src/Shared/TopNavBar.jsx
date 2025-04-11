@@ -9,6 +9,7 @@ import { FaRegBell } from 'react-icons/fa';
 import { MdNightlightRound } from "react-icons/md";
 import { BsChatLeftText } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
+import img from '../assets/user.png'
 export default function TopNavBar() {
   const {user} = UseAuth();
   const {userData} = useOneUser();
@@ -69,7 +70,10 @@ export default function TopNavBar() {
         tabIndex={0}
         className="menu dropdown-content bg-neutral z-1 mt-3 w-52 p-2 shadow-2xl border-[1px] border-TealGreen">
           <div className='flex items-center gap-3'>
-            <img src={user?.photoURL} alt="" className='w-10 h-10 object-cover referrerPolicy="no-referrer"'/>
+            {
+              user?.photoURL ? <img src={user?.photoURL} alt="" className='w-10 h-10 object-cover referrerPolicy="no-referrer"'/> : <img src={img} alt="" className='w-10 h-10 object-cover referrerPolicy="no-referrer"'/>
+            }
+            
             <div>
               <p className='text-base'>{user?.displayName}</p>
               <p className='capitalize text-gray-400'>{userData?.role}</p>
