@@ -104,7 +104,7 @@ export default function DashBoardSideBar() {
     ],
     user: [
       {
-        path: "/dashboard/user-home",
+        path: "/dashboard",
         icon: <IoHome />,
         label: "User Home",
       },
