@@ -13,6 +13,7 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import InstructorAddCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorAddCourse";
 import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
@@ -47,6 +48,8 @@ export default function RouterProvider() {
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
+        <Route path="/dashboard/instructor-profile" element={<InstructorProfile />} />
+        <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
         <Route path="instructor-profile" element={<InstructorProfile />} />
 
         {/* User Routes */}
