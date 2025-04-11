@@ -15,7 +15,7 @@ export default function FreeCoursesCard({ course }) {
   } = course;
   return (
     <div className="mb-20 lg:mb-30">
-      <div className="w-full border-[1px] border-dashed border-TealGreen p-5 relative hover:scale-105 hover:bg-teal-50 hover:text-white transition-all duration-300 rounded-2xl mt-20 h-full flex flex-col justify-between">
+      <div className="w-full border-[1px] border-dashed border-TealGreen bg-neutral p-5 relative hover:scale-105 transition-all duration-300 rounded-2xl mt-20 h-full flex flex-col justify-between">
         {/* image section */}
         <div className="relative">
           <div className="rounded-3xl mt-[-100px] overflow-hidden relative">
@@ -32,12 +32,12 @@ export default function FreeCoursesCard({ course }) {
         
         <div className="-mt-14">
           <div className="flex flex-col lg:flex-row  justify-between ">
-            <h2 className="text-TealGreen font-medium text-lg lg:text-xl">
+            <h2 className="text-base-content font-medium text-lg lg:text-xl">
               {category}
             </h2>
-            <p className="text-LightTeal text-sm lg:base">{level}</p>
+            <p className="text-gray-100 text-sm lg:base">{level}</p>
           </div>
-          <div className="text-gray-500 text-sm lg:base">
+          <div className="text-gray-300 hover:text-gray-100 text-sm lg:base">
             <h3 className="my-2">{course_name}</h3>
             <div className="flex items-center justify-between">
               <p>Duration : {duration}</p>
@@ -48,7 +48,7 @@ export default function FreeCoursesCard({ course }) {
             <div className="border-b-[1px] border-dashed border-TealGreen my-6"></div>
           </div>
           <div>
-            <p className="text-base lg:text-lg font-medium my-3 text-TealGreen">
+            <p className="lg:text-lg font-medium my-3 text-base-content">
               Instructor
             </p>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mt-auto">
@@ -58,11 +58,11 @@ export default function FreeCoursesCard({ course }) {
                   alt=""
                   className="w-10 h-10 object-cover rounded-full"
                 />
-                <p className=" text-sm text-gray-500">{instructor.name}</p>
+                <p className=" text-sm text-gray-300 hover:text-gray-100">{instructor.name}</p>
               </div>
               <NavLink to={`/courseDetails/${_id}`}>
                 {" "}
-                <FaArrowUpRightFromSquare className="text-TealGreen text-sm lg:text-2xl cursor-pointer ml-auto" />
+                <FaArrowUpRightFromSquare className="text-base-content text-sm lg:text-2xl cursor-pointer ml-auto" />
               </NavLink>
             </div>
           </div>

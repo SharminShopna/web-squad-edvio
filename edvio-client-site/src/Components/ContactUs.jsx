@@ -62,44 +62,44 @@ const ContactUs = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Form Section */}
-          <div className="p-6 rounded-lg shadow-md bg-LightTeal ">
-            <h3 className="text-2xl font-bold mb-4 text-white ">
+          <div className="p-6 rounded-lg bg-neutral ">
+            <h3 className="text-2xl font-bold mb-4 text-base-content">
               Send a Message
             </h3>
             <form ref={form} onSubmit={sendEmail} className="space-y-4">
               <div>
-                <label className="block mb-2 text-sm font-medium text-white ">
+                <label className="block mb-2 text-sm font-medium text-gray-200 ">
                   Name
                 </label>
                 <input
                   type="text"
                   name="user_name"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
                   placeholder="Your Name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm font-medium text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-300">
                   Email
                 </label>
                 <input
                   type="email"
                   name="user_email"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
                   placeholder="Your Email"
                   required
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm font-medium text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-300">
                   Message
                 </label>
                 <textarea
                   name="message"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
                   placeholder="Your Message"
                   required
                 ></textarea>

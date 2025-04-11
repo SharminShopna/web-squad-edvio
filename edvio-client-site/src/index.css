@@ -18,6 +18,7 @@
   --color-Aquamarine: rgb(112, 193, 179);
   --color-LightTeal: rgb(131, 197, 190);
   --color-PrimaryBlack: rgb(0, 0, 0);
+  --color-border-color: oklch(90% .076 70.697 / 0.1);
 }
 
 .inter {
