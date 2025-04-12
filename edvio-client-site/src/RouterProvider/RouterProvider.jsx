@@ -54,13 +54,13 @@ export default function RouterProvider() {
         <Route path="instructor-profile" element={<InstructorProfile />} />
 
         {/* User Routes */}
-        <Route path="user-home" element={<UserHome />} />
-        <Route path="myCourse" element={<MyCourse />} />
-        <Route path="paymentHistory" element={<PaymentHistory />} />
-        <Route path="browseCourse" element={<BrowsCourse />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route path="aiChatbot" element={<AIChatBot></AIChatBot>} />
-        <Route path="settings" element={<AccountSetting />} />
+        <Route path="/dashboard/user-home" element={<UserHome />} />
+        <Route path="/dashboard/myCourse" element={<MyCourse />} />
+        <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
+        <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
+        <Route path="/dashboard/feedback" element={<Feedback />} />
+        <Route path="/dashboard/settings" element={<AccountSetting />} />
+        <Route path="/dashboard/chatBot" element={<AIChatBot />} />
       </Route>
 
       {/* Error Route */}
