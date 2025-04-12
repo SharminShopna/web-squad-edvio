@@ -23,6 +23,7 @@ import { FiUsers } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
 
@@ -152,7 +153,7 @@ export default function DashBoardSideBar() {
         },
         {
           path: "/dashboard/aiChatbot",
-          icon: <IoChatbubbleEllipses />,
+          icon: <HiOutlineChatBubbleLeftRight />,
           label: "AI Chatbot",
         },
         {

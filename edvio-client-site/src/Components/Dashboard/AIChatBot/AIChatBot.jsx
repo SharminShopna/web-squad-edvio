@@ -27,6 +27,7 @@ const AIChatBot = () => {
       const isTechnicalQuestion = (question) => {
         // Technical domains and their specific keywords
         const techDomains = {
+            greeting:['hi', 'hello', 'hey', 'greetings', 'howdy', 'yo', 'sup', 'what\'s up','hola', 'bonjour', 'ciao','assalammualaikum'],
           programming: ['code', 'programming', 'algorithm', 'debug', 'compile', 'syntax', 'framework', 'library'],
           ai: ['machine learning', 'neural network', 'llm', 'training data', 'inference', 'model', 'ai'],
           blockchain: ['blockchain', 'smart contract', 'solidity', 'dapp', 'web3', 'nft', 'defi'],
@@ -65,7 +66,7 @@ const AIChatBot = () => {
       if (!isTechnicalQuestion(input)) {
         setMessages(prev => [...prev, {
           from: "bot",
-          text: "I specialize in technical questions about software development, AI, cloud computing, and related IT topics. Please ask me something in these domains."
+          text: "I specialize in questions about the courses u are taking or available in the platform. Remember I'm not a general-purpose AI. Just a companion to your learning. Please ask about a specific course or topic from our curriculum."
         }]);
         return;
       }
@@ -73,7 +74,7 @@ const AIChatBot = () => {
       // Proceed with technical answer
       const aiResponse = await ai.models.generateContent({
         model: "gemini-2.0-flash",
-        contents: `As a technical expert, provide a concise professional answer to this technical question: ${input}`
+        contents: `As a technical expert and a great friendly tutor, provide a concise professional answer to this technical question: ${input}`
       });
   
       const botReply = { from: "bot", text: aiResponse.text };
@@ -81,7 +82,7 @@ const AIChatBot = () => {
       
     } catch (err) {
       console.error("API Error:", err);
-      setMessages(prev => [...prev, { from: "bot", text: "Error processing your technical question" }]);
+      setMessages(prev => [...prev, { from: "bot", text: "Error processing your question" }]);
     } finally {
       setLoading(false);
     }
@@ -169,7 +170,7 @@ const AIChatBot = () => {
               <div
                 className={`max-w-[80%] rounded-2xl p-5 ${
                   msg.from === "user"
-                    ? ""
+                    ? "border"
                     : " border"
                 }`}
                 style={{
@@ -314,7 +315,7 @@ const AIChatBot = () => {
           </motion.button>
         </div>
         <p className="text-xs text-center mt-3">
-          <span>EduBot</span> specializes in academic content only
+          <span>EduBot</span> specializes in academic content only.
         </p>
       </motion.div>
     </motion.div>
