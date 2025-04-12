@@ -14,36 +14,36 @@ const AIChatBot = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
-  if (!input.trim()) return;
-  const userMessage = { from: "user", text: input };
-  setMessages((prev) => [...prev, userMessage]);
-  setInput("");
-  setLoading(true);
-
-  try {
-    const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
-
-    const result = await model.generateContentStream([{
-      role: "user",
-      parts: `You're EduBot, an educational assistant. Only respond to educational questions or questions about this website. If the user asks anything else, politely say you can't help with that. Question: ${input}`,
-    }]);
-
-    let fullResponse = "";
-    for await (const chunk of result.stream) {
-      const chunkText = chunk.text();
-      if (chunkText) fullResponse += chunkText;
+    if (!input.trim()) return;
+    const userMessage = { from: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setLoading(true);
+  
+    try {
+      const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
+  
+      const result = await model.generateContentStream([{
+        role: "user",
+        parts: `You're EduBot, an educational assistant. Only respond to educational questions or questions about this website. If the user asks anything else, politely say you can't help with that. Question: ${input}`,
+      }]);
+  
+      let fullResponse = "";
+      for await (const chunk of result.stream) {
+        const chunkText = chunk.text();
+        if (chunkText) fullResponse += chunkText;
+      }
+  
+      const botReply = { from: "bot", text: fullResponse || "Sorry, I didn't catch that." };
+      setMessages((prev) => [...prev, botReply]);
+    } catch (error) {
+      console.error("Gemini Error:", error);
+      setMessages((prev) => [...prev, { from: "bot", text: "Oops! Something went wrong." }]);
+    } finally {
+      setLoading(false);
     }
-
-    const botReply = { from: "bot", text: fullResponse || "Sorry, I didn't catch that." };
-    setMessages((prev) => [...prev, botReply]);
-  } catch (error) {
-    console.error("Gemini Error:", error);
-    setMessages((prev) => [...prev, { from: "bot", text: "Oops! Something went wrong." }]);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
+  
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleSend();
