@@ -28,8 +28,9 @@ export default function HomePage() {
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
         <ContactUs></ContactUs>
+        
       </div>
-      <AIChatBot></AIChatBot>
+      
     </>
   );
 }
