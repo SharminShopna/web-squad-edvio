@@ -37,7 +37,7 @@ export default function DashBoard() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto mb-5">
+        <div className="flex-1 overflow-y-auto mb-10">
           <Outlet />
         </div>
 
