@@ -1,18 +1,23 @@
 import { useState, useRef, useEffect } from 'react';
-import { FiSend, FiUser, FiX, FiChevronUp } from 'react-icons/fi';
+import { FiSend, FiUser, FiBot, FiX, FiChevronUp } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 const AIChatbot = () => {
   const [messages, setMessages] = useState([
-    { role: 'bot', content: 'Hello! Ask me about courses or website info!' }
+    { 
+      role: 'bot', 
+      content: 'Hello! I\'m your course assistant. Ask me about our programs or website info!' 
+    }
   ]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New loading state
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll
-  useEffect(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), [messages]);
+  // Auto-scroll to new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,39 +30,45 @@ const AIChatbot = () => {
     setIsLoading(true);
 
     try {
-      // 1. First verify the API endpoint
-      const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+      // Gemini API call
+      const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyA1_zugYY85uJaRZa14wMLnxBVwict_A5I`;
       
-      // 2. More robust request
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${import.meta.env.VITE_OPENROUTER_KEY || 'your-key-here'}`, // Use env var
           "Content-Type": "application/json",
-          "HTTP-Referer": window.location.href,
-          "X-Title": "EduPlatform AI"
         },
         body: JSON.stringify({
-          model: "deepseek/deepseek-r1-zero:free",
-          messages: [
+          contents: [{
+            parts: [{
+              text: `You are an educational assistant for an online learning platform. Strictly answer only about:
+              1) Course content
+              2) Website navigation
+              3) Contact information
+              For other queries, respond: "I can only discuss our educational platform."
+              
+              Current conversation:\n${messages.map(m => `${m.role}: ${m.content}`).join('\n')}
+              
+              User question: ${input}`
+            }]
+          }],
+          safetySettings: [
             {
-              role: "system",
-              content: "You're an educational assistant. Only answer about: 1) Courses 2) Website info 3) Contact details. For other topics, say: 'I can only discuss educational content.'"
-            },
-            userMessage
-          ]
+              category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+              threshold: "BLOCK_ONLY_HIGH"
+            }
+          ],
+          generationConfig: {
+            temperature: 0.5,
+            maxOutputTokens: 1000
+          }
         })
       });
 
-      // 3. Better error handling
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
-      }
-
       const data = await response.json();
       
-      // 4. Safer data access
-      const botReply = data.choices?.[0]?.message?.content || 
+      // Extract Gemini response
+      const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || 
         "Sorry, I couldn't process that. Try again!";
       
       setMessages(prev => [...prev, { role: 'bot', content: botReply }]);
@@ -66,7 +77,7 @@ const AIChatbot = () => {
       console.error("Chat error:", error);
       setMessages(prev => [...prev, { 
         role: 'bot', 
-        content: "My brain glitched! 🔌 Try again in a moment." 
+        content: "⚠️ Connection error. Please refresh and try again." 
       }]);
     } finally {
       setIsLoading(false);
@@ -79,36 +90,60 @@ const AIChatbot = () => {
         <motion.div 
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
-          className="bg-white rounded-xl shadow-xl border border-tealGreen overflow-hidden flex flex-col h-full"
+          className="bg-white rounded-xl shadow-xl border-2 border-tealGreen overflow-hidden flex flex-col h-full"
         >
           {/* Header */}
-          <div className="bg-tealGreen text-white p-3 flex justify-between items-center">
-            <h3 className="font-bold">Course Assistant</h3>
-            <button onClick={() => setIsOpen(false)}>
-              <FiX className="text-white hover:text-aquamarine" />
+          <div className="bg-gradient-to-r from-tealGreen to-aquamarine text-white p-3 flex justify-between items-center">
+            <h3 className="font-bold text-lg">Course Genius</h3>
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="p-1 rounded-full hover:bg-white/20 transition"
+            >
+              <FiX size={20} />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto bg-lightTeal/10">
+          <div className="flex-1 p-4 overflow-y-auto bg-lightTeal/5">
             {messages.map((msg, i) => (
-              <div key={i} className={`mb-4 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs p-3 rounded-lg ${msg.role === 'user' ? 'bg-tealGreen text-white' : 'bg-white border border-aquamarine'}`}>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className={`mb-4 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div className={`max-w-[85%] p-3 rounded-2xl ${
+                  msg.role === 'user' 
+                    ? 'bg-tealGreen text-white rounded-br-none' 
+                    : 'bg-white border-2 border-aquamarine rounded-bl-none'
+                }`}>
                   <div className="flex items-center gap-2 mb-1">
-                    {msg.role === 'user' ? <FiUser /> : <FiBot className="text-tealGreen" />}
-                    <span className="text-xs font-medium">{msg.role === 'user' ? 'You' : 'Assistant'}</span>
+                    {msg.role === 'user' ? (
+                      <FiUser className="flex-shrink-0" />
+                    ) : (
+                      <FiBot className="text-tealGreen flex-shrink-0" />
+                    )}
+                    <span className="text-xs font-medium">
+                      {msg.role === 'user' ? 'You' : 'Course AI'}
+                    </span>
                   </div>
-                  <p className="text-sm">{msg.content}</p>
+                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
+            
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white border border-aquamarine p-3 rounded-lg">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-tealGreen animate-bounce" />
-                    <div className="w-2 h-2 rounded-full bg-tealGreen animate-bounce delay-100" />
-                    <div className="w-2 h-2 rounded-full bg-tealGreen animate-bounce delay-200" />
+                <div className="bg-white border-2 border-aquamarine p-3 rounded-2xl rounded-bl-none">
+                  <div className="flex space-x-2">
+                    {[...Array(3)].map((_, i) => (
+                      <div 
+                        key={i}
+                        className="w-2 h-2 rounded-full bg-tealGreen"
+                        style={{ animation: `bounce 1s infinite ${i * 0.1}s` }}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -117,23 +152,27 @@ const AIChatbot = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-3 border-t border-aquamarine/30">
+          <form 
+            onSubmit={handleSubmit} 
+            className="p-3 border-t-2 border-aquamarine/20 bg-white"
+          >
             <div className="flex gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about courses..."
+                placeholder="Ask about our courses..."
                 disabled={isLoading}
-                className="flex-1 p-2 text-sm border border-aquamarine/50 rounded focus:outline-none focus:ring-1 focus:ring-tealGreen disabled:opacity-50"
+                className="flex-1 p-2 text-sm border-2 border-aquamarine/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-tealGreen focus:border-transparent disabled:opacity-50"
               />
-              <button 
-                type="submit" 
+              <motion.button
+                type="submit"
                 disabled={isLoading}
-                className="bg-tealGreen text-white p-2 rounded hover:bg-tealGreen/90 transition disabled:opacity-50"
+                whileTap={{ scale: 0.95 }}
+                className="p-2 bg-tealGreen text-white rounded-xl hover:bg-tealGreen/90 transition disabled:opacity-50"
               >
                 <FiSend size={18} />
-              </button>
+              </motion.button>
             </div>
           </form>
         </motion.div>
@@ -142,7 +181,7 @@ const AIChatbot = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen(true)}
-          className="w-full h-full bg-tealGreen text-white rounded-full shadow-lg flex items-center justify-center hover:bg-tealGreen/90 transition"
+          className="w-full h-full bg-gradient-to-br from-tealGreen to-aquamarine text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all"
         >
           <FiChevronUp size={24} className="transform rotate-45" />
         </motion.button>
