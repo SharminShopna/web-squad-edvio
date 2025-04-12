@@ -59,13 +59,14 @@ export default function RouterProvider() {
         <Route path="paymentHistory" element={<PaymentHistory />} />
         <Route path="browseCourse" element={<BrowsCourse />} />
         <Route path="feedback" element={<Feedback />} />
+        <Route path="aiChatbot" element={<AIChatBot></AIChatBot>} />
         <Route path="settings" element={<AccountSetting />} />
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
       {/* Shared Route */}
-      <Route path="aiChatbot" element={<AIChatBot></AIChatBot>} />
+      
     </Routes>
   );
 }

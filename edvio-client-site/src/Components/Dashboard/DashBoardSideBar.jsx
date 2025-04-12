@@ -151,6 +151,11 @@ export default function DashBoardSideBar() {
           label: "Browse Courses",
         },
         {
+          path: "/dashboard/aiChatbot",
+          icon: <IoChatbubbleEllipses />,
+          label: "AI Chatbot",
+        },
+        {
           path: "/dashboard/feedback",
           icon: <IoChatbubbleEllipses />,
           label: "Feedback",
