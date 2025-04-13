@@ -32,7 +32,7 @@ export default function DashBoardSideBar() {
 
   const menus = {
     admin: [
-      { path: "/dashboard", icon: <IoHomeOutline />, label: "Dashboard Home" },
+      { path: "/dashboard/admin-home", icon: <IoHomeOutline />, label: "Dashboard Home" },
       {
         path: "#",
         icon: <GrAppsRounded />,
@@ -132,7 +132,7 @@ export default function DashBoardSideBar() {
           label: "Home" 
         },
         {
-          path: "/dashboard",
+          path: "/dashboard/user-home",
           icon: <IoHome />,
           label: "User Home",
         },

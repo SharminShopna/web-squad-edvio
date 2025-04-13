@@ -169,6 +169,7 @@ const Register = () => {
                 )}
               </div>
             </Slide>
+            {/* confirmPassword */}
             <Slide direction="left" triggerOnce>
               <div className="relative">
                 <input

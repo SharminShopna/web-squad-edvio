@@ -43,10 +43,10 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="admin-home" element={<DashBoardHome />} />
-        <Route path="profile" element={<AdminProfile />} />
-        <Route path="edit-profile" element={<AdminProfileEdit />} />
-        <Route path="all-instructor" element={<AllInstructor />} />
+        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/Profile" element={<AdminProfile />} />
+        <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
+        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
         <Route path="/dashboard/instructor-profile" element={<InstructorProfile />} />
@@ -61,6 +61,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
         <Route path="/dashboard/chatBot" element={<AIChatBot />} />
+
       </Route>
 
       {/* Error Route */}
