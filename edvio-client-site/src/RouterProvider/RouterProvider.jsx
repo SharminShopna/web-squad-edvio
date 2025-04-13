@@ -22,6 +22,7 @@ import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting"
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
+import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
 
 export default function RouterProvider() {
   return (
@@ -59,10 +60,14 @@ export default function RouterProvider() {
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
+        <Route path="/dashboard/chatBot" element={<AIChatBot />} />
+
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
+      {/* Shared Route */}
+      
     </Routes>
   );
 }
