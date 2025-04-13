@@ -25,7 +25,7 @@ import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
-
+   console.log(userData)
   // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -74,7 +74,7 @@ export default function DashBoardSideBar() {
         label: "My Profile",
       },
       {
-        path: "/dashboard/instructor/add-course",
+        path: "/dashboard/instructor-addCourse",
         icon: <IoAddCircle />,
         label: "Add Course",
       },
