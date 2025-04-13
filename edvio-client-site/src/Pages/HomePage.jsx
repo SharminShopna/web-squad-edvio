@@ -9,6 +9,7 @@ import FreeCourses from "../Components/FreeCourses/FreeCourses";
 import WhyUs from "../Components/WhyUs/WhyUs";
 import PopularCourse from "../Components/MostPopular/PopularCourse";
 import Pro from "../Components/PremiumCourse/Pro";
+import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
 
 export default function HomePage() {
   return (
@@ -27,7 +28,9 @@ export default function HomePage() {
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
         <ContactUs></ContactUs>
+        
       </div>
+      
     </>
   );
 }
