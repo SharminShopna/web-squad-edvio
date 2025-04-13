@@ -180,12 +180,7 @@ const InstructorAddCourse = () => {
         <p className="text-aquamarine">Share your knowledge with the world</p>
       </motion.div>
 
-      <motion.form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-8"
-        initial={{ scale: 0.98 }}
-        animate={{ scale: 1 }}
-      >
+      <motion.form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         <CourseBasicInfo
           register={register}
           addLearningOutcome={addLearningOutcome}
@@ -193,6 +188,7 @@ const InstructorAddCourse = () => {
           addCareerBenefit={addCareerBenefit}
           removeCareerBenefit={removeCareerBenefit}
           getValues={getValues}
+          setValue={setValue}
         />
 
         <CourseContent
@@ -208,11 +204,11 @@ const InstructorAddCourse = () => {
           addQuestion={addQuestion}
           removeQuestion={removeQuestion}
           getValues={getValues}
+          setValue={setValue}
         />
 
         <CourseSupportInfo register={register} />
 
-        {/* Submit Buttons */}
         <motion.div
           className="flex justify-end gap-4"
           initial={{ opacity: 0, y: 20 }}

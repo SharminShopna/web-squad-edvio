@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaPlus, FaTimes, FaTrash, FaQuestionCircle } from "react-icons/fa";
+import {
+  FaPlus,
+  FaTimes,
+  FaTrash,
+  FaQuestionCircle,
+  FaMagic,
+} from "react-icons/fa";
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({
+  apiKey: "AIzaSyAmdSud2xjQqj1znzGbe-aiwY_A_W5Tuj0",
+});
 
 const CourseContent = ({
   days,
@@ -10,11 +21,99 @@ const CourseContent = ({
   register,
   addDay,
   removeDay,
-  addTopic,
   removeTopic,
   addQuestion,
   removeQuestion,
+  setValue,
+  getValues,
 }) => {
+  const [showAIPrompt, setShowAIPrompt] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const generateAIContent = async () => {
+    if (!aiPrompt.trim()) return;
+
+    setIsGenerating(true);
+    try {
+      const dayIndex = currentDay - 1;
+
+      const titleResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: `Generate a concise course day title (max 8 words) about: ${aiPrompt}`,
+      });
+      const generatedTitle = titleResponse.text.trim();
+
+      const summaryResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: `Generate a 3-4 sentence learning summary about: ${aiPrompt}. Focus on key takeaways.`,
+      });
+      const generatedSummary = summaryResponse.text.trim();
+
+      const topicsResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: `Generate 3 to 5 specific learning topics (each max 7 words) about: ${aiPrompt}. Return as a bullet list`,
+      });
+
+      // Process topics
+      const generatedTopics = topicsResponse.text
+        .split("\n")
+        .map((line) => line.replace(/^[\s•-]+/, "").trim())
+        .filter((line) => line.length > 0)
+        .slice(0, 5);
+
+      // Update form values
+      setValue(`content.${dayIndex}.title`, generatedTitle);
+      setValue(`content.${dayIndex}.TodayLearned`, generatedSummary);
+      setValue(`content.${dayIndex}.topics`, generatedTopics);
+
+      setShowAIPrompt(false);
+      setAiPrompt("");
+    } catch (error) {
+      console.error("Error generating AI content:", error);
+      alert("Failed to generate content. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const addTopic = async (dayNumber) => {
+    try {
+      setIsGenerating(true);
+      const dayIndex = dayNumber - 1;
+      const dayTitle = getValues(`content.${dayIndex}.title`);
+
+      if (!dayTitle) {
+        setValue(`content.${dayIndex}.topics`, [
+          ...(content[dayIndex]?.topics || []),
+          "",
+        ]);
+        return;
+      }
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: `Generate a specific learning topic (max 5-7 words) related to: ${dayTitle}`,
+      });
+
+      const generatedTopic = response.text.trim();
+
+      setValue(`content.${dayIndex}.topics`, [
+        ...(content[dayIndex]?.topics || []),
+        generatedTopic,
+      ]);
+    } catch (error) {
+      console.error("Error generating topic:", error);
+      const dayIndex = dayNumber - 1;
+      setValue(`content.${dayIndex}.topics`, [
+        ...(content[dayIndex]?.topics || []),
+        "",
+      ]);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   return (
     <motion.div
       className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
@@ -25,19 +124,106 @@ const CourseContent = ({
         <h2 className="text-2xl font-semibold text-tealGreen">
           Course Content
         </h2>
-        <motion.button
-          type="button"
-          onClick={addDay}
-          className="flex items-center px-4 py-2 bg-tealGreen text-lightTeal rounded-lg hover:bg-tealGreen/90 transition-colors"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <FaPlus className="mr-1" />
-          Add Day
-        </motion.button>
+        <div className="flex gap-2">
+          <motion.button
+            type="button"
+            onClick={() => setShowAIPrompt(true)}
+            className="flex items-center px-4 py-2 bg-purple-500 text-lightTeal rounded-lg hover:bg-purple-600 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaMagic className="mr-1" />
+            AI Generate
+          </motion.button>
+          <motion.button
+            type="button"
+            onClick={addDay}
+            className="flex items-center px-4 py-2 bg-tealGreen text-lightTeal rounded-lg hover:bg-tealGreen/90 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaPlus className="mr-1" />
+            Add Day
+          </motion.button>
+        </div>
       </div>
 
-      {/* Day Navigation */}
+      {showAIPrompt && (
+        <motion.div
+          className="fixed inset-0 bg-teal-950 bg-opacity-50 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.div
+            className="bg-black p-6 rounded-lg shadow-xl max-w-md w-full"
+            initial={{ scale: 0.9, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+          >
+            <h3 className="text-xl font-semibold mb-4 text-tealGreen">
+              AI Course Generator For Instructor
+            </h3>
+            <p className="mb-2 text-gray-700">
+              Describe what you want to teach on Day {currentDay}:
+            </p>
+            <textarea
+              value={aiPrompt}
+              onChange={(e) => setAiPrompt(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-tealGreen focus:border-transparent transition-all"
+              placeholder="e.g. Introduction to React hooks including useState and useEffect"
+              rows={4}
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => {
+                  setShowAIPrompt(false);
+                  setAiPrompt("");
+                }}
+                className="px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                disabled={isGenerating}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={generateAIContent}
+                className="px-4 py-2 bg-tealGreen text-white rounded-lg hover:bg-tealGreen/90 transition-colors flex items-center"
+                disabled={isGenerating || !aiPrompt.trim()}
+              >
+                {isGenerating ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <FaMagic className="mr-1" />
+                    Generate
+                  </>
+                )}
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
       <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
         {days.map((day) => (
           <motion.button
@@ -57,7 +243,6 @@ const CourseContent = ({
         ))}
       </div>
 
-      {/* Day Content */}
       {days.map((day) => (
         <motion.div
           key={day.day}
@@ -65,19 +250,29 @@ const CourseContent = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          {/* Day Title */}
-          <div>
-            <label className="block text-sm font-medium text-tealGreen mb-1">
-              Day {day.day} Title*
-            </label>
-            <input
-              {...register(`content.${day.day - 1}.title`, { required: true })}
-              className="w-full px-4 py-3 border border-aquamarine/30 rounded-lg bg-lightTeal focus:ring-2 focus:ring-aquamarine focus:border-transparent transition-all"
-              placeholder="What's the focus of this day?"
-            />
+          <div className="flex items-start gap-2">
+            <div className="flex-1">
+              <label className="block text-sm font-medium text-tealGreen mb-1">
+                Day {day.day} Title*
+              </label>
+              <input
+                {...register(`content.${day.day - 1}.title`, {
+                  required: true,
+                })}
+                className="w-full px-4 py-3 border border-aquamarine/30 rounded-lg bg-lightTeal focus:ring-2 focus:ring-aquamarine focus:border-transparent transition-all"
+                placeholder="What's the focus of this day?"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowAIPrompt(true)}
+              className="mt-7 p-2 text-tealGreen hover:text-purple-500 transition-colors"
+              title="AI Generate"
+            >
+              <FaMagic />
+            </button>
           </div>
 
-          {/* Topics */}
           <div>
             <label className="block text-sm font-medium text-tealGreen mb-1">
               Topics*
@@ -113,14 +308,42 @@ const CourseContent = ({
                 className="mt-2 inline-flex items-center px-3 py-1 text-sm font-medium rounded-lg text-tealGreen hover:text-aquamarine transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                disabled={isGenerating}
               >
-                <FaPlus className="mr-1" />
-                Add Topic
+                {isGenerating ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-tealGreen"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <FaPlus className="mr-1" />
+                    Add Topic
+                  </>
+                )}
               </motion.button>
             </div>
           </div>
 
-          {/* Today Learned */}
           <div>
             <label className="block text-sm font-medium text-tealGreen mb-1">
               Today's Learning Summary
@@ -133,7 +356,6 @@ const CourseContent = ({
             />
           </div>
 
-          {/* Quiz Section */}
           <div className="pt-4">
             <div className="flex items-center mb-4">
               <input
