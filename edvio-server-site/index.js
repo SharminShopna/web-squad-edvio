@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
+const fetch = require("node-fetch");
 
 // app.use(cors());
 app.use(
@@ -113,7 +114,9 @@ async function run() {
     app.post("/addUser", async (req, res) => {
       try {
         const user = req.body;
-        const filter = {firebaseUid: user.firebaseUid || user.email || user.number};
+        const filter = {
+          firebaseUid: user.firebaseUid || user.email || user.number,
+        };
         const existingUser = await usersCollection.findOne(filter);
 
         if (existingUser) {
@@ -130,8 +133,8 @@ async function run() {
         res.status(500).send({
           message: "Internal server error",
           error: error.message,
-        });
-      }
+        });
+      }
     });
 
     // all users data ===========================
@@ -182,16 +185,21 @@ async function run() {
         });
       }
     });
-    
+
     app.post("/allCourses", async (req, res) => {
       try {
         const courseData = req.body;
 
         // Basic validation
-        if (!courseData.course_name || !courseData.instructor || !courseData.category) {
+        if (
+          !courseData.course_name ||
+          !courseData.instructor ||
+          !courseData.category
+        ) {
           return res.status(400).json({
             success: false,
-            message: "Missing required fields (course_name, instructor, or category)"
+            message:
+              "Missing required fields (course_name, instructor, or category)",
           });
         }
 
@@ -212,15 +220,15 @@ async function run() {
           message: "Course created successfully",
           data: {
             id: result.insertedId,
-            ...courseData
-          }
+            ...courseData,
+          },
         });
       } catch (error) {
         console.error("Error creating course:", error);
         res.status(500).json({
           success: false,
           message: "Failed to create course",
-          error: error.message
+          error: error.message,
         });
       }
     });
@@ -313,6 +321,36 @@ async function run() {
       } catch (error) {
         console.error("Error inserting review:", error);
         res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    //  AI Implementation
+
+    app.post("/api/generate-course-content", async (req, res) => {
+      try {
+        const response = await fetch(
+          "https://openrouter.ai/api/v1/chat/completions",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${"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"}`,
+              "Content-Type": "application/json",
+              "HTTP-Referer": "yourdomain.com",
+              "X-Title": "Course Creator App",
+            },
+            body: JSON.stringify(req.body),
+          }
+        );
+
+        const data = await response.json();
+
+        // Log the data received from the API for debugging
+        console.log("Response from OpenRouter AI:", data);
+
+        // Now send the data back to the frontend
+        res.json(data);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
       }
     });
   } finally {
