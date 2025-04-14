@@ -16,7 +16,7 @@ export default function HangingTime() {
       setShowPopup(false);
     }
   
-    const countdownDate = new Date("2025-04-29T23:59:59").getTime();
+    const countdownDate = new Date("2025-03-29T23:59:59").getTime();
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;

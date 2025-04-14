@@ -66,7 +66,7 @@ const AllCourses = () => {
   return (
 
     <>
-      <HangingTime/>
+      {/* <HangingTime/> */}
       <div className="container mx-auto p-4">
       
       <GreetingGenerator/>
