@@ -23,15 +23,16 @@ import { FiUsers } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
-
+   console.log(userData)
   // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
 
   const menus = {
     admin: [
-      { path: "/dashboard", icon: <IoHomeOutline />, label: "Dashboard Home" },
+      { path: "/dashboard/admin-home", icon: <IoHomeOutline />, label: "Dashboard Home" },
       {
         path: "#",
         icon: <GrAppsRounded />,
@@ -74,7 +75,7 @@ export default function DashBoardSideBar() {
         label: "My Profile",
       },
       {
-        path: "/dashboard/instructor/add-course",
+        path: "/dashboard/instructor-addCourse",
         icon: <IoAddCircle />,
         label: "Add Course",
       },
@@ -131,7 +132,7 @@ export default function DashBoardSideBar() {
           label: "Home" 
         },
         {
-          path: "/dashboard",
+          path: "/dashboard/user-home",
           icon: <IoHome />,
           label: "User Home",
         },
@@ -149,6 +150,11 @@ export default function DashBoardSideBar() {
           path: "/dashboard/browseCourse",
           icon: <IoBook />,
           label: "Browse Courses",
+        },
+        {
+          path: "/dashboard/aiChatbot",
+          icon: <HiOutlineChatBubbleLeftRight />,
+          label: "AI Chatbot",
         },
         {
           path: "/dashboard/feedback",

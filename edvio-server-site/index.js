@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 
+
 // app.use(cors());
 app.use(
   cors({
@@ -90,7 +91,6 @@ async function run() {
       const email = req.params.email;
       const result = await usersCollection.find({ email: email }).toArray();
       res.send(result);
-      console.log(result);
     });
     // GET route for fetching all reviews
     app.get("/allReviews", async (req, res) => {
@@ -113,9 +113,11 @@ async function run() {
     app.post("/addUser", async (req, res) => {
       try {
         const user = req.body;
-        const filter = {firebaseUid: user.firebaseUid || user.email || user.number};
+        const filter = {
+          firebaseUid: user.firebaseUid || user.email || user.number,
+        };
         const existingUser = await usersCollection.findOne(filter);
-    
+
         if (existingUser) {
           return res.status(409).send({
             message: "User already exists",
@@ -123,15 +125,14 @@ async function run() {
           });
         }
         const result = await usersCollection.insertOne(user);
-        console.log(result);
+
         res.status(201).send(result);
       } catch (error) {
-        console.error("Add user error:", error);
         res.status(500).send({
           message: "Internal server error",
           error: error.message,
-        });
-      }
+        });
+      }
     });
 
     // all users data ===========================
@@ -147,6 +148,17 @@ async function run() {
         });
       }
     });
+    app.patch("/updateRole", async (req, res) => {
+      const {id,role} = req.body; 
+      const filter = {_id : new ObjectId(id)};
+      const updateDoc = {
+        $set: {
+          role: role,
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    })
 
     // get one user base on email =============================
     app.get("/user/byEmail/:email", async (req, res) => {
@@ -179,6 +191,53 @@ async function run() {
         res.status(500).json({
           success: false,
           message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+    });
+
+    app.post("/allCourses", async (req, res) => {
+      try {
+        const courseData = req.body;
+
+        // Basic validation
+        if (
+          !courseData.course_name ||
+          !courseData.instructor ||
+          !courseData.category
+        ) {
+          return res.status(400).json({
+            success: false,
+            message:
+              "Missing required fields (course_name, instructor, or category)",
+          });
+        }
+
+        // Add timestamps
+        courseData.createdAt = new Date();
+        courseData.updatedAt = new Date();
+
+        // Set default values if not provided
+        courseData.Purchase_order = courseData.Purchase_order || "0";
+        courseData.isPremium = courseData.isPremium || false;
+        courseData.certification = courseData.certification || false;
+
+        // Insert into MongoDB
+        const result = await coursesCollection.insertOne(courseData);
+
+        res.status(201).json({
+          success: true,
+          message: "Course created successfully",
+          data: {
+            id: result.insertedId,
+            ...courseData,
+          },
+        });
+      } catch (error) {
+        console.error("Error creating course:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to create course",
+          error: error.message,
         });
       }
     });
@@ -271,6 +330,36 @@ async function run() {
       } catch (error) {
         console.error("Error inserting review:", error);
         res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    //  AI Implementation
+
+    app.post("/api/generate-course-content", async (req, res) => {
+      try {
+        const response = await fetch(
+          "https://openrouter.ai/api/v1/chat/completions",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${"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"}`,
+              "Content-Type": "application/json",
+              "HTTP-Referer": "yourdomain.com",
+              "X-Title": "Course Creator App",
+            },
+            body: JSON.stringify(req.body),
+          }
+        );
+
+        const data = await response.json();
+
+        // Log the data received from the API for debugging
+        console.log("Response from OpenRouter AI:", data);
+
+        // Now send the data back to the frontend
+        res.json(data);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
       }
     });
   } finally {

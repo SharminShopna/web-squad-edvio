@@ -13,6 +13,7 @@ import AdminProfile from "@/Components/Dashboard/AdminDashBoard/AdminProfile";
 import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/InstructorProfile";
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
+import InstructorAddCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorAddCourse";
 import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
@@ -21,6 +22,8 @@ import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting"
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
+import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
+import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
 
 export default function RouterProvider() {
   return (
@@ -41,25 +44,31 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="admin-home" element={<DashBoardHome />} />
-        <Route path="profile" element={<AdminProfile />} />
-        <Route path="edit-profile" element={<AdminProfileEdit />} />
-        <Route path="all-instructor" element={<AllInstructor />} />
+        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/Profile" element={<AdminProfile />} />
+        <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
+        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
+        <Route path="/dashboard/instructor-profile" element={<InstructorProfile />} />
+        <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
         <Route path="instructor-profile" element={<InstructorProfile />} />
-
+        <Route path="/dashboard/instructor/students" element={<AllStudents />} />
         {/* User Routes */}
-        <Route path="user-home" element={<UserHome />} />
-        <Route path="myCourse" element={<MyCourse />} />
-        <Route path="paymentHistory" element={<PaymentHistory />} />
-        <Route path="browseCourse" element={<BrowsCourse />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route path="settings" element={<AccountSetting />} />
+        <Route path="/dashboard/user-home" element={<UserHome />} />
+        <Route path="/dashboard/myCourse" element={<MyCourse />} />
+        <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
+        <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
+        <Route path="/dashboard/feedback" element={<Feedback />} />
+        <Route path="/dashboard/settings" element={<AccountSetting />} />
+        <Route path="/dashboard/chatBot" element={<AIChatBot />} />
+
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
+      {/* Shared Route */}
+      
     </Routes>
   );
 }
