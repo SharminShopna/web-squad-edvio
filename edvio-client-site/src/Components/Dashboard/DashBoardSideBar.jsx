@@ -152,7 +152,7 @@ export default function DashBoardSideBar() {
           label: "Browse Courses",
         },
         {
-          path: "/dashboard/aiChatbot",
+          path: "/dashboard/chatBot",
           icon: <HiOutlineChatBubbleLeftRight />,
           label: "AI Chatbot",
         },

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Outlet } from "react-router";
 import DashBoardSideBar from "@/Components/Dashboard/DashBoardSideBar";
 import TopNavBar from "@/Shared/TopNavBar";
-
 export default function DashBoard() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,8 +38,8 @@ export default function DashBoard() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto mb-10">
           <Outlet />
+  
         </div>
-
         {/* Background Overlay when Sidebar is Open on Mobile */}
         {isOpen && (
           <div
@@ -50,6 +49,7 @@ export default function DashBoard() {
         )}
         
       </div>
+      
     </div>
   );
 }

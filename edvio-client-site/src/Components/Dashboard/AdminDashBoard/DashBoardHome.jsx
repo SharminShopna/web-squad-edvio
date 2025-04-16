@@ -8,6 +8,7 @@ import { BarChartFees } from '../ShareComponent/BarChartFees';
 import InstructorListOne from '../ShareComponent/InstructorListOne';
 import StudentsListOne from '../ShareComponent/StudentsListOne';
 import {  AreaChartForShales } from '../ShareComponent/AreaChart';
+import DashboardFooter from '../ShareComponent/DashboardFooter';
 
 
 
@@ -61,8 +62,11 @@ export default function DashBoardHome() {
           </div>
         </div>
         {/* part - 3 */}
-        <div className='bg-neutral mb-5 rounded-lg'>
-          <AreaChartForShales></AreaChartForShales>
+      <div className='bg-neutral mb-5 rounded-lg'>
+            <AreaChartForShales></AreaChartForShales>
+        </div>
+          <div>
+          <DashboardFooter /> 
         </div>
       </div>
     </div>
