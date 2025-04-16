@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
-const fetch = require("node-fetch");
+
 
 // app.use(cors());
 app.use(
@@ -91,7 +91,6 @@ async function run() {
       const email = req.params.email;
       const result = await usersCollection.find({ email: email }).toArray();
       res.send(result);
-      console.log(result);
     });
     // GET route for fetching all reviews
     app.get("/allReviews", async (req, res) => {
@@ -126,10 +125,9 @@ async function run() {
           });
         }
         const result = await usersCollection.insertOne(user);
-        console.log(result);
+
         res.status(201).send(result);
       } catch (error) {
-        console.error("Add user error:", error);
         res.status(500).send({
           message: "Internal server error",
           error: error.message,
@@ -150,6 +148,17 @@ async function run() {
         });
       }
     });
+    app.patch("/updateRole", async (req, res) => {
+      const {id,role} = req.body; 
+      const filter = {_id : new ObjectId(id)};
+      const updateDoc = {
+        $set: {
+          role: role,
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    })
 
     // get one user base on email =============================
     app.get("/user/byEmail/:email", async (req, res) => {

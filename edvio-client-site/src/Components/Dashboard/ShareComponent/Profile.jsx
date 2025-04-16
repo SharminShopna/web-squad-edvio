@@ -23,7 +23,10 @@ export default function Profile({socialLink}) {
           <h3 className="text-lg font-medium">{userData?.name}</h3>
           <p className="text-gray-400">
             {
-              userData?.role === 'admin' && <span>Admin</span>
+              userData?.role === 'admin' && <span>Admin</span >
+            }
+            {
+            userData?.role === 'instructor' && <span>Instructor</span>
             }
           </p>
           </div>
