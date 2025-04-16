@@ -47,16 +47,16 @@ const handleRoleChange =(id, newRole)=>{
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-neutral divide-y divide-gray-200">
             {user?.map((item, index) => (
               <tr key={item._id}>
-                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                <td className="px-4 py-4 text-sm  whitespace-nowrap">
                   {index + 1}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                <td className="px-4 py-4 text-sm text-white whitespace-nowrap">
                   {item.name}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                <td className="px-4 py-4 text-sm text-white whitespace-nowrap">
                   {item.email}
                 </td>
                 <td

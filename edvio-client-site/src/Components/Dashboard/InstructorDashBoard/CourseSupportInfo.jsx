@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 const CourseSupportInfo = ({ register }) => {
   return (
     <motion.div
-      className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+      className="bg-neutral p-8 rounded-xl shadow-lg border border-aquamarine/20"
       whileHover={{ scale: 1.005 }}
       transition={{ delay: 0.5 }}
     >
-      <h2 className="text-2xl font-semibold mb-6 text-tealGreen border-b pb-2 border-aquamarine/30">
+      <h2 className="text-2xl font-bold mb-6 text-TealGreen border-b pb-2 border-aquamarine/30">
         Support Information
       </h2>
       <div>
