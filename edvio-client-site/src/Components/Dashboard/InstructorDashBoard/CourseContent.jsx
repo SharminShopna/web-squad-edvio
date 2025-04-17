@@ -116,12 +116,12 @@ const CourseContent = ({
 
   return (
     <motion.div
-      className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+      className="bg-neutral p-8 rounded-xl shadow-lg border border-aquamarine/20"
       whileHover={{ scale: 1.005 }}
       transition={{ delay: 0.4 }}
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-tealGreen">
+        <h2 className="text-2xl font-bold  text-TealGreen  pb-2">
           Course Content
         </h2>
         <div className="flex gap-2">

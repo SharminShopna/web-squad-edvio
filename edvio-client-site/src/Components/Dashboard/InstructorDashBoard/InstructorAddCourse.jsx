@@ -167,12 +167,12 @@ const InstructorAddCourse = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8"
+      className="container mx-auto  px-4  py-8"
     >
       <motion.div
         initial={{ y: -20 }}
         animate={{ y: 0 }}
-        className="text-center mb-10"
+        className="text-center  mb-10"
       >
         <h1 className="text-4xl font-bold text-tealGreen mb-2">
           Create Your Masterpiece Course
@@ -210,7 +210,7 @@ const InstructorAddCourse = () => {
         <CourseSupportInfo register={register} />
 
         <motion.div
-          className="flex justify-end gap-4"
+          className="flex justify-end  gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}

@@ -23,6 +23,7 @@ import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
 import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
+import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
 
 export default function RouterProvider() {
   return (
@@ -49,10 +50,9 @@ export default function RouterProvider() {
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
 
         {/* Instructor Routes */}
-        <Route path="/dashboard/instructor-profile" element={<InstructorProfile />} />
         <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
-        <Route path="instructor-profile" element={<InstructorProfile />} />
-
+        <Route path="/dashboard/instructor/students" element={<AllStudents />} />
+        <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />

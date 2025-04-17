@@ -13,13 +13,13 @@ const CourseBasicInfo = ({
     <>
       {/* Basic Course Information */}
       <motion.div
-        className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+        className=" p-8 rounded-xl bg-neutral shadow-lg border border-aquamarine/20"
         whileHover={{ scale: 1.005 }}
       >
-        <h2 className="text-2xl font-semibold mb-6 text-tealGreen border-b pb-2 border-aquamarine/30">
+        <h2 className="text-2xl font-bold mb-6 text-TealGreen border-b pb-2 border-aquamarine/30">
           Course Information
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
           {/* Course Name */}
           <div>
             <label className="block text-sm font-medium text-tealGreen mb-1">
@@ -145,11 +145,11 @@ const CourseBasicInfo = ({
 
       {/* Instructor Information */}
       <motion.div
-        className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+        className="bg-neutral p-8 rounded-xl shadow-lg border border-aquamarine/20"
         whileHover={{ scale: 1.005 }}
         transition={{ delay: 0.1 }}
       >
-        <h2 className="text-2xl font-semibold mb-6 text-tealGreen border-b pb-2 border-aquamarine/30">
+        <h2 className="text-2xl font-bold mb-6 text-TealGreen border-b pb-2 border-aquamarine/30">
           Instructor Information
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -234,11 +234,11 @@ const CourseBasicInfo = ({
 
       {/* Learning Outcomes */}
       <motion.div
-        className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+        className="bg-neutral p-8 rounded-xl shadow-lg border border-aquamarine/20"
         whileHover={{ scale: 1.005 }}
         transition={{ delay: 0.2 }}
       >
-        <h2 className="text-2xl font-semibold mb-6 text-tealGreen border-b pb-2 border-aquamarine/30">
+        <h2 className="text-2xl font-bold mb-6 text-TealGreen border-b pb-2 border-aquamarine/30">
           Learning Outcomes*
         </h2>
         <div className="space-y-4">
@@ -281,7 +281,7 @@ const CourseBasicInfo = ({
           <motion.button
             type="button"
             onClick={addLearningOutcome}
-            className="mt-4 inline-flex items-center px-4 py-2 border border-tealGreen text-sm font-medium rounded-lg text-tealGreen bg-aquamarine/10 hover:bg-aquamarine/20 transition-all"
+            className="mt-4 flex items-center px-4 py-2 bg-tealGreen text-lightTeal rounded-lg hover:bg-tealGreen/90 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -304,11 +304,11 @@ const CourseBasicInfo = ({
 
       {/* Career Benefits */}
       <motion.div
-        className="bg-lightTeal p-8 rounded-xl shadow-lg border border-aquamarine/20"
+        className="bg-neutral p-8 rounded-xl shadow-lg border border-aquamarine/20"
         whileHover={{ scale: 1.005 }}
         transition={{ delay: 0.3 }}
       >
-        <h2 className="text-2xl font-semibold mb-6 text-tealGreen border-b pb-2 border-aquamarine/30">
+        <h2 className="text-2xl font-bold mb-6 text-TealGreen border-b pb-2 border-aquamarine/30">
           Career Benefits*
         </h2>
         <div className="space-y-4">
@@ -351,7 +351,7 @@ const CourseBasicInfo = ({
           <motion.button
             type="button"
             onClick={addCareerBenefit}
-            className="mt-4 inline-flex items-center px-4 py-2 border border-tealGreen text-sm font-medium rounded-lg text-tealGreen bg-aquamarine/10 hover:bg-aquamarine/20 transition-all"
+            className="mt-4 inline-flex   items-center px-4 py-2 bg-tealGreen text-lightTeal rounded-lg hover:bg-tealGreen/90 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
