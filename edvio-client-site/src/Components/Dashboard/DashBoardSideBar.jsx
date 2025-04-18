@@ -66,6 +66,11 @@ export default function DashBoardSideBar() {
           { name: "About Course", path: "/dashboard/about-course" },
         ],
        },
+       {
+        path: "/dashboard/chatbot",
+        icon: <HiOutlineChatBubbleLeftRight />,
+        label: "AI Chatbot",
+      },
     ],
     instructor: [
       { path: "/", icon: <IoHome />, label: "Home" },
@@ -103,6 +108,11 @@ export default function DashBoardSideBar() {
         path: "/dashboard/instructor/analytics",
         icon: <IoStatsChart />,
         label: "Course Analytics",
+      },
+      {
+        path: "/dashboard/instructor/chatbot",
+        icon: <HiOutlineChatBubbleLeftRight />,
+        label: "AI Chatbot",
       },
       {
         path: "/dashboard/instructor/reviews",
