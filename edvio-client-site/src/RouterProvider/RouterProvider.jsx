@@ -24,7 +24,7 @@ import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory"
 import Error from "@/Components/Error/Error";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
-import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
+import AiChatBot from "@/Components/Dashboard/UnResChatBot/AIChatBot";
 
 export default function RouterProvider() {
   return (
