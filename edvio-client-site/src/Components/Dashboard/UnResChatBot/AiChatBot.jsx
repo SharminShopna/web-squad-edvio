@@ -14,22 +14,32 @@ const AIChatBot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    
+    const userMessage = { from: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setLoading(true);
 
-  const formatResponse = (text) => {
-    if (!text) return text;
-    return text.split('\n').map((paragraph, i) => (
-      <motion.p 
-        key={i} 
-        className="mb-3 last:mb-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: i * 0.1 }}
-      >
-        {paragraph.trim() || <br />}
-      </motion.p>
-    ));
+    try {
+      const aiResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: `You are a helpful AI assistant who will either be talking with an instructor or the admin of the website u are embedded in. Provide a friendly and informative answer to: ${input}`
+      });
+
+      const botReply = { from: "bot", text: aiResponse.text };
+      setMessages((prev) => [...prev, botReply]);
+      
+    } catch (err) {
+      console.error("API Error:", err);
+      setMessages(prev => [...prev, { from: "bot", text: "Oops! Something went wrong. Please try again." }]);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  
 
   return (
     <motion.div 
