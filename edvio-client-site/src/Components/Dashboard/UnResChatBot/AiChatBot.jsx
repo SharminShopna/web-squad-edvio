@@ -39,7 +39,20 @@ const AIChatBot = () => {
     }
   };
 
-  
+  const formatResponse = (text) => {
+    if (!text) return text;
+    return text.split('\n').map((paragraph, i) => (
+      <motion.p 
+        key={i} 
+        className="mb-3 last:mb-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: i * 0.1 }}
+      >
+        {paragraph.trim() || <br />}
+      </motion.p>
+    ));
+  };
 
   return (
     <motion.div 
