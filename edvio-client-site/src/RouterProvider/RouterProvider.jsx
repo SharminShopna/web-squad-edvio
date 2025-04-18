@@ -22,7 +22,7 @@ import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting"
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
-import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
+import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
 
 export default function RouterProvider() {
