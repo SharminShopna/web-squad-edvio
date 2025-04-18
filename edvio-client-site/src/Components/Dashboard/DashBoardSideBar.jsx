@@ -24,6 +24,8 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+import { TbUsersGroup } from "react-icons/tb";
+
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
    console.log(userData)
@@ -56,6 +58,14 @@ export default function DashBoardSideBar() {
           { name: "Add Student", path: "/dashboard/add-student" },
           { name: "Edit Student", path: "/dashboard/edit-student" },
           { name: "About Student", path: "/dashboard/about-student" },
+        ],
+       },
+      { path: "#", icon: <TbUsersGroup />, label: "Users",
+        subMenu: [
+          { name: "All User", path: "/dashboard/all-user" },
+          { name: "Add User", path: "/dashboard/add-user" },
+          { name: "Edit User", path: "/dashboard/edit-user" },
+          { name: "About User", path: "/dashboard/about-user" },
         ],
        },
       { path: "#", icon: <LuBookPlus />, label: "Course",

@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Link } from "react-router-dom"
 export const columns = [
   {
     id: "select",
@@ -43,6 +44,14 @@ export const columns = [
     return <img src={imageUrl} alt="Preview" className="w-10 h-10 rounded-full object-cover mx-auto" />;
   },
 },
+{
+  accessorKey: "name",
+  header: "Name",
+  cell: ({ getValue }) => {
+    const instructor_name = getValue();
+    return <p>{instructor_name}</p>;
+  },
+},
 
   {
     accessorKey: "email",
@@ -58,21 +67,49 @@ export const columns = [
       )
     },
   },
-  {
-    accessorKey: "amount",
-    header: () => <div className="text-center">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
-
-      return <div className=" font-medium opacity-[0.8]">{formatted}</div>
-    },
+{
+  accessorKey: "number",
+  header: "Phone Number",
+  cell: ({ getValue }) => {
+    const number = getValue();
+    return <p>{number ? number : "N/A"}</p>; 
   },
+}
+,
+  {
+  accessorKey: "date",
+  header: "Date",
+  cell: ({ getValue }) => {
+    const rawDate = getValue();
+    const formattedDate = new Date(rawDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    return <p>{formattedDate}</p>;
+  },
+},
+  {
+  accessorKey: "amount",
+  header: () => <div className="text-center">Amount</div>,
+  cell: ({ row }) => {
+    const rawAmount = row.getValue("amount");
+    const amount = parseFloat(rawAmount);
+    if (isNaN(amount)) {
+      return <div className="font-medium opacity-[0.8]">N/A</div>;
+    }
+    const formatted = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount);
+
+    return <div className="font-medium opacity-[0.8]">{formatted}</div>;
+  },
+},
   {
     id: "actions",
+  accessorKey: "action",
+  header: "Action",
     cell: ({ row }) => {
       const payment = row.original
 
@@ -84,15 +121,12 @@ export const columns = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
+          <DropdownMenuContent align="end" className={'bg-white/30 p-3 rounded-lg shadow-lg border border-white/20 backdrop-blur-lg text-sm'}>
+            <DropdownMenuItem>
+             <Link to={''}> View Details</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>Delete</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
