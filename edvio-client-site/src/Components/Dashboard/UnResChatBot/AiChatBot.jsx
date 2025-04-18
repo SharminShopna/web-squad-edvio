@@ -61,7 +61,29 @@ const AIChatBot = () => {
       className="flex flex-col h-full bg-lightTeal"
     >
       {/* Header */}
-      
+      <motion.div 
+        className="p-6 border-b"
+        style={{ background: "var(--tealGreen)" }}
+        initial={{ y: -20 }}
+        animate={{ y: 0 }}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4 mt-10">
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-12 h-12 rounded-full flex items-center justify-center"
+              style={{ background: "var(--aquamarine)" }}
+            >
+              🎓
+            </motion.div>
+            <div>
+              <h1 className="text-2xl font-bold">AI Companion</h1>
+              <p>Your helpful AI assistant</p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-6 space-y-6">
