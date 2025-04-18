@@ -21,7 +21,7 @@ import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting"
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
-import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
+import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
 import AllInstructor from "@/Components/Dashboard/AdminDashBoard/Instructor/AllInstructor";
 import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent";
@@ -57,6 +57,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
         <Route path="/dashboard/instructor/students" element={<AllStudents />} />
         <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
+        <Route path="/dashboard/instructor/chatbot" element={<AiChatBot></AiChatBot>} />
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />

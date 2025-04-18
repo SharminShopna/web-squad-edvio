@@ -9,7 +9,7 @@ import FreeCourses from "../Components/FreeCourses/FreeCourses";
 import WhyUs from "../Components/WhyUs/WhyUs";
 import PopularCourse from "../Components/MostPopular/PopularCourse";
 import Pro from "../Components/PremiumCourse/Pro";
-import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
+import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 
 export default function HomePage() {
   return (
