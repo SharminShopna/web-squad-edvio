@@ -1,0 +1,29 @@
+@keyframes borderAnimation {
+  0% {
+    border-color: orange;
+  }
+  50% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+.price-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #1e293b, #0f766e);
+  border: 4px solid rgb(54, 143, 139);
+  border-radius: 50%;
+  animation: borderAnimation 2s infinite alternate;
+}

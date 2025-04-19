@@ -1,0 +1,414 @@
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const port = process.env.PORT || 4000;
+
+
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+      "https://jade-horse-d72d87.netlify.app",
+    ],
+    credentials: true,
+  })
+);
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Edvio server is running");
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on PORT : ${port}`);
+});
+
+// DB_USER : edVio
+// DB_PASSWORD : ZjjcxkvD0uusSqsL
+
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const uri =
+  "mongodb+srv://edVio:ZjjcxkvD0uusSqsL@cluster0.3oeok.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    // await client.connect();
+    const database = client.db("Edvio");
+    const usersCollection = database.collection("users");
+    const coursesCollection = database.collection("allCourses");
+    const reviewsCollection = database.collection("reviews");
+    const courseReviewCollection = database.collection("courseReview");
+    const addToCart = database.collection("addToCart");
+    const buyCourse = database.collection("buyCourse");
+
+    // POST route for adding a review
+    app.post("/addReview", async (req, res) => {
+      const { name, location, rating, review, photoURL } = req.body;
+
+      try {
+        const newReview = {
+          name,
+          location,
+          rating,
+          review,
+          photoURL,
+          createdAt: new Date(),
+        };
+
+        // Insert review into the reviews collection
+        const result = await reviewsCollection.insertOne(newReview);
+
+        res.status(201).json({
+          success: true,
+          message: "Review added successfully",
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error adding review:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to add review. Please try again later.",
+        });
+      }
+    });
+
+    // Role
+    app.get("/getRole/:email", async (req, res) => {
+      const email = req.params.email;
+      const result = await usersCollection.find({ email: email }).toArray();
+      res.send(result);
+    });
+    // GET route for fetching all reviews
+    app.get("/allReviews", async (req, res) => {
+      try {
+        const result = await reviewsCollection.find().toArray();
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch reviews. Please try again later.",
+        });
+      }
+    });
+
+    //   Users data Post===========================
+    app.post("/addUser", async (req, res) => {
+      try {
+        const user = req.body;
+        const filter = {
+          firebaseUid: user.firebaseUid || user.email || user.number,
+        };
+        const existingUser = await usersCollection.findOne(filter);
+
+        if (existingUser) {
+          return res.status(409).send({
+            message: "User already exists",
+            user: existingUser,
+          });
+        }
+        const result = await usersCollection.insertOne(user);
+
+        res.status(201).send(result);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal server error",
+          error: error.message,
+        });
+      }
+    });
+
+    // all users data ===========================
+    app.get("/allUser", async (req, res) => {
+      try {
+        const result = await usersCollection.find().toArray();
+        res.send(result);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch users. Please try again later.",
+        });
+      }
+    });
+    app.patch("/updateRole", async (req, res) => {
+      const {id,role} = req.body; 
+      const filter = {_id : new ObjectId(id)};
+      const updateDoc = {
+        $set: {
+          role: role,
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    })
+
+    // get one user base on email =============================
+    app.get("/user/byEmail/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      try {
+        const result = await usersCollection.findOne(query);
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+    });
+    //  all courses data ===========================
+    app.get("/allCourses", async (req, res) => {
+      try {
+        const result = await coursesCollection.find().toArray();
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+    });
+
+    app.post("/allCourses", async (req, res) => {
+      try {
+        const courseData = req.body;
+
+        // Basic validation
+        if (
+          !courseData.course_name ||
+          !courseData.instructor ||
+          !courseData.category
+        ) {
+          return res.status(400).json({
+            success: false,
+            message:
+              "Missing required fields (course_name, instructor, or category)",
+          });
+        }
+
+        // Add timestamps
+        courseData.createdAt = new Date();
+        courseData.updatedAt = new Date();
+
+        // Set default values if not provided
+        courseData.Purchase_order = courseData.Purchase_order || "0";
+        courseData.isPremium = courseData.isPremium || false;
+        courseData.certification = courseData.certification || false;
+
+        // Insert into MongoDB
+        const result = await coursesCollection.insertOne(courseData);
+
+        res.status(201).json({
+          success: true,
+          message: "Course created successfully",
+          data: {
+            id: result.insertedId,
+            ...courseData,
+          },
+        });
+      } catch (error) {
+        console.error("Error creating course:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to create course",
+          error: error.message,
+        });
+      }
+    });
+
+    // id wise course details
+    app.get("/courseDetails/:id", async (req, res) => {
+      const id = req.params.id;
+      const courseId = { _id: new ObjectId(id) };
+      try {
+        const result = await coursesCollection.findOne(courseId);
+        res.send(result);
+      } catch (e) {
+        console.log(e.message);
+      }
+    });
+    // get course review base on course id =========================
+    app.get("/course_review/:id", async (req, res) => {
+      const course_id = req.params.id;
+      const query = { course_id: course_id };
+      try {
+        const result = await courseReviewCollection
+          .find(query)
+          .sort({ _id: -1 })
+          .toArray();
+        res.status(200).json({
+          success: true,
+          data: result,
+        });
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch courses. Please try again later.",
+        });
+      }
+    });
+
+    // ADD TO CART
+    app.post("/add-cart", async (req, res) => {
+      const body = req.body;
+      const response = await addToCart.insertOne(body);
+      res.send(response);
+    });
+    app.get("/cart-item/:email", async (req, res) => {
+      const email = req.params.email;
+      const response = await addToCart.find({ student_email: email }).toArray();
+      res.send(response);
+    });
+
+    app.post("/buy-course", async (req, res) => {
+      const body = req.body;
+      const courseDetails = await buyCourse.insertOne(body);
+      res.send(courseDetails);
+    });
+
+    app.get("/bougth-courses/:email", async (req, res) => {
+      const email = req.params.email;
+      const bougthCourse = await buyCourse
+        .find({ studentEmail: email })
+        .toArray();
+      const courseIds = bougthCourse.map(
+        (course) => new ObjectId(course.courseId)
+      );
+      const myCourses = await coursesCollection
+        .find({
+          _id: { $in: courseIds },
+        })
+        .toArray();
+      res.send(myCourses);
+    });
+    // course review post base on id ============================
+    app.post("/course_review", async (req, res) => {
+      try {
+        const new_course_review = req.body;
+        if (!new_course_review.rating) {
+          return res.status(400).json({ error: "Give Your Ration" });
+        }
+        if (!new_course_review || !new_course_review.opinion) {
+          return res.status(400).json({ error: "Give Your Review" });
+        }
+        const result = await courseReviewCollection.insertOne(
+          new_course_review
+        );
+        res.status(201).json({
+          success: true,
+          message: "Review added successfully",
+          data: result,
+        });
+      } catch (error) {
+        console.error("Error inserting review:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
+    // Delete functionality for cart item
+    app.delete("/cart-item/:email/:courseId", async (req, res) => {
+      const { email, courseId } = req.params;
+    
+      try {
+        const result = await addToCart.deleteOne({
+          student_email: email,
+          courseId: courseId,
+        });
+    
+        if (result.deletedCount === 1) {
+          res.status(200).json({ success: true, message: "Item removed from cart" });
+        } else {
+          res.status(404).json({ success: false, message: "Item not found" });
+        }
+      } catch (err) {
+        console.error("Error deleting cart item:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to remove item from cart",
+        });
+      }
+    });
+
+
+    // stripe payment
+    app.post('/create-payment-intent', async(req, res) =>{
+      const { price } = req.body;
+      const amount = parseInt(price * 100);
+
+      // step 2 
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount : amount,
+        currency : 'usd',
+        payment_method_types : ['card']
+      });
+
+      // step 3
+      res.send({
+        clientSecret : paymentIntent.client_secret
+      })
+    })
+    
+
+    //  AI Implementation
+
+    app.post("/api/generate-course-content", async (req, res) => {
+      try {
+        const response = await fetch(
+          "https://openrouter.ai/api/v1/chat/completions",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${"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"}`,
+              "Content-Type": "application/json",
+              "HTTP-Referer": "yourdomain.com",
+              "X-Title": "Course Creator App",
+            },
+            body: JSON.stringify(req.body),
+          }
+        );
+
+        const data = await response.json();
+
+        // Log the data received from the API for debugging
+        console.log("Response from OpenRouter AI:", data);
+
+        // Now send the data back to the frontend
+        res.json(data);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    });
+  } finally {
+    // Ensures that the client will close when you finish/error
+    // await client.close();
+  }
+}
+run().catch(console.dir);

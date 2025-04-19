@@ -1,0 +1,68 @@
+[
+  {
+    "title": "AI-Powered Personalized Learning Paths",
+    "description": "AI tracks students' progress and adapts the learning path based on their strengths, weaknesses, and performance.",
+    "benefits": [
+      "Custom learning experience",
+      "Auto-adjusts difficulty level",
+      "Recommends extra lessons"
+    ],
+    "img": "https://img.freepik.com/free-vector/way-concept-illustration_114360-4482.jpg?t=st=1741987444~exp=1741991044~hmac=74cc78f07f9a9cfe387d0d72f48cfe1d2fc7874c1cdd432371ec80450f6865de&w=826",
+    "color": "#FF6B6B"
+  },
+  {
+    "title": "Real-Time AI Tutor",
+    "description": "An AI-powered chatbot provides instant answers to student queries, explains concepts, and offers study tips.",
+    "benefits": [
+      "24/7 AI-powered assistance",
+      "Instant doubt resolution",
+      "Step-by-step explanations"
+    ],
+    "img": "https://img.freepik.com/free-vector/chatbot-self-learning-abstract-concept_335657-4455.jpg?t=st=1741987525~exp=1741991125~hmac=f78c86640737ab96dca400eb79b912683128c5ac6ad676d20bd52be6f54ed777&w=826",
+    "color": "#4ECDC4"
+  },
+  {
+    "title": "Performance-Based Adaptive Testing",
+    "description": "Quizzes dynamically adjust their difficulty based on student responses, offering personalized assessments.",
+    "benefits": [
+      "AI-generated quizzes",
+      "Instant feedback with explanations",
+      "Focus on weak areas"
+    ],
+    "img": "https://img.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg?t=st=1741987624~exp=1741991224~hmac=c0427f6e2e0b7b27d4f283acd3db08693e92f7b964c0ec86a6574955b38947be&w=826",
+    "color": "#556270"
+  },
+  {
+    "title": "Offline Learning with Auto-Sync",
+    "description": "Students can download lessons for offline access, and AI syncs progress when they go online.",
+    "benefits": [
+      "Accessible in low-internet areas",
+      "Tracks offline learning",
+      "Seamless sync with progress tracking"
+    ],
+    "img": "https://img.freepik.com/free-vector/going-offline-concept-illustration_114360-4916.jpg?t=st=1741987747~exp=1741991347~hmac=bb68c28ec2417a5531a90b99d5025097045c04c2cf9d5fd190e72cff3ac8b001&w=826",
+    "color": "#FFD166"
+  },
+  {
+    "title": "AI-Powered Study Planner",
+    "description": "AI generates personalized study schedules based on students' goals, progress, and upcoming deadlines.",
+    "benefits": [
+      "Custom study plans",
+      "Tracks deadlines and goals",
+      "Adapts to student progress"
+    ],
+    "img": "https://img.freepik.com/free-vector/bullet-journal-concept-illustration_114360-6736.jpg?t=st=1741987829~exp=1741991429~hmac=5fa99c57df5a4f0dea0656422c6b024b558266b28a8b82550581643d27fd8b12&w=826",
+    "color": "#6A0572"
+  },
+  {
+    "title": "AI-Powered Career Recommendations",
+    "description": "AI analyzes student progress and suggests career paths, job-ready certifications, and resume enhancements.",
+    "benefits": [
+      "Personalized career guidance",
+      "AI-powered job recommendations",
+      "Auto-generated project-based resumes"
+    ],
+    "img": "https://img.freepik.com/free-vector/goal-achievement-teamwork-business-concept-career-growth-cooperation-development-project_107791-29.jpg?t=st=1741987890~exp=1741991490~hmac=f6a809f1e7c9362bfb64691f52f3d834f9e4a14d522bf52defe4589a6a85566e&w=900",
+    "color": "#2E86AB"
+  }
+]
