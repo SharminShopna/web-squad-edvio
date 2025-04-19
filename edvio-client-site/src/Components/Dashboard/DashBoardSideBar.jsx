@@ -77,7 +77,7 @@ export default function DashBoardSideBar() {
         ],
        },
        {
-        path: "/dashboard/chatbot",
+        path: "/dashboard/adminChatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },
@@ -120,7 +120,7 @@ export default function DashBoardSideBar() {
         label: "Course Analytics",
       },
       {
-        path: "/dashboard/instructor/chatbot",
+        path: "/dashboard/instructor/instructorChatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },

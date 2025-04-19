@@ -26,6 +26,7 @@ import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents"
 import AllInstructor from "@/Components/Dashboard/AdminDashBoard/Instructor/AllInstructor";
 import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent";
 import AllUser from "@/Components/Dashboard/AdminDashBoard/User/AllUser";
+import UnResAIChatBot from "@/Components/Dashboard/UnResChatBot/UnResAIChatBot";
 
 export default function RouterProvider() {
   return (
@@ -52,12 +53,13 @@ export default function RouterProvider() {
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
         <Route path="/dashboard/all-student" element={<AllStudent />}></Route>
         <Route path="/dashboard/all-user" element={<AllUser />}></Route>
+        <Route path="/dashboard/adminChatbot" element={<UnResAIChatBot></UnResAIChatBot>}></Route>
 
         {/* Instructor Routes */}
         <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
         <Route path="/dashboard/instructor/students" element={<AllStudents />} />
         <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
-        <Route path="/dashboard/instructor/chatbot" element={<AiChatBot></AiChatBot>} />
+        <Route path="/dashboard/instructor/instructorChatbot" element={<UnResAIChatBot></UnResAIChatBot>} />
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
