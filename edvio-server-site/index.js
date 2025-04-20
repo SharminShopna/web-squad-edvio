@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 
-
 // app.use(cors());
 app.use(
   cors({
@@ -54,6 +53,7 @@ async function run() {
     const courseReviewCollection = database.collection("courseReview");
     const addToCart = database.collection("addToCart");
     const buyCourse = database.collection("buyCourse");
+    const schedule = database.collection("schedule");
 
     // POST route for adding a review
     app.post("/addReview", async (req, res) => {
@@ -149,8 +149,8 @@ async function run() {
       }
     });
     app.patch("/updateRole", async (req, res) => {
-      const {id,role} = req.body; 
-      const filter = {_id : new ObjectId(id)};
+      const { id, role } = req.body;
+      const filter = { _id: new ObjectId(id) };
       const updateDoc = {
         $set: {
           role: role,
@@ -158,7 +158,7 @@ async function run() {
       };
       const result = await usersCollection.updateOne(filter, updateDoc);
       res.send(result);
-    })
+    });
 
     // get one user base on email =============================
     app.get("/user/byEmail/:email", async (req, res) => {
@@ -198,6 +198,7 @@ async function run() {
     app.post("/allCourses", async (req, res) => {
       try {
         const courseData = req.body;
+        console.log(courseData);
 
         // Basic validation
         if (
@@ -240,6 +241,13 @@ async function run() {
           error: error.message,
         });
       }
+    });
+    app.get("/instructorCourse/:email", async (req, res) => {
+      const email = req.params.email;
+      const instructorCourses = await coursesCollection
+        .find({ "instructor.email": email })
+        .toArray();
+      res.send(instructorCourses);
     });
 
     // id wise course details
@@ -361,6 +369,39 @@ async function run() {
       } catch (error) {
         res.status(500).json({ error: error.message });
       }
+      // Get all schedules for a user
+      app.get("/my-schedule/:email", async (req, res) => {
+        const email = req.params.email;
+        const result = await schedule.find({ email: email }).toArray();
+        res.send(result);
+      });
+
+      // Create new schedule
+      app.post("/instructor-schedule", async (req, res) => {
+        const body = req.body;
+        const result = await schedule.insertOne(body);
+        res.send(result);
+      });
+
+      // Update schedule
+      app.put("/instructor-schedule/:id", async (req, res) => {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const options = { upsert: true };
+        const updatedDoc = {
+          $set: req.body,
+        };
+        const result = await schedule.updateOne(filter, updatedDoc, options);
+        res.send(result);
+      });
+
+      // Delete schedule
+      app.delete("/instructor-schedule/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await schedule.deleteOne(query);
+        res.send(result);
+      });
     });
   } finally {
     // Ensures that the client will close when you finish/error
