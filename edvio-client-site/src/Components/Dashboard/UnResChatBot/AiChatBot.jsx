@@ -58,7 +58,7 @@ const AiChatBot = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-full bg-lightTeal"
+      className="flex flex-col min-h-11/12 bg-lightTeal"
     >
       {/* Header */}
       <motion.div 
