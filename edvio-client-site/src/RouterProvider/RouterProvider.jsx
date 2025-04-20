@@ -27,11 +27,13 @@ import AllInstructor from "@/Components/Dashboard/AdminDashBoard/Instructor/AllI
 import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent";
 import AllUser from "@/Components/Dashboard/AdminDashBoard/User/AllUser";
 import UnResAIChatBot from "@/Components/Dashboard/UnResChatBot/UnResAIChatBot";
+import AiChatBot from "@/Components/Dashboard/UnResChatBot/AIChatBot";
+import InstructorCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorCourse";
+import TeachingSchedule from "@/Components/Dashboard/InstructorDashBoard/TeachingSchedule";
 
 export default function RouterProvider() {
   return (
     <Routes>
-
       {/* Main Layout Routes */}
       <Route path="/" element={<MainLayOut />}>
         <Route index element={<HomePage />} />
@@ -47,19 +49,43 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/admin-home" element={<DashBoardHome />}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
-        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
-        <Route path="/dashboard/all-student" element={<AllStudent />}></Route>
-        <Route path="/dashboard/all-user" element={<AllUser />}></Route>
-        <Route path="/dashboard/adminChatbot" element={<UnResAIChatBot></UnResAIChatBot>}></Route>
+        <Route
+          path="/dashboard/all-instructor"
+          element={<AllInstructor />}
+        ></Route>
+        <Route
+          path="/dashboard/chatbot"
+          element={<AiChatBot></AiChatBot>}
+        ></Route>
 
         {/* Instructor Routes */}
-        <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
-        <Route path="/dashboard/instructor/students" element={<AllStudents />} />
-        <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
-        <Route path="/dashboard/instructor/instructorChatbot" element={<UnResAIChatBot></UnResAIChatBot>} />
+        <Route
+          path="/dashboard/instructor-addCourse"
+          element={<InstructorAddCourse />}
+        />
+        <Route
+          path="/dashboard/instructor/students"
+          element={<AllStudents />}
+        />
+        <Route
+          path="/dashboard/instructor/Profile"
+          element={<InstructorProfile />}
+        />
+        <Route
+          path="/dashboard/instructor/schedule"
+          element={<TeachingSchedule />}
+        />
+        <Route
+          path="/dashboard/instructor/chatbot"
+          element={<AiChatBot></AiChatBot>}
+        />
+        <Route
+          path="/dashboard/instructor/my-courses"
+          element={<InstructorCourse />}
+        />
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
@@ -68,13 +94,11 @@ export default function RouterProvider() {
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
         <Route path="/dashboard/chatBot" element={<AIChatBot />} />
-
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
       {/* Shared Route */}
-      
     </Routes>
   );
 }
