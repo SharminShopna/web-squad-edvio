@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const ai = new GoogleGenAI({ apiKey: "AIzaSyA1_zugYY85uJaRZa14wMLnxBVwict_A5I" });
 
-const AIChatBot = () => {
+const AiChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -271,4 +271,4 @@ const AIChatBot = () => {
   );
 };
 
-export default AIChatBot;
+export default AiChatBot;

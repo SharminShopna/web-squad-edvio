@@ -77,7 +77,7 @@ export default function DashBoardSideBar() {
         ],
        },
        {
-        path: "/dashboard/chatbot",
+        path: "/dashboard/admin/chatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },
