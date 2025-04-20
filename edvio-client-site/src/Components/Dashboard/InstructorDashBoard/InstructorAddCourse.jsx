@@ -7,10 +7,12 @@ import { motion } from "framer-motion";
 import CourseBasicInfo from "./CourseBasicInfo";
 import CourseContent from "./CourseContent";
 import CourseSupportInfo from "./CourseSupportInfo";
+import UseAuth from "@/Hook/UseAuth";
 
 const InstructorAddCourse = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const { user } = UseAuth();
   const { register, handleSubmit, control, setValue, getValues, watch } =
     useForm({
       defaultValues: {

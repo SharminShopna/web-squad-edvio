@@ -32,7 +32,6 @@ import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
 export default function RouterProvider() {
   return (
     <Routes>
-
       {/* Main Layout Routes */}
       <Route path="/" element={<MainLayOut />}>
         <Route index element={<HomePage />} />
@@ -48,7 +47,7 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/admin-home" element={<DashBoardHome />}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
@@ -69,13 +68,11 @@ export default function RouterProvider() {
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
         <Route path="/dashboard/chatBot" element={<AIChatBot />} />
-
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
       {/* Shared Route */}
-      
     </Routes>
   );
 }
