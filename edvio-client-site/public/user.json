@@ -1,0 +1,850 @@
+[
+    {
+        "email": "abigail.harris@example.com",
+        "name": "Abigail Harris",
+        "firebaseUid": "uid_205",
+        "mobile": "+16175550102",
+        "additional": {
+          "gender": "Female",
+          "age": 32,
+          "primaryDeviceType": "MacBook Pro",
+          "internetType": "Fiber Optic",
+          "yearsOfExperience": 8,
+          "employmentRole": "Senior UX Designer"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "CA",
+            "streetAddress": "1234 Design Street",
+            "postalCode": "94105",
+            "city": "San Francisco"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "NY",
+            "streetAddress": "567 Creative Lane",
+            "postalCode": "10001",
+            "city": "New York"
+          }
+        },
+        "education": {
+          "educationLevel": "Master's",
+          "institutionName": "California College of the Arts",
+          "degreeTitle": "MFA in Design",
+          "graduationYear": 2016,
+          "currentYear": null,
+          "cgpa": 3.9
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/abigail-harris-cv",
+          "githubProfile": "https://github.com/abigailharris",
+          "portfolioLink": "https://abigailharris.design",
+          "linkedinProfile": "https://linkedin.com/in/abigailharris"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/B6FjBFc/user5.webp",
+        "date": "2025-03-15T16:00:00.000Z"
+      },
+      {
+        "email": "mason.clark@example.com",
+        "name": "Mason Clark",
+        "firebaseUid": "uid_206",
+        "mobile": "+447700123456",
+        "additional": {
+          "gender": "Male",
+          "age": 35,
+          "primaryDeviceType": "Dell XPS",
+          "internetType": "Broadband",
+          "yearsOfExperience": 12,
+          "employmentRole": "Lead Software Engineer"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Greater London",
+            "streetAddress": "89 Tech Square",
+            "postalCode": "EC2A 4NE",
+            "city": "London"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "Surrey",
+            "streetAddress": "23 Developer Road",
+            "postalCode": "GU2 7YT",
+            "city": "Guildford"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Cambridge",
+          "degreeTitle": "BSc Computer Science",
+          "graduationYear": 2011,
+          "currentYear": null,
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/mason-clark-cv",
+          "githubProfile": "https://github.com/masonclark",
+          "portfolioLink": "https://masonclark.dev",
+          "linkedinProfile": "https://linkedin.com/in/masonclark"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/MRGXmFc/user6.webp",
+        "date": "2025-03-16T08:30:00.000Z"
+      },
+      {
+        "email": "ella.robinson@example.com",
+        "name": "Ella Robinson",
+        "firebaseUid": "uid_207",
+        "mobile": "+61400123456",
+        "additional": {
+          "gender": "Female",
+          "age": 29,
+          "primaryDeviceType": "iPad Pro",
+          "internetType": "5G",
+          "yearsOfExperience": 6,
+          "employmentRole": "Digital Product Manager"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "Australia",
+            "district": "NSW",
+            "streetAddress": "456 Innovation Avenue",
+            "postalCode": "2000",
+            "city": "Sydney"
+          },
+          "permanentAddress": {
+            "country": "Australia",
+            "district": "QLD",
+            "streetAddress": "78 Startup Street",
+            "postalCode": "4000",
+            "city": "Brisbane"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Melbourne",
+          "degreeTitle": "BS in Business Technology",
+          "graduationYear": 2017,
+          "currentYear": null,
+          "cgpa": 3.7
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/ella-robinson-cv",
+          "githubProfile": "https://github.com/ellarobinson",
+          "portfolioLink": "https://ellarobinson.tech",
+          "linkedinProfile": "https://linkedin.com/in/ellarobinson"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/vQ5m6JG/user7.webp",
+        "date": "2025-03-17T12:10:00.000Z"
+      },
+      {
+        "email": "logan.walker@example.com",
+        "name": "Logan Walker",
+        "firebaseUid": "uid_208",
+        "mobile": "+13105550123",
+        "additional": {
+          "gender": "Male",
+          "age": 30,
+          "primaryDeviceType": "Windows Desktop",
+          "internetType": "Fiber",
+          "yearsOfExperience": 7,
+          "employmentRole": "Cybersecurity Specialist"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "TX",
+            "streetAddress": "123 Security Lane",
+            "postalCode": "75001",
+            "city": "Dallas"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "CO",
+            "streetAddress": "456 Mountain View",
+            "postalCode": "80014",
+            "city": "Denver"
+          }
+        },
+        "education": {
+          "educationLevel": "Master's",
+          "institutionName": "University of Texas at Austin",
+          "degreeTitle": "MS in Cybersecurity",
+          "graduationYear": 2018,
+          "currentYear": null,
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/logan-walker-cv",
+          "githubProfile": "https://github.com/loganwalker",
+          "portfolioLink": "https://loganwalker.tech",
+          "linkedinProfile": "https://linkedin.com/in/loganwalker"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/JrHZGRb/user8.webp",
+        "date": "2025-03-18T15:25:00.000Z"
+      },
+      {
+        "email": "grace.lee@example.com",
+        "name": "Grace Lee",
+        "firebaseUid": "uid_209",
+        "mobile": "+442071234567",
+        "additional": {
+          "gender": "Female",
+          "age": 27,
+          "primaryDeviceType": "MacBook Air",
+          "internetType": "WiFi",
+          "yearsOfExperience": 4,
+          "employmentRole": "Frontend Developer"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Greater London",
+            "streetAddress": "89 Code Street",
+            "postalCode": "E1 6AN",
+            "city": "London"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "Essex",
+            "streetAddress": "23 Developer Road",
+            "postalCode": "CM1 1GU",
+            "city": "Chelmsford"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Edinburgh",
+          "degreeTitle": "BSc Computer Science",
+          "graduationYear": 2020,
+          "currentYear": null,
+          "cgpa": 3.9
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/grace-lee-cv",
+          "githubProfile": "https://github.com/gracelee",
+          "portfolioLink": "https://gracelee.dev",
+          "linkedinProfile": "https://linkedin.com/in/gracelee"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/TMPgPCK/user9.webp",
+        "date": "2025-03-19T17:40:00.000Z"
+      },
+      {
+        "email": "benjamin.hall@example.com",
+        "name": "Benjamin Hall",
+        "firebaseUid": "uid_210",
+        "mobile": "+61234567890",
+        "additional": {
+          "gender": "Male",
+          "age": 34,
+          "primaryDeviceType": "Linux Workstation",
+          "internetType": "Cable",
+          "yearsOfExperience": 10,
+          "employmentRole": "Data Architect"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "Australia",
+            "district": "VIC",
+            "streetAddress": "100 Data Street",
+            "postalCode": "3000",
+            "city": "Melbourne"
+          },
+          "permanentAddress": {
+            "country": "Australia",
+            "district": "WA",
+            "streetAddress": "200 Analytics Road",
+            "postalCode": "6000",
+            "city": "Perth"
+          }
+        },
+        "education": {
+          "educationLevel": "PhD",
+          "institutionName": "University of Sydney",
+          "degreeTitle": "PhD in Data Science",
+          "graduationYear": 2016,
+          "currentYear": null,
+          "cgpa": 4.0
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/benjamin-hall-cv",
+          "githubProfile": "https://github.com/benjaminhall",
+          "portfolioLink": "https://benjaminhall.ai",
+          "linkedinProfile": "https://linkedin.com/in/benjaminhall"
+        },
+        "role": "user",
+        "image": "https://i.ibb.co/Lk5XSnW/user10.webp",
+        "date": "2025-03-20T09:00:00.000Z"
+      },
+      {
+        "email": "yaminmia103@gmil.com",
+        "name": "Ismail Hossen",
+        "firebaseUid": "uid_103",
+        "mobile": "+8801712345678",
+        "additional": {
+          "gender": "Male",
+          "age": 22,
+          "primaryDeviceType": "Android Phone",
+          "internetType": "Mobile Data",
+          "yearsOfExperience": 1,
+          "employmentRole": "Intern"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "Bangladesh",
+            "district": "Dhaka",
+            "streetAddress": "123 Mirpur Road",
+            "postalCode": "1207",
+            "city": "Dhaka"
+          },
+          "permanentAddress": {
+            "country": "Bangladesh",
+            "district": "Chittagong",
+            "streetAddress": "456 Hill View Road",
+            "postalCode": "4000",
+            "city": "Chittagong"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Dhaka",
+          "degreeTitle": "BSc in Computer Science",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.5
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/ismail-hossen-cv",
+          "githubProfile": "https://github.com/ismailhossen",
+          "portfolioLink": "https://ismailhossen.me",
+          "linkedinProfile": "https://linkedin.com/in/ismailhossen"
+        },
+        "role": "student",
+        "image": "https://i.ibb.co.com/5x8HZjb/Nor-Ismail.jpg",
+        "date": "2025-03-10T09:05:00.000Z"
+      },
+      {
+        "email": "elijah.wilson@example.com",
+        "name": "Elijah Wilson",
+        "firebaseUid": "uid_104",
+        "mobile": "+13105550123",
+        "additional": {
+          "gender": "Male",
+          "age": 20,
+          "primaryDeviceType": "iPad",
+          "internetType": "Campus WiFi",
+          "yearsOfExperience": 0,
+          "employmentRole": "Student Researcher"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "MA",
+            "streetAddress": "89 College Avenue",
+            "postalCode": "02138",
+            "city": "Cambridge"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "NY",
+            "streetAddress": "123 Main Street",
+            "postalCode": "10001",
+            "city": "New York"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Harvard University",
+          "degreeTitle": "BA in Computer Science",
+          "graduationYear": 2026,
+          "currentYear": "Sophomore",
+          "cgpa": 3.7
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/elijah-wilson-cv",
+          "githubProfile": "https://github.com/elijahwilson",
+          "portfolioLink": "https://elijahwilson.student",
+          "linkedinProfile": "https://linkedin.com/in/elijahwilson"
+        },
+        "role": "student",
+        "image": "https://img.drz.lazcdn.com/static/bd/p/d64de7310a3b6fae1e94711290fb5ea1.jpg_720x720q80.jpg_.webp",
+        "date": "2025-03-06T15:10:00.000Z"
+      },
+      {
+        "email": "ava.miller@example.com",
+        "name": "Ava Miller",
+        "firebaseUid": "uid_105",
+        "mobile": "+447700123456",
+        "additional": {
+          "gender": "Female",
+          "age": 21,
+          "primaryDeviceType": "MacBook Air",
+          "internetType": "Home Broadband",
+          "yearsOfExperience": 1,
+          "employmentRole": "Part-time Tutor"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Oxfordshire",
+            "streetAddress": "78 University Street",
+            "postalCode": "OX1 2JD",
+            "city": "Oxford"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "Kent",
+            "streetAddress": "23 Garden Road",
+            "postalCode": "CT1 1AA",
+            "city": "Canterbury"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Oxford",
+          "degreeTitle": "BSc in Mathematics",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/ava-miller-cv",
+          "githubProfile": "https://github.com/avamiller",
+          "portfolioLink": "https://avamiller.math",
+          "linkedinProfile": "https://linkedin.com/in/avamiller"
+        },
+        "role": "student",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbpzpteUyggGthELymlpixb8O6lEhRwrGOhPbgSxFiv2iKHpl05Ia03-rODQyHXs_iSwc&usqp=CAU",
+        "date": "2025-03-05T10:20:00.000Z"
+      },
+      {
+        "email": "liam.davis@example.com",
+        "name": "Liam Davis",
+        "firebaseUid": "uid_106",
+        "mobile": "+13105550123",
+        "additional": {
+          "gender": "Male",
+          "age": 21,
+          "primaryDeviceType": "Windows Laptop",
+          "internetType": "University WiFi",
+          "yearsOfExperience": 0,
+          "employmentRole": "Research Assistant"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "CA",
+            "streetAddress": "123 University Avenue",
+            "postalCode": "94305",
+            "city": "Stanford"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "WA",
+            "streetAddress": "456 Pine Street",
+            "postalCode": "98101",
+            "city": "Seattle"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Stanford University",
+          "degreeTitle": "BS in Computer Engineering",
+          "graduationYear": 2026,
+          "currentYear": "Junior",
+          "cgpa": 3.6
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/liam-davis-cv",
+          "githubProfile": "https://github.com/liamdavis",
+          "portfolioLink": "https://liamdavis.tech",
+          "linkedinProfile": "https://linkedin.com/in/liamdavis"
+        },
+        "role": "student",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0uwIKcF3FA3Xxv8_pt5seDYGWM0a2JA-KphVAn9ARonLMZdNvn5fSDRYhrIJV7RNQli4&usqp=CAU",
+        "date": "2025-03-04T13:00:00.000Z"
+      },
+      {
+        "email": "sophia.moore@example.com",
+        "name": "Sophia Moore",
+        "firebaseUid": "uid_107",
+        "mobile": "+919876543210",
+        "additional": {
+          "gender": "Female",
+          "age": 20,
+          "primaryDeviceType": "iPad",
+          "internetType": "Campus WiFi",
+          "yearsOfExperience": 1,
+          "employmentRole": "Teaching Assistant"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "India",
+            "district": "Punjab",
+            "streetAddress": "123 College Road",
+            "postalCode": "151001",
+            "city": "Bathinda"
+          },
+          "permanentAddress": {
+            "country": "India",
+            "district": "Delhi",
+            "streetAddress": "456 Model Town",
+            "postalCode": "110009",
+            "city": "New Delhi"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Delhi Public School",
+          "degreeTitle": "BSc in Information Technology",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/sophia-moore-cv",
+          "githubProfile": "https://github.com/sophiamoore",
+          "portfolioLink": "https://sophiamoore.in",
+          "linkedinProfile": "https://linkedin.com/in/sophiamoore"
+        },
+        "role": "student",
+        "image": "https://www.dpsbathinda.com/wp-content/uploads/2021/07/3.jpg",
+        "date": "2025-03-07T12:00:00.000Z"
+      },
+      {
+        "email": "james.taylor@example.com",
+        "name": "James Taylor",
+        "firebaseUid": "uid_108",
+        "mobile": "+447700123456",
+        "additional": {
+          "gender": "Male",
+          "age": 22,
+          "primaryDeviceType": "MacBook Pro",
+          "internetType": "Home Broadband",
+          "yearsOfExperience": 2,
+          "employmentRole": "Intern Developer"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Greater London",
+            "streetAddress": "89 Tech Street",
+            "postalCode": "SW7 2AZ",
+            "city": "London"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "Kent",
+            "streetAddress": "23 Garden Road",
+            "postalCode": "CT1 1AA",
+            "city": "Canterbury"
+          }
+        },
+        "education": {
+          "educationLevel": "Master's",
+          "institutionName": "Imperial College London",
+          "degreeTitle": "MSc in Artificial Intelligence",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.9
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/james-taylor-cv",
+          "githubProfile": "https://github.com/jamestaylor",
+          "portfolioLink": "https://jamestaylor.ai",
+          "linkedinProfile": "https://linkedin.com/in/jamestaylor"
+        },
+        "role": "student",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwW4AQ372_g7ZG45n82DIu5KTmTc4le0qJFxmg792fQxCoiQBn6n5T3ctt-Hohy85bI6A&usqp=CAU",
+        "date": "2025-03-08T14:45:00.000Z"
+      },
+      {
+        "email": "mia.anderson@example.com",
+        "name": "Mia Anderson",
+        "firebaseUid": "uid_109",
+        "mobile": "+13105550123",
+        "additional": {
+          "gender": "Female",
+          "age": 21,
+          "primaryDeviceType": "MacBook Pro",
+          "internetType": "University WiFi",
+          "yearsOfExperience": 0,
+          "employmentRole": "Research Assistant"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "CA",
+            "streetAddress": "123 Campus Drive",
+            "postalCode": "94305",
+            "city": "Stanford"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "WA",
+            "streetAddress": "456 Pine Street",
+            "postalCode": "98101",
+            "city": "Seattle"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Stanford University",
+          "degreeTitle": "BS in Computer Science",
+          "graduationYear": 2025,
+          "currentYear": "Senior",
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/mia-anderson-cv",
+          "githubProfile": "https://github.com/miaanderson",
+          "portfolioLink": "https://miaanderson.tech",
+          "linkedinProfile": "https://linkedin.com/in/miaanderson"
+        },
+        "role": "student",
+        "image": "https://cmseducationorg.wordpress.com/wp-content/uploads/2019/09/bhavika-singh-35-copies-pc.jpg",
+        "date": "2025-03-09T16:20:00.000Z"
+      },
+      {
+        "email": "lucas.thomas@example.com",
+        "name": "Lucas Thomas",
+        "firebaseUid": "uid_110",
+        "mobile": "+447700123456",
+        "additional": {
+          "gender": "Male",
+          "age": 20,
+          "primaryDeviceType": "Windows Laptop",
+          "internetType": "Dormitory Ethernet",
+          "yearsOfExperience": 1,
+          "employmentRole": "Teaching Assistant"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Cambridgeshire",
+            "streetAddress": "78 Trinity Lane",
+            "postalCode": "CB2 1TJ",
+            "city": "Cambridge"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "London",
+            "streetAddress": "23 Kings Road",
+            "postalCode": "SW3 4RP",
+            "city": "London"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Cambridge",
+          "degreeTitle": "BA in Engineering",
+          "graduationYear": 2026,
+          "currentYear": "Second Year",
+          "cgpa": 3.6
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/lucas-thomas-cv",
+          "githubProfile": "https://github.com/lucasthomas",
+          "portfolioLink": "https://lucasthomas.eng",
+          "linkedinProfile": "https://linkedin.com/in/lucasthomas"
+        },
+        "role": "student",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OkBuplEBODTrkIiPgyZ9LG-2nhQye3DOv42EVKrpgBNGdLjSRi8fmfOLSqyeqUEBFQY&usqp=CAU",
+        "date": "2025-03-10T09:05:00.000Z"
+      },
+      {
+        "email": "amelia.jones@example.com",
+        "name": "Amelia Jones",
+        "firebaseUid": "uid_101",
+        "mobile": "+8801712345678",
+        "additional": {
+          "gender": "Female",
+          "age": 22,
+          "primaryDeviceType": "iPad",
+          "internetType": "Mobile Data",
+          "yearsOfExperience": 2,
+          "employmentRole": "Intern"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "Bangladesh",
+            "district": "Dhaka",
+            "streetAddress": "123 Academic Road",
+            "postalCode": "1207",
+            "city": "Dhaka"
+          },
+          "permanentAddress": {
+            "country": "Bangladesh",
+            "district": "Sylhet",
+            "streetAddress": "456 Tea Garden Road",
+            "postalCode": "3100",
+            "city": "Sylhet"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "University of Dhaka",
+          "degreeTitle": "BBA in Marketing",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.4
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/amelia-jones-cv",
+          "githubProfile": "https://github.com/ameliajones",
+          "portfolioLink": "https://ameliajones.marketing",
+          "linkedinProfile": "https://linkedin.com/in/ameliajones"
+        },
+        "role": "student",
+        "image": "https://ssl.du.ac.bd/fontView/assets/faculty_image/59357_DSC_8870-2X2.jpg",
+        "date": "2025-03-01T09:15:00.000Z"
+      },
+      {
+        "email": "noah.smith@example.com",
+        "name": "Noah Smith",
+        "firebaseUid": "uid_102",
+        "mobile": "+8801712345678",
+        "additional": {
+          "gender": "Male",
+          "age": 22,
+          "primaryDeviceType": "Android Tablet",
+          "internetType": "University WiFi",
+          "yearsOfExperience": 1,
+          "employmentRole": "Research Intern"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "Bangladesh",
+            "district": "Dhaka",
+            "streetAddress": "123 Academic Road",
+            "postalCode": "1207",
+            "city": "Dhaka"
+          },
+          "permanentAddress": {
+            "country": "Bangladesh",
+            "district": "Sylhet",
+            "streetAddress": "456 Tea Garden Lane",
+            "postalCode": "3100",
+            "city": "Sylhet"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Bangladesh University of Engineering and Technology",
+          "degreeTitle": "BSc in Electrical Engineering",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.7
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/noah-smith-cv",
+          "githubProfile": "https://github.com/noahsmith",
+          "portfolioLink": "https://noahsmith.tech",
+          "linkedinProfile": "https://linkedin.com/in/noahsmith"
+        },
+        "role": "student",
+        "image": "https://ieeeaustsb.org/wp-content/uploads/2023/12/Md.-Abdus-Shakur-Siam-1.jpg",
+        "date": "2025-03-02T11:30:00.000Z"
+      },
+      {
+        "email": "olivia.brown@example.com",
+        "name": "Olivia Brown",
+        "firebaseUid": "uid_103",
+        "mobile": "+13105550123",
+        "additional": {
+          "gender": "Female",
+          "age": 21,
+          "primaryDeviceType": "MacBook Air",
+          "internetType": "Campus WiFi",
+          "yearsOfExperience": 0,
+          "employmentRole": "Student Ambassador"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "USA",
+            "district": "MA",
+            "streetAddress": "123 College Avenue",
+            "postalCode": "02138",
+            "city": "Cambridge"
+          },
+          "permanentAddress": {
+            "country": "USA",
+            "district": "NY",
+            "streetAddress": "456 Park Lane",
+            "postalCode": "10022",
+            "city": "New York"
+          }
+        },
+        "education": {
+          "educationLevel": "Bachelor's",
+          "institutionName": "Harvard University",
+          "degreeTitle": "BA in Computer Science",
+          "graduationYear": 2026,
+          "currentYear": "Junior",
+          "cgpa": 3.8
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/olivia-brown-cv",
+          "githubProfile": "https://github.com/oliviabrown",
+          "portfolioLink": "https://oliviabrown.dev",
+          "linkedinProfile": "https://linkedin.com/in/oliviabrown"
+        },
+        "role": "student",
+        "image": "https://t3.ftcdn.net/jpg/06/02/18/62/360_F_602186218_fpYxVU19SUIV1IFYU6g144NBh28dWeFY.jpg",
+        "date": "2025-03-03T08:45:00.000Z"
+      },
+      {
+        "email": "liam.davis@example.com",
+        "name": "Liam Davis",
+        "firebaseUid": "uid_104",
+        "mobile": "+447700123456",
+        "additional": {
+          "gender": "Male",
+          "age": 23,
+          "primaryDeviceType": "Windows Laptop",
+          "internetType": "Home Broadband",
+          "yearsOfExperience": 2,
+          "employmentRole": "Part-time Developer"
+        },
+        "address": {
+          "presentAddress": {
+            "country": "UK",
+            "district": "Greater London",
+            "streetAddress": "89 Tech Street",
+            "postalCode": "SW7 2AZ",
+            "city": "London"
+          },
+          "permanentAddress": {
+            "country": "UK",
+            "district": "Manchester",
+            "streetAddress": "23 Innovation Road",
+            "postalCode": "M1 5GD",
+            "city": "Manchester"
+          }
+        },
+        "education": {
+          "educationLevel": "Master's",
+          "institutionName": "University College London",
+          "degreeTitle": "MSc in Data Science",
+          "graduationYear": 2025,
+          "currentYear": "Final Year",
+          "cgpa": 3.9
+        },
+        "links": {
+          "cvLink": "https://drive.google.com/liam-davis-cv",
+          "githubProfile": "https://github.com/liamdavis",
+          "portfolioLink": "https://liamdavis.tech",
+          "linkedinProfile": "https://linkedin.com/in/liamdavis"
+        },
+        "role": "student",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRbsgoxCRmshekoNC9rEkamaAUWqqdMckVKQ&s",
+        "date": "2025-03-04T13:00:00.000Z"
+      },
+         
+
+]
