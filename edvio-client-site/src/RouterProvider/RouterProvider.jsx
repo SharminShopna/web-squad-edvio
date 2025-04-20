@@ -67,7 +67,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
-        <Route path="/dashboard/chatBot" element={<AIChatBot />} />
+        <Route path="/dashboard/instructor/instructorChatbot" element={<AIChatBot />} />
       </Route>
 
       {/* Error Route */}
