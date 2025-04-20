@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
 
 const BrowsCourse = () => {
   const [courses, setCourses] = useState([]);
@@ -9,20 +9,24 @@ const BrowsCourse = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/allCourses')
+      .get("http://localhost:4000/allCourses")
       .then((res) => {
-        console.log('API Response:', res.data); 
-        setCourses(res.data.data); 
+        console.log("API Response:", res.data);
+        setCourses(res.data.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching courses:', err);
+        console.error("Error fetching courses:", err);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <div className="text-center mt-10 text-lg text-darkTeal">Loading courses...</div>;
+    return (
+      <div className="text-center mt-10 text-lg text-darkTeal">
+        Loading coursesssss...
+      </div>
+    );
   }
 
   return (
@@ -47,13 +51,19 @@ const BrowsCourse = () => {
             <div className="p-4 space-y-2">
               <h3 className="text-lg font-semibold">{course.course_name}</h3>
               <p className="text-sm text-gray-300">
-                {course.instructor?.name || 'Unknown Instructor'}
+                {course.instructor?.name || "Unknown Instructor"}
               </p>
 
               <div className="flex flex-wrap gap-2 text-sm mt-2">
-                <span className="bg-Aquamarine text-darkTeal px-2 py-1 rounded-full">{course.category}</span>
-                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">{course.level}</span>
-                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">{course.duration}</span>
+                <span className="bg-Aquamarine text-darkTeal px-2 py-1 rounded-full">
+                  {course.category}
+                </span>
+                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                  {course.level}
+                </span>
+                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                  {course.duration}
+                </span>
               </div>
 
               <p className="text-sm text-gray-400 mt-2">
@@ -99,15 +109,29 @@ const BrowsCourse = () => {
                 className="w-full h-56 object-cover rounded mb-4"
               />
 
-              <h3 className="text-2xl font-bold text-teal-800">{selectedCourse.course_name}</h3>
-              <p className="text-sm text-gray-600 mb-4">{selectedCourse.description}</p>
+              <h3 className="text-2xl font-bold text-teal-800">
+                {selectedCourse.course_name}
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                {selectedCourse.description}
+              </p>
 
               <div className="text-sm space-y-2 text-teal-700">
-                <p><strong>Instructor:</strong> {selectedCourse.instructor?.name}</p>
-                <p><strong>Email:</strong> {selectedCourse.instructor?.email}</p>
-                <p><strong>Category:</strong> {selectedCourse.category}</p>
-                <p><strong>Level:</strong> {selectedCourse.level}</p>
-                <p><strong>Duration:</strong> {selectedCourse.duration}</p>
+                <p>
+                  <strong>Instructor:</strong> {selectedCourse.instructor?.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {selectedCourse.instructor?.email}
+                </p>
+                <p>
+                  <strong>Category:</strong> {selectedCourse.category}
+                </p>
+                <p>
+                  <strong>Level:</strong> {selectedCourse.level}
+                </p>
+                <p>
+                  <strong>Duration:</strong> {selectedCourse.duration}
+                </p>
               </div>
             </motion.div>
           </motion.div>

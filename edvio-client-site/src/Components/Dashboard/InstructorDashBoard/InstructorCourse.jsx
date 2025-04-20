@@ -15,7 +15,7 @@ export default function InstructorCourse() {
       .then((res) => setCard(res.data));
   }, []);
 
-  const handleDelete = (id) => {};
+  const handleDeleteCard = (id) => {};
   const handleDetailsCard = (id) => {
     navigate(`/courseDetails/${id}`);
   };
@@ -26,7 +26,7 @@ export default function InstructorCourse() {
         return (
           <InstructorCoruseCard
             course={card}
-            onDelete={() => handleDelete(card._id)}
+            onDelete={() => handleDeleteCard(card._id)}
             onDetails={() => handleDetailsCard(card._id)}
           />
         );
