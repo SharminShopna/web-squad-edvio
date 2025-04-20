@@ -24,6 +24,8 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+import { TbUsersGroup } from "react-icons/tb";
+
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
    console.log(userData)
@@ -58,6 +60,14 @@ export default function DashBoardSideBar() {
           { name: "About Student", path: "/dashboard/about-student" },
         ],
        },
+      { path: "#", icon: <TbUsersGroup />, label: "Users",
+        subMenu: [
+          { name: "All User", path: "/dashboard/all-user" },
+          { name: "Add User", path: "/dashboard/add-user" },
+          { name: "Edit User", path: "/dashboard/edit-user" },
+          { name: "About User", path: "/dashboard/about-user" },
+        ],
+       },
       { path: "#", icon: <LuBookPlus />, label: "Course",
         subMenu: [
           { name: "All Course", path: "/dashboard/all-course" },
@@ -67,7 +77,7 @@ export default function DashBoardSideBar() {
         ],
        },
        {
-        path: "/dashboard/chatbot",
+        path: "/dashboard/adminChatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },
@@ -110,7 +120,7 @@ export default function DashBoardSideBar() {
         label: "Course Analytics",
       },
       {
-        path: "/dashboard/instructor/chatbot",
+        path: "/dashboard/instructor/instructorChatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },

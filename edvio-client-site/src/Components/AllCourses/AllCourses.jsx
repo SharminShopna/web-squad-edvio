@@ -79,7 +79,7 @@ export default function AllCourses() {
             className="mySwiper"
           >
             {courses.map((course) => (
-              <SwiperSlide key={course.id} data-aos="flip-left">
+              <SwiperSlide key={course.id}>
                 <CourseCard course={course}></CourseCard>
               </SwiperSlide>
             ))}

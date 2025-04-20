@@ -14,7 +14,6 @@ import InstructorProfile from "@/Components/Dashboard/InstructorDashBoard/Instru
 import AdminProfileEdit from "@/Components/Dashboard/AdminDashBoard/AdminProfileEdit";
 import DashBoardHome from "@/Components/Dashboard/AdminDashBoard/DashBoardHome";
 import InstructorAddCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorAddCourse";
-import AllInstructor from "@/Components/Dashboard/ShareComponent/Instructor/AllInstructor";
 import UserHome from "@/Components/Dashboard/UserDashBoard/UserHome";
 import MyCourse from "@/Components/Dashboard/UserDashBoard/MyCourse";
 import Feedback from "@/Components/Dashboard/UserDashBoard/Feedback";
@@ -24,6 +23,10 @@ import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory"
 import Error from "@/Components/Error/Error";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
+import AllInstructor from "@/Components/Dashboard/AdminDashBoard/Instructor/AllInstructor";
+import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent";
+import AllUser from "@/Components/Dashboard/AdminDashBoard/User/AllUser";
+import UnResAIChatBot from "@/Components/Dashboard/UnResChatBot/UnResAIChatBot";
 import AiChatBot from "@/Components/Dashboard/UnResChatBot/AIChatBot";
 import InstructorCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorCourse";
 import TeachingSchedule from "@/Components/Dashboard/InstructorDashBoard/TeachingSchedule";

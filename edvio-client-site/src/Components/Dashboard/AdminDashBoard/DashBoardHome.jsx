@@ -66,7 +66,7 @@ export default function DashBoardHome() {
             <AreaChartForShales></AreaChartForShales>
         </div>
           <div>
-          <DashboardFooter /> 
+          <DashboardFooter margin={'5'}/> 
         </div>
       </div>
     </div>
