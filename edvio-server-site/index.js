@@ -403,6 +403,35 @@ async function run() {
         res.send(result);
       });
     });
+     
+    // user data update ...............
+
+app.put('/user/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const query = { email: email };
+    const updateData = req.body;
+
+    const update = {
+      $set: {
+        additional: {
+          gender: updateData?.gender,
+          age: updateData?.age,
+          primaryDeviceType: updateData?.primaryDeviceType,
+          internetType: updateData?.internetType,
+          yearsOfExperience: updateData?.yearsOfExperience,
+        }
+      }
+    };
+
+    const result = await usersCollection.updateOne(query, update);
+    res.send(result);
+  } catch (error) {
+    console.error('Error updating user:', error.message);
+    res.status(500).send({ error: 'Failed to update user data' });
+  }
+});
+
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

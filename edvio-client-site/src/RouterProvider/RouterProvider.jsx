@@ -28,6 +28,8 @@ import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent
 import AllUser from "@/Components/Dashboard/AdminDashBoard/User/AllUser";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
+import InstructorCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorCourse";
+import TeachingSchedule from "@/Components/Dashboard/InstructorDashBoard/TeachingSchedule";
 
 export default function RouterProvider() {
   return (
@@ -60,6 +62,8 @@ export default function RouterProvider() {
         <Route path="/dashboard/instructor/students" element={<AllStudents />} />
         <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
         <Route path="/dashboard/instructor/chatbot" element={<AiChatBot />} />
+         <Route path="/dashboard/instructor/schedule" element={<TeachingSchedule />}></Route>
+         <Route path="/dashboard/dashboard/my-courses" element={<InstructorCourse />}></Route>
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
@@ -67,7 +71,7 @@ export default function RouterProvider() {
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
-        <Route path="/dashboard/instructor/instructorChatbot" element={<AiChatBot />} />
+        <Route path="/dashboard/instructor/instructorChatbot" element={<AIChatBot />} />
       </Route>
 
       {/* Error Route */}

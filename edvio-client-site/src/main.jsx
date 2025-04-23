@@ -7,6 +7,7 @@ import RouterProvider from "./RouterProvider/RouterProvider";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import { Toaster } from "./Components/ui/sonner";
 const queryClient = new QueryClient();
 const root = document.getElementById("root");
 
@@ -18,5 +19,6 @@ ReactDOM.createRoot(root).render(
       </QueryClientProvider>
     </AuthProvider>
     <ToastContainer />
+    <Toaster />
   </BrowserRouter>
 );

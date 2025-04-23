@@ -95,7 +95,7 @@ export default function DashBoardSideBar() {
         label: "Add Course",
       },
       {
-        path: "/dashboard/instructor/my-courses",
+        path: "/dashboard/dashboard/my-courses",
         icon: <IoLibrary />,
         label: "My Courses",
       },
