@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  
 } from "firebase/auth";
 import { useEffect, useState, createContext } from "react";
 import auth from "../Firebase/firebase.init";
@@ -18,6 +19,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // Google login
   const googleLogin = () => {
@@ -31,7 +33,7 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return sendEmailVerification(userCredential.user).then(() => {
-          console.log("ইমেইল ভেরিফিকেশন পাঠানো হয়েছে");
+          console.log("You have received the verification email");
           return userCredential;
         });
       })
@@ -85,7 +87,9 @@ const AuthProvider = ({ children }) => {
     signIn,
     updateUserProfile,
     logOut,
-    resetPassword
+    resetPassword,
+    totalPrice, 
+    setTotalPrice
   };
 
   return (

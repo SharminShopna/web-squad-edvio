@@ -40,6 +40,8 @@ export default function RouterProvider() {
         <Route path="courseDetails/:id" element={<DetailsCoursePage />} />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="all-courses" element={<AllCourses />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="payment" element={<Payment />} />
       </Route>
 
       {/* Authentication Routes */}
