@@ -48,7 +48,8 @@ const handleRoleChange =(id, newRole)=>{
             </tr>
           </thead>
           <tbody className="bg-neutral divide-y divide-gray-200">
-            {user?.map((item, index) => (
+            {user?.filter((item)=> item.role !== "admin" && item.role !== "instructor")
+            ?.map((item, index) => (
               <tr key={item._id}>
                 <td className="px-4 py-4 text-sm  whitespace-nowrap">
                   {index + 1}
@@ -67,7 +68,7 @@ const handleRoleChange =(id, newRole)=>{
                       ? "text-blue-500 font-semibold"
                       : item.role === "user"
                       ? "text-green-500"
-                      : "text-gray-500"
+                      : "text-gray-300"
                   }`}
                 >
                   {item.role}
