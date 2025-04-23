@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ai = new GoogleGenAI({ apiKey: "AIzaSyA1_zugYY85uJaRZa14wMLnxBVwict_A5I" });
 
-const AIChatBot = () => {
+const AiChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  // useEffect(() => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -58,7 +58,7 @@ const AIChatBot = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-full bg-lightTeal"
+      className="flex flex-col min-h-11/12 bg-lightTeal"
     >
       {/* Header */}
       <motion.div 
@@ -271,4 +271,4 @@ const AIChatBot = () => {
   );
 };
 
-export default AIChatBot;
+export default AiChatBot;

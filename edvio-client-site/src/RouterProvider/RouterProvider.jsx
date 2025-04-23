@@ -21,17 +21,13 @@ import AccountSetting from "@/Components/Dashboard/UserDashBoard/AccountSetting"
 import BrowsCourse from "@/Components/Dashboard/UserDashBoard/BrowsCourse";
 import PaymentHistory from "@/Components/Dashboard/UserDashBoard/PaymentHistory";
 import Error from "@/Components/Error/Error";
-<<<<<<< HEAD
-import AIChatBot from "@/Components/Dashboard/AIChatBot/AIChatBot";
-import Cart from "@/Components/Cart/Cart";
-import Payment from "@/Components/Payment/Payment";
-=======
-import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
+
 import AllStudents from "@/Components/Dashboard/InstructorDashBoard/AllStudents";
 import AllInstructor from "@/Components/Dashboard/AdminDashBoard/Instructor/AllInstructor";
 import AllStudent from "@/Components/Dashboard/AdminDashBoard/Student/AllStudent";
 import AllUser from "@/Components/Dashboard/AdminDashBoard/User/AllUser";
->>>>>>> upstream/development
+import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
+import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
 
 export default function RouterProvider() {
   return (
@@ -42,8 +38,6 @@ export default function RouterProvider() {
         <Route path="courseDetails/:id" element={<DetailsCoursePage />} />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="all-courses" element={<AllCourses />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="payment" element={<Payment />} />
       </Route>
 
       {/* Authentication Routes */}
@@ -53,18 +47,19 @@ export default function RouterProvider() {
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
         {/* Admin Routes */}
-        <Route path="/dashboard/admin-home" element={<DashBoardHome/>}></Route>
+        <Route path="/dashboard/admin-home" element={<DashBoardHome />}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
         <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
         <Route path="/dashboard/all-student" element={<AllStudent />}></Route>
         <Route path="/dashboard/all-user" element={<AllUser />}></Route>
+        <Route path="/dashboard/admin/chatbot" element={<AiChatBot />}></Route>
 
         {/* Instructor Routes */}
         <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
         <Route path="/dashboard/instructor/students" element={<AllStudents />} />
         <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
-        <Route path="/dashboard/instructor/chatbot" element={<AiChatBot></AiChatBot>} />
+        <Route path="/dashboard/instructor/chatbot" element={<AiChatBot />} />
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
@@ -72,14 +67,12 @@ export default function RouterProvider() {
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
-        <Route path="/dashboard/aiChatbot" element={<AIChatBot />} />
-        <Route path="/dashboard"></Route>
+        <Route path="/dashboard/instructor/instructorChatbot" element={<AiChatBot />} />
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
       {/* Shared Route */}
-      
     </Routes>
   );
 }

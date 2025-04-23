@@ -18,8 +18,6 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [totalPrice, setTotalPrice] = useState(null);
-  // console.log(totalPrice);
 
   // Google login
   const googleLogin = () => {
@@ -87,9 +85,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     updateUserProfile,
     logOut,
-    resetPassword,
-    totalPrice,
-    setTotalPrice
+    resetPassword
   };
 
   return (

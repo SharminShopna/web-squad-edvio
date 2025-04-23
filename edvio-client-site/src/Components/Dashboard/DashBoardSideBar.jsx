@@ -17,7 +17,6 @@ import {
   IoBook,
   IoChevronDown,
   IoChevronUp,
-  IoCart,
 } from "react-icons/io5";
 import { LuUser } from "react-icons/lu";
 import { FiUsers } from "react-icons/fi";
@@ -78,8 +77,8 @@ export default function DashBoardSideBar() {
         ],
        },
        {
-        path: "/dashboard/chatbot",
-        icon: <HiOutlineChatBubbleLeftRight />,
+        path: "/dashboard/admin/chatbot",
+         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },
     ],
@@ -121,7 +120,7 @@ export default function DashBoardSideBar() {
         label: "Course Analytics",
       },
       {
-        path: "/dashboard/instructor/chatbot",
+        path: "/dashboard/instructor/instructorChatbot",
         icon: <HiOutlineChatBubbleLeftRight />,
         label: "AI Chatbot",
       },

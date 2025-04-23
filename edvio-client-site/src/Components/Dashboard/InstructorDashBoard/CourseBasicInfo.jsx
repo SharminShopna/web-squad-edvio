@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import UseAuth from "@/Hook/UseAuth";
 
 const CourseBasicInfo = ({
   register,
@@ -9,6 +10,7 @@ const CourseBasicInfo = ({
   removeCareerBenefit,
   getValues,
 }) => {
+  const { user } = UseAuth();
   return (
     <>
       {/* Basic Course Information */}
@@ -199,6 +201,7 @@ const CourseBasicInfo = ({
               {...register("instructor.email", { required: true })}
               className="w-full px-4 py-3 border border-aquamarine/30 rounded-lg bg-lightTeal focus:ring-2 focus:ring-aquamarine focus:border-transparent transition-all"
               placeholder="emilycarter@nlp.com"
+              value={user?.email}
             />
           </div>
 

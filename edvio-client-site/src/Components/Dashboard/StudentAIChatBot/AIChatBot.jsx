@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,9 +10,9 @@ const AIChatBot = () => {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  // useEffect(() => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -107,7 +107,7 @@ const AIChatBot = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-full bg-lightTeal"
+      className="flex flex-col min-h-11/12 bg-lightTeal"
     >
       {/* Header */}
       <motion.div 
@@ -117,7 +117,7 @@ const AIChatBot = () => {
         animate={{ y: 0 }}
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4 mt-10">
+          <div className="flex items-center space-x-4 mt-1">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -144,7 +144,7 @@ const AIChatBot = () => {
             className="h-full flex flex-col items-center justify-center text-center"
           >
             
-            <h2 className="text-2xl font-bold mb-2">How can I help you learn today?</h2>
+            <h2 className="text-2xl font-bold my-15">How can I help you learn today?</h2>
             <p className="max-w-md">
               Ask me anything about math, science, history, or any academic subject.
             </p>
