@@ -1,7 +1,6 @@
 import useAllUser from '@/Hooks/useAllUser'
 import useAxiosPublic from '@/Hooks/useAxiosPublic'
 
-import React, { use } from 'react'
 import { FaMagento } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 
