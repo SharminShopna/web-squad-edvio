@@ -1,5 +1,11 @@
 import React from 'react';
-import bg from "../../assets/contactUs/contact-bg.jpg"
+import bg from "../../assets/contactUs/banner-5.jpg"
+import fatima from "../../assets/contactUs/fatimaApu.png"
+import aminul from "../../assets/contactUs/aminulVai.png"
+import shawon from "../../assets/contactUs/shawonVai.png"
+import tanzim from "../../assets/contactUs/tanzimVai.png"
+import ismail from "../../assets/contactUs/ismailVai.png"
+import sharmin from "../../assets/contactUs/shopna.png"
 import Contact from '@/Components/Contact';
 import { MdEmail, MdOutlinePhoneInTalk } from 'react-icons/md';
 import { FaLocationDot } from 'react-icons/fa6';
@@ -22,23 +28,38 @@ const ContactUs = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
                         {/* Phone & WhatsApp */}
                         <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
-                            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 "><MdOutlinePhoneInTalk /> PHONE & WHATSAPP</h2>
+                            <h2 className="text-xl text-base-content font-semibold mb-4 flex items-center gap-2 "><MdOutlinePhoneInTalk /> PHONE & WHATSAPP</h2>
                             <div className="space-y-2">
                                 <div className='flex gap-1'>
-                                <img src={bg} alt="" className='h-8 w-8 rounded-full' />
-                                <a href="tel:11111" className="block text-blue-600 hover:underline text-2xl">11111</a>
+                                <img src={fatima} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:11111" className="block text-gray-300 hover:underline">+8801858909300</a>
                                 </div>
-                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
-                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
-                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
-                                <a href="tel:1111" className="block text-blue-600 hover:underline">1111</a>
-                                <a href="tel:1111" className="block text-blue-600 hover:underline">1111</a>
+                                <div className='flex gap-1'>
+                                <img src={aminul} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:11111" className="block text-gray-300 hover:underline">+8801752574182</a>
+                                </div>
+                                <div className='flex gap-1'>
+                                <img src={shawon} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:11111" className="block text-gray-300 hover:underline">+447593214400</a>
+                                </div>
+                                <div className='flex gap-1'>
+                                <img src={tanzim} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:11111" className="block text-gray-300 hover:underline">+8801744842814</a>
+                                </div>
+                                <div className='flex gap-1'>
+                                <img src={ismail} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:1111" className="block text-gray-300 hover:underline">+8801995998757</a>
+                                </div>
+                                <div className='flex gap-1'>
+                                <img src={sharmin} alt="" className='h-8 w-8 rounded-full' />
+                                <a href="tel:1111" className="block text-gray-300 hover:underline">+8801303058388</a>
+                                </div>
                             </div>
                         </div>
 
                         {/* Email */}
                         <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
-                            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2"><MdEmail /> EMAIL</h2>
+                            <h2 className="text-xl text-base-content font-semibold mb-4 flex items-center gap-2"><MdEmail /> EMAIL</h2>
                             <div className="space-y-2">
                                 <p>fatimatuzjohora1999@gmail.com</p>
                                 <p>aminul254237@gmail.com</p>
@@ -51,14 +72,14 @@ const ContactUs = () => {
 
                         {/* Address */}
                         <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
-                            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2"><FaLocationDot /> ADDRESS</h2>
+                            <h2 className="text-xl text-base-content font-semibold mb-4 flex items-center gap-2"><FaLocationDot /> ADDRESS</h2>
                             <div className="space-y-2">
-                                <p>123 Main Street</p>
-                                <p>City Name</p>
-                                <p>District</p>
-                                <p>Post Code</p>
-                                <p>Country</p>
-                                <p>Landmark (if any)</p>
+                                <p>Dhaka, Bangladesh</p>
+                                <p>Kuala Lumpur, Malaysia</p>
+                                <p>London, UK</p>
+                                <p>Dhaka, Bangladesh</p>
+                                <p>Dhaka, Bangladesh</p>
+                                <p>Dhaka, Bangladesh</p>
                             </div>
                         </div>
                     </div>
