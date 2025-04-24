@@ -10,14 +10,16 @@ import WhyUs from "../Components/WhyUs/WhyUs";
 import PopularCourse from "../Components/MostPopular/PopularCourse";
 import Pro from "../Components/PremiumCourse/Pro";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
+import Category from "@/Components/Category/Category";
 
 export default function HomePage() {
   return (
     <>
       <Banner></Banner>
       <div className="container w-11/12 mx-auto">
-        <section className="my-10 lg:my-20">
-          <AllCourses></AllCourses>
+        <section className="my-10 lg:my-20"> 
+        <Category/>
+          <AllCourses></AllCourses> 
         </section>
         <section>
           <FreeCourses></FreeCourses>
