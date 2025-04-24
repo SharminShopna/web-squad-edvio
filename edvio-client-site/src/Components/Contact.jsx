@@ -8,7 +8,7 @@ import email from "../../src/assets/email.json";
 import Lottie from "lottie-react";
 import SectionTitle from "../Shared/SectionTitle";
 import "../Shared/Pro.css";
-const ContactUs = () => {
+const Contact = () => {
   const form = useRef();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const ContactUs = () => {
                 <input
                   type="text"
                   name="user_name"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Name"
                   required
                 />
@@ -87,7 +87,7 @@ const ContactUs = () => {
                 <input
                   type="email"
                   name="user_email"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Email"
                   required
                 />
@@ -99,7 +99,7 @@ const ContactUs = () => {
                 </label>
                 <textarea
                   name="message"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2 bg-TealGreen"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-black bg-white"
                   placeholder="Your Message"
                   required
                 ></textarea>
@@ -120,4 +120,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Contact;
