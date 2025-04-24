@@ -13,9 +13,55 @@ const ContactUs = () => {
                 <div className='w-11/12 mx-auto'>
                     <Contact></Contact>
                 </div>
-               <div>
-                
-               </div>
+                {/* Contact Information */}
+                <div>
+                    <h1 className='text-5xl text-center text-base-content'>CONTACT INFORMATION</h1>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        {/* Phone & WhatsApp */}
+                        <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
+                            <h2 className="text-xl font-semibold mb-4">📞 PHONE & WHATSAPP</h2>
+                            <div className="space-y-2">
+                                <div className='flex gap-1'>
+                                <img src={bg} alt="" className='h-12 w-12 rounded-full' />
+                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
+                                </div>
+                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
+                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
+                                <a href="tel:11111" className="block text-blue-600 hover:underline">11111</a>
+                                <a href="tel:1111" className="block text-blue-600 hover:underline">1111</a>
+                                <a href="tel:1111" className="block text-blue-600 hover:underline">1111</a>
+                            </div>
+                        </div>
+
+                        {/* Email */}
+                        <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
+                            <h2 className="text-xl font-semibold mb-4">📧 EMAIL</h2>
+                            <div className="space-y-2">
+                                <p>example1@gmail.com</p>
+                                <p>example2@gmail.com</p>
+                                <p>example3@gmail.com</p>
+                                <p>example4@gmail.com</p>
+                                <p>example5@gmail.com</p>
+                                <p>example6@gmail.com</p>
+                            </div>
+                        </div>
+
+                        {/* Address */}
+                        <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
+                            <h2 className="text-xl font-semibold mb-4">🏠 ADDRESS</h2>
+                            <div className="space-y-2">
+                                <p>123 Main Street</p>
+                                <p>City Name</p>
+                                <p>District</p>
+                                <p>Post Code</p>
+                                <p>Country</p>
+                                <p>Landmark (if any)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
         </div>
