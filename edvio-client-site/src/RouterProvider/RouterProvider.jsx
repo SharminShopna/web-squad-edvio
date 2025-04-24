@@ -30,6 +30,7 @@ import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
 import InstructorCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorCourse";
 import TeachingSchedule from "@/Components/Dashboard/InstructorDashBoard/TeachingSchedule";
+import Payment from "@/Components/Payment/Payment";
 
 export default function RouterProvider() {
   return (
@@ -40,7 +41,6 @@ export default function RouterProvider() {
         <Route path="courseDetails/:id" element={<DetailsCoursePage />} />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="all-courses" element={<AllCourses />} />
-        <Route path="cart" element={<Cart />} />
         <Route path="payment" element={<Payment />} />
       </Route>
 

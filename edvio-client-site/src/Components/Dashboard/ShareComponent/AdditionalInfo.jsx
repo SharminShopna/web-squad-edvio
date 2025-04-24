@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import AdditionalEditProfileModal from './ProfileEdit/AdditionalEditProfileModal';
 
 export default function AdditionalInfo() {
-    const {userData} = useOneUser();
+    const {userData,refetch} = useOneUser();
     const {pathname} = useLocation();
     const isExist = pathname === '/dashboard/edit-profile'
   return (
@@ -29,27 +29,35 @@ export default function AdditionalInfo() {
           </div>
           <div>
             <h3 className="text-xl font-medium text-TealGreen">Age</h3>
-            <p className="mt-2">N/A</p>
+            <p className="mt-2">{userData?.additional?.age ? userData?.additional?.age : "N/A"}</p>
           </div>
          </div>
          <div className="grid grid-cols-1 lg:grid-cols-2 mt-10">
           <div>
             <h3 className="text-xl font-medium text-TealGreen">Primary Device Type</h3>
-            <p className="mt-2">N/A</p>
+            <p className="mt-2">{userData?.additional?.primaryDeviceType ? userData?.additional?.primaryDeviceType : "N/A"}</p>
           </div>
           <div>
             <h3 className="text-xl font-medium text-TealGreen">Internet Type</h3>
-            <p className="mt-2">N/A</p>
+            <p className="mt-2">{userData?.additional?.internetType ?userData?.additional?.internetType : "N/A"}</p>
           </div>
          </div>
          <div className="grid grid-cols-1 lg:grid-cols-2 mt-10">
           <div>
             <h3 className="text-xl font-medium text-TealGreen">Years Of Experience</h3>
-            <p className="mt-2">N/A</p>
+            <p className="mt-2">{userData?.additional?.yearsOfExperience ?userData?.additional?.yearsOfExperience : "N/A"}</p>
           </div>
           <div>
             <h3 className="text-xl font-medium text-TealGreen">Employment Role</h3>
-            <p className="mt-2">N/A</p>
+            <p className="mt-2">{
+              userData?.role === 'admin' && <span>Admin</span >
+            }
+            {
+            userData?.role === 'instructor' && <span>Instructor</span>
+            }
+            {
+            userData?.role === 'student' && <span>Student</span>
+            }</p>
           </div>
          </div>
         </div>

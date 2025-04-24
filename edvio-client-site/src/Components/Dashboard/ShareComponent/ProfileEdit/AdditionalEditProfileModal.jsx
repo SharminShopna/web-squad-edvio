@@ -25,7 +25,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 export default function AdditionalEditProfileModal() {
-   const [open, setOpen] = useState(true); // Modal state
+   const [open, setOpen] = useState(false); 
   const axiosSecure = useAxiosSecure();
   const {userData,refetch} = useOneUser();
   const additionalInfo = async (e)=>{
@@ -43,12 +43,36 @@ export default function AdditionalEditProfileModal() {
       const res = await axiosSecure.put(`/user/${userData?.email}`, additional);
       console.log(res.data)
 
-      if(res?.data?.acknowledged && res?.data?.matchedCount > 0){
-        toast("Additional Information is update successfully")
-        setOpen(false); 
+    if (res?.data?.acknowledged && res?.data?.matchedCount > 0) {
+     toast(
+  <div className="bg-green-100 text-TealGreen font-semibold shadow-md px-4 py-3 rounded-md">
+    Additional Information is updated successfully
+  </div>
+)
+
+   refetch();
+  setOpen(false); 
+
       }
     } catch (err) {
       console.error("Error updating user:", err);
+      toast.custom(() => (
+  <div className="bg-red-100 p-4 rounded shadow-md flex items-center justify-between gap-4">
+  <div>
+      <p className="text-red-600 text-sm font-medium">Uh oh! Something went wrong.</p>
+    <p className="text-red-500 text-xs">There was a problem with your request.</p>
+  </div>
+    <button
+      className="border-[1px] border-red-300 text-red-600 text-sm py-1 px-2 rounded-lg"
+      onClick={() => {
+        setOpen(true)
+        toast.dismiss();
+      }}
+    >
+      Try again
+    </button>
+  </div>
+))
     }
 
   }
