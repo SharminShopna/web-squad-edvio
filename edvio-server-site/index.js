@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
+const stripe = require('stripe')('sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ');
 
 // app.use(cors());
 app.use(
@@ -83,6 +84,28 @@ async function run() {
           success: false,
           message: "Failed to add review. Please try again later.",
         });
+      }
+    });
+
+
+    // stripe
+    app.post('/create-payment-intent', async (req, res) => {
+      try {
+        const { price } = req.body;
+        const amount = parseInt(price * 100); // Convert to cents
+        
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount: amount,
+          currency: 'usd',
+          payment_method_types: ['card'],
+        });
+    
+        res.status(200).json({
+          clientSecret: paymentIntent.client_secret,
+        });
+      } catch (error) {
+        console.error('Error creating payment intent:', error);
+        res.status(500).json({ error: error.message });
       }
     });
 
