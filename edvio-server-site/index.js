@@ -411,7 +411,6 @@ app.put('/user/:email', async (req, res) => {
     const email = req.params.email;
     const query = { email: email };
     const updateData = req.body;
-
     const update = { $set: {} };
 
     // Only set 'additional' if it's provided
@@ -444,7 +443,24 @@ app.put('/user/:email', async (req, res) => {
         }
       };
     }
-
+    if(updateData.educationLevel || updateData.internetType || updateData.degreeTitle || updateData.graduationYear || updateData.currentYear || updateData.cgpa){
+      update.$set.education = {
+        educationLevel: updateData.educationLevel,
+        internetType: updateData.internetType,
+        degreeTitle: updateData.degreeTitle,
+        graduationYear: updateData.graduationYear,
+        currentYear: updateData.currentYear,
+        cgpa: updateData.cgpa
+      }
+    }
+    if(updateData.cvLink || updateData.githubProfile || updateData.portfolioLink || updateData.linkedinProfile){
+      update.$set.links = {
+        cvLink: updateData.cvLink,
+        githubProfile: updateData.githubProfile,
+        portfolioLink: updateData.portfolioLink,
+        linkedinProfile: updateData.linkedinProfile,
+      }
+    }
     const result = await usersCollection.updateOne(query, update);
     res.send(result);
 
