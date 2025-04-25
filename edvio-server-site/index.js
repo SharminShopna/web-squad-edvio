@@ -109,6 +109,48 @@ async function run() {
       }
     });
 
+    // stripe payment
+    // Add this to your server.js file, inside the run() function
+
+// Save payment data endpoint
+  // app.post("/save-payment", async (req, res) => {
+  //   try {
+  //     const paymentData = req.body;
+      
+  //     // Basic validation
+  //     if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "Missing required payment data"
+  //       });
+  //     }
+
+  //     // Add timestamp
+  //     paymentData.paymentDate = new Date();
+      
+  //     // Insert into MongoDB
+  //     const result = await buyCourse.insertOne(paymentData);
+
+  //     res.status(201).json({
+  //       success: true,
+  //       message: "Payment data saved successfully",
+  //       data: result
+  //     });
+  //   } catch (error) {
+  //     console.error("Error saving payment data:", error);
+  //     res.status(500).json({
+  //       success: false,
+  //       message: "Failed to save payment data",
+  //       error: error.message
+  //     });
+  //   }
+  // });
+
+
+
+
+
+
     // Role
     app.get("/getRole/:email", async (req, res) => {
       const email = req.params.email;

@@ -145,7 +145,7 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto border p-6 rounded-lg">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto border p-6 rounded-lg m-10">
       <label className="block text-sm font-bold mb-2">Card Number</label>
       <div className="border p-2 mb-4 rounded-md">
         <CardNumberElement options={CARD_ELEMENT_OPTIONS} />
