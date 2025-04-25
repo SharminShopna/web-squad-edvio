@@ -17,7 +17,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { totalPrice, user } = useContext(AuthContext);
-  console.log(user)
+  // console.log(user)
   
   const CARD_ELEMENT_OPTIONS = {
     style: {
@@ -37,56 +37,113 @@ const CheckoutForm = () => {
     },
   };
 
-  useEffect(()=>{
-    axiosSecure.post('/create-payment-intent', {price : totalPrice})
-    .then(res =>{
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    })
-  }, [axiosSecure, totalPrice])
+  // useEffect(()=>{
+  //   axiosSecure.post('/create-payment-intent', {price : totalPrice})
+  //   .then(res =>{
+  //     console.log(res.data.clientSecret);
+  //     setClientSecret(res.data.clientSecret);
+  //   })
+  // }, [axiosSecure, totalPrice])
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   if (!stripe || !elements) {
+  //     return;
+  //   }
+
+  //   const card = elements.getElement(CardNumberElement);
+
+  //   // payment method
+  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
+  //     type: 'card',
+  //     card
+  //   });
+
+  //   if (error) {
+  //     console.error(error);
+  //     setError(error.message);
+  //   } else {
+  //     console.log('PaymentMethod:', paymentMethod);
+  //     // You can send paymentMethod.id to your backend for further processing
+  //     setError('');
+  //   }
+
+  //   // confirm payment
+  //   const {paymentIntent, error : confirmError} = await stripe.confirmCardPayment(clientSecret, {
+  //     payment_method : {
+  //       card : card,
+  //       billing_details : {
+  //         email : user?.email || 'Anonymous',
+  //         name : user?.displayName || 'Anonymous'
+  //       }
+  //     }
+  //   });
+  //   if(confirmError){
+  //     console.log('Confirm Error')
+  //   }
+  //   else{
+  //     console.log('Payment Intent', paymentIntent)
+  //   }
+  // };
+  useEffect(() => {
+    if (totalPrice > 0) {
+      axiosSecure.post('/create-payment-intent', { price: totalPrice })
+        .then(res => {
+          console.log("Payment Intent Created:", res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        })
+        .catch(error => {
+          console.error("Error creating payment intent:", error);
+          setError("Failed to initialize payment. Please try again.");
+        });
+    }
+  }, [axiosSecure, totalPrice]);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setError('');
+  
     if (!stripe || !elements) {
+      setError("Stripe hasn't loaded yet. Please wait.");
       return;
     }
-
+  
     const card = elements.getElement(CardNumberElement);
-
-    // payment method
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card
-    });
-
-    if (error) {
-      console.error(error);
-      setError(error.message);
-    } else {
-      console.log('PaymentMethod:', paymentMethod);
-      // You can send paymentMethod.id to your backend for further processing
-      setError('');
-    }
-
-    // confirm payment
-    const {paymentIntent, error : confirmError} = await stripe.confirmCardPayment(clientSecret, {
-      payment_method : {
-        card : card,
-        billing_details : {
-          email : user?.email || 'Anonymous',
-          name : user?.displayName || 'Anonymous'
+  
+    try {
+      // Confirm the payment
+      const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || 'Anonymous',
+            name: user?.displayName || 'Anonymous'
+          }
         }
+      });
+  
+      if (confirmError) {
+        console.error('Payment confirmation error:', confirmError);
+        setError(confirmError.message);
+      } else {
+        console.log('Payment succeeded:', paymentIntent);
+        // Here you would typically update your database that the payment was successful
+        // For example:
+        // await axiosSecure.post('/save-payment', { 
+        //   paymentId: paymentIntent.id,
+        //   amount: paymentIntent.amount,
+        //   courses: cartItems 
+        // });
+        
+        // Show success message or redirect
+        alert('Payment successful!');
       }
-    });
-    if(confirmError){
-      console.log('Confirm Error')
-    }
-    else{
-      console.log('Payment Intent', paymentIntent)
+    } catch (err) {
+      console.error('Error during payment:', err);
+      setError(err.message);
     }
   };
-
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto border p-6 rounded-lg">
       <label className="block text-sm font-bold mb-2">Card Number</label>
