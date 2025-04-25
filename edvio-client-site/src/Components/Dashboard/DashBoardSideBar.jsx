@@ -28,7 +28,6 @@ import { TbUsersGroup } from "react-icons/tb";
 
 export default function DashBoardSideBar() {
   const { userData } = useOneUser();
-   console.log(userData)
   // State to track which submenu is open
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -95,7 +94,7 @@ export default function DashBoardSideBar() {
         label: "Add Course",
       },
       {
-        path: "/dashboard/instructor/my-courses",
+        path: "/dashboard/dashboard/my-courses",
         icon: <IoLibrary />,
         label: "My Courses",
       },
