@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -11,7 +10,6 @@ import useAxiosPublic from "@/Hooks/useAxiosPublic";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [openMenu, setOpenMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
@@ -36,46 +34,14 @@ const Navbar = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  const handleMenuClick = (index) => {
-    setOpenMenu(openMenu === index ? null : index);
-  };
-
   const menuItems = [
-    {
-      name: "Home",
-      link: "/",
-      subMenu: [
-        { name: "Option 1", path: "/option-1" },
-        { name: "Option 2", path: "/option-2" },
-      ],
-    },
-    {
-      name: "Courses",
-      link: "/courses",
-      subMenu: [
-        { name: "Category 1", path: "/courses/category-1" },
-        { name: "Category 2", path: "/courses/category-2" },
-      ],
-    },
-    {
-      name: "Feature",
-      link: "/pages",
-      subMenu: [
-        { name: "Page 1", path: "/pages/page-1" },
-        { name: "Page 2", path: "/pages/page-2" },
-      ],
-    },
-    {
-      name: "Blogs",
-      link: "/blog",
-      subMenu: [
-        { name: "Blog 1", path: "/blog/blog-1" },
-        { name: "Blog 2", path: "/blog/blog-2" },
-      ],
-    },
-    { name: "About Us", link: "/about-us", subMenu: [] },
-    { name: "Contact Us", link: "/contact", subMenu: [] },
-    ...(user ? [{ name: "Dashboard", link: "/dashboard", subMenu: [] }] : []),
+    { name: "Home", link: "/" },
+    { name: "Courses", link: "/courses" },
+    { name: "Feature", link: "/feature" },
+    { name: "Blogs", link: "/blog" },
+    { name: "About Us", link: "/about-us" },
+    { name: "Contact Us", link: "/contact" },
+    ...(user ? [{ name: "Dashboard", link: "/dashboard" }] : []),
   ];
 
   return (
@@ -109,43 +75,13 @@ const Navbar = () => {
         <nav className="py-3 px-6 flex justify-between items-center z-50">
           <ul className="hidden md:flex gap-6">
             {menuItems.map((item, index) => (
-              <li
-                key={index}
-                className="relative group"
-                onMouseEnter={() => setOpenMenu(index)}
-                onMouseLeave={() => setOpenMenu(null)}
-              >
+              <li key={index} className="relative group">
                 <NavLink
                   to={item.link}
                   className="flex items-center text-white cursor-pointer gap-1 text-[18px] hover:text-yellow-400 transition-colors"
-                  onClick={() => handleMenuClick(index)}
                 >
-                  {item.name} {item.subMenu.length > 0 && <IoIosArrowDown />}
+                  {item.name}
                 </NavLink>
-                <AnimatePresence>
-                  {openMenu === index && item.subMenu.length > 0 && (
-                    <motion.ul
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="absolute -left-12 top-[55px] bg-TealGreen text-white shadow-md py-2 w-40"
-                    >
-                      {item.subMenu.map((subItem, subIndex) => (
-                        <li
-                          key={subIndex}
-                          className="px-4 py-2 mx-2 rounded-lg hover:bg-gray-600 cursor-pointer"
-                        >
-                          <NavLink
-                            to={subItem.path}
-                            onClick={() => setOpenMenu(null)}
-                          >
-                            {subItem.name}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
               </li>
             ))}
           </ul>
@@ -165,35 +101,9 @@ const Navbar = () => {
                       <NavLink
                         to={item.link}
                         className="flex items-center gap-1 cursor-pointer hover:text-yellow-400 transition-colors"
-                        onClick={() => handleMenuClick(index)}
                       >
-                        {item.name}{" "}
-                        {item.subMenu.length > 0 && <IoIosArrowDown />}
+                        {item.name}
                       </NavLink>
-                      <AnimatePresence>
-                        {openMenu === index && item.subMenu.length > 0 && (
-                          <motion.ul
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="p-4 mt-2 bg-LightTeal text-black rounded-lg"
-                          >
-                            {item.subMenu.map((subItem, subIndex) => (
-                              <li
-                                key={subIndex}
-                                className="px-4 py-2 cursor-pointer hover:text-white rounded-lg hover:bg-gray-600"
-                              >
-                                <NavLink
-                                  to={subItem.path}
-                                  onClick={() => setOpenMenu(null)}
-                                >
-                                  {subItem.name}
-                                </NavLink>
-                              </li>
-                            ))}
-                          </motion.ul>
-                        )}
-                      </AnimatePresence>
                     </li>
                   ))}
                 </ul>
