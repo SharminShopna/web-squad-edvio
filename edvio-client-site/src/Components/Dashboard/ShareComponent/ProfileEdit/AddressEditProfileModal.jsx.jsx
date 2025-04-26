@@ -67,7 +67,7 @@ export default function AddressEditProfileModal() {
       if (res?.data?.acknowledged && res?.data?.matchedCount > 0) {
        toast(
     <div className="bg-green-100 text-TealGreen font-semibold shadow-md px-4 py-3 rounded-md">
-      Address Information is updated successfully
+    Address information has been updated successfully
     </div>
   )
   

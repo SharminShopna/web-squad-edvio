@@ -90,9 +90,9 @@ export default function EducationalEditProfileModal() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className={'text-xl opacity-90'}>Additional Info Update</DialogTitle>
+          <DialogTitle className={'text-xl opacity-90'}>Educational Info Update</DialogTitle>
           <DialogDescription className={'text-sm text-gray-400 opacity-70'}>
-            Make changes to your additional info. Click save when you're done.
+            Make changes to your educational info. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
         <form action="" onSubmit={educationalInfo}>
@@ -177,13 +177,7 @@ export default function EducationalEditProfileModal() {
 </div>
 
 
-    {/* <div>
-            <Label htmlFor="currentYear" className="text-left mb-2 block">Current Year</Label>
-     <Input type="text" name="currentYear" placeholder=" Current Year"   defaultValue={userData?.education?.currentYear}
-      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
-
-    </div> */}
     <div>
             <Label  className="text-left mb-2 block">CGPA (Optional)</Label>
      <Input type="text" name="cgpa" placeholder="CGPA (Optional)"   defaultValue={userData?.education?.cgpa}

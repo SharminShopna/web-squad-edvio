@@ -23,29 +23,27 @@ import useAxiosSecure from '@/Hooks/useAxiosSecure'
 import useOneUser from '@/Hooks/useOneUser'
 import { useState } from "react"
 import { toast } from "sonner"
-
-export default function ImportantLinksEditModal() {
+export default function BasicInfoEditModal() {
    const [open, setOpen] = useState(false); 
     const axiosSecure = useAxiosSecure();
     const {userData,refetch} = useOneUser();
-    const importantLinksInfo = async (e)=>{
+    const basicInfo = async (e)=>{
         e.preventDefault();
-         const cvLink = e.target.cvLink.value;
-         const githubProfile = e.target.githubProfile.value;
-         const portfolioLink = e.target.portfolioLink.value;
-         const linkedinProfile = e.target.linkedinProfile.value;
-         const links = {
-          cvLink, githubProfile, portfolioLink, linkedinProfile
+         const name = e.target.name.value;
+         const email = e.target.email.value;
+         const phoneNumber = e.target.phoneNumber.value;
+         const basicInfo = {
+          name,email,phoneNumber,
          }
         
-        
             try {
-        const res = await axiosSecure.put(`/user/${userData?.email}`, links );
+        const res = await axiosSecure.put(`/user/${userData?.email}`,basicInfo);
+        
   
       if (res?.data?.acknowledged && res?.data?.matchedCount > 0) {
        toast(
     <div className="bg-green-100 text-TealGreen font-semibold shadow-md px-4 py-3 rounded-md">
-      Important Links are updated successfully
+      Basic Information is updated successfully
     </div>
   )
   
@@ -75,49 +73,62 @@ export default function ImportantLinksEditModal() {
       }
   
     }
+  
   return (
-    <div>
+  <div>
 <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
        <FaRegEdit  className="text-2xl cursor-pointer text-white"/>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className={'text-xl opacity-90'}>Important Links Update</DialogTitle>
+          <DialogTitle className={'text-xl opacity-90'}>Basic Info Update</DialogTitle>
           <DialogDescription className={'text-sm text-gray-400 opacity-70'}>
-            Make changes to your important links. Click save when you're done.
+            Make changes to your Basic info. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
-        <form action="" onSubmit={importantLinksInfo}>
+        <form action="" onSubmit={basicInfo}>
 
         <div className="grid gap-4 py-4 opacity-90">
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
   
     <div>
-      <Label  className="text-left mb-2 block">CV link (Google Drive)</Label>
-      <Input type="url" name="cvLink" placeholder="CV link (Google Drive)"   defaultValue={userData?.links?.cvLink}
-      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
+      <Label className="text-left mb-2 block">Full Name</Label>
+      <Input type="text" name="name" placeholder="Full Name"   defaultValue={userData?.name}
+      readOnly
+  disabled
+  className="border-TealGreen bg-gray-500 cursor-not-allowed text-gray-100" />
     </div>
     <div>
-      <Label  className="text-left mb-2 block">Github Profile</Label>
-      <Input type="url" name="githubProfile" placeholder="Github Profile"   defaultValue={userData?.links?.githubProfile}
-      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
+      <Label className="text-left mb-2 block">Email</Label>
+      <Input type="mail" name="email" placeholder="Email"   defaultValue={userData?.email}
+        readOnly
+  disabled
+  className="border-TealGreen bg-gray-500 cursor-not-allowed text-gray-100"/>
     </div>
     <div>
-      <Label  className="text-left mb-2 block">Portfolio link</Label>
-      <Input type="url" name="portfolioLink" placeholder="Portfolio link"   defaultValue={userData?.links?.portfolioLink}
-      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
+      <Label className="text-left mb-2 block">Id</Label>
+      <Input type="mail" name="id" placeholder="Id"   defaultValue={userData?._id}
+        readOnly
+  disabled
+  className="border-TealGreen bg-gray-500 cursor-not-allowed text-gray-100"/>
     </div>
     <div>
-      <Label  className="text-left mb-2 block">LinkedIn Profile link</Label>
-      <Input type="url" name="linkedinProfile" placeholder="LinkedIn Profile link"   defaultValue={userData?.links?.linkedinProfile}
+      <Label className="text-left mb-2 block">Mobile Number</Label>
+      <Input type="phone" name="phoneNumber" placeholder="Mobile Number
+"   defaultValue={userData?.phoneNumber}
       className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
     </div>
 
+  
 
+
+
+
+    </div>
   </div>
-</div>
+
         <DialogFooter>
           <Button type="submit" className={'text-lg bg-TealGreen'}>Save changes</Button>
         </DialogFooter>

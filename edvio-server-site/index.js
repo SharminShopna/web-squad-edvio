@@ -477,7 +477,13 @@ app.put('/user/:email', async (req, res) => {
     const query = { email: email };
     const updateData = req.body;
     const update = { $set: {} };
-
+      if(updateData.name || updateData.email || updateData.phoneNumber){
+        update.$set = {
+          name: updateData?.name,
+          email: updateData?.email,
+          phoneNumber: updateData?.phoneNumber,
+        }
+      }
     // Only set 'additional' if it's provided
     if (updateData.gender || updateData.age || updateData.primaryDeviceType || updateData.internetType || updateData.yearsOfExperience) {
       update.$set.additional = {
@@ -511,7 +517,7 @@ app.put('/user/:email', async (req, res) => {
     if(updateData.educationLevel || updateData.internetType || updateData.degreeTitle || updateData.graduationYear || updateData.currentYear || updateData.cgpa){
       update.$set.education = {
         educationLevel: updateData.educationLevel,
-        internetType: updateData.internetType,
+        institutionName: updateData.institutionName,
         degreeTitle: updateData.degreeTitle,
         graduationYear: updateData.graduationYear,
         currentYear: updateData.currentYear,
