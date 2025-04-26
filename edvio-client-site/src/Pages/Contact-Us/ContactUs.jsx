@@ -25,7 +25,7 @@ const ContactUs = () => {
                 <div>
                     <h1 className='text-5xl text-center text-base-content'>CONTACT INFORMATION</h1>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 mt-12">
                         {/* Phone & WhatsApp */}
                         <div className="shadow-lg p-4 rounded-xl bg-neutral border border-base-content border-dashed">
                             <h2 className="text-xl text-base-content font-semibold mb-4 flex items-center gap-2 "><MdOutlinePhoneInTalk /> PHONE & WHATSAPP</h2>

@@ -41,7 +41,7 @@ export default function AdditionalEditProfileModal() {
       
           try {
       const res = await axiosSecure.put(`/user/${userData?.email}`, additional);
-      console.log(res.data)
+      
 
     if (res?.data?.acknowledged && res?.data?.matchedCount > 0) {
      toast(
@@ -119,17 +119,17 @@ export default function AdditionalEditProfileModal() {
     <div>
       <Label htmlFor="ageRange" className="text-left mb-2 block">Age</Label>
       <Input type="number" name="age" placeholder="Age"   defaultValue={userData?.additional?.age}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
     </div>
 
     {/* Primary Device Type */}
     <div>
       <Label htmlFor="deviceType" className="text-left mb-2 block">Primary Device Type</Label>
   <Select name="device" defaultValue={userData?.additional?.primaryDeviceType}>
-    <SelectTrigger className="w-full border-TealGreen">
+    <SelectTrigger className="w-full border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen">
       <SelectValue placeholder="Select your primary device" />
     </SelectTrigger>
-    <SelectContent className={'bg-white/10 backdrop-blur-md'}>
+    <SelectContent className={'bg-white/10 backdrop-blur-md border-TealGreen'}>
       <SelectItem value="Desktop">Desktop</SelectItem>
       <SelectItem value="Laptop">Laptop</SelectItem>
       <SelectItem value="Tablet">Tablet</SelectItem>
@@ -143,10 +143,10 @@ export default function AdditionalEditProfileModal() {
     <div>
       <Label htmlFor="internetType" className="text-left mb-2 block">Internet Type</Label>
   <Select name="internetType" defaultValue={userData?.additional?.internetType}>
-  <SelectTrigger className="w-full p-2 border-TealGreen rounded-md">
+  <SelectTrigger className="w-full p-2 border-TealGreen rounded-md bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen">
     <SelectValue placeholder="Select Internet Type" />
   </SelectTrigger>
-  <SelectContent className={'bg-white/10 backdrop-blur-md'}>
+  <SelectContent className={'bg-white/10 backdrop-blur-md border-TealGreen'}>
     <SelectItem value="Wi-Fi">Wi-Fi</SelectItem>
     <SelectItem value="Mobile Data">Mobile Data</SelectItem>
     <SelectItem value="Broadband">Broadband</SelectItem>
@@ -159,10 +159,10 @@ export default function AdditionalEditProfileModal() {
     <div>
       <Label htmlFor="experience" className="text-left mb-2 block">Years of Experience</Label>
     <Select name="experience" defaultValue={userData?.additional?.yearsOfExperience}>
-  <SelectTrigger className="w-full p-2 border-TealGreen rounded-md">
+  <SelectTrigger className="w-full p-2 border-TealGreen rounded-md bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen">
     <SelectValue placeholder="Years of Experience" />
   </SelectTrigger>
-  <SelectContent className={'bg-white/10 backdrop-blur-md'}>
+  <SelectContent className={'bg-white/10 backdrop-blur-md border-TealGreen'}>
     <SelectItem value="0-1">0–1</SelectItem>
     <SelectItem value="1-3">1–3</SelectItem>
     <SelectItem value="3-5">3–5</SelectItem>
