@@ -34,13 +34,11 @@ import Payment from "@/Components/Payment/Payment";
 import CourseAnalytics from "@/Components/Dashboard/InstructorDashBoard/CourseAnalytucs";
 import Blog from "@/Components/Blog/Blog";
 import BlogDetails from "@/Components/Blog/BlogDetails";
-import ContactUs from "@/Components/ContactUs";
 import Feature from "@/Components/Feature/feature";
 
 import ContactUs from "@/Pages/Contact-Us/ContactUs";
 
 import Cart from "@/Components/Cart/Cart";
-
 
 export default function RouterProvider() {
   return (
