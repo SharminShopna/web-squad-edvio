@@ -1,90 +1,177 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+  useStripe,
+  useElements
+} from '@stripe/react-stripe-js';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
+// import { useCart } from '@/Hooks/useCart';
+import { AuthContext } from '@/AuthProvider/AuthProvider';
 
-const PaymentHistory = () => {
-  // Sample data (You can replace this with real data from an API)
-  const paymentData = [
-    { id: '123', date: '2025-04-01', amount: 100, method: 'Credit Card', status: 'Completed' },
-    { id: '124', date: '2025-04-02', amount: 50, method: 'PayPal', status: 'Pending' },
-    { id: '125', date: '2025-04-03', amount: 200, method: 'Debit Card', status: 'Completed' },
-    { id: '126', date: '2025-04-04', amount: 120, method: 'Bank Transfer', status: 'Failed' },
-    // Add more sample data
-  ];
+const CheckoutForm = () => {
+  const [error, setError] = useState('')
+  const stripe = useStripe();
+  const [clientSecret, setClientSecret] = useState('');
+  const [trasnactionId, setTransactionId] = useState('');
+  const elements = useElements();
+  const axiosSecure = useAxiosSecure();
+  const { totalPrice, user } = useContext(AuthContext);
+  // console.log(user)
+  
+  const CARD_ELEMENT_OPTIONS = {
+    style: {
+      base: {
+        color: '#ffffff',
+        fontSize: '16px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a',
+      },
+    },
+  };
 
-  const [filter, setFilter] = useState('All'); // Filter by status
-  const [search, setSearch] = useState(''); // Search by payment ID
+  // useEffect(()=>{
+  //   axiosSecure.post('/create-payment-intent', {price : totalPrice})
+  //   .then(res =>{
+  //     console.log(res.data.clientSecret);
+  //     setClientSecret(res.data.clientSecret);
+  //   })
+  // }, [axiosSecure, totalPrice])
 
-  // Filter and search logic
-  const filteredPayments = paymentData.filter(payment => {
-    const matchesFilter = filter === 'All' || payment.status === filter;
-    const matchesSearch = payment.id.includes(search);
-    return matchesFilter && matchesSearch;
-  });
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
 
+  //   if (!stripe || !elements) {
+  //     return;
+  //   }
+
+  //   const card = elements.getElement(CardNumberElement);
+
+  //   // payment method
+  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
+  //     type: 'card',
+  //     card
+  //   });
+
+  //   if (error) {
+  //     console.error(error);
+  //     setError(error.message);
+  //   } else {
+  //     console.log('PaymentMethod:', paymentMethod);
+  //     // You can send paymentMethod.id to your backend for further processing
+  //     setError('');
+  //   }
+
+  //   // confirm payment
+  //   const {paymentIntent, error : confirmError} = await stripe.confirmCardPayment(clientSecret, {
+  //     payment_method : {
+  //       card : card,
+  //       billing_details : {
+  //         email : user?.email || 'Anonymous',
+  //         name : user?.displayName || 'Anonymous'
+  //       }
+  //     }
+  //   });
+  //   if(confirmError){
+  //     console.log('Confirm Error')
+  //   }
+  //   else{
+  //     console.log('Payment Intent', paymentIntent)
+  //   }
+  // };
+  useEffect(() => {
+    if (totalPrice > 0) {
+      axiosSecure.post('/create-payment-intent', { price: totalPrice })
+        .then(res => {
+          console.log("Payment Intent Created:", res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        })
+        .catch(error => {
+          console.error("Error creating payment intent:", error);
+          setError("Failed to initialize payment. Please try again.");
+        });
+    }
+  }, [axiosSecure, totalPrice]);
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError('');
+  
+    if (!stripe || !elements) {
+      setError("Stripe hasn't loaded yet. Please wait.");
+      return;
+    }
+  
+    const card = elements.getElement(CardNumberElement);
+  
+    try {
+      // Confirm the payment
+      const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || 'Anonymous',
+            name: user?.displayName || 'Anonymous'
+          }
+        }
+      });
+  
+      if (confirmError) {
+        console.error('Payment confirmation error:', confirmError);
+        setError(confirmError.message);
+      } else {
+        console.log('Payment succeeded:', paymentIntent);
+        // Here you would typically update your database that the payment was successful
+        // For example:
+        // await axiosSecure.post('/save-payment', { 
+        //   paymentId: paymentIntent.id,
+        //   amount: paymentIntent.amount,
+        //   courses: cartItems 
+        // });
+        
+        // Show success message or redirect
+        alert('Payment successful!');
+      }
+    } catch (err) {
+      console.error('Error during payment:', err);
+      setError(err.message);
+    }
+  };
   return (
-    <div className="p-6 bg-darkTeal min-h-screen">
-      <h2 className="text-3xl font-bold text-center text-teal-600 mb-6">Payment History</h2>
-
-      {/* Filter and Search Section */}
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex gap-4">
-          {/* Filter Dropdown */}
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="p-2 rounded-lg border border-teal-300 text-teal-600"
-          >
-            <option value="All">All Statuses</option>
-            <option value="Completed">Completed</option>
-            <option value="Pending">Pending</option>
-            <option value="Failed">Failed</option>
-          </select>
-
-          {/* Search Bar */}
-          <input
-            type="text"
-            placeholder="Search by Payment ID"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="p-2 rounded-lg border border-teal-300 text-teal-600"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto border p-6 rounded-lg">
+      <label className="block text-sm font-bold mb-2">Card Number</label>
+      <div className="border p-2 mb-4 rounded-md">
+        <CardNumberElement options={CARD_ELEMENT_OPTIONS} />
       </div>
 
-      {/* Payment History Table */}
-      <div className="overflow-x-auto bg-white rounded-lg shadow-md">
-        <table className="min-w-full table-auto">
-          <thead className="bg-teal-800 text-white">
-            <tr>
-              <th className="py-2 px-4 text-left">Payment ID</th>
-              <th className="py-2 px-4 text-left">Date</th>
-              <th className="py-2 px-4 text-left">Amount</th>
-              <th className="py-2 px-4 text-left">Payment Method</th>
-              <th className="py-2 px-4 text-left">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredPayments.length > 0 ? (
-              filteredPayments.map((payment) => (
-                <tr key={payment.id} className="border-b">
-                  <td className="py-2 px-4 text-teal-800">{payment.id}</td>
-                  <td className="py-2 px-4 text-teal-800">{payment.date}</td>
-                  <td className="py-2 px-4 text-teal-800">${payment.amount}</td>
-                  <td className="py-2 px-4 text-teal-800">{payment.method}</td>
-                  <td className={`py-2 px-4 ${payment.status === 'Completed' ? 'text-green-600' : payment.status === 'Pending' ? 'text-yellow-600' : 'text-red-600'}`}>
-                    {payment.status}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="py-2 px-4 text-center text-gray-600">No payments found</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      <label className="block text-sm font-bold mb-2">Expiry Date</label>
+      <div className="border p-2 mb-4 rounded-md">
+        <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
       </div>
-    </div>
+
+      <label className="block text-sm font-bold mb-2">CVC</label>
+      <div className="border p-2 mb-4 rounded-md">
+        <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
+      </div>
+
+      <button
+        type="submit"
+        disabled={!stripe || !clientSecret}
+        className="w-full mt-4 py-2 bg-teal-500 text-white font-semibold rounded-md disabled:bg-teal-300"
+      >
+        Pay
+      </button>
+      <p className='text-red-600'>{error}</p>
+    </form>
   );
 };
 
-export default PaymentHistory;
+export default CheckoutForm;

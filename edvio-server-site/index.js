@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
+const stripe = require('stripe')('sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ');
 
 // app.use(cors());
 app.use(
@@ -85,6 +86,70 @@ async function run() {
         });
       }
     });
+
+
+    // stripe
+    app.post('/create-payment-intent', async (req, res) => {
+      try {
+        const { price } = req.body;
+        const amount = parseInt(price * 100); // Convert to cents
+        
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount: amount,
+          currency: 'usd',
+          payment_method_types: ['card'],
+        });
+    
+        res.status(200).json({
+          clientSecret: paymentIntent.client_secret,
+        });
+      } catch (error) {
+        console.error('Error creating payment intent:', error);
+        res.status(500).json({ error: error.message });
+      }
+    });
+
+    // stripe payment
+    // Add this to your server.js file, inside the run() function
+
+// Save payment data endpoint
+  // app.post("/save-payment", async (req, res) => {
+  //   try {
+  //     const paymentData = req.body;
+      
+  //     // Basic validation
+  //     if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "Missing required payment data"
+  //       });
+  //     }
+
+  //     // Add timestamp
+  //     paymentData.paymentDate = new Date();
+      
+  //     // Insert into MongoDB
+  //     const result = await buyCourse.insertOne(paymentData);
+
+  //     res.status(201).json({
+  //       success: true,
+  //       message: "Payment data saved successfully",
+  //       data: result
+  //     });
+  //   } catch (error) {
+  //     console.error("Error saving payment data:", error);
+  //     res.status(500).json({
+  //       success: false,
+  //       message: "Failed to save payment data",
+  //       error: error.message
+  //     });
+  //   }
+  // });
+
+
+
+
+
 
     // Role
     app.get("/getRole/:email", async (req, res) => {
