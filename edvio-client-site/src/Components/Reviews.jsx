@@ -28,7 +28,7 @@ const Reviews = () => {
         {reviews.map((review, index) => (
           <div
             key={index}
-            className="p-4 border border-tealGreen rounded-lg shadow-md bg-neutral w-80 h-60 mx-4 flex flex-col justify-between"
+            className="p-4 mb-20 border border-tealGreen rounded-lg shadow-md bg-neutral w-80 h-60 mx-4 flex flex-col justify-between"
           >
             <div className="flex items-center gap-4 mb-2">
               <img

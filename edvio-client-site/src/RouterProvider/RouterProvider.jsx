@@ -37,6 +37,11 @@ import BlogDetails from "@/Components/Blog/BlogDetails";
 import ContactUs from "@/Components/ContactUs";
 import Feature from "@/Components/Feature/feature";
 
+import ContactUs from "@/Pages/Contact-Us/ContactUs";
+
+import Cart from "@/Components/Cart/Cart";
+
+
 export default function RouterProvider() {
   return (
     <Routes>
@@ -45,6 +50,7 @@ export default function RouterProvider() {
         <Route index element={<HomePage />} />
         <Route path="courseDetails/:id" element={<DetailsCoursePage />} />
         <Route path="about-us" element={<AboutUs />} />
+        <Route path="contact-us" element={<ContactUs />} />
         <Route path="all-courses" element={<AllCourses />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:id" element={<BlogDetails />} />
@@ -53,6 +59,7 @@ export default function RouterProvider() {
         <Route path="contact" element={<ContactUs />} />
         <Route path="Courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
+        <Route path="cart" element={<Cart></Cart>}></Route>
       </Route>
 
       {/* Authentication Routes */}

@@ -62,12 +62,12 @@ export default function AddressEditProfileModal() {
 
             try {
         const res = await axiosSecure.put(`/user/${userData?.email}`, address);
-        console.log(res.data)
+        
   
       if (res?.data?.acknowledged && res?.data?.matchedCount > 0) {
        toast(
     <div className="bg-green-100 text-TealGreen font-semibold shadow-md px-4 py-3 rounded-md">
-      Address Information is updated successfully
+    Address information has been updated successfully
     </div>
   )
   
@@ -121,31 +121,31 @@ export default function AddressEditProfileModal() {
     <div>
       <Label className="text-left mb-2 block">Your Country</Label>
       <Input type="text" name="presentCountry" placeholder="Country"   defaultValue={userData?.address?.presentAddress?.country}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">District</Label>
       <Input type="text" name="presentDistrict" placeholder="District"   defaultValue={userData?.address?.presentAddress?.district}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">Street Address</Label>
       <Input type="text" name="presentStreetAddress" placeholder="Street Address"   defaultValue={userData?.address?.presentAddress?.streetAddress}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">Postal/ZIP Code</Label>
       <Input type="text" name="presentPostalCode" placeholder="Postal/ZIP Code"   defaultValue={userData?.address?.presentAddress?.postalCode}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">City/Town</Label>
       <Input type="text" name="presentCity" placeholder="City/Town"   defaultValue={userData?.address?.presentAddress?.city}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
 
@@ -165,31 +165,31 @@ export default function AddressEditProfileModal() {
     <div>
       <Label className="text-left mb-2 block">Your Country</Label>
       <Input type="text" name="permanentCountry" placeholder="Country"   defaultValue={userData?.address?.presentAddress?.country}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">District</Label>
       <Input type="text" name="permanentDistrict" placeholder="District"   defaultValue={userData?.address?.presentAddress?.district}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">Street Address</Label>
       <Input type="text" name="permanentStreetAddress" placeholder="Street Address"   defaultValue={userData?.address?.presentAddress?.streetAddress}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">Postal/ZIP Code</Label>
       <Input type="text" name="permanentPostalCode" placeholder="Postal/ZIP Code"   defaultValue={userData?.address?.presentAddress?.postalCode}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
     <div>
       <Label className="text-left mb-2 block">City/Town</Label>
       <Input type="text" name="permanentCity" placeholder="City/Town"   defaultValue={userData?.address?.presentAddress?.city}
-      className={'border-TealGreen'} />
+      className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
 
     </div>
 

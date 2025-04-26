@@ -2,6 +2,7 @@ import useOneUser from '@/Hooks/useOneUser';
 import React from 'react'
 import { FaRegEdit } from 'react-icons/fa';
 import { useLocation} from 'react-router-dom';
+import BasicInfoEditModal from './ProfileEdit/BasicInfoEditModal';
 
 export default function BasicInfo() {
     const {userData} = useOneUser();
@@ -13,8 +14,8 @@ export default function BasicInfo() {
         <div className="flex items-center justify-between">
           <h3 className={`text-2xl font-medium ${isExist && "text-white"}`}>Basic Personal Information</h3>
           {
-            isExist &&
-            (<FaRegEdit  className="text-2xl cursor-pointer text-white"/>)
+            isExist && <BasicInfoEditModal userData={userData}></BasicInfoEditModal>
+            
           }
         </div>
       {
@@ -39,7 +40,7 @@ export default function BasicInfo() {
         </div>
         <div>
           <h3 className="text-xl font-medium text-TealGreen">Mobile Number</h3>
-          <p className="mt-2">{userData?.phone ? userData?.phone : 'N/A'}</p>
+          <p className="mt-2">{userData?.phoneNumber ? userData?.phoneNumber : 'N/A'}</p>
         </div>
        </div>
     

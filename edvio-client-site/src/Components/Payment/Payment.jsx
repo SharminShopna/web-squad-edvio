@@ -7,7 +7,7 @@ const stripePromise = loadStripe('pk_test_51Qs7dpBM5dvyedYSq2d5cCRXKpj5fcvxfWCmc
 console.log(stripePromise);
 const Payment = () => {
     return (
-        <div>
+        <div className=''>
             <div>
                 <Elements stripe={stripePromise}>
                     <CheckoutForm></CheckoutForm>
