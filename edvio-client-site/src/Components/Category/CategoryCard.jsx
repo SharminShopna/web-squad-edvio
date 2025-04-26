@@ -1,11 +1,15 @@
 import React from 'react'
 
 export default function CategoryCard({data}) { 
-    const {course_name, course_image, price, rating} = data
-  return (
-    <div  className="swiper-slide flex flex-col rounded-2xl text-center  bg-emerald-700 py-4" data-aos="fade-up">
-    <h3 className="text-xl my-2 ">{course_name}</h3>
-    <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h1>
-  </div>
-  )
+    const {name, image, count} = data;
+    
+    return (
+        <div className="swiper-slide flex flex-col rounded-2xl text-center bg-emerald-700 py-4" data-aos="fade-up">
+            <img src={image} alt={name} className="w-full h-40 object-cover -mt-4 rounded-t-2xl"/>
+            <div className="p-4">
+                <h3 className="text-xl my-2 font-bold">{name}</h3>
+                <p className="text-sm">{count} {count === 1 ? 'course' : 'courses'} available</p>
+            </div>
+        </div>
+    );
 }

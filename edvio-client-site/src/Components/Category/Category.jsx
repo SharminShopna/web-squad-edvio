@@ -1,4 +1,3 @@
-
 import Aos from "aos";
 import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
@@ -11,7 +10,7 @@ import CategoryCard from "./CategoryCard";
 
 export default function Category() {
   const axiosPublic = useAxiosPublic();
-  const [course, setCourse] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     Aos.init({
@@ -24,27 +23,50 @@ export default function Category() {
   useEffect(() => {
     axiosPublic
       .get("/allCourses")
-      .then((res) => setCourse(res.data.data))
+      .then((res) => {
+        const categoryMap = {};
+        
+        res.data.data.forEach(course => {
+          if (!categoryMap[course.category]) {
+            categoryMap[course.category] = {
+              name: course.category,
+              count: 1,
+              image: course.course_image 
+            };
+          } else {
+            categoryMap[course.category].count++;
+          }
+        });
+        
+        setCategories(Object.values(categoryMap));
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(course.length);
   return (
     <Swiper
-      slidesPerView={3}
-      spaceBetween={20}
-      navigation={true}
-      modules={[Navigation]}
-      className="mySwiper"
-    >
-      {
-        course.map((item, index) => (
-          <SwiperSlide key={index} data-aos="">
-            <CategoryCard data={item} />
-          </SwiperSlide>
-        ))
-      }
-    </Swiper>
+  spaceBetween={20}
+  navigation={true}
+  modules={[Navigation]}
+  // className="mySwiper"
+  breakpoints={{
+    0: {
+      slidesPerView: 1,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  }}
+>
+  {categories.map((category, index) => (
+    <SwiperSlide key={index} data-aos="">
+      <CategoryCard data={category} />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
   );
 }
-
