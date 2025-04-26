@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from "../../assets/contactUs/banner-5.jpg"
+import bg from "../../assets/contactUs/banner-b.jpg"
 import fatima from "../../assets/contactUs/fatimaApu.png"
 import aminul from "../../assets/contactUs/aminulVai.png"
 import shawon from "../../assets/contactUs/shawonVai.png"

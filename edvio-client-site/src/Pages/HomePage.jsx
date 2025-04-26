@@ -28,7 +28,7 @@ export default function HomePage() {
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
         {/* <ContactUs></ContactUs> */}
-        <Contact></Contact>
+        {/* <Contact></Contact> */}
 
         
       </div>
