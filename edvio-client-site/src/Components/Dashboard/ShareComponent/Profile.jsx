@@ -28,6 +28,9 @@ export default function Profile({socialLink}) {
             {
             userData?.role === 'instructor' && <span>Instructor</span>
             }
+            {
+            userData?.role === 'student' && <span>Student</span>
+            }
           </p>
           </div>
           <div className="ml-16 mt-2">

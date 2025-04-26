@@ -32,7 +32,7 @@ export function DataTable({ columns, data }) {
   const [sorting, setSorting] = useState([])
 const [columnFilters, setColumnFilters] = useState([])
 const [columnVisibility, setColumnVisibility] = useState({})
- const [rowSelection, setRowSelection] = React.useState({})
+ const [rowSelection, setRowSelection] = useState({})
 
   const table = useReactTable({
     data,
@@ -72,7 +72,7 @@ const [columnVisibility, setColumnVisibility] = useState({})
         />
          <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-5 text-lg">
               Columns
             </Button>
           </DropdownMenuTrigger>

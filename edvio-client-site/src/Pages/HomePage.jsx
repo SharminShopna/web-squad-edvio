@@ -1,7 +1,6 @@
 import React from "react";
 import Banner from "../Components/Banner/Banner";
 import CommonQuestion from "../components/CommonQuestion";
-import ContactUs from "../components/ContactUs";
 import Reviews from "../components/Reviews";
 import AllCourses from "../Components/AllCourses/AllCourses";
 import "../Shared/Pro.css";
@@ -11,6 +10,7 @@ import PopularCourse from "../Components/MostPopular/PopularCourse";
 import Pro from "../Components/PremiumCourse/Pro";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import Category from "@/Components/Category/Category";
+import Contact from "../Components/Contact";
 
 export default function HomePage() {
   return (
@@ -29,7 +29,9 @@ export default function HomePage() {
         <WhyUs></WhyUs>
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
-        <ContactUs></ContactUs>
+        {/* <ContactUs></ContactUs> */}
+        {/* <Contact></Contact> */}
+
         
       </div>
       

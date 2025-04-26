@@ -74,7 +74,7 @@ const Navbar = () => {
       ],
     },
     { name: "About Us", link: "/about-us", subMenu: [] },
-    { name: "Contact Us", link: "/contact", subMenu: [] },
+    { name: "Contact Us", link: "/contact-us", subMenu: [] },
     ...(user ? [{ name: "Dashboard", link: "/dashboard", subMenu: [] }] : []),
   ];
 
