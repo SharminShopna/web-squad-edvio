@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronUp } from "react-feather";
 
 const Chatbot = () => {
   const axiosPublic = useAxiosPublic();
@@ -8,85 +9,416 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm your EdVio assistant. How can I help you today?",
+      text: "Hello! I'm your EdVio assistant. How can I help you with our courses or institute today?",
       sender: "bot",
     },
   ]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showQuickQuestionsDropdown, setShowQuickQuestionsDropdown] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const handleSend = async (q) => {
-    const userQuestion = q || question;
+  // Content filtering system
+  const inappropriateWords = ["fuck", "shit", "asshole", "bitch", "damn", "crap"];
+  const greetings = ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "who are you", "what is your work"];
+  const edvioKeywords = [
+    "edvio", "course", "enroll", "admission", "fee", "tuition", "scholarship", 
+    "program", "institute", "location", "contact", "material", "duration", 
+    "part-time", "instructor", "career", "support", "certificat", "online", "offline","how to enroll,"
+  ];
+
+  // Enhanced knowledge base with formatted answers
+  const knowledgeBase = {
+    "what is edvio": `EdVio is a premier educational platform offering:
+
+• Industry-aligned programs
+• Hands-on learning experiences
+• Career-focused curriculum
+• Expert faculty guidance
+
+Our mission is to bridge the gap between education and employment.`,
+
+    "how to enroll": `Enrollment process:
+
+1. Visit www.edvio.edu/courses
+2. Select your desired program
+3. Click "Enroll Now"
+4. Complete the application form
+5. Submit required documents
+
+Need help? Contact admissions@edvio.edu`,
+
+    "admission requirements": `General requirements:
+
+✓ High school diploma or equivalent
+✓ Completed application form
+✓ Government-issued ID
+✓ Program-specific prerequisites:
+
+• Tech programs: Basic math skills
+• Business programs: English proficiency
+• Healthcare: Background check`,
+
+    "available programs": `We offer programs across four faculties:
+
+Technology:
+- Full Stack Development
+- Data Science
+- Cybersecurity
+
+Business:
+- Digital Marketing
+- Business Administration
+- Financial Analysis
+
+Healthcare:
+- Nursing Assistant
+- Medical Coding
+- Pharmacy Technician
+
+Creative Arts:
+- Graphic Design
+- Video Production
+- UX/UI Design`,
+
+    "tuition fees": `Our fee structure:
+
+• Short courses (4-8 weeks): $500-$1,200
+• Certificate programs (3-6 months): $1,500-$3,000
+• Diploma programs (6-12 months): $3,500-$6,000
+
+Financial aid and payment plans available.`,
+
+    "scholarship options": `Scholarship opportunities:
+
+★ Merit Scholarship (up to 50% tuition)
+  - GPA 3.5+ required
+  - Application deadline: June 30
+
+★ Need-Based Grant (up to 75%)
+  - Income verification required
+  - Rolling applications
+
+★ Diversity in Tech Award
+  - For underrepresented groups
+  - Includes mentorship`,
+
+    "course duration": `Program durations:
+
+▸ Intensive Bootcamps: 4-8 weeks
+  - Full-time, 40 hrs/week
+
+▸ Certificate Programs: 3-6 months
+  - Part-time options available
+
+▸ Diploma Programs: 6-12 months
+  - Includes internship`,
+
+    "online courses": `Our online learning features:
+
+• Live interactive classes
+• Recorded lectures
+• 24/7 learning portal access
+• Virtual labs and projects
+• Dedicated instructor support
+
+Technical requirements:
+- Stable internet connection
+- Modern web browser
+- Webcam for some programs`,
+
+    "certification": `Upon completion, you'll receive:
+
+✓ EdVio Certificate of Completion
+  - Industry-recognized
+  - Digital and printed versions
+
+Additional certifications in some programs:
+- Google Analytics Certification
+- AWS Cloud Practitioner
+- HubSpot Content Marketing`,
+
+    "career support": `Our Career Services include:
+
+Career Development:
+• Resume workshops
+• Interview preparation
+• LinkedIn profile optimization
+
+Job Placement:
+• Access to employer network
+• Career fairs
+• Alumni mentorship program
+
+85% placement rate within 6 months`,
+
+    "contact support": `Contact options:
+
+📞 Phone: +1 (555) 123-4567
+  Mon-Fri 9AM-6PM
+
+✉ Email: support@edvio.edu
+  Response within 24 hours
+
+💬 Live Chat:
+  Available on our website
+
+📍 In-Person:
+  123 Education Blvd, Tech City`,
+
+    "location": `Main Campus:
+123 Education Boulevard
+Tech City, TC 10001
+
+Regional Centers:
+• North Campus: 456 Learning Lane
+• West Campus: 789 Knowledge Street
+
+Free parking available at all locations.`
+  };
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Content validation functions
+  const containsInappropriateLanguage = (text) => {
+    return inappropriateWords.some(word => 
+      new RegExp(`\\b${word}\\b`, 'i').test(text)
+    );
+  };
+
+  const isGreeting = (text) => {
+    return greetings.some(greeting => 
+      new RegExp(`\\b${greeting}\\b`, 'i').test(text)
+    );
+  };
+
+  const isEdVioRelated = (text) => {
+    return edvioKeywords.some(keyword => 
+      new RegExp(`\\b${keyword}\\b`, 'i').test(text)
+    );
+  };
+
+  const getPredefinedAnswer = (question) => {
+    const normalizedQuestion = question.toLowerCase().trim();
+    for (const [key, answer] of Object.entries(knowledgeBase)) {
+      if (new RegExp(`\\b${key}\\b`, 'i').test(normalizedQuestion)) {
+        return answer;
+      }
+    }
+    return null;
+  };
+
+  const formatApiResponse = (text) => {
+    // Basic formatting for API responses
+    return text
+      .replace(/\n/g, '\n\n') // Add extra line breaks
+      .replace(/\•/g, '\n•')   // Ensure bullets are on new lines
+      .replace(/\d\./g, '\n$&'); // Ensure numbered lists are on new lines
+  };
+
+  const handleSend = async (userInput) => {
+    const userQuestion = userInput || question;
     if (!userQuestion.trim()) return;
 
     // Add user message
-    const newUserMessage = {
-      id: messages.length + 1,
+    setMessages(prev => [...prev, {
+      id: Date.now(),
       text: userQuestion,
       sender: "user",
-    };
-    setMessages([...messages, newUserMessage]);
+    }]);
     setQuestion("");
     setLoading(true);
+    setShowQuickQuestionsDropdown(false);
 
     try {
-      const res = await axiosPublic.get(
-        `/ask?question=${encodeURIComponent(userQuestion)}`
-      );
+      let botResponse;
+      const normalizedQuestion = userQuestion.toLowerCase();
       
-      // Add bot response
-      const botResponse = {
-        id: messages.length + 2,
-        text: res.data.answer,
-        sender: "bot",
-      };
-      setMessages((prev) => [...prev, botResponse]);
+      // Content validation pipeline
+      if (containsInappropriateLanguage(normalizedQuestion)) {
+        botResponse = {
+          id: Date.now() + 1,
+          text: "I apologize, but I can't respond to inappropriate language. For assistance, please contact support@edvio.edu.",
+          sender: "bot",
+        };
+      } 
+      else if (isGreeting(normalizedQuestion)) {
+        botResponse = {
+          id: Date.now() + 1,
+          text: "Hello! I'm the EdVio assistant. I can help with:\n\n• Course information\n• Admissions process\n• Program details\n• Fees and scholarships\n\nWhat would you like to know?",
+          sender: "bot",
+        };
+      }
+      else {
+        // Check knowledge base first
+        const predefinedAnswer = getPredefinedAnswer(normalizedQuestion);
+        if (predefinedAnswer) {
+          botResponse = {
+            id: Date.now() + 1,
+            text: predefinedAnswer,
+            sender: "bot",
+          };
+        }
+        // Then check if EdVio-related
+        else if (!isEdVioRelated(normalizedQuestion)) {
+          botResponse = {
+            id: Date.now() + 1,
+            text: "I specialize in EdVio-related questions. You might ask about:\n\n• Available programs\n• Admission requirements\n• Course durations\n• Tuition fees\n• Career support services",
+            sender: "bot",
+          };
+        }
+        // Fallback to API for complex EdVio questions
+        else {
+          const res = await axiosPublic.get(`/ask?question=${encodeURIComponent(userQuestion)}`);
+          botResponse = {
+            id: Date.now() + 1,
+            text: formatApiResponse(res.data.answer) || "I couldn't find a specific answer. For detailed assistance, please:\n\n• Email support@edvio.edu\n• Call +1 (555) 123-4567\n• Visit our Contact page",
+            sender: "bot",
+          };
+        }
+      }
+      
+      setMessages(prev => [...prev, botResponse]);
     } catch (error) {
-      console.error(error);
-      const errorMessage = {
-        id: messages.length + 2,
-        text: "Sorry, I'm having trouble answering that. Please try again later.",
+      console.error("Chatbot error:", error);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        text: "Our systems are currently unavailable. For immediate assistance:\n\n📧 Email: support@edvio.edu\n📞 Phone: +1 (555) 123-4567\n\nWe apologize for the inconvenience.",
         sender: "bot",
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      }]);
     } finally {
       setLoading(false);
     }
   };
 
+  // Quick questions with matching knowledge base answers
+  const quickQuestions = Object.keys(knowledgeBase).map(key => 
+    key.charAt(0).toUpperCase() + key.slice(1) + "?"
+  );
+
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-5 right-5 z-40">
       {/* Floating Button */}
       {!isOpen && (
-        <motion.button
-          whileHover={{ scale: 1.1, rotate: 10 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-lg transition-all flex items-center justify-center"
-          style={{
-            boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)",
-          }}
-        >
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-            />
-          </svg>
-        </motion.button>
+    <motion.button
+  initial={{ scale: 1 }}
+  animate={{
+    scale: [1, 1.03, 1],
+    boxShadow: [
+      "0 4px 14px rgba(13, 148, 136, 0.25)",
+      "0 4px 18px rgba(94, 234, 212, 0.35)",
+      "0 4px 14px rgba(13, 148, 136, 0.25)"
+    ]
+  }}
+  transition={{
+    duration: 2.8,
+    repeat: Infinity,
+    ease: "easeInOut",
+    ype: "spring",
+    damping: 15,
+    stiffness: 300,
+    background: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] // Custom cubic-bezier curve
+    },
+    boxShadow: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }}
+whileHover={{
+    scale: 1.08,
+    rotate: 3,
+    boxShadow: "0 6px 22px rgba(94, 234, 212, 0.4)",
+    background: "linear-gradient(135deg, oklch(0.9 0.076 70.697), oklch(0.6 0.1 180))"
+  }}
+  whileTap={{ scale: 0.96 }}
+  onClick={() => setIsOpen(true)}
+  className="bg-gradient-to-br from-TealGreen to-base-content text-white p-4 rounded-full flex items-center justify-center w-14 h-14 relative overflow-visible"
+>
+  {/* Floating orb animation */}
+  <motion.div
+    animate={{
+      y: [0, -10, 0],
+      x: [0, 2, -2, 0],
+      scale: [1, 1.15, 1],
+      opacity: [0.9, 1, 0.9]
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    className="absolute -top-2 -right-2 w-4 h-4 bg-TealGreen rounded-full border-2 border-white shadow-lg"
+  />
+  
+  {/* Concentric ripple circles */}
+  <motion.div
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{
+      scale: 1.3,
+      opacity: [0, 0.3, 0],
+      borderWidth: ["1px", "2px", "0px"]
+    }}
+    transition={{
+      duration: 2.8,
+      repeat: Infinity,
+      ease: "easeOut",
+      delay: 0.4
+    }}
+    className="absolute inset-0 rounded-full border border-LightTeal pointer-events-none"
+  />
+  
+  <motion.div
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{
+      scale: 1.5,
+      opacity: [0, 0.2, 0],
+      borderWidth: ["1px", "2px", "0px"]
+    }}
+    transition={{
+      duration: 2.8,
+      repeat: Infinity,
+      ease: "easeOut"
+    }}
+    className="absolute inset-0 rounded-full border border-LightTeal pointer-events-none"
+  />
+  
+  {/* Chat icon with subtle float */}
+  <motion.div
+    animate={{
+      y: [0, -2, 0]
+    }}
+    transition={{
+      duration: 3.5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    className="relative z-10"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 text-neutral"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.8}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+      />
+    </svg>
+  </motion.div>
+</motion.button>
       )}
 
       {/* Chat Window */}
@@ -104,22 +436,17 @@ const Chatbot = () => {
             }}
           >
             {/* Chat Header */}
-            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 flex justify-between items-center">
+            <div className="bg-gradient-to-br from-TealGreen to-base-content text-white p-4 flex justify-between items-center">
               <div className="flex items-center space-x-3">
                 <motion.div
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                  }}
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                   className="relative"
                 >
                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-indigo-600"
+                      className="h-5 w-5 text-TealGreen"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -131,15 +458,41 @@ const Chatbot = () => {
                     </svg>
                   </div>
                 </motion.div>
-                <div>
-                  <h3 className="font-bold">EdVio Assistant</h3>
-                  <p className="text-xs opacity-80">
-                    {loading ? "Typing..." : "Online"}
-                  </p>
-                </div>
+              <div>
+    <div className="flex items-center gap-2">
+      <h3 className="font-bold text-lg text-white">EdVio Assistant</h3>
+      <motion.span
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.8, 1, 0.8]
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className={`w-3 h-3 rounded-full ${loading ? 'bg-amber-400' : 'bg-TealGreen'}`}
+      />
+    </div>
+    <p className="text-xs text-white/80">
+      {loading ? (
+        <motion.span
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          Typing...
+        </motion.span>
+      ) : (
+        <span>Online</span>
+      )}
+    </p>
+  </div>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowQuickQuestionsDropdown(false);
+                }}
                 className="text-white hover:text-gray-200 transition"
               >
                 <svg
@@ -170,7 +523,9 @@ const Chatbot = () => {
                       className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                     >
                       <div
-                        className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.sender === "user" ? "bg-indigo-500 text-white rounded-tr-none" : "bg-white text-gray-800 rounded-tl-none shadow-sm border border-gray-200"}`}
+                        className={`max-w-[80%] rounded-2xl px-4 py-2 whitespace-pre-line ${message.sender === "user" 
+                          ? "bg-gradient-to-br from-TealGreen to-base-content text-white rounded-tr-none" 
+                          : "bg-white text-gray-800 rounded-tl-none shadow-sm border border-gray-200"}`}
                       >
                         {message.text}
                       </div>
@@ -193,45 +548,59 @@ const Chatbot = () => {
                     </div>
                   </motion.div>
                 )}
+                <div ref={messagesEndRef} />
               </div>
             </div>
 
-            {/* Quick Questions */}
-            <div className="p-3 bg-white border-t border-gray-200">
-              <div className="flex flex-wrap gap-2 mb-2">
-                {[
-                  "What is EdVio?",
-                  "How to enroll?",
-                  "Contact support",
-                ].map((item, index) => (
-                  <motion.button
-                    key={index}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleSend(item)}
-                    className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition"
-                  >
-                    {item}
-                  </motion.button>
-                ))}
-              </div>
+            {/* Quick Questions Dropdown */}
+            <div className="bg-white border-t border-gray-200">
+              <button
+                onClick={() => setShowQuickQuestionsDropdown(!showQuickQuestionsDropdown)}
+                className="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-TealGreen hover:bg-gray-50"
+              >
+                <span>Quick Questions</span>
+                {showQuickQuestionsDropdown ? (
+                  <ChevronUp size={16} />
+                ) : (
+                  <ChevronDown size={16} />
+                )}
+              </button>
+              
+              {showQuickQuestionsDropdown && (
+                <div className="p-3 pt-0 grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
+                  {quickQuestions.map((item, index) => (
+                    <motion.button
+                      key={index}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleSend(item)}
+                      className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg transition text-left truncate"
+                      title={item}
+                    >
+                      {item}
+                    </motion.button>
+                  ))}
+                </div>
+              )}
+            </div>
 
-              {/* Input Area */}
+            {/* Input Area */}
+            <div className="p-3 bg-white border-t border-gray-200">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="Type your message..."
+                  placeholder="Ask about EdVio..."
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                  className="flex-1 px-4 py-2 text-sm bg-gray-100 border-0 rounded-full outline-none focus:ring-2 focus:ring-indigo-300"
+                  className="flex-1 px-4 py-2 text-sm bg-gray-100 border-0 rounded-full outline-none focus:ring-2 focus:ring-indigo-300 placeholder:text-TealGreen"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend()}
                   disabled={loading || !question.trim()}
-                  className={`p-2 rounded-full ${!question.trim() || loading ? "bg-gray-300" : "bg-indigo-500 hover:bg-indigo-600"} text-white`}
+                  className={`p-2 rounded-full ${!question.trim() || loading ? "bg-gray-300" : "bg-TealGreen hover:bg-indigo-600"} text-white`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

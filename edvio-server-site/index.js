@@ -6,6 +6,8 @@ const port = process.env.PORT || 4000;
 const stripe = require("stripe")(
   "sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ"
 );
+const { GoogleGenAI } = require("@google/genai");
+
 
 // app.use(cors());
 app.use(
@@ -20,6 +22,9 @@ app.use(
   })
 );
 app.use(express.json());
+
+//  chatbot api -------------------
+const ai = new GoogleGenAI({ apiKey: "AIzaSyDLZnUvmtaLo9lTOgdlRwpcDzTy-QGhObM" });
 
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
@@ -496,7 +501,7 @@ async function run() {
             const query = { email: email };
             const updateData = req.body;
             const update = { $set: {} };
-            
+
             if (updateData.name || updateData.email || updateData.phoneNumber) {
               update.$set = {
                 name: updateData?.name,
@@ -579,7 +584,34 @@ async function run() {
         });
 
       
-        
+        // AI Chatbot for common questions ==================================================
+app.get("/ask", async (req, res) => {
+  const { question } = req.query; 
+  if (!question) {
+    return res.status(400).json({ error: "Question is required" });
+  }
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash", 
+      contents: question, 
+    });
+    if (response && response.candidates && response.candidates.length > 0) {
+      const candidate = response.candidates[0];
+      if (candidate.content && Array.isArray(candidate.content.parts) && candidate.content.parts.length > 0) {
+        const answer = candidate.content.parts[0].text || 'No answer text found'; 
+        res.send({ answer: answer });
+      } else {
+        res.status(500).json({ error: "No valid content found in the response" });
+      }
+    } else {
+      res.status(500).json({ error: "No candidates returned from the AI model" });
+    }
+  } catch (error) {
+    console.error("Error from Gemini API:", error);
+    res.status(500).json({ error: "An error occurred while processing the question", details: error.message });
+  }
+});
+
 
       
     
