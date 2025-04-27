@@ -3,7 +3,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
-const stripe = require('stripe')('sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ');
+const stripe = require("stripe")(
+  "sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ"
+);
 
 // app.use(cors());
 app.use(
@@ -87,24 +89,23 @@ async function run() {
       }
     });
 
-
     // stripe
-    app.post('/create-payment-intent', async (req, res) => {
+    app.post("/create-payment-intent", async (req, res) => {
       try {
         const { price } = req.body;
         const amount = parseInt(price * 100); // Convert to cents
-        
+
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount,
-          currency: 'usd',
-          payment_method_types: ['card'],
+          currency: "usd",
+          payment_method_types: ["card"],
         });
-    
+
         res.status(200).json({
           clientSecret: paymentIntent.client_secret,
         });
       } catch (error) {
-        console.error('Error creating payment intent:', error);
+        console.error("Error creating payment intent:", error);
         res.status(500).json({ error: error.message });
       }
     });
@@ -112,44 +113,39 @@ async function run() {
     // stripe payment
     // Add this to your server.js file, inside the run() function
 
-// Save payment data endpoint
-  // app.post("/save-payment", async (req, res) => {
-  //   try {
-  //     const paymentData = req.body;
-      
-  //     // Basic validation
-  //     if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
-  //       return res.status(400).json({
-  //         success: false,
-  //         message: "Missing required payment data"
-  //       });
-  //     }
+    // Save payment data endpoint
+    // app.post("/save-payment", async (req, res) => {
+    //   try {
+    //     const paymentData = req.body;
 
-  //     // Add timestamp
-  //     paymentData.paymentDate = new Date();
-      
-  //     // Insert into MongoDB
-  //     const result = await buyCourse.insertOne(paymentData);
+    //     // Basic validation
+    //     if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
+    //       return res.status(400).json({
+    //         success: false,
+    //         message: "Missing required payment data"
+    //       });
+    //     }
 
-  //     res.status(201).json({
-  //       success: true,
-  //       message: "Payment data saved successfully",
-  //       data: result
-  //     });
-  //   } catch (error) {
-  //     console.error("Error saving payment data:", error);
-  //     res.status(500).json({
-  //       success: false,
-  //       message: "Failed to save payment data",
-  //       error: error.message
-  //     });
-  //   }
-  // });
+    //     // Add timestamp
+    //     paymentData.paymentDate = new Date();
 
+    //     // Insert into MongoDB
+    //     const result = await buyCourse.insertOne(paymentData);
 
-
-
-
+    //     res.status(201).json({
+    //       success: true,
+    //       message: "Payment data saved successfully",
+    //       data: result
+    //     });
+    //   } catch (error) {
+    //     console.error("Error saving payment data:", error);
+    //     res.status(500).json({
+    //       success: false,
+    //       message: "Failed to save payment data",
+    //       error: error.message
+    //     });
+    //   }
+    // });
 
     // Role
     app.get("/getRole/:email", async (req, res) => {
@@ -515,76 +511,92 @@ async function run() {
           };
         }
 
-app.put('/user/:email', async (req, res) => {
-  try {
-    const email = req.params.email;
-    const query = { email: email };
-    const updateData = req.body;
-    const update = { $set: {} };
-      if(updateData.name || updateData.email || updateData.phoneNumber){
-        update.$set = {
-          name: updateData?.name,
-          email: updateData?.email,
-          phoneNumber: updateData?.phoneNumber,
-        }
-      }
-    // Only set 'additional' if it's provided
-    if (updateData.gender || updateData.age || updateData.primaryDeviceType || updateData.internetType || updateData.yearsOfExperience) {
-      update.$set.additional = {
-        gender: updateData?.gender,
-        age: updateData?.age,
-        primaryDeviceType: updateData?.primaryDeviceType,
-        internetType: updateData?.internetType,
-        yearsOfExperience: updateData?.yearsOfExperience,
-      };
-    }
+        app.put("/user/:email", async (req, res) => {
+          try {
+            const email = req.params.email;
+            const query = { email: email };
+            const updateData = req.body;
+            const update = { $set: {} };
+            if (updateData.name || updateData.email || updateData.phoneNumber) {
+              update.$set = {
+                name: updateData?.name,
+                email: updateData?.email,
+                phoneNumber: updateData?.phoneNumber,
+              };
+            }
+            // Only set 'additional' if it's provided
+            if (
+              updateData.gender ||
+              updateData.age ||
+              updateData.primaryDeviceType ||
+              updateData.internetType ||
+              updateData.yearsOfExperience
+            ) {
+              update.$set.additional = {
+                gender: updateData?.gender,
+                age: updateData?.age,
+                primaryDeviceType: updateData?.primaryDeviceType,
+                internetType: updateData?.internetType,
+                yearsOfExperience: updateData?.yearsOfExperience,
+              };
+            }
 
-    // Only set 'address' if it's provided
-    if (updateData.presentAddress || updateData.permanentAddress) {
-      update.$set.address = {
-        presentAddress: {
-          country: updateData?.presentAddress?.country,
-          district: updateData?.presentAddress?.district,
-          streetAddress: updateData?.presentAddress?.streetAddress,
-          postalCode: updateData?.presentAddress?.postalCode,
-          city: updateData?.presentAddress?.city,
-        },
-        permanentAddress: {
-          country: updateData?.permanentAddress?.country,
-          district: updateData?.permanentAddress?.district,
-          streetAddress: updateData?.permanentAddress?.streetAddress,
-          postalCode: updateData?.permanentAddress?.postalCode,
-          city: updateData?.permanentAddress?.city,
-        }
-      };
-    }
-    if(updateData.educationLevel || updateData.internetType || updateData.degreeTitle || updateData.graduationYear || updateData.currentYear || updateData.cgpa){
-      update.$set.education = {
-        educationLevel: updateData.educationLevel,
-        institutionName: updateData.institutionName,
-        degreeTitle: updateData.degreeTitle,
-        graduationYear: updateData.graduationYear,
-        currentYear: updateData.currentYear,
-        cgpa: updateData.cgpa
-      }
-    }
-    if(updateData.cvLink || updateData.githubProfile || updateData.portfolioLink || updateData.linkedinProfile){
-      update.$set.links = {
-        cvLink: updateData.cvLink,
-        githubProfile: updateData.githubProfile,
-        portfolioLink: updateData.portfolioLink,
-        linkedinProfile: updateData.linkedinProfile,
-      }
-    }
-    const result = await usersCollection.updateOne(query, update);
-    res.send(result);
-
-  } catch (error) {
-    console.error('Error updating user:', error.message);
-    res.status(500).send({ error: 'Failed to update user data' });
-  }
-});
-
+            // Only set 'address' if it's provided
+            if (updateData.presentAddress || updateData.permanentAddress) {
+              update.$set.address = {
+                presentAddress: {
+                  country: updateData?.presentAddress?.country,
+                  district: updateData?.presentAddress?.district,
+                  streetAddress: updateData?.presentAddress?.streetAddress,
+                  postalCode: updateData?.presentAddress?.postalCode,
+                  city: updateData?.presentAddress?.city,
+                },
+                permanentAddress: {
+                  country: updateData?.permanentAddress?.country,
+                  district: updateData?.permanentAddress?.district,
+                  streetAddress: updateData?.permanentAddress?.streetAddress,
+                  postalCode: updateData?.permanentAddress?.postalCode,
+                  city: updateData?.permanentAddress?.city,
+                },
+              };
+            }
+            if (
+              updateData.educationLevel ||
+              updateData.internetType ||
+              updateData.degreeTitle ||
+              updateData.graduationYear ||
+              updateData.currentYear ||
+              updateData.cgpa
+            ) {
+              update.$set.education = {
+                educationLevel: updateData.educationLevel,
+                institutionName: updateData.institutionName,
+                degreeTitle: updateData.degreeTitle,
+                graduationYear: updateData.graduationYear,
+                currentYear: updateData.currentYear,
+                cgpa: updateData.cgpa,
+              };
+            }
+            if (
+              updateData.cvLink ||
+              updateData.githubProfile ||
+              updateData.portfolioLink ||
+              updateData.linkedinProfile
+            ) {
+              update.$set.links = {
+                cvLink: updateData.cvLink,
+                githubProfile: updateData.githubProfile,
+                portfolioLink: updateData.portfolioLink,
+                linkedinProfile: updateData.linkedinProfile,
+              };
+            }
+            const result = await usersCollection.updateOne(query, update);
+            res.send(result);
+          } catch (error) {
+            console.error("Error updating user:", error.message);
+            res.status(500).send({ error: "Failed to update user data" });
+          }
+        });
 
         // Only set 'address' if it's provided
         if (updateData.presentAddress || updateData.permanentAddress) {
