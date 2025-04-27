@@ -39,8 +39,12 @@ import Feature from "@/Components/Feature/feature";
 import ContactUs from "@/Pages/Contact-Us/ContactUs";
 
 import Cart from "@/Components/Cart/Cart";
+import useOneUser from "@/Hooks/useOneUser";
 
 export default function RouterProvider() {
+  const { userData } = useOneUser();
+  const role = userData?.role;
+
   return (
     <Routes>
       {/* Main Layout Routes */}
@@ -57,7 +61,7 @@ export default function RouterProvider() {
         <Route path="contact" element={<ContactUs />} />
         <Route path="Courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
-        <Route path="cart" element={<Cart></Cart>}></Route>
+        <Route path="cart" element={<Cart />} />
       </Route>
 
       {/* Authentication Routes */}
@@ -66,60 +70,92 @@ export default function RouterProvider() {
 
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
-        {/* Admin Routes */}
-        <Route path="/dashboard/admin-home" element={<DashBoardHome />}></Route>
-        <Route path="/dashboard/Profile" element={<AdminProfile />} />
-        <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
-        <Route
-          path="/dashboard/all-instructor"
-          element={<AllInstructor />}
-        ></Route>
-        <Route path="/dashboard/all-student" element={<AllStudent />}></Route>
-        <Route path="/dashboard/all-user" element={<AllUser />}></Route>
-        <Route path="/dashboard/admin/chatbot" element={<AiChatBot />}></Route>
+        {role === "admin" && (
+          <>
+            <Route index element={<DashBoardHome />} />
+            <Route
+              path="/dashboard/admin-home"
+              element={<DashBoardHome />}
+            ></Route>
+            <Route path="/dashboard/Profile" element={<AdminProfile />} />
+            <Route
+              path="/dashboard/edit-profile"
+              element={<AdminProfileEdit />}
+            />
+            <Route
+              path="/dashboard/all-instructor"
+              element={<AllInstructor />}
+            ></Route>
+            <Route
+              path="/dashboard/all-student"
+              element={<AllStudent />}
+            ></Route>
+            <Route path="/dashboard/all-user" element={<AllUser />}></Route>
+            <Route
+              path="/dashboard/admin/chatbot"
+              element={<AiChatBot />}
+            ></Route>
+          </>
+        )}
 
-        {/* Instructor Routes */}
-        <Route
-          path="/dashboard/instructor-addCourse"
-          element={<InstructorAddCourse />}
-        />
-        <Route
-          path="/dashboard/instructor/students"
-          element={<AllStudents />}
-        />
-        <Route
-          path="/dashboard/instructor/Profile"
-          element={<InstructorProfile />}
-        />
-        <Route path="/dashboard/instructor/chatbot" element={<AiChatBot />} />
-        <Route
-          path="/dashboard/instructor/schedule"
-          element={<TeachingSchedule />}
-        ></Route>
-        <Route
-          path="/dashboard/instructor/analytics"
-          element={<CourseAnalytics />}
-        ></Route>
-        <Route
-          path="/dashboard/dashboard/my-courses"
-          element={<InstructorCourse />}
-        ></Route>
-        {/* User Routes */}
-        <Route path="/dashboard/user-home" element={<UserHome />} />
-        <Route path="/dashboard/myCourse" element={<MyCourse />} />
-        <Route path="/dashboard/paymentHistory" element={<PaymentHistory />} />
-        <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
-        <Route path="/dashboard/feedback" element={<Feedback />} />
-        <Route path="/dashboard/settings" element={<AccountSetting />} />
-        <Route
-          path="/dashboard/instructor/instructorChatbot"
-          element={<AIChatBot />}
-        />
+        {role === "instructor" && (
+          <>
+            <Route index element={<CourseAnalytics />} />
+
+            <Route
+              path="/dashboard/instructor-addCourse"
+              element={<InstructorAddCourse />}
+            />
+            <Route
+              path="/dashboard/instructor/students"
+              element={<AllStudents />}
+            />
+            <Route
+              path="/dashboard/instructor/Profile"
+              element={<InstructorProfile />}
+            />
+            <Route
+              path="/dashboard/instructor/chatbot"
+              element={<AiChatBot />}
+            />
+            <Route
+              path="/dashboard/instructor/schedule"
+              element={<TeachingSchedule />}
+            ></Route>
+            <Route
+              path="/dashboard/instructor/analytics"
+              element={<CourseAnalytics />}
+            ></Route>
+            <Route
+              path="/dashboard/dashboard/my-courses"
+              element={<InstructorCourse />}
+            ></Route>
+          </>
+        )}
+
+        {role === "user" && (
+          <>
+            <Route index element={<UserHome />} />
+
+            <Route path="/dashboard/user-home" element={<UserHome />} />
+            <Route path="/dashboard/myCourse" element={<MyCourse />} />
+            <Route
+              path="/dashboard/paymentHistory"
+              element={<PaymentHistory />}
+            />
+            <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
+            <Route path="/dashboard/feedback" element={<Feedback />} />
+            <Route path="/dashboard/settings" element={<AccountSetting />} />
+            <Route
+              path="/dashboard/instructor/instructorChatbot"
+              element={<AIChatBot />}
+            />
+          </>
+        )}
       </Route>
 
       {/* Error Route */}
       <Route path="*" element={<Error />} />
-      {/* Shared Route */}
     </Routes>
   );
 }
