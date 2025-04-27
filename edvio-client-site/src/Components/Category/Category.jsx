@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import CategoryCard from "./CategoryCard";
+import SectionTitle from "@/Shared/SectionTitle";
 
 export default function Category() {
   const axiosPublic = useAxiosPublic();
@@ -44,6 +45,11 @@ export default function Category() {
   }, []);
 
   return (
+    <>
+    <SectionTitle
+        heading="Explore Our Categories"
+        subHeading="Browse through different categories of courses available in our platform"
+      />
     <Swiper
   spaceBetween={20}
   navigation={true}
@@ -67,6 +73,6 @@ export default function Category() {
     </SwiperSlide>
   ))}
 </Swiper>
-
+</>
   );
 }

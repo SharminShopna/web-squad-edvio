@@ -443,18 +443,30 @@ async function run() {
       }
       // Get all schedules for a user
       app.get("/my-schedule/:email", async (req, res) => {
-        const email = req.params.email;
-        const result = await schedule.find({ email: email }).toArray();
-        res.send(result);
+        try {
+          const email = req.params.email;
+          const result = await schedule.find({ email: email }).toArray();
+          // Convert dates to ISO strings for consistent serialization
+          const formattedResult = result.map((item) => ({
+            ...item,
+            date: item.date.toISOString(),
+          }));
+          res.send(formattedResult);
+        } catch (error) {
+          res.status(500).send({ error: "Failed to fetch schedules" });
+        }
       });
 
       // Create new schedule
       app.post("/instructor-schedule", async (req, res) => {
-        const body = req.body;
-        const result = await schedule.insertOne(body);
-        res.send(result);
+        try {
+          const body = req.body;
+          const result = await schedule.insertOne(body);
+          res.send(result);
+        } catch (error) {
+          res.status(500).send({ error: "Failed to create schedule" });
+        }
       });
-
       // Update schedule
       app.put("/instructor-schedule/:id", async (req, res) => {
         const id = req.params.id;
@@ -475,8 +487,40 @@ async function run() {
         res.send(result);
       });
     });
-     
+
+    app.delete("/delete-myCourse/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await coursesCollection.deleteOne(query);
+      res.send(result);
+    });
+
     // user data update ...............
+
+    app.put("/user/:email", async (req, res) => {
+      try {
+        const email = req.params.email;
+        const query = { email: email };
+        const updateData = req.body;
+
+        const update = { $set: {} };
+
+        // Only set 'additional' if it's provided
+        if (
+          updateData.gender ||
+          updateData.age ||
+          updateData.primaryDeviceType ||
+          updateData.internetType ||
+          updateData.yearsOfExperience
+        ) {
+          update.$set.additional = {
+            gender: updateData?.gender,
+            age: updateData?.age,
+            primaryDeviceType: updateData?.primaryDeviceType,
+            internetType: updateData?.internetType,
+            yearsOfExperience: updateData?.yearsOfExperience,
+          };
+        }
 
 app.put('/user/:email', async (req, res) => {
   try {
@@ -572,6 +616,33 @@ app.get("/ask", async (req, res) => {
 
 
 
+        // Only set 'address' if it's provided
+        if (updateData.presentAddress || updateData.permanentAddress) {
+          update.$set.address = {
+            presentAddress: {
+              country: updateData?.presentAddress?.country,
+              district: updateData?.presentAddress?.district,
+              streetAddress: updateData?.presentAddress?.streetAddress,
+              postalCode: updateData?.presentAddress?.postalCode,
+              city: updateData?.presentAddress?.city,
+            },
+            permanentAddress: {
+              country: updateData?.permanentAddress?.country,
+              district: updateData?.permanentAddress?.district,
+              streetAddress: updateData?.permanentAddress?.streetAddress,
+              postalCode: updateData?.permanentAddress?.postalCode,
+              city: updateData?.permanentAddress?.city,
+            },
+          };
+        }
+
+        const result = await usersCollection.updateOne(query, update);
+        res.send(result);
+      } catch (error) {
+        console.error("Error updating user:", error.message);
+        res.status(500).send({ error: "Failed to update user data" });
+      }
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

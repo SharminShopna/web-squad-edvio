@@ -31,11 +31,14 @@ import AiChatBot from "@/Components/Dashboard/UnResChatBot/AiChatBot";
 import InstructorCourse from "@/Components/Dashboard/InstructorDashBoard/InstructorCourse";
 import TeachingSchedule from "@/Components/Dashboard/InstructorDashBoard/TeachingSchedule";
 import Payment from "@/Components/Payment/Payment";
+import CourseAnalytics from "@/Components/Dashboard/InstructorDashBoard/CourseAnalytucs";
+import Blog from "@/Components/Blog/Blog";
+import BlogDetails from "@/Components/Blog/BlogDetails";
+import Feature from "@/Components/Feature/feature";
 
 import ContactUs from "@/Pages/Contact-Us/ContactUs";
 
 import Cart from "@/Components/Cart/Cart";
-
 
 export default function RouterProvider() {
   return (
@@ -47,6 +50,12 @@ export default function RouterProvider() {
         <Route path="about-us" element={<AboutUs />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="all-courses" element={<AllCourses />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:id" element={<BlogDetails />} />
+        <Route path="courses" element={<AllCourses />} />
+        <Route path="feature" element={<Feature />} />
+        <Route path="contact" element={<ContactUs />} />
+        <Route path="Courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
         <Route path="cart" element={<Cart></Cart>}></Route>
       </Route>
@@ -61,18 +70,40 @@ export default function RouterProvider() {
         <Route path="/dashboard/admin-home" element={<DashBoardHome />}></Route>
         <Route path="/dashboard/Profile" element={<AdminProfile />} />
         <Route path="/dashboard/edit-profile" element={<AdminProfileEdit />} />
-        <Route path="/dashboard/all-instructor" element={<AllInstructor />}></Route>
+        <Route
+          path="/dashboard/all-instructor"
+          element={<AllInstructor />}
+        ></Route>
         <Route path="/dashboard/all-student" element={<AllStudent />}></Route>
         <Route path="/dashboard/all-user" element={<AllUser />}></Route>
         <Route path="/dashboard/admin/chatbot" element={<AiChatBot />}></Route>
 
         {/* Instructor Routes */}
-        <Route path="/dashboard/instructor-addCourse" element={<InstructorAddCourse />} />
-        <Route path="/dashboard/instructor/students" element={<AllStudents />} />
-        <Route path="/dashboard/instructor/Profile" element={<InstructorProfile />} />
+        <Route
+          path="/dashboard/instructor-addCourse"
+          element={<InstructorAddCourse />}
+        />
+        <Route
+          path="/dashboard/instructor/students"
+          element={<AllStudents />}
+        />
+        <Route
+          path="/dashboard/instructor/Profile"
+          element={<InstructorProfile />}
+        />
         <Route path="/dashboard/instructor/chatbot" element={<AiChatBot />} />
-         <Route path="/dashboard/instructor/schedule" element={<TeachingSchedule />}></Route>
-         <Route path="/dashboard/dashboard/my-courses" element={<InstructorCourse />}></Route>
+        <Route
+          path="/dashboard/instructor/schedule"
+          element={<TeachingSchedule />}
+        ></Route>
+        <Route
+          path="/dashboard/instructor/analytics"
+          element={<CourseAnalytics />}
+        ></Route>
+        <Route
+          path="/dashboard/dashboard/my-courses"
+          element={<InstructorCourse />}
+        ></Route>
         {/* User Routes */}
         <Route path="/dashboard/user-home" element={<UserHome />} />
         <Route path="/dashboard/myCourse" element={<MyCourse />} />
@@ -80,7 +111,10 @@ export default function RouterProvider() {
         <Route path="/dashboard/browseCourse" element={<BrowsCourse />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/settings" element={<AccountSetting />} />
-        <Route path="/dashboard/instructor/instructorChatbot" element={<AIChatBot />} />
+        <Route
+          path="/dashboard/instructor/instructorChatbot"
+          element={<AIChatBot />}
+        />
       </Route>
 
       {/* Error Route */}
