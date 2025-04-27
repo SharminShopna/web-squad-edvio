@@ -490,7 +490,6 @@ async function run() {
 
     // user data update ...............
 
-<<<<<<< HEAD
     app.put("/user/:email", async (req, res) => {
       try {
         const email = req.params.email;
@@ -515,7 +514,7 @@ async function run() {
             yearsOfExperience: updateData?.yearsOfExperience,
           };
         }
-=======
+
 app.put('/user/:email', async (req, res) => {
   try {
     const email = req.params.email;
@@ -585,7 +584,7 @@ app.put('/user/:email', async (req, res) => {
     res.status(500).send({ error: 'Failed to update user data' });
   }
 });
->>>>>>> upstream/development
+
 
         // Only set 'address' if it's provided
         if (updateData.presentAddress || updateData.permanentAddress) {
