@@ -1,3 +1,4 @@
+import UseAuth from "@/Hook/UseAuth";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DatePicker from "react-datepicker";
@@ -36,13 +37,14 @@ const TeachingSchedule = () => {
     },
   ];
 
+  const axiosSecure = UseAuth();
   const [courses, setCourses] = useState(initialCourses);
   const [newCourse, setNewCourse] = useState({
     title: "",
     date: new Date(),
     time: "",
     classroom: "",
-    students: 0,
+    students: "",
   });
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -75,6 +77,11 @@ const TeachingSchedule = () => {
       students: 0,
     });
     setShowAddForm(false);
+
+    axiosSecure
+      .post("/instructor-schedule", course)
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e.message));
   };
 
   const handleDelete = (id) => {
