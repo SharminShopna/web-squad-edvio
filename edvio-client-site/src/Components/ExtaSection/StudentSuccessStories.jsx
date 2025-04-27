@@ -26,11 +26,11 @@ const StudentSuccessStories = () => {
         </div>
 
         {/* Student Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 ">
           {visibleStudents.map((student) => (
             <div
               key={student.id}
-              className="bg-neutral shadow-md  rounded-2xl p-6 border border-TealGreen border-dashed flex flex-col items-center text-center hover:shadow-xl transition duration-300"
+              className="bg-neutral shadow-md rounded-2xl p-6 border border-TealGreen0 border-dashed flex flex-col items-center text-center hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 hover:scale-105"
             >
               <div className="w-full mb-4">
                 <img
