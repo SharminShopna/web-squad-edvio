@@ -15,7 +15,7 @@ const StudentSuccessStories = () => {
   const visibleStudents = showAll ? students : students.slice(0, 3);
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="pb-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
@@ -26,11 +26,11 @@ const StudentSuccessStories = () => {
         </div>
 
         {/* Student Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
           {visibleStudents.map((student) => (
             <div
               key={student.id}
-              className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-xl transition duration-300"
+              className="bg-neutral shadow-md  rounded-2xl p-6 border border-TealGreen border-dashed flex flex-col items-center text-center hover:shadow-xl transition duration-300"
             >
               <div className="w-full mb-4">
                 <img
@@ -39,8 +39,8 @@ const StudentSuccessStories = () => {
                   className="w-full h-72 md:h-56 object-cover rounded-2xl p-2"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{student.name}</h3>
-              <p className="text-gray-600 text-sm">{student.quote}</p>
+              <h3 className="text-xl font-semibold text-base-content mb-2">{student.name}</h3>
+              <p className="text-gray-200 text-sm">{student.quote}</p>
             </div>
           ))}
         </div>
@@ -50,7 +50,7 @@ const StudentSuccessStories = () => {
           <div className="text-center mt-10">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300"
+              className="proCardButton"
             >
               {showAll ? "See Less" : "See More"}
             </button>
