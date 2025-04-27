@@ -1,3 +1,4 @@
+import SectionTitle from "@/Shared/SectionTitle";
 import { useEffect, useState } from "react";
 
 const StudentSuccessStories = () => {
@@ -18,22 +19,26 @@ const StudentSuccessStories = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800">Our Successful Learners</h2>
-          <p className="text-gray-600 mt-4">Real Stories from Our AI-Powered Learning Platform</p>
+        <SectionTitle
+        heading="Our Successful Learners"
+        subHeading="Real Stories from Our AI-Powered Learning Platform"
+      />
         </div>
 
         {/* Student Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleStudents.map((student) => (
             <div
               key={student.id}
               className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-xl transition duration-300"
             >
-              <img
-                src={student.image}
-                alt={student.name}
-                className="w-24 h-24 rounded-full object-cover mb-4"
-              />
+              <div className="w-full mb-4">
+                <img
+                  src={student.image}
+                  alt={student.name}
+                  className="w-full h-72 md:h-56 object-cover rounded-2xl p-2"
+                />
+              </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{student.name}</h3>
               <p className="text-gray-600 text-sm">{student.quote}</p>
             </div>
