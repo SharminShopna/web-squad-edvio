@@ -6,6 +6,7 @@ import { GoPlus } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import DashboardFooter from '../../ShareComponent/DashboardFooter';
 
+
 export default function AllInstructor() {
     const [user,setUser] = useState([])
      const allUserData = async ()=>{
@@ -41,6 +42,7 @@ export default function AllInstructor() {
               </div>
           </div>
           <DashboardFooter></DashboardFooter>
+        
        </div>
     </div>
   )

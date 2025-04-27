@@ -43,8 +43,8 @@ const [columnVisibility, setColumnVisibility] = useState({})
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
       sorting,
       columnFilters,
@@ -148,6 +148,7 @@ const [columnVisibility, setColumnVisibility] = useState({})
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className={'text-base'}
         >
           Previous
         </Button>
@@ -156,6 +157,7 @@ const [columnVisibility, setColumnVisibility] = useState({})
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+            className={'text-base'}
         >
           Next
         </Button>

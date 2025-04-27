@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "./Components/ui/sonner";
 import { CartProvider } from "./Hooks/useCart";
+import Chatbot from "./Components/Chatbot";
 const queryClient = new QueryClient();
 const root = document.getElementById("root");
 
@@ -24,5 +25,6 @@ ReactDOM.createRoot(root).render(
     </AuthProvider>
     <ToastContainer />
     <Toaster />
+    <Chatbot />
   </BrowserRouter>
 );

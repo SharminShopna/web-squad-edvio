@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 const stripe = require('stripe')('sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ');
+const { GoogleGenAI } = require("@google/genai");
+
 
 // app.use(cors());
 app.use(
@@ -18,6 +20,11 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Initialize Gemini with API key
+const genAI = new GoogleGenAI({
+  apiKey: "AIzaSyDLZnUvmtaLo9lTOgdlRwpcDzTy-QGhObM"
+});
 
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
@@ -540,6 +547,29 @@ app.put('/user/:email', async (req, res) => {
     res.status(500).send({ error: 'Failed to update user data' });
   }
 });
+
+// AI chatbot with common question ================================
+
+app.get("/ask", async (req, res) => {
+  const { question } = req.query;
+  if (!question) {
+    return res.status(400).json({ error: "Question is required" });
+  }
+
+  try {
+    // Send the question to Google Gemini
+    const response = await genAI.models.generateContent({
+      model: "gemini-2.0-flash", 
+      contents: question,       
+    });
+  console.log(response)
+    res.send({ answer: response.text }); 
+  } catch (error) {
+    console.error("Error from Gemini API:", error);
+    res.status(500).json({ error: "An error occurred while processing the question", details: error.message });
+  }
+});
+
 
 
   } finally {
