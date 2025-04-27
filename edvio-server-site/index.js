@@ -3,9 +3,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4000;
-const stripe = require('stripe')('sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ');
-const { GoogleGenAI } = require("@google/genai");
-
+const stripe = require("stripe")(
+  "sk_test_51Qs7dpBM5dvyedYSDXcWsXSWbXeMbn1HlfhCujqzMsG6kPcxbj4ovoNvmmraaeASZ9sanWeSdCMiLTvePkGWtVb200PGsvGLcJ"
+);
 
 // app.use(cors());
 app.use(
@@ -20,11 +20,6 @@ app.use(
   })
 );
 app.use(express.json());
-
-// Initialize Gemini with API key
-const genAI = new GoogleGenAI({
-  apiKey: "AIzaSyDLZnUvmtaLo9lTOgdlRwpcDzTy-QGhObM"
-});
 
 app.get("/", (req, res) => {
   res.send("Edvio server is running");
@@ -491,30 +486,9 @@ async function run() {
 
     // user data update ...............
 
-    app.put("/user/:email", async (req, res) => {
-      try {
-        const email = req.params.email;
-        const query = { email: email };
-        const updateData = req.body;
 
-        const update = { $set: {} };
 
-        // Only set 'additional' if it's provided
-        if (
-          updateData.gender ||
-          updateData.age ||
-          updateData.primaryDeviceType ||
-          updateData.internetType ||
-          updateData.yearsOfExperience
-        ) {
-          update.$set.additional = {
-            gender: updateData?.gender,
-            age: updateData?.age,
-            primaryDeviceType: updateData?.primaryDeviceType,
-            internetType: updateData?.internetType,
-            yearsOfExperience: updateData?.yearsOfExperience,
-          };
-        }
+      
 
         app.put("/user/:email", async (req, res) => {
           try {
@@ -522,6 +496,7 @@ async function run() {
             const query = { email: email };
             const updateData = req.body;
             const update = { $set: {} };
+            
             if (updateData.name || updateData.email || updateData.phoneNumber) {
               update.$set = {
                 name: updateData?.name,
@@ -546,60 +521,71 @@ async function run() {
               };
             }
 
-// AI chatbot with common question ================================
+            // Only set 'address' if it's provided
+            if (updateData.presentAddress || updateData.permanentAddress) {
+              update.$set.address = {
+                presentAddress: {
+                  country: updateData?.presentAddress?.country,
+                  district: updateData?.presentAddress?.district,
+                  streetAddress: updateData?.presentAddress?.streetAddress,
+                  postalCode: updateData?.presentAddress?.postalCode,
+                  city: updateData?.presentAddress?.city,
+                },
+                permanentAddress: {
+                  country: updateData?.permanentAddress?.country,
+                  district: updateData?.permanentAddress?.district,
+                  streetAddress: updateData?.permanentAddress?.streetAddress,
+                  postalCode: updateData?.permanentAddress?.postalCode,
+                  city: updateData?.permanentAddress?.city,
+                },
+              };
+            }
+            if (
+              updateData.educationLevel ||
+              updateData.internetType ||
+              updateData.degreeTitle ||
+              updateData.graduationYear ||
+              updateData.currentYear ||
+              updateData.cgpa
+            ) {
+              update.$set.education = {
+                educationLevel: updateData.educationLevel,
+                institutionName: updateData.institutionName,
+                degreeTitle: updateData.degreeTitle,
+                graduationYear: updateData.graduationYear,
+                currentYear: updateData.currentYear,
+                cgpa: updateData.cgpa,
+              };
+            }
+            if (
+              updateData.cvLink ||
+              updateData.githubProfile ||
+              updateData.portfolioLink ||
+              updateData.linkedinProfile
+            ) {
+              update.$set.links = {
+                cvLink: updateData.cvLink,
+                githubProfile: updateData.githubProfile,
+                portfolioLink: updateData.portfolioLink,
+                linkedinProfile: updateData.linkedinProfile,
+              };
+            }
+            const result = await usersCollection.updateOne(query, update);
+            res.send(result);
+          } catch (error) {
+            console.error("Error updating user:", error.message);
+            res.status(500).send({ error: "Failed to update user data" });
+          }
+        });
 
-app.get("/ask", async (req, res) => {
-  const { question } = req.query;
-  if (!question) {
-    return res.status(400).json({ error: "Question is required" });
-  }
+      
+        
 
-  try {
-    // Send the question to Google Gemini
-    const response = await genAI.models.generateContent({
-      model: "gemini-2.0-flash", 
-      contents: question,       
-    });
-  console.log(response)
-    res.send({ answer: response.text }); 
-  } catch (error) {
-    console.error("Error from Gemini API:", error);
-    res.status(500).json({ error: "An error occurred while processing the question", details: error.message });
-  }
-});
-
-
-
-        // Only set 'address' if it's provided
-        if (updateData.presentAddress || updateData.permanentAddress) {
-          update.$set.address = {
-            presentAddress: {
-              country: updateData?.presentAddress?.country,
-              district: updateData?.presentAddress?.district,
-              streetAddress: updateData?.presentAddress?.streetAddress,
-              postalCode: updateData?.presentAddress?.postalCode,
-              city: updateData?.presentAddress?.city,
-            },
-            permanentAddress: {
-              country: updateData?.permanentAddress?.country,
-              district: updateData?.permanentAddress?.district,
-              streetAddress: updateData?.permanentAddress?.streetAddress,
-              postalCode: updateData?.permanentAddress?.postalCode,
-              city: updateData?.permanentAddress?.city,
-            },
-          };
-        }
-
-        const result = await usersCollection.updateOne(query, update);
-        res.send(result);
-      } catch (error) {
-        console.error("Error updating user:", error.message);
-        res.status(500).send({ error: "Failed to update user data" });
-      }
-    });
+      
+    
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
   }
 }
-
+run().catch(console.dir);
