@@ -35,6 +35,7 @@ import Payment from "@/Components/Payment/Payment";
 import ContactUs from "@/Pages/Contact-Us/ContactUs";
 
 import Cart from "@/Components/Cart/Cart";
+import CategoryCourse from "@/Components/Category/CategoryCourse";
 
 
 export default function RouterProvider() {
@@ -49,6 +50,7 @@ export default function RouterProvider() {
         <Route path="all-courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
         <Route path="cart" element={<Cart></Cart>}></Route>
+        <Route path="/category/:categoryName" element={<CategoryCourse />} />
       </Route>
 
       {/* Authentication Routes */}
