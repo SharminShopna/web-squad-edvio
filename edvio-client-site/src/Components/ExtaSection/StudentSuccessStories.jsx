@@ -19,10 +19,10 @@ const StudentSuccessStories = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
-        <SectionTitle
-        heading="Our Successful Learners"
-        subHeading="Real Stories from Our AI-Powered Learning Platform"
-      />
+          <SectionTitle
+            heading="Our Successful Learners"
+            subHeading="Real Stories from Our AI-Powered Learning Platform"
+          />
         </div>
 
         {/* Student Cards */}
