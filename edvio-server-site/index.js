@@ -244,6 +244,27 @@ async function run() {
         });
       }
     });
+    //  get one user base on Id =======================
+
+app.get("/user/byId/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id)
+    const query = { _id: new ObjectId(id)};
+    const result = await usersCollection.findOne(query);
+     res.status(200).json({
+        success: true,
+        data: result,
+        });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+    success: false,
+    message: "Failed to fetch courses. Please try again later.",
+        });
+  }
+});
+
     //  all courses data ===========================
     app.get("/allCourses", async (req, res) => {
       try {
@@ -502,11 +523,11 @@ async function run() {
             const updateData = req.body;
             const update = { $set: {} };
 
-            if (updateData.name || updateData.email || updateData.phoneNumber) {
+            if (updateData.name || updateData.email || updateData.mobile) {
               update.$set = {
                 name: updateData?.name,
                 email: updateData?.email,
-                phoneNumber: updateData?.phoneNumber,
+                mobile: updateData?.mobile,
               };
             }
             // Only set 'additional' if it's provided

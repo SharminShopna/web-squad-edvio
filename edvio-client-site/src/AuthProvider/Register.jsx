@@ -40,7 +40,7 @@ const Register = () => {
         name: data?.name,
         email: data?.email,
         firebaseUid: user.uid,
-        number: data?.number,
+        mobile: data?.number,
         role: "user",
         date: new Date(),
       };

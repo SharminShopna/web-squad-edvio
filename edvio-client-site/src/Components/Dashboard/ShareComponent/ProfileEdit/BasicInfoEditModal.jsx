@@ -31,9 +31,9 @@ export default function BasicInfoEditModal() {
         e.preventDefault();
          const name = e.target.name.value;
          const email = e.target.email.value;
-         const phoneNumber = e.target.phoneNumber.value;
+         const mobile = e.target.mobile.value;
          const basicInfo = {
-          name,email,phoneNumber,
+          name,email,mobile,
          }
         
             try {
@@ -116,8 +116,8 @@ export default function BasicInfoEditModal() {
     </div>
     <div>
       <Label className="text-left mb-2 block">Mobile Number</Label>
-      <Input type="phone" name="phoneNumber" placeholder="Mobile Number
-"   defaultValue={userData?.phoneNumber}
+      <Input type="phone" name="mobile" placeholder="Mobile Number
+"   defaultValue={userData?.mobile}
       className={'border-TealGreen bg-white/10 backdrop-blur-md text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-TealGreen'} />
     </div>
 

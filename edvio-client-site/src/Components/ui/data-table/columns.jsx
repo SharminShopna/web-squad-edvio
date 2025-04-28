@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Link } from "react-router-dom"
+import useOneUser from "@/Hooks/useOneUser"
+import { useState } from "react"
 export const columns = [
   {
     id: "select",
@@ -59,6 +61,7 @@ export const columns = [
       return (
         <Button
           variant="ghost"
+          className={'text-sm'}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Email
@@ -68,7 +71,7 @@ export const columns = [
     },
   },
 {
-  accessorKey: "number",
+  accessorKey: "mobile",
   header: "Phone Number",
   cell: ({ getValue }) => {
     const number = getValue();
@@ -111,8 +114,7 @@ export const columns = [
   accessorKey: "action",
   header: "Action",
     cell: ({ row }) => {
-      const payment = row.original
-
+      const user = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -123,9 +125,10 @@ export const columns = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className={'bg-white/30 p-3 rounded-lg shadow-lg border border-white/20 backdrop-blur-lg text-sm'}>
             <DropdownMenuItem>
-             <Link to={''}> View Details</Link>
+               <Link to={`/dashboard/user-details/${user._id}`}>View Details</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem>Delete</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
