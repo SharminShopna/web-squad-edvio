@@ -4,17 +4,15 @@ import SectionTitle from "@/Shared/SectionTitle";
 
 const AIPoweredFeatures = () => {
   return (
-    <section className="py-16">
+    <section className="py-12">
+        <SectionTitle
+            heading="AI-Powered Course Management System"
+            subHeading="Revolutionizing the way you learn and manage courses with smart automation and personalization."
+          />
       <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
       
         {/* Left Content */}
         <div className="flex-1">
-          <h2 className="text-4xl font-bold text-base-content mb-6">
-            AI-Powered Course Management System
-          </h2>
-          <p className="text-TealGreen dark:text-TealGreen text-lg mb-8">
-            ---Revolutionizing the way you learn and manage courses with smart automation and personalization.---
-          </p>
 
           <ul className="space-y-6">
             <li className="flex items-start">
