@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default function CategoryCard({ data }) {
   const { name, image, count } = data;
 
@@ -11,8 +12,8 @@ export default function CategoryCard({ data }) {
         <div className="p-4">
           <h3 className="text-xl my-2 font-bold">{name}</h3>
           <p className="text-sm">{count} {count === 1 ? 'course' : 'courses'} available</p>
+          </div>
         </div>
-      </div>
     </Link>
   );
 }

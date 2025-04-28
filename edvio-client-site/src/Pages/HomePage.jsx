@@ -11,6 +11,9 @@ import Pro from "../Components/PremiumCourse/Pro";
 import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import Category from "@/Components/Category/Category";
 import Contact from "../Components/Contact";
+import StudentSuccessStories from "@/Components/ExtaSection/StudentSuccessStories";
+import TopAchievements from "@/Components/ExtaSection/TopAchievements";
+import AIPoweredFeatures from "@/Components/ExtaSection/AIPoweredFeatures";
 
 export default function HomePage() {
   return (
@@ -29,6 +32,9 @@ export default function HomePage() {
         <WhyUs></WhyUs>
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
+        <StudentSuccessStories></StudentSuccessStories>
+        <TopAchievements></TopAchievements>
+        <AIPoweredFeatures></AIPoweredFeatures>
         {/* <ContactUs></ContactUs> */}
         {/* <Contact></Contact> */}
 

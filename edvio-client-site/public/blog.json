@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "5 Effective Learning Strategies for Online Courses",
+    "excerpt": "Discover proven techniques to maximize your learning from online education platforms.",
+    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "April 15, 2023",
+    "category": "Learning Tips"
+  },
+  {
+    "id": 2,
+    "title": "How to Stay Motivated While Learning Remotely",
+    "excerpt": "Struggling with motivation? Here are 7 ways to keep yourself engaged with your online courses.",
+    "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "March 28, 2023",
+    "category": "Student Life"
+  },
+  {
+    "id": 3,
+    "title": "The Future of Online Education: Trends to Watch",
+    "excerpt": "Explore the emerging technologies and methodologies shaping the future of digital learning.",
+    "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "March 10, 2023",
+    "category": "Industry Insights"
+  },
+  {
+    "id": 4,
+    "title": "Building a Productive Home Study Environment",
+    "excerpt": "Transform any space into an ideal learning environment with these simple adjustments.",
+    "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "February 22, 2023",
+    "category": "Learning Tips"
+  },
+  {
+    "id": 5,
+    "title": "Balancing Work, Life, and Online Studies",
+    "excerpt": "Practical advice for adult learners managing multiple responsibilities while pursuing education.",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "February 5, 2023",
+    "category": "Student Life"
+  },
+  {
+    "id": 6,
+    "title": "Measuring Your Progress in Online Courses",
+    "excerpt": "How to effectively track and evaluate your learning journey in digital education.",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "date": "January 18, 2023",
+    "category": "Learning Tips"
+  }
+]
