@@ -35,10 +35,9 @@ import CourseAnalytics from "@/Components/Dashboard/InstructorDashBoard/CourseAn
 import Blog from "@/Components/Blog/Blog";
 import BlogDetails from "@/Components/Blog/BlogDetails";
 import Feature from "@/Components/Feature/feature";
-
 import ContactUs from "@/Pages/Contact-Us/ContactUs";
-
 import Cart from "@/Components/Cart/Cart";
+import CategoryCourse from "@/Components/Category/CategoryCourse";
 import useOneUser from "@/Hooks/useOneUser";
 
 export default function RouterProvider() {
@@ -61,6 +60,8 @@ export default function RouterProvider() {
         <Route path="contact" element={<ContactUs />} />
         <Route path="Courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
+        <Route path="cart" element={<Cart></Cart>}></Route>
+        <Route path="/category/:categoryName" element={<CategoryCourse />} />
         <Route path="cart" element={<Cart />} />
       </Route>
 
