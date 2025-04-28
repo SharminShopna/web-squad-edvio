@@ -12,6 +12,7 @@ import AIChatBot from "@/Components/Dashboard/StudentAIChatBot/AIChatBot";
 import Category from "@/Components/Category/Category";
 import Contact from "../Components/Contact";
 import StudentSuccessStories from "@/Components/ExtaSection/StudentSuccessStories";
+import TopAchievements from "@/Components/ExtaSection/TopAchievements";
 
 export default function HomePage() {
   return (
@@ -31,6 +32,7 @@ export default function HomePage() {
         <CommonQuestion></CommonQuestion>
         <Reviews></Reviews>
         <StudentSuccessStories></StudentSuccessStories>
+        <TopAchievements></TopAchievements>
         {/* <ContactUs></ContactUs> */}
         {/* <Contact></Contact> */}
 

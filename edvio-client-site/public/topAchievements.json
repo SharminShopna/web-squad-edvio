@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "50K+ Students Certified",
+      "description": "Over 50,000 learners have successfully earned their certifications through our AI-powered courses.",
+      "icon": "🎓"
+    },
+    {
+      "id": 2,
+      "title": "95% Success Rate",
+      "description": "Our smart AI learning paths ensure a 95% course completion and success rate among students.",
+      "icon": "🏆"
+    },
+    {
+      "id": 3,
+      "title": "300+ Expert Tutors",
+      "description": "Our platform hosts more than 300 verified and experienced instructors for AI-driven guidance.",
+      "icon": "👩‍🏫"
+    },
+    {
+      "id": 4,
+      "title": "150+ AI Courses",
+      "description": "Explore a wide range of over 150 cutting-edge AI-based courses tailored for modern learners.",
+      "icon": "📚"
+    },
+    {
+      "id": 5,
+      "title": "Global Student Community",
+      "description": "Our learners come from over 100+ countries, building a diverse, global knowledge-sharing community.",
+      "icon": "🌍"
+    },
+    {
+      "id": 6,
+      "title": "AI Research Awards",
+      "description": "We proudly sponsor AI research programs, helping future innovators change the world.",
+      "icon": "🔬"
+    }
+  ]
+  

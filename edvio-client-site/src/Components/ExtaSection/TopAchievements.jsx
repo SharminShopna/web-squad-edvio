@@ -1,0 +1,58 @@
+import SectionTitle from "@/Shared/SectionTitle";
+import { useEffect, useState } from "react";
+
+const TopAchievements = () => {
+    const [achievements, setAchievements] = useState([]);
+    const [showAll, setShowAll] = useState(false);
+
+    useEffect(() => {
+        fetch("/topAchievements.json")
+            .then((res) => res.json())
+            .then((data) => setAchievements(data))
+            .catch((error) => console.error("Error fetching achievements:", error));
+    }, []);
+
+    const visibleAchievements = showAll ? achievements : achievements.slice(0, 3);
+
+    return (
+        <section className="py-16">
+            <div className="max-w-7xl mx-auto px-4">
+                {/* Heading */}
+                <div className="text-center mb-12">
+                    <SectionTitle
+                        heading="Top Achievements"
+                        subHeading="Our milestones that reflect excellence and success"
+                    />
+                </div>
+
+                {/* Achievements Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {visibleAchievements.map((item) => (
+                        <div
+                            key={item.id}
+                            className="bg-neutral p-6 rounded-2xl border border-TealGreen shadow-md hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 hover:scale-105 text-center"
+                        >
+                            <div className="text-5xl mb-4">{item.icon}</div>
+                            <h3 className="text-xl font-semibold text-base-content mb-2">{item.title}</h3>
+                            <p className="text-gray-200 text-sm">{item.description}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* See More / See Less Button */}
+                {achievements.length > 3 && (
+                    <div className="text-center mt-10">
+                        <button
+                            onClick={() => setShowAll(!showAll)}
+                            className="proCardButton"
+                        >
+                            {showAll ? "See Less" : "See More"}
+                        </button>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+};
+
+export default TopAchievements;
