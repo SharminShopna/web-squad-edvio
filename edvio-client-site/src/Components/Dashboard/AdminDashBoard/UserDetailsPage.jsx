@@ -34,6 +34,10 @@ import { Bar, Line, Pie } from 'react-chartjs-2'
 import { FaInfoCircle } from 'react-icons/fa'
 import { Award, BookOpen, Home, Star, User, Wifi } from 'react-feather'
 import { FaLocationDot } from 'react-icons/fa6'
+import DashboardFooter from '../ShareComponent/DashboardFooter'
+import ProfileCard from './UserDetails/ProfileCard'
+import Heading from './UserDetails/Heading'
+import UserProgressChart from './UserDetails/UserProgressChart'
 
 ChartJS.register(
   CategoryScale, 
@@ -244,7 +248,10 @@ export default function UserDetailsPage() {
       
     }
   }
-
+ const userHeading = {
+    "heading": "  Academic Performance Dashboard",
+    "subHeading": "Explore detailed information about this user, including their role, current activity status, academic performance and contact details. Stay connected and manage interactions seamlessly to foster a smooth and engaging experience on the platform."
+ }
   if (isError) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1a2e] to-[#16213e]">
@@ -288,40 +295,11 @@ export default function UserDetailsPage() {
             className="h-full mx-auto relative z-10"
           >
             {/* Header with animated reveal */}
-            <motion.div
-              className="text-center mb-10 relative h-full"
-              variants={clipPathVariants}
-            >
-                <div className="gap-4 text-center sm:text-left p-6 bg-base-200 rounded-lg shadow-xl clip-path-triangle lg:w-[60%]">
-             <motion.h3 
-                className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-TealGreen to-base-content drop-shadow-lg"
-                initial={{ y: 60, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                {studentData.name}
-              </motion.h3>
-                <motion.p 
-                className="text-lg text-gray-300 font-medium mb-2"
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                Academic Performance Dashboard
-              </motion.p>
-        <p className="text-base opacity-[0.8]">
-        Explore detailed information about this user, including their role, current activity status, academic performance and contact details. Stay connected and manage interactions seamlessly to foster a smooth and engaging experience on the platform.
-       </p>
-       </div>
-            </motion.div>
+          <Heading clipPathVariants={clipPathVariants} studentData={studentData} userHeading={userHeading} itemVariants={itemVariants}></Heading>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Profile Card with glassmorphism */}
-              <motion.div 
-                variants={cardVariants}
-                className="lg:col-span-1"
-              >
-                <Card className="h-full bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden relative group clip-path-card">
+              <Card className="h-full bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden relative group clip-path-card">
                   <motion.div 
                     className="h-48 bg-gradient-to-r from-neutral to-base-content relative"
                     variants={clipPathVariants}
@@ -428,9 +406,7 @@ export default function UserDetailsPage() {
                       />
                     )}
                   </CardFooter>
-                </Card>
-
-              </motion.div>
+              </Card>
 
 
 
@@ -666,10 +642,7 @@ export default function UserDetailsPage() {
       <p className="text-gray-400/80 text-sm">No address information provided</p>
     </div>
   )}
-</motion.div>
-          
-  
-                    
+               </motion.div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -681,46 +654,7 @@ export default function UserDetailsPage() {
             </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 space-y-10">
                 {/* Progress Section */}
-                <motion.div variants={cardVariants}>
-                  <Card className="bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden clip-path-card">
-                    <CardHeader className="bg-gradient-to-r from-base-content/20 to-TealGreen/20 py-6 px-10 relative">
-                      <div className="absolute top-0 right-0 w-40 h-full bg-base-content/20 clip-path-card-corner" />
-                      <motion.div className="flex items-center gap-4" variants={itemVariants}>
-                        <BarChart2 className="h-6 w-6 text-LightTeal" />
-                        <h3 className="text-2xl font-semibold text-white">Academic Progress</h3>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="p-10 space-y-8">
-                      <div className="h-72">
-                        <Bar data={progressChartConfig.data} options={progressChartConfig.options} />
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-3">
-                          Course Completion: {studentData.progress?.courseCompletion ?? 0}%
-                        </h4>
-                        <Progress 
-                          value={studentData.progress?.courseCompletion ?? 0} 
-                          className="h-3 bg-white/20"
-                          indicatorClassName="bg-gradient-to-r from-to-[#4ecdc4]"
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <InfoCard 
-                          label="Skills Acquired" 
-                          value={studentData.progress?.skills?.join(", ") ?? "N/A"} 
-                          highlight 
-                          variants={itemVariants} 
-                        />
-                        <InfoCard 
-                          label="Certificates Earned" 
-                          value={studentData.progress?.certificates ?? 0} 
-                          highlight 
-                          variants={itemVariants} 
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <UserProgressChart cardVariants={cardVariants} progressChartConfig={progressChartConfig} studentData={studentData} InfoCard={InfoCard}></UserProgressChart>
 
                 {/* Quiz Performance Section */}
                 <motion.div variants={cardVariants}>
@@ -824,9 +758,10 @@ export default function UserDetailsPage() {
                 </motion.div>
 
           
-
+                 
               
               </div>
+              <DashboardFooter></DashboardFooter>
           </motion.div>
         )}
       </AnimatePresence>

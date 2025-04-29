@@ -249,7 +249,6 @@ async function run() {
 app.get("/user/byId/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id)
     const query = { _id: new ObjectId(id)};
     const result = await usersCollection.findOne(query);
      res.status(200).json({
