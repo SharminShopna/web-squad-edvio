@@ -71,7 +71,8 @@ export default function AllCourses() {
 
         
         <div className="lg:w-[50%]" data-aos="fade-left">
-          <Swiper
+          <Swiper 
+          
             slidesPerView={2}
             spaceBetween={20}
             navigation={true} // Enable navigation
