@@ -5,17 +5,12 @@ import React, { useEffect, useState } from 'react'
 import { GoPlus } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import DashboardFooter from '../../ShareComponent/DashboardFooter';
+import useAllUser from '@/Hooks/useAllUser';
 
 export default function AllUser() {
-    const [user,setUser] = useState([])
-     const allUserData = async ()=>{
-      const AllData = await axios.get('/user-data.json');
-      setUser(AllData.data)
-    }
-    useEffect(()=>{
-      allUserData();
-    },[])
+    const {user} = useAllUser();
     const users = user.filter(item => item.role === 'user').sort((a, b) => new Date(b.date) - new Date(a.date));
+    
   return (
     <div className='w-full'>
         

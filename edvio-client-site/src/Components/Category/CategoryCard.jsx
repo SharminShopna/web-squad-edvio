@@ -7,7 +7,7 @@ export default function CategoryCard({ data }) {
   return (
     <Link to={`/category/${encodeURIComponent(name)}`} className="block">
       <div
-        className="rounded-2xl md:w-[500px] bg-[#003843] text-white overflow-hidden shadow-lg transition-transform hover:scale-[1.02] duration-300"
+        className="rounded-2xl md:w-[470px] bg-[#003843] text-white overflow-hidden shadow-lg transition-transform hover:scale-[1.02] duration-300"
         data-aos="fade-up"
       >
         <img

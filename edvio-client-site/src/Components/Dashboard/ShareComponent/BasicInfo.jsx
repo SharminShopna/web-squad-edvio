@@ -41,7 +41,7 @@ export default function BasicInfo() {
         </div>
         <div>
           <h3 className="text-xl font-medium text-TealGreen flex items-center gap-2"><FaMobileScreenButton className='text-LightTeal'/>Mobile Number</h3>
-          <p className="mt-2">{userData?.phoneNumber ? userData?.phoneNumber : 'N/A'}</p>
+          <p className="mt-2">{userData?.mobile ? userData?.mobile : 'N/A'}</p>
         </div>
        </div>
     

@@ -39,6 +39,7 @@ import ContactUs from "@/Pages/Contact-Us/ContactUs";
 import Cart from "@/Components/Cart/Cart";
 import CategoryCourse from "@/Components/Category/CategoryCourse";
 import useOneUser from "@/Hooks/useOneUser";
+import UserDetailsPage from "@/Components/Dashboard/AdminDashBoard/UserDetailsPage";
 
 export default function RouterProvider() {
   const { userData } = useOneUser();
@@ -96,6 +97,7 @@ export default function RouterProvider() {
               path="/dashboard/admin/chatbot"
               element={<AiChatBot />}
             ></Route>
+            <Route path="/dashboard/user-details/:id" element={<UserDetailsPage />}></Route>
           </>
         )}
 
