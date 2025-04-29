@@ -71,3 +71,21 @@
 .border-table-left{
   border-left: 1px solid oklch(90% .076 70.697 / 0.1) ;
 }
+  .clip-path-card {
+          clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        .clip-path-profile-header {
+          clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+        }
+        .clip-path-card-corner {
+          clip-path: polygon(100% 0, 100% 100%, 0 0);
+        }
+        .clip-path-button {
+          clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .progress-indicator {
+          background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+        }
+
+        

@@ -18,7 +18,28 @@ export default function Profile({socialLink}) {
         <BgImage bgImg={bgImg} height={'300px'} round={'8px'}></BgImage>
         <div className="flex justify-between">
         <div className="flex">
-          <img src={userData?.image} alt="" className="w-30 h-30 rounded-full transform -translate-y-16 translate-x-10"/>
+         {userData?.image ? (
+    <>
+      <img 
+        src={userData.image} 
+        alt={userData.name || 'User avatar'} 
+        className="w-30 h-30 rounded-full transform -translate-y-16 translate-x-10"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          e.currentTarget.nextElementSibling.style.display = 'flex';
+        }}
+      />
+      <div 
+        className="w-full h-full rounded-full bg-gradient-to-br from-[#ff6b6b] to-[#4ecdc4] flex items-center justify-center text-3xl font-bold text-white absolute inset-0 hidden border-4 border-white/30 shadow-lg"
+      >
+        {userData?.name?.charAt(0).toUpperCase() || '?'}
+      </div>
+    </>
+  ) : (
+    <div className="w-30 h-30 rounded-full transform -translate-y-16 translate-x-10 bg-gradient-to-br from-TealGreen to-base-content flex items-center justify-center text-4xl font-bold text-TealGreen border-4 border-white/30 shadow-lg">
+      {userData?.name?.charAt(0).toUpperCase() || '?'}
+    </div>
+  )}
           <div className="ml-16 mt-2">
           <h3 className="text-lg font-medium">{userData?.name}</h3>
           <p className="text-gray-400">

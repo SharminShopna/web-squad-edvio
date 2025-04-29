@@ -115,6 +115,7 @@ export const columns = [
   header: "Action",
     cell: ({ row }) => {
       const user = row.original;
+      console.log(user)
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

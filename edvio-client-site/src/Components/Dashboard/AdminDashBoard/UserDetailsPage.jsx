@@ -2,21 +2,14 @@
 import useAxiosSecure from '@/Hooks/useAxiosSecure'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { motion, AnimatePresence, hover } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Avatar } from "@/components/ui/avatar"
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { 
   Globe, Github, Linkedin, FileText, Smartphone, Mail, 
-  MapPin, Calendar, Download, Edit2, BarChart2, CheckCircle, GraduationCap,
-  Laptop,
-  School,
-  CalendarCheck,
-  Building2
-} from "lucide-react"
+  MapPin, Calendar} from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { Progress } from "@/components/ui/progress"
 import { 
   Chart as ChartJS, 
   CategoryScale, 
@@ -30,14 +23,12 @@ import {
   Legend, 
   Filler 
 } from 'chart.js'
-import { Bar, Line, Pie } from 'react-chartjs-2'
-import { FaInfoCircle } from 'react-icons/fa'
-import { Award, BookOpen, Home, Star, User, Wifi } from 'react-feather'
-import { FaLocationDot } from 'react-icons/fa6'
 import DashboardFooter from '../ShareComponent/DashboardFooter'
-import ProfileCard from './UserDetails/ProfileCard'
 import Heading from './UserDetails/Heading'
 import UserProgressChart from './UserDetails/UserProgressChart'
+import QuizChart from './UserDetails/QuizChart'
+import CourseChart from './UserDetails/CourseChart'
+import UserBasicInfo from './UserDetails/UserBasicInfo'
 
 ChartJS.register(
   CategoryScale, 
@@ -249,8 +240,8 @@ export default function UserDetailsPage() {
     }
   }
  const userHeading = {
-    "heading": "  Academic Performance Dashboard",
-    "subHeading": "Explore detailed information about this user, including their role, current activity status, academic performance and contact details. Stay connected and manage interactions seamlessly to foster a smooth and engaging experience on the platform."
+    "heading": " Performance Dashboard",
+    "subHeading": "Explore detailed information about this person, including their role, current activity status, academic performance and contact details. Stay connected and manage interactions seamlessly to foster a smooth and engaging experience on the platform."
  }
   if (isError) {
     return (
@@ -297,9 +288,9 @@ export default function UserDetailsPage() {
             {/* Header with animated reveal */}
           <Heading clipPathVariants={clipPathVariants} studentData={studentData} userHeading={userHeading} itemVariants={itemVariants}></Heading>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 ${user?.role !== "student" && "mb-5"}`}>
               {/* Profile Card with glassmorphism */}
-              <Card className="h-full bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden relative group clip-path-card">
+          <Card className="h-full bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden relative group clip-path-card">
                   <motion.div 
                     className="h-48 bg-gradient-to-r from-neutral to-base-content relative"
                     variants={clipPathVariants}
@@ -311,19 +302,30 @@ export default function UserDetailsPage() {
                       animate={{ scale: 1, opacity: 1, rotate: 0 }}
                       transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
                     >
-                      <Avatar className="w-36 h-36 border-6 border-white/30 shadow-2xl group-hover:scale-105 transition-transform duration-300">
-                        {studentData.image ? (
-                          <img 
-                            src={studentData.image} 
-                            alt={studentData.name} 
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-[#ff6b6b] to-[#4ecdc4] flex items-center justify-center text-5xl font-bold text-white">
-                            {studentData.name?.charAt(0)}
-                          </div>
-                        )}
-                      </Avatar>
+                      <Avatar className="w-36 h-36 border-6 border-white/30 shadow-2xl group-hover:scale-105 transition-transform duration-300 relative">
+  {studentData.image ? (
+    <>
+      <img 
+        src={studentData.image} 
+        alt={studentData.name} 
+        className="object-cover w-full h-full"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          e.currentTarget.nextElementSibling.style.display = 'flex';
+        }}
+      />
+      <div 
+        className="w-full h-full bg-gradient-to-br from-TealGreen to-neutral flex items-center justify-center text-5xl font-bold text-white absolute inset-0 hidden"
+      >
+        {studentData.name?.charAt(0).toUpperCase()}
+      </div>
+    </>
+  ) : (
+    <div className="w-full h-full bg-gradient-to-br from-TealGreen to-neutral flex items-center justify-center text-5xl font-bold text-white">
+      {studentData.name?.charAt(0).toUpperCase()}
+    </div>
+  )}
+</Avatar>
                     </motion.div>
                   </motion.div>
 
@@ -411,356 +413,31 @@ export default function UserDetailsPage() {
 
 
               <div className='col-span-2'>
-                  <motion.div variants={cardVariants} className='col-span-2 mb-6'>
-                  <Card className="bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden clip-path-card">
-                    <CardHeader className="bg-gradient-to-r from-[#4ecdc4]/20 to-base-content/20 py-5 px-5">
-                      <motion.div className="flex items-center gap-4" variants={itemVariants}>
-                        <FaInfoCircle className="h-6 w-6 text-LightTeal" />
-                        <h3 className="text-2xl font-semibold text-white">Additional Information</h3>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="py-10 px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-    <motion.div
-  className="p-6 rounded-2xl bg-gradient-to-br from-TealGreen/40 to-base-content/30 backdrop-blur-lg border border-white/20 shadow-lg"
-  whileHover={{ 
-    scale: 1.03,
-    boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.3)"
-  }}
-  transition={{ duration: 0.3 }}
->
-  <div className="flex items-center gap-3 mb-4">
-    <div className="p-2 rounded-lg bg-white/10">
-      <User className="h-5 w-5 text-LightTeal" />
-    </div>
-    <h4 className="font-semibold text-white/90 text-lg">Personal Details</h4>
-  </div>
-
-  {studentData?.additional ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <DetailItem 
-        icon={<User className="h-4 w-4 text-LightTeal" />}
-        label="Gender"
-        value={studentData?.additional?.gender}
-      />
-      <DetailItem
-        icon={<Calendar className="h-4 w-4 text-LightTeal" />}
-        label="Age"
-        value={studentData?.additional?.age}
-      />
-      <DetailItem
-        icon={<Laptop className="h-4 w-4 text-LightTeal" />}
-        label="Primary Device"
-        value={studentData?.additional?.primaryDeviceType}
-      />
-      <DetailItem
-        icon={<Wifi className="h-4 w-4 text-LightTeal" />}
-        label="Internet"
-        value={studentData?.additional?.internetType}
-      />
-      <DetailItem
-        icon={<Award className="h-4 w-4 text-LightTeal" />}
-        label="Experience"
-        value={studentData?.additional?.yearsOfExperience}
-        highlight
-      />
-    </div>
-  ) : (
-    <div className="py-4 text-center">
-      <p className="text-gray-400/80 text-sm">No additional information provided</p>
-    </div>
-  )}
-</motion.div>
-              <motion.div
-  className="p-6 rounded-2xl bg-gradient-to-br from-TealGreen/40 to-base-content/30 backdrop-blur-lg border border-white/20 shadow-lg"
-  whileHover={{ 
-    scale: 1.03,
-    boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3)" // Updated to match teal color
-  }}
-  transition={{ duration: 0.3 }}
->
-  <div className="flex items-center gap-3 mb-4">
-    <div className="p-2 rounded-lg bg-white/10">
-      <GraduationCap className="h-5 w-5 text-LightTeal" /> {/* Changed to GraduationCap */}
-    </div>
-    <h4 className="font-semibold text-white/90 text-lg">Educational Details</h4>
-  </div>
-
-  {studentData?.education ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <DetailItem 
-        icon={<BookOpen className="h-4 w-4 text-LightTeal" />} 
-        label="Education Level"
-        value={studentData?.education?.educationLevel}
-      />
-      <DetailItem
-        icon={<School className="h-4 w-4 text-LightTeal" />} 
-        label="Institution"
-        value={studentData?.education?.institutionName}
-      />
-      <DetailItem
-        icon={<FileText className="h-4 w-4 text-LightTeal" />} 
-        label="Degree"
-        value={studentData?.education?.degreeTitle}
-      />
-      <DetailItem
-        icon={<CalendarCheck className="h-4 w-4 text-LightTeal" />}
-        label="Graduation Year"
-        value={studentData?.education?.graduationYear}
-      />
-      <DetailItem
-        icon={<Calendar className="h-4 w-4 text-LightTeal" />} 
-        label="Current Year"
-        value={studentData?.education?.currentYear}
-      />
-      <DetailItem
-        icon={<Star className="h-4 w-4 text-LightTeal" />} 
-        label="CGPA"
-        value={studentData?.education?.cgpa}
-        highlight
-      />
-    </div>
-  ) : (
-    <div className="py-4 text-center">
-      <p className="text-gray-400/80 text-sm">No educational information provided</p>
-    </div>
-  )}
-</motion.div>
-              
-          
-  
-                    
-                    </CardContent>
-                  </Card>
-                </motion.div>
-
-
-                <motion.div variants={cardVariants} className='col-span-2'>
-                  <Card className="bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden clip-path-card">
-                    <CardHeader className="bg-gradient-to-r from-[#4ecdc4]/20 to-base-content/20 py-5 px-5">
-                      <motion.div className="flex items-center gap-4" variants={itemVariants}>
-                        <FaLocationDot  className="h-6 w-6 text-LightTeal" />
-                        <h3 className="text-2xl font-semibold text-white">Address Information</h3>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="py-10 px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-  <motion.div
-  className="p-6 rounded-2xl bg-gradient-to-br from-TealGreen/40 to-base-content/30 backdrop-blur-lg border border-white/20 shadow-lg"
-  whileHover={{ 
-    scale: 1.03,
-    boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3)" // Updated to teal color
-  }}
-  transition={{ duration: 0.3 }}
->
-  <div className="flex items-center gap-3 mb-4">
-    <div className="p-2 rounded-lg bg-white/10">
-      <MapPin className="h-5 w-5 text-LightTeal" /> 
-    </div>
-    <h4 className="font-semibold text-white/90 text-lg">Present Address</h4>
-  </div>
-
-  {studentData?.address?.presentAddress ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <DetailItem 
-        icon={<Globe className="h-4 w-4 text-LightTeal" />} 
-        label="Country"
-        value={studentData.address.presentAddress.country}
-      />
-      <DetailItem
-        icon={<MapPin className="h-4 w-4 text-LightTeal" />} 
-        label="District"
-        value={studentData.address.presentAddress.district}
-      />
-      <DetailItem
-        icon={<Home className="h-4 w-4 text-LightTeal" />}
-        label="Street Address"
-        value={studentData.address.presentAddress.streetAddress}
-      />
-      <DetailItem
-        icon={<Mail className="h-4 w-4 text-LightTeal" />}  
-        label="Postal Code"
-        value={studentData.address.presentAddress.postalCode}
-      />
-      <DetailItem
-        icon={<Building2 className="h-4 w-4 text-LightTeal" />} 
-        label="City"
-        value={studentData.address.presentAddress.city}
-        highlight
-      />
-    </div>
-  ) : (
-    <div className="py-4 text-center">
-      <p className="text-gray-400/80 text-sm">No address information provided</p>
-    </div>
-  )}
-</motion.div>
-            <motion.div
-  className="p-6 rounded-2xl bg-gradient-to-br from-TealGreen/40 to-base-content/30 backdrop-blur-lg border border-white/20 shadow-lg"
-  whileHover={{ 
-    scale: 1.03,
-    boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3)"
-  }}
-  transition={{ duration: 0.3 }}
->
-  <div className="flex items-center gap-3 mb-4">
-    <div className="p-2 rounded-lg bg-white/10">
-      <MapPin className="h-5 w-5 text-LightTeal" />
-    </div>
-    <h4 className="font-semibold text-white/90 text-lg">Permanent Address</h4>
-  </div>
-
-  {studentData?.address?.permanentAddress ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <DetailItem 
-        icon={<Globe className="h-4 w-4 text-LightTeal" />}
-        label="Country"
-        value={studentData.address.permanentAddress.country}
-      />
-      <DetailItem
-        icon={<MapPin className="h-4 w-4 text-LightTeal" />}
-        label="District"
-        value={studentData.address.permanentAddress.district}
-      />
-      <DetailItem
-        icon={<Home className="h-4 w-4 text-LightTeal" />}
-        label="Street Address"
-        value={studentData.address.permanentAddress.streetAddress}
-      />
-      <DetailItem
-        icon={<Mail className="h-4 w-4 text-LightTeal" />}
-        label="Postal Code"
-        value={studentData.address.permanentAddress.postalCode}
-      />
-      <DetailItem
-        icon={<Building2 className="h-4 w-4 text-LightTeal" />}
-        label="City"
-        value={studentData.address.permanentAddress.city}
-        highlight
-      />
-    </div>
-  ) : (
-    <div className="py-4 text-center">
-      <p className="text-gray-400/80 text-sm">No address information provided</p>
-    </div>
-  )}
-               </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <UserBasicInfo cardVariants={cardVariants} itemVariants={itemVariants} studentData={studentData} DetailItem={DetailItem}></UserBasicInfo>
 
               </div>
 
               {/* Details Column */}
               
             </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 space-y-10">
+            {
+              user?.role === "student" && 
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 space-y-10">
                 {/* Progress Section */}
                 <UserProgressChart cardVariants={cardVariants} progressChartConfig={progressChartConfig} studentData={studentData} InfoCard={InfoCard}></UserProgressChart>
 
                 {/* Quiz Performance Section */}
-                <motion.div variants={cardVariants}>
-                  <Card className="bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden clip-path-card">
-                    <CardHeader className="bg-gradient-to-r from-base-content/20 to-TealGreen/20 py-6 px-10 relative">
-                      <div className="absolute top-0 right-0 w-40 h-full bg-base-content/20 clip-path-card-corner" />
-                      <motion.div className="flex items-center gap-4" variants={itemVariants}>
-                        <CheckCircle className="h-6 w-6 text-LightTeal" />
-                        <h3 className="text-2xl font-semibold text-white">Quiz Performance</h3>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="p-10 space-y-8">
-                      <div className="h-72">
-                        <Line data={quizMarksChartConfig.data} options={quizMarksChartConfig.options} />
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        {(studentData.quizzes ?? []).map((quiz, index) => (
-                          <motion.div 
-                            key={index}
-                            className="p-5 rounded-xl bg-gradient-to-r from-base-content/20 to-TealGreen/20 backdrop-blur-md border border-white/10"
-                            variants={itemVariants}
-                            whileHover={{ y: -8, scale: 1.05 }}
-                          >
-                            <h4 className="text-sm font-semibold text-white">{quiz.title}</h4>
-                            <p className="text-xs text-gray-300 mt-2">Score: {quiz.score}%</p>
-                            <p className="text-xs text-gray-400 mt-1">Date: {formatDate(quiz.date)}</p>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <QuizChart cardVariants={cardVariants} itemVariants={itemVariants} quizMarksChartConfig={quizMarksChartConfig} studentData={studentData} formatDate={formatDate}></QuizChart>
 
                 {/* Courses Section */}
-                <motion.div variants={cardVariants} >
-                  <Card className="bg-white/10 backdrop-blur-xl border-none shadow-2xl rounded-2xl overflow-hidden clip-path-card">
-                    <CardHeader className="bg-gradient-to-r from-base-content/20 to-TealGreen/20 py-6 px-10 relative">
-                      <div className="absolute top-0 right-0 w-40 h-full bg-base-content/20 clip-path-card-corner" />
-                      <motion.div className="flex items-center gap-4" variants={itemVariants}>
-                        <GraduationCap className="h-6 w-6 text-LightTeal" />
-                        <h3 className="text-2xl font-semibold text-white">Course Enrollment</h3>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="p-10 flex flex-col md:flex-row gap-10">
-                      <div className="h-72 w-full md:w-1/2">
-                        <Pie data={coursesChartConfig.data} options={coursesChartConfig.options} />
-                      </div>
-                      <div className="w-full md:w-1/2 space-y-6">
-                        <InfoCard 
-                          label="Courses Enrolled" 
-                          value={studentData.courses?.enrolled ?? 0} 
-                          highlight 
-                          variants={itemVariants} 
-                        />
-                        <InfoCard 
-                          label="Courses Completed" 
-                          value={studentData.courses?.completed ?? 0} 
-                          highlight 
-                          variants={itemVariants} 
-                        />
-                        <div className="p-5 rounded-xl bg-gradient-to-r from-TealGreen/10 to-TealGreen/10 border border-white/10">
-                          <h4 className="text-sm font-semibold text-white">Completion Rate</h4>
-                          <p className="text-3xl font-bold text-[#4ecdc4] mt-2">
-                            {studentData.courses?.enrolled
-                              ? Math.round((studentData.courses.completed / studentData.courses.enrolled) * 100)
-                              : 0}%
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                    {/* Actions */}
-                <motion.div 
-                  className="flex justify-end gap-6 mt-10"
-                  variants={cardVariants}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button 
-                      variant="outline"
-                      className="flex items-center gap-3 border-base-content text-base-content hover:bg-base-content/20 px-8 py-6 rounded-xl text-lg font-semibold clip-path-button"
-                    >
-                      <Edit2 className="h-6 w-6 text-base-content" />
-                      Edit Profile
-                    </Button>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button 
-                      className="flex items-center gap-3 bg-gradient-to-r from-TealGreen to-base-content hover:from-base-content hover:to-TealGreen text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-xl clip-path-button"
-                    >
-                      <Download className="h-6 w-6" />
-                      Download Report
-                    </Button>
-                  </motion.div>
-                </motion.div>
-                </motion.div>
-
+              
+               <CourseChart cardVariants={cardVariants} coursesChartConfig={coursesChartConfig} itemVariants={itemVariants} InfoCard={InfoCard} studentData={studentData}></CourseChart>
           
                  
               
               </div>
+            }
+            
               <DashboardFooter></DashboardFooter>
           </motion.div>
         )}

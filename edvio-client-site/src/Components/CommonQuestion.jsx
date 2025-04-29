@@ -5,7 +5,8 @@ import "../../src/index.css";
 import SectionTitle from "../Shared/SectionTitle";
 import "../Shared/Pro.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-
+import { Button } from "./ui/button";
+import { motion} from "framer-motion"
 const CommonQuestion = () => {
   const [questions, setQuestions] = useState([]);
   const [visibleQuestions, setVisibleQuestions] = useState(5);
@@ -68,13 +69,19 @@ const CommonQuestion = () => {
         ))}
       </ul>
       {questions.length > 5 && (
-        <div className="mt-4 text-center">
-          <button
+        <div className="mt-14 text-center">
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              >
+          <Button
             onClick={toggleVisibility}
-            className="proCardButton bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300 ease-in-out"
+            variant="outline"
+            className="flex items-center gap-3 border-base-content text-base-content hover:bg-base-content/20 px-8 py-6 rounded-xl text-lg font-semibold clip-path-button mx-auto"
           >
             {isShowingAll ? "Show Less Questions" : "Show All Questions"}
-          </button>
+          </Button>
+          </motion.div>
         </div>
       )}
     </div>

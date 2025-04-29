@@ -1,7 +1,7 @@
 import useCourses from "../../Hooks/useCourses";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { motion} from "framer-motion"
 import "../../Shared/Pro.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,6 +16,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ChevronDown, Edit2 } from "react-feather";
+import { Button } from "../ui/button";
 
 export default function AllCourses() {
   const { courses } = useCourses();
@@ -65,7 +67,21 @@ export default function AllCourses() {
             engagement, efficiency, and accessibility in modern education.
           </p>
           <div className="mt-10">
-            <Link to={'/all-Courses'} className="proCardButton">View All Courses</Link>
+            {/* <Link to={'/all-Courses'} className="proCardButton">View All Courses</Link> */}
+              <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                      <Button   variant="outline"
+                          className="flex items-center gap-3 border-base-content text-base-content hover:bg-base-content/20 px-8 py-6 rounded-xl text-lg font-semibold clip-path-button">
+                            <ChevronDown  className="h-6 w-6 text-base-content" />
+                          <Link to={'/all-Courses'}
+                        
+                        >
+                        View All Courses
+                        </Link>
+                      </Button>
+                      </motion.div>
           </div>
         </div>
 

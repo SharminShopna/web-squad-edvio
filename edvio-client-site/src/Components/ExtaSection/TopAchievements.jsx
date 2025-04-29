@@ -1,6 +1,7 @@
 import SectionTitle from "@/Shared/SectionTitle";
 import { useEffect, useState } from "react";
-
+import { Button } from "../ui/button";
+import { motion } from "framer-motion"
 const TopAchievements = () => {
     const [achievements, setAchievements] = useState([]);
     const [showAll, setShowAll] = useState(false);
@@ -42,12 +43,19 @@ const TopAchievements = () => {
                 {/* See More / See Less Button */}
                 {achievements.length > 3 && (
                     <div className="text-center mt-10">
-                        <button
-                            onClick={() => setShowAll(!showAll)}
-                            className="proCardButton"
+                          <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Button
+                        onClick={() => setShowAll(!showAll)}
+                        variant="outline"
+                        className="flex items-center gap-3 border-base-content text-base-content hover:bg-base-content/20 px-8 py-6 rounded-xl text-lg font-semibold clip-path-button
+                        mx-auto"
                         >
                             {showAll ? "See Less" : "See More"}
-                        </button>
+                        </Button>
+                      </motion.div>
                     </div>
                 )}
             </div>

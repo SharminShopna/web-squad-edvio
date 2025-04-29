@@ -61,9 +61,29 @@ export default function TopNavBar() {
     <div className="dropdown dropdown-end ml-3">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full ">
-          <img
-            alt=""
-            src={user?.photoURL} referrerPolicy="no-referrer"/>
+          {user?.photoURL ? (
+    <>
+      <img 
+        src={user.photoURL}
+        alt={user.displayName || 'User avatar'}
+        className="w-full h-full object-cover"
+        referrerPolicy="no-referrer"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          e.currentTarget.nextElementSibling.style.display = 'flex';
+        }}
+      />
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold hidden"
+      >
+        {user?.displayName?.charAt(0).toUpperCase() || '?'}
+      </div>
+    </>
+  ) : (
+    <div className="w-full h-full bg-gradient-to-br from-TealGreen to-base-content flex items-center justify-center text-white font-bold">
+      {user?.displayName?.charAt(0).toUpperCase() || '?'}
+    </div>
+  )}
         </div>
       </div>
       <ul
