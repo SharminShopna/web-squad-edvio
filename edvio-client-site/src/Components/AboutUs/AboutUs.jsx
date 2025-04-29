@@ -105,7 +105,7 @@ const AboutUs = () => {
                 transition={{ duration: 1 }}
             >
                 <SectionTitle heading={"Edvio"} subHeading={"About us"}></SectionTitle>
-                <img src={aboutImg} alt="" className='w-full h-[500px] mt-2'/>
+                <img src={aboutImg} alt="" className='w-full h-[500px] mt-2' />
             </motion.div>
 
             {/* Our Approach */}
@@ -116,57 +116,59 @@ const AboutUs = () => {
                 className='text-center mt-20 mb-10'
             >
                 <SectionTitle heading={'Our Approach'} subHeading={"Edvio"}></SectionTitle>
-                <p className='pt-5'>
+                <p className='pt-5 text-gray-200'>
                     At the heart of our AI-Powered Course Management System is a commitment to making education smarter, more accessible, and tailored to the needs of every student and educator. We combine cutting-edge AI technology with a user-centered design to create an experience that is efficient, scalable, and adaptive. Our approach focuses on three key pillars
                 </p>
             </motion.div>
 
             {/* Approach Cards */}
+            {/* Approach Cards */}
             <motion.div
-                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6 justify-center'
+                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.4 }}
             >
                 {/* Personalization Card */}
                 <motion.div
-                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral border border-golden2 border-dashed rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                    <h2 className="text-2xl font-semibold text-center text-teal-600 mb-4">Personalization</h2>
-                    <p className="text-lg text-gray-700 text-center mb-6">
+                    <h2 className="text-2xl font-semibold text-center text-base-content mb-4">Personalization</h2>
+                    <p className="text-lg text-gray-200 text-center mb-6">
                         We believe that each learner is unique. Our AI-driven analytics deliver personalized course recommendations and learning paths tailored to each student.
                     </p>
                 </motion.div>
 
                 {/* Efficiency Card */}
                 <motion.div
-                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral rounded-lg border border-golden2 border-dashed shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                 >
-                    <h2 className="text-2xl font-semibold text-center text-teal-700 mb-4">Efficiency</h2>
-                    <p className="text-lg text-gray-700 text-center mb-6">
+                    <h2 className="text-2xl font-semibold text-center text-base-content mb-4">Efficiency</h2>
+                    <p className="text-lg text-gray-200 text-center mb-6">
                         Education should be about learning, not admin tasks. We automate grading, scheduling, and progress tracking to allow more time for growth and knowledge.
                     </p>
                 </motion.div>
 
                 {/* Scalability Card */}
                 <motion.div
-                    className="w-80 h-64 bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral border border-golden2 border-dashed  rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 }}
                 >
-                    <h2 className="text-2xl font-semibold text-center text-teal-800 mb-4">Scalability</h2>
-                    <p className="text-lg text-gray-700 text-center mb-6">
+                    <h2 className="text-2xl font-semibold text-center text-base-content mb-4">Scalability</h2>
+                    <p className="text-lg text-gray-200 text-center mb-6">
                         Whether it's a small classroom or a large institution, our platform scales effortlessly to meet your needs and grow with your educational offerings.
                     </p>
                 </motion.div>
             </motion.div>
+
 
             {/* Mission */}
             <motion.div
@@ -177,12 +179,11 @@ const AboutUs = () => {
             >
                 <div className='flex flex-col lg:flex-row items-center gap-10'>
                     {/* Image */}
-                    <img src={mission} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
+                    <img src={mission} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out' />
                     {/* Mission Info */}
                     <div className='flex flex-col gap-5 items-center justify-center'>
                         <SectionTitle heading={'Our Mission'} subHeading={"Edvio"}></SectionTitle>
                         <p>Our mission is to empower educational institutions and learners by leveraging the power of artificial intelligence to create a more efficient, personalized, and accessible learning experience. We are committed to simplifying course management, enhancing student engagement, and supporting educators in their pursuit of academic excellence. By providing intelligent automation, real-time insights, and scalable solutions, we aim to streamline education and help both students and educators thrive in an ever-evolving academic landscape.</p>
-                        <button className='btn md:w-1/5 rounded-lg bg-teal-700 text-white'>Learn More</button>
                     </div>
                 </div>
             </motion.div>
@@ -199,10 +200,9 @@ const AboutUs = () => {
                     <div className='flex flex-col gap-5 items-center justify-center'>
                         <SectionTitle heading={'Our Vision'} subHeading={"Edvio"}></SectionTitle>
                         <p className=''>Our vision is to shape the future of education by creating a global learning ecosystem where technology and human potential work in harmony. We aspire to be the leading AI-driven platform that enables educational institutions to unlock new levels of success, collaboration, and growth. Our goal is to transform how learning is experienced, making it more flexible, data-driven, and inclusive. We believe in a future where AI empowers educators to teach more effectively, students to learn more efficiently, and institutions to adapt rapidly to the changing needs of modern education.</p>
-                        <button className='btn md:w-1/5 rounded-lg bg-teal-700 text-white'>Learn More</button>
                     </div>
                     {/* Image */}
-                    <img src={vision} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
+                    <img src={vision} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out' />
                 </div>
             </motion.div>
 
@@ -223,9 +223,9 @@ const AboutUs = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 1.8 + index * 0.2 }}
                         >
-                            <img src={member.image} alt="" className='rounded-full h-[200px] w-[200px]'/>
-                            <p className='font-bold'>{member.name}</p>
-                            <p>{member.role}</p>
+                            <img src={member.image} alt="" className='rounded-full h-[200px] w-[200px]' />
+                            <p className='font-bold text-base-content'>{member.name}</p>
+                            <p className='text-gray-200'>{member.role}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -241,35 +241,35 @@ const AboutUs = () => {
                 <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"}></SectionTitle>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="name">Name</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="name">Name</label>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Enter your name"
                             required
                         />
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="location">Location</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="location">Location</label>
                         <input
                             type="text"
                             id="location"
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Enter your location"
                             required
                         />
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="rating">Rating</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="rating">Rating</label>
                         <div className="flex items-center space-x-2">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <label key={star} className="text-2xl cursor-pointer">
@@ -288,20 +288,20 @@ const AboutUs = () => {
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="review">Review</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="review">Review</label>
                         <textarea
                             id="review"
                             name="review"
                             value={formData.review}
                             onChange={handleChange}
                             rows="4"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Write your review"
                             required
                         ></textarea>
                     </div>
 
-                    <button type="submit" className="w-full bg-teal-700 text-white py-3 rounded-lg">Submit Review</button>
+                    <button type="submit" className="proCardButton w-full py-3 rounded-lg">Submit Review</button>
                 </form>
             </motion.div>
 
