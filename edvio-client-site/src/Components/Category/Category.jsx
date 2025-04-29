@@ -51,29 +51,33 @@ export default function Category() {
         subHeading="Browse through different categories of courses available in our platform"
       />
 
-      <Swiper
-        spaceBetween={20}
-        navigation={true}
-        modules={[Navigation]}
-        className="mySwiper"
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-          },
-          640: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 4,
-          },
-        }}
-      >
-        {categories.map((category, index) => (
-          <SwiperSlide key={index} data-aos="">
-            <CategoryCard data={category} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+<Swiper
+  spaceBetween={20}
+  navigation={true}
+  modules={[Navigation]}
+  className="mySwiper"
+  breakpoints={{
+    0: {
+      slidesPerView: 1,
+    },
+    640: {
+      slidesPerView: 1.2,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  }}
+>
+  {categories.map((category, index) => (
+    <SwiperSlide key={index} data-aos="">
+      <CategoryCard data={category} />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
     </>
   );
 }
