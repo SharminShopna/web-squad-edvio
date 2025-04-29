@@ -4,6 +4,7 @@ import { GiAlarmClock } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
 // import "animate.css";
 
+
 export default function CourseCard({ course }) {
   const {
     course_name,
