@@ -61,7 +61,7 @@ const AllCourses = () => {
       
       <GreetingGenerator/>
       <div className="mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <h1 className="text-3xl font-bold text-TealGreen">
+        <h1 className="text-3xl font-bold text-base-content">
           Our Available Courses
         </h1>
         <select
@@ -77,7 +77,7 @@ const AllCourses = () => {
       </div>
     
       {loading ? (
-        <div className="text-center text-TealGreen">Loading courses...</div>
+        <div className="text-center text-base-content">Loading courses...</div>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -90,7 +90,7 @@ const AllCourses = () => {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50 hover:bg-TealGreen/90 transition-colors"
+              className="proCardButton"
             >
               Previous
             </button>
@@ -102,7 +102,7 @@ const AllCourses = () => {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="px-4 py-2 bg-TealGreen text-white rounded disabled:opacity-50 hover:bg-TealGreen/90 transition-colors"
+              className="proCardButton"
             >
               Next
             </button> 

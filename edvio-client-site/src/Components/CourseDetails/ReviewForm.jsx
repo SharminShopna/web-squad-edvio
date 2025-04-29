@@ -71,7 +71,7 @@ const axiosSecure  = useAxiosSecure();
                </label>
                 </div>
                 <div>
-                  <button className="border-[1px] border-LightTeal rounded-lg py-2 px-5 mt-6 font-medium text-gray-200 hover:text-white hover:bg-TealGreen transition-all duration-300 cursor-pointer">Add Your Review</button>
+                  <button className="proCardButton">Add Your Review</button>
                 </div>
            </form>
     </div>
