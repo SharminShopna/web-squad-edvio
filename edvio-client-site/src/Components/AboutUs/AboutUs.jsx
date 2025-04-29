@@ -105,7 +105,7 @@ const AboutUs = () => {
                 transition={{ duration: 1 }}
             >
                 <SectionTitle heading={"Edvio"} subHeading={"About us"}></SectionTitle>
-                <img src={aboutImg} alt="" className='w-full h-[500px] mt-2'/>
+                <img src={aboutImg} alt="" className='w-full h-[500px] mt-2' />
             </motion.div>
 
             {/* Our Approach */}
@@ -122,15 +122,16 @@ const AboutUs = () => {
             </motion.div>
 
             {/* Approach Cards */}
+            {/* Approach Cards */}
             <motion.div
-                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6 justify-center'
+                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.4 }}
             >
                 {/* Personalization Card */}
                 <motion.div
-                    className="w-80 h-64 bg-neutral rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral border border-golden2 border-dashed rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
@@ -143,7 +144,7 @@ const AboutUs = () => {
 
                 {/* Efficiency Card */}
                 <motion.div
-                    className="w-80 h-64 bg-neutral rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral rounded-lg border border-golden2 border-dashed shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
@@ -156,7 +157,7 @@ const AboutUs = () => {
 
                 {/* Scalability Card */}
                 <motion.div
-                    className="w-80 h-64 bg-neutral rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
+                    className="w-80 h-64 bg-neutral border border-golden2 border-dashed  rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:translate-y-2"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 }}
@@ -168,6 +169,7 @@ const AboutUs = () => {
                 </motion.div>
             </motion.div>
 
+
             {/* Mission */}
             <motion.div
                 className='mt-20'
@@ -177,7 +179,7 @@ const AboutUs = () => {
             >
                 <div className='flex flex-col lg:flex-row items-center gap-10'>
                     {/* Image */}
-                    <img src={mission} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
+                    <img src={mission} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out' />
                     {/* Mission Info */}
                     <div className='flex flex-col gap-5 items-center justify-center'>
                         <SectionTitle heading={'Our Mission'} subHeading={"Edvio"}></SectionTitle>
@@ -200,7 +202,7 @@ const AboutUs = () => {
                         <p className=''>Our vision is to shape the future of education by creating a global learning ecosystem where technology and human potential work in harmony. We aspire to be the leading AI-driven platform that enables educational institutions to unlock new levels of success, collaboration, and growth. Our goal is to transform how learning is experienced, making it more flexible, data-driven, and inclusive. We believe in a future where AI empowers educators to teach more effectively, students to learn more efficiently, and institutions to adapt rapidly to the changing needs of modern education.</p>
                     </div>
                     {/* Image */}
-                    <img src={vision} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out'/>
+                    <img src={vision} alt="" className='w-[500px] h-[500px] rounded-lg animate-zoom-in-out' />
                 </div>
             </motion.div>
 
@@ -221,9 +223,9 @@ const AboutUs = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 1.8 + index * 0.2 }}
                         >
-                            <img src={member.image} alt="" className='rounded-full h-[200px] w-[200px]'/>
-                            <p className='font-bold'>{member.name}</p>
-                            <p>{member.role}</p>
+                            <img src={member.image} alt="" className='rounded-full h-[200px] w-[200px]' />
+                            <p className='font-bold text-base-content'>{member.name}</p>
+                            <p className='text-gray-200'>{member.role}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -299,7 +301,7 @@ const AboutUs = () => {
                         ></textarea>
                     </div>
 
-                    <button type="submit" className="w-full bg-teal-700 text-white py-3 rounded-lg">Submit Review</button>
+                    <button type="submit" className="proCardButton w-full py-3 rounded-lg">Submit Review</button>
                 </form>
             </motion.div>
 
