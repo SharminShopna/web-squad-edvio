@@ -241,35 +241,35 @@ const AboutUs = () => {
                 <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"}></SectionTitle>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="name">Name</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="name">Name</label>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Enter your name"
                             required
                         />
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="location">Location</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="location">Location</label>
                         <input
                             type="text"
                             id="location"
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Enter your location"
                             required
                         />
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="rating">Rating</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="rating">Rating</label>
                         <div className="flex items-center space-x-2">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <label key={star} className="text-2xl cursor-pointer">
@@ -288,14 +288,14 @@ const AboutUs = () => {
                     </div>
 
                     <div>
-                        <label className="block text-lg font-semibold" htmlFor="review">Review</label>
+                        <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor="review">Review</label>
                         <textarea
                             id="review"
                             name="review"
                             value={formData.review}
                             onChange={handleChange}
                             rows="4"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] focus:border-[rgb(54,143,139)] text-golden2"
                             placeholder="Write your review"
                             required
                         ></textarea>
