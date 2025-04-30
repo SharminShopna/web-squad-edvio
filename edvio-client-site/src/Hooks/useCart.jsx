@@ -34,6 +34,34 @@ export const CartProvider = ({ children }) => {
   }, [user?.email, axiosSecure]);
 
   // Add item to cart
+  const addToCart = async (item) => {
+    try {
+      if (user?.email) {
+        const exists = cartItems.some((i) => i.courseId === item.courseId);
+        if (exists) {
+          toast.info("This course is already in your cart");
+          return;
+        }
+
+        const response = await axiosSecure.post("/add-cart", {
+          ...item,
+          student_email: user.email,
+        });
+        setCartItems((prev) => [...prev, item]);
+        toast.success("Added to cart!");
+      } else {
+        const updatedCart = [...cartItems, item];
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCartItems(updatedCart);
+        toast.success("Added to local cart! Login to save permanently.");
+      }
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      toast.error("Failed to add to cart");
+    }
+  };
+
+  // Remove item from cart
 
 
   // Calculate total price
