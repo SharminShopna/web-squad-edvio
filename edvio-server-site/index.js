@@ -119,38 +119,38 @@ async function run() {
     // Add this to your server.js file, inside the run() function
 
     // Save payment data endpoint
-    // app.post("/save-payment", async (req, res) => {
-    //   try {
-    //     const paymentData = req.body;
+    app.post("/save-payment", async (req, res) => {
+      try {
+        const paymentData = req.body;
 
-    //     // Basic validation
-    //     if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
-    //       return res.status(400).json({
-    //         success: false,
-    //         message: "Missing required payment data"
-    //       });
-    //     }
+        // Basic validation
+        if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
+          return res.status(400).json({
+            success: false,
+            message: "Missing required payment data"
+          });
+        }
 
-    //     // Add timestamp
-    //     paymentData.paymentDate = new Date();
+        // Add timestamp
+        paymentData.paymentDate = new Date();
 
-    //     // Insert into MongoDB
-    //     const result = await buyCourse.insertOne(paymentData);
+        // Insert into MongoDB
+        const result = await buyCourse.insertOne(paymentData);
 
-    //     res.status(201).json({
-    //       success: true,
-    //       message: "Payment data saved successfully",
-    //       data: result
-    //     });
-    //   } catch (error) {
-    //     console.error("Error saving payment data:", error);
-    //     res.status(500).json({
-    //       success: false,
-    //       message: "Failed to save payment data",
-    //       error: error.message
-    //     });
-    //   }
-    // });
+        res.status(201).json({
+          success: true,
+          message: "Payment data saved successfully",
+          data: result
+        });
+      } catch (error) {
+        console.error("Error saving payment data:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to save payment data",
+          error: error.message
+        });
+      }
+    });
 
     // Role
     app.get("/getRole/:email", async (req, res) => {
@@ -403,6 +403,53 @@ app.get("/user/byId/:id", async (req, res) => {
         .toArray();
       res.send(myCourses);
     });
+
+
+// Get cart items
+app.get('/cart-items/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const items = await addToCart.find({ student_email: email }).toArray();
+    res.status(200).json({ success: true, data: items });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Delete cart item
+app.delete('/cart-item/:email/:id', async (req, res) => {
+  try {
+    const { email, id } = req.params;
+    const result = await addToCart.deleteOne({ 
+      student_email: email, 
+      _id: new ObjectId(id) 
+    });
+    
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ success: false, message: 'Item not found' });
+    }
+    
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Clear purchased courses from cart
+app.post('/clear-purchased-courses', async (req, res) => {
+  try {
+    const { email, courseIds } = req.body;
+    await addToCart.deleteMany({ 
+      student_email: email,
+      courseId: { $in: courseIds }
+    });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+
     // course review post base on id ============================
     app.post("/course_review", async (req, res) => {
       try {
