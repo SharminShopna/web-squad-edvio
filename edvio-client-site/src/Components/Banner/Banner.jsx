@@ -8,16 +8,16 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   // Enhanced marquee items with icons
-  const marqueeItems = [
-    { text: "10,000+ Active Learners", icon: <FaRocket className="mr-2" /> },
-    { text: "50+ Industry-Relevant Courses", icon: <FaGraduationCap className="mr-2" /> },
-    { text: "Career Guidance Sessions", icon: <FaUserTie className="mr-2" /> },
-    { text: "Certification Programs", icon: <FaAward className="mr-2" /> },
-    { text: "Expert Instructors", icon: <FaChalkboardTeacher className="mr-2" /> },
-    { text: "24/7 Learning Support", icon: <FaRocket className="mr-2" /> },
-    { text: "Hands-on Projects", icon: <FaGraduationCap className="mr-2" /> },
-    { text: "Community Forums", icon: <FaUserTie className="mr-2" /> }
-  ];
+  
+  const scrollToFreeCourses = () => {
+    const element = document.getElementById('free-courses');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <div className="relative w-full overflow-hidden h-[85vh] min-h-[650px] flex flex-col" style={{
@@ -74,6 +74,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={scrollToFreeCourses}
                   className="px-6 py-3 bg-transparent border-2 border-teal-300/50 hover:border-teal-300/80 rounded-lg font-medium transition-all relative overflow-hidden group"
                 >
                   <span className="relative z-10">Free Trial</span>
