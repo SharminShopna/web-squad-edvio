@@ -77,62 +77,7 @@ const CheckoutForm = ({ cartItems = [] }) => {
 
     const card = elements.getElement(CardNumberElement);
 
-    try {
-      const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: card,
-            billing_details: {
-              email: user?.email || 'Anonymous',
-              name: user?.displayName || 'Anonymous'
-            }
-          }
-        }
-      );
 
-      if (confirmError) {
-        throw confirmError;
-      }
-
-      const courseData = cartItems.map(item => ({
-        courseId: item._id,
-        title: item.courseName || 'Unnamed Course',
-        price: item.price || 0,
-        image: item.image
-      }));
-
-      const paymentData = {
-        paymentId: paymentIntent.id,
-        amount: paymentIntent.amount / 100,
-        currency: paymentIntent.currency,
-        status: 'completed',
-        studentEmail: user?.email,
-        studentId: user?.uid,
-        courses: courseData,
-        paymentDate: new Date().toISOString()
-      };
-
-      await axiosSecure.post('/save-payment', paymentData);
-      
-      // Clear only the purchased items from cart
-      if (user?.email) {
-        await axiosSecure.post('/clear-purchased-courses', {
-          email: user.email,
-          courseIds: cartItems.map(item => item._id)
-        });
-      }
-      
-      setSucceeded(true);
-      toast.success('Payment successful! Courses added to your account.');
-      navigate('/');
-      
-    } catch (err) {
-      console.error('Payment error:', err);
-      setError(err.message || 'Payment failed. Please try again.');
-    } finally {
-      setProcessing(false);
-    }
   };
 
   return (
