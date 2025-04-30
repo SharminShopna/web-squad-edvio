@@ -26,14 +26,7 @@ const Cart = () => {
     0
   );
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-10 text-white">
-        <h1 className="text-3xl font-bold mb-6 text-TealGreen">🛒 Your Cart</h1>
-        <p className="text-gray-300">Loading your cart...</p>
-      </div>
-    );
-  }
+  
 
   return (
     <div className="container mx-auto px-4 py-10 text-white">
