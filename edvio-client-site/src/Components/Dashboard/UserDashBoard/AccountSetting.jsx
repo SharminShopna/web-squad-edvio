@@ -99,7 +99,7 @@ const AccountSetting = () => {
             />
             <button
               onClick={handleChangePassword}
-              className="proCardButton w-full py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition"
+              className="proCardButton w-full"
             >
               Change Password
             </button>
