@@ -80,7 +80,19 @@ export const CartProvider = ({ children }) => {
   };
 
   // Clear entire cart
-  
+  const clearCart = async () => {
+    try {
+      if (user?.email) {
+        await axiosSecure.delete(`/clear-cart/${user.email}`);
+      }
+      localStorage.removeItem("cart");
+      setCartItems([]);
+      toast.success("Cart cleared");
+    } catch (err) {
+      console.error("Error clearing cart:", err);
+      toast.error("Failed to clear cart");
+    }
+  };
 
   // Calculate total price
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.price || 0), 0);
