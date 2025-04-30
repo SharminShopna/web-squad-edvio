@@ -29,7 +29,7 @@ const MyCourse = () => {
 
   return (
     <div className="p-6 bg-darkTeal min-h-screen text-lightTeal">
-      <h2 className="text-2xl font-bold mb-6">🎓 My Courses</h2>
+      <h2 className="text-3xl font-bold mb-6">🎓 My Courses</h2>
 
       {courses.length === 0 ? (
         <div className="text-gray-400">You haven't purchased any courses yet.</div>
@@ -41,7 +41,7 @@ const MyCourse = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
-              className="bg-teal-800 text-lightTeal rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-neutral text-lightTeal rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <img
                 src={course.course_image || 'https://via.placeholder.com/400x200?text=Course+Image'}
@@ -49,7 +49,7 @@ const MyCourse = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-5 space-y-3">
-                <h3 className="text-xl font-semibold text-white">{course.course_name}</h3>
+                <h3 className="text-xl font-semibold text-base-content">{course.course_name}</h3>
 
                 {/* Instructor Info */}
                 <div className="flex items-center gap-3">
@@ -58,18 +58,18 @@ const MyCourse = () => {
                     alt="Instructor"
                     className="w-10 h-10 rounded-full object-cover border border-white"
                   />
-                  <span className="text-sm text-lightTeal">{course.instructor?.name}</span>
+                  <span className="text-sm text-gray-100">{course.instructor?.name}</span>
                 </div>
 
                 {/* Badges */}
                 <div className="flex flex-wrap gap-2 text-sm">
-                  <span className="bg-Aquamarine px-2 py-1 rounded-full text-darkTeal">
+                  <span className="bg-TealGreen px-2 py-1 rounded-full text-gray-200">
                     {course.category}
                   </span>
-                  <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                  <span className="bg-TealGreen text-gray-200 px-2 py-1 rounded-full">
                     {course.level}
                   </span>
-                  <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                  <span className=" text-gray-300 px-2 py-1 rounded-full">
                     Duration: {course.duration}
                   </span>
                 </div>
@@ -77,7 +77,7 @@ const MyCourse = () => {
                 {/* Learning Outcomes Preview */}
                 {course.learning_outcomes?.length > 0 && (
                   <div className="mt-2">
-                    <p className="text-sm font-medium">You will learn:</p>
+                    <p className="text-sm text-base-content font-medium">You will learn:</p>
                     <ul className="list-disc list-inside text-sm text-gray-300">
                       {course.learning_outcomes.slice(0, 2).map((point, i) => (
                         <li key={i}>{point}</li>
