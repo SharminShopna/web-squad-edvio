@@ -62,7 +62,25 @@ export const CartProvider = ({ children }) => {
   };
 
   // Remove item from cart
+  const removeFromCart = async (courseId) => {
+    try {
+      if (user?.email) {
+        await axiosSecure.delete(`/cart-item/${user.email}/${courseId}`);
+        setCartItems((prev) => prev.filter((item) => item._id !== courseId));
+      } else {
+        const updatedCart = cartItems.filter((item) => item.courseId !== courseId);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCartItems(updatedCart);
+      }
+      toast.success("Removed from cart");
+    } catch (err) {
+      console.error("Error removing from cart:", err);
+      toast.error("Failed to remove from cart");
+    }
+  };
 
+  // Clear entire cart
+  
 
   // Calculate total price
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.price || 0), 0);
