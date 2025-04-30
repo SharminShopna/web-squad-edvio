@@ -29,7 +29,7 @@ const MyCourse = () => {
 
   return (
     <div className="p-6 bg-darkTeal min-h-screen text-lightTeal">
-      <h2 className="text-2xl font-bold mb-6">🎓 My Courses</h2>
+      <h2 className="text-3xl font-bold mb-6">🎓 My Courses</h2>
 
       {courses.length === 0 ? (
         <div className="text-gray-400">You haven't purchased any courses yet.</div>

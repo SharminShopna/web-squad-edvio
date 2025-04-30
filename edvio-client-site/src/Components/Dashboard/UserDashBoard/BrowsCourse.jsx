@@ -31,7 +31,7 @@ const BrowsCourse = () => {
 
   return (
     <div className="p-6 bg-darkTeal min-h-screen text-lightTeal">
-      <h2 className="text-2xl font-bold mb-6">📚 Browse All Courses</h2>
+      <h2 className="text-3xl font-bold mb-6">📚 Browse All Courses</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course, index) => (
@@ -40,7 +40,7 @@ const BrowsCourse = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-teal-800 text-lightTeal rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="bg-neutral text-lightTeal rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src={course.course_image}
@@ -49,30 +49,30 @@ const BrowsCourse = () => {
             />
 
             <div className="p-4 space-y-2">
-              <h3 className="text-lg font-semibold">{course.course_name}</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="text-lg text-base-content font-semibold">{course.course_name}</h3>
+              <p className="text-sm text-gray-200">
                 {course.instructor?.name || "Unknown Instructor"}
               </p>
 
               <div className="flex flex-wrap gap-2 text-sm mt-2">
-                <span className="bg-Aquamarine text-darkTeal px-2 py-1 rounded-full">
+                <span className="bg-TealGreen text-gray-200 px-2 py-1 rounded-full">
                   {course.category}
                 </span>
-                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                <span className="bg-TealGreen text-gray-200 px-2 py-1 rounded-full">
                   {course.level}
                 </span>
-                <span className="bg-lightTeal text-darkTeal px-2 py-1 rounded-full">
+                <span className="bg-TealGreen text-gray-200 px-2 py-1 rounded-full">
                   {course.duration}
                 </span>
               </div>
 
-              <p className="text-sm text-gray-400 mt-2">
+              <p className="text-sm text-gray-300 mt-2">
                 {course.description.slice(0, 100)}...
               </p>
 
               <button
                 onClick={() => setSelectedCourse(course)}
-                className="mt-4 w-full bg-Aquamarine text-darkTeal py-2 rounded-md hover:bg-opacity-90 transition"
+                className="proCardButton mt-4 w-full py-2 rounded-md hover:bg-opacity-90 transition"
               >
                 View Details
               </button>
@@ -85,7 +85,7 @@ const BrowsCourse = () => {
       <AnimatePresence>
         {selectedCourse && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-neutral bg-opacity-60 flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -109,14 +109,14 @@ const BrowsCourse = () => {
                 className="w-full h-56 object-cover rounded mb-4"
               />
 
-              <h3 className="text-2xl font-bold text-teal-800">
+              <h3 className="text-2xl font-bold text-TealGreen">
                 {selectedCourse.course_name}
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-700 mb-4">
                 {selectedCourse.description}
               </p>
 
-              <div className="text-sm space-y-2 text-teal-700">
+              <div className="text-sm space-y-2 text-TealGreen">
                 <p>
                   <strong>Instructor:</strong> {selectedCourse.instructor?.name}
                 </p>
