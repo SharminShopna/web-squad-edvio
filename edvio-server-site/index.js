@@ -141,7 +141,14 @@ async function run() {
           message: "Payment data saved successfully",
           data: result
         });
-      } 
+      } catch (error) {
+        console.error("Error saving payment data:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to save payment data",
+          error: error.message
+        });
+      }
     });
 
     // Role
