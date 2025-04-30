@@ -28,18 +28,18 @@ const AccountSetting = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-darkTeal p-6">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg"
+        className="max-w-4xl mx-auto bg-neutral p-8 rounded-lg shadow-lg"
       >
-        <h2 className="text-3xl font-semibold text-teal-800 mb-8 text-center">Account Settings</h2>
+        <h2 className="text-3xl font-semibold text-base-content mb-8 text-center">Account Settings</h2>
 
         {/* Profile Section */}
         <div className="mb-6">
-          <h3 className="text-2xl font-medium text-teal-700">Profile Information</h3>
+          <h3 className="text-2xl font-medium text-base-content">Profile Information</h3>
           <div className="mt-4">
             {isEditing ? (
               <div>
@@ -47,14 +47,14 @@ const AccountSetting = () => {
                   type="text"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
-                  className="w-full p-3 mb-4 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full p-3 mb-4 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
                   placeholder="Full Name"
                 />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 mb-4 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full p-3 mb-4 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
                   placeholder="Email"
                 />
                 <button
@@ -66,11 +66,11 @@ const AccountSetting = () => {
               </div>
             ) : (
               <div>
-                <p className="text-lg text-gray-700">Name: {userName}</p>
-                <p className="text-lg text-gray-700">Email: {email}</p>
+                <p className="text-lg text-gray-200">Name: {userName}</p>
+                <p className="text-lg text-gray-200">Email: {email}</p>
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="mt-4 w-full py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition"
+                  className="proCardButton mt-4 w-full py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition"
                 >
                   Edit Profile
                 </button>
@@ -81,25 +81,25 @@ const AccountSetting = () => {
 
         {/* Change Password Section */}
         <div className="mb-6">
-          <h3 className="text-2xl font-medium text-teal-700">Change Password</h3>
+          <h3 className="text-2xl font-medium text-base-content">Change Password</h3>
           <div className="mt-4">
             <input
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full p-3 mb-4 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full p-3 mb-4 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
               placeholder="New Password"
             />
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full p-3 mb-4 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full p-3 mb-4 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
               placeholder="Confirm New Password"
             />
             <button
               onClick={handleChangePassword}
-              className="w-full py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition"
+              className="proCardButton w-full py-3 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition"
             >
               Change Password
             </button>
@@ -108,10 +108,10 @@ const AccountSetting = () => {
 
         {/* Notification Settings */}
         <div className="mb-6">
-          <h3 className="text-2xl font-medium text-teal-700">Notification Settings</h3>
+          <h3 className="text-2xl font-medium text-base-content">Notification Settings</h3>
           <div className="mt-4">
             <div className="flex justify-between items-center mb-4">
-              <p className="text-lg text-gray-700">Email Notifications</p>
+              <p className="text-lg text-gray-200">Email Notifications</p>
               <input
                 type="checkbox"
                 checked={emailNotifications}
@@ -120,7 +120,7 @@ const AccountSetting = () => {
               />
             </div>
             <div className="flex justify-between items-center">
-              <p className="text-lg text-gray-700">SMS Notifications</p>
+              <p className="text-lg text-gray-200">SMS Notifications</p>
               <input
                 type="checkbox"
                 checked={smsNotifications}
@@ -133,12 +133,12 @@ const AccountSetting = () => {
 
         {/* Account Preferences */}
         <div className="mb-6">
-          <h3 className="text-2xl font-medium text-teal-700">Account Preferences</h3>
+          <h3 className="text-2xl font-medium text-base-content">Account Preferences</h3>
           <div className="mt-4">
             <div className="flex justify-between items-center mb-4">
-              <p className="text-lg text-gray-700">Language</p>
+              <p className="text-lg text-gray-200">Language</p>
               <select
-                className="w-1/2 p-3 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-1/2 p-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
               >
                 <option value="en">English</option>
                 <option value="es">Spanish</option>
@@ -146,9 +146,9 @@ const AccountSetting = () => {
               </select>
             </div>
             <div className="flex justify-between items-center mb-4">
-              <p className="text-lg text-gray-700">Privacy Settings</p>
+              <p className="text-lg text-gray-200">Privacy Settings</p>
               <select
-                className="w-1/2 p-3 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-1/2 p-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-TealGreen"
               >
                 <option value="public">Public</option>
                 <option value="private">Private</option>
