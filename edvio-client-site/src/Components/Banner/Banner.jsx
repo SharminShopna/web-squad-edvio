@@ -8,7 +8,16 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   // Enhanced marquee items with icons
-  
+  const marqueeItems = [
+    { text: "10,000+ Active Learners", icon: <FaRocket className="mr-2" /> },
+    { text: "50+ Industry-Relevant Courses", icon: <FaGraduationCap className="mr-2" /> },
+    { text: "Career Guidance Sessions", icon: <FaUserTie className="mr-2" /> },
+    { text: "Certification Programs", icon: <FaAward className="mr-2" /> },
+    { text: "Expert Instructors", icon: <FaChalkboardTeacher className="mr-2" /> },
+    { text: "24/7 Learning Support", icon: <FaRocket className="mr-2" /> },
+    { text: "Hands-on Projects", icon: <FaGraduationCap className="mr-2" /> },
+    { text: "Community Forums", icon: <FaUserTie className="mr-2" /> }
+  ];
   const scrollToFreeCourses = () => {
     const element = document.getElementById('free-courses');
     if (element) {
@@ -102,21 +111,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Vibrant marquee */}
-      <div className="absolute bottom-0 left-0 right-0 py-4 bg-gradient-to-r from-cyan-800/60 to-teal-800/60 backdrop-blur-md -rotate-2 origin-left border-t border-teal-300/20">
-        <Marquee speed={50} gradient={false} className="overflow-visible py-1">
-          {marqueeItems.map((item, index) => (
-            <div 
-              key={index} 
-              className="flex items-center mx-6 px-5 py-2 bg-teal-900/40 rounded-full border border-teal-300/30 hover:border-teal-200/60 transition-all hover:bg-teal-800/50 group"
-            >
-              <span className="text-teal-200 group-hover:text-white transition-colors">{item.icon}</span>
-              <span className="text-lg font-medium text-white ml-2 group-hover:text-teal-100 transition-colors">{item.text}</span>
-              <div className="w-2 h-2 mx-4 rounded-full bg-teal-300/60 group-hover:bg-teal-200 transition-colors"></div>
-            </div>
-          ))}
-        </Marquee>
-      </div>
+    
 
       {/* Floating particles */}
       {[...Array(8)].map((_, i) => (
