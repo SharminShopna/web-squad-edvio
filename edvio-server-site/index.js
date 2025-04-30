@@ -118,7 +118,31 @@ async function run() {
 
 
     // Save payment data endpoint
-   
+    app.post("/save-payment", async (req, res) => {
+      try {
+        const paymentData = req.body;
+
+        // Basic validation
+        if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
+          return res.status(400).json({
+            success: false,
+            message: "Missing required payment data"
+          });
+        }
+
+        // Add timestamp
+        paymentData.paymentDate = new Date();
+
+        // Insert into MongoDB
+        const result = await buyCourse.insertOne(paymentData);
+
+        res.status(201).json({
+          success: true,
+          message: "Payment data saved successfully",
+          data: result
+        });
+      } 
+    });
 
     // Role
     app.get("/getRole/:email", async (req, res) => {
