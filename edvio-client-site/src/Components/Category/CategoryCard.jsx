@@ -7,7 +7,7 @@ export default function CategoryCard({ data }) {
   return (
     <Link to={`/category/${encodeURIComponent(name)}`} className="block">
       <div
-        className="rounded-2xl md:w-[470px] bg-[#003843] text-white overflow-hidden shadow-lg transition-transform hover:scale-[1.02] duration-300"
+        className="rounded-2xl md:w-[470px] bg-[#003843]  overflow-hidden shadow-lg transition-transform hover:scale-[1.02] duration-300"
         data-aos="fade-up"
       >
         <img
@@ -16,8 +16,8 @@ export default function CategoryCard({ data }) {
           className="w-full  h-44  object-cover"
         />
         <div className="p-4 text-center">
-          <h3 className="text-lg md:text-xl font-bold">{name}</h3>
-          <p className="text-sm md:text-base mt-1">
+          <h3 className="text-lg md:text-xl text-base-coontent font-bold">{name}</h3>
+          <p className="text-sm text-gray-200  md:text-base mt-1">
             {count} {count === 1 ? 'course' : 'courses'} available
           </p>
         </div>

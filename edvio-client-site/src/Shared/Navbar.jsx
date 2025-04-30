@@ -68,7 +68,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <div className="flex justify-between items-center py-4 px-6 bg-TealGreen">
+      <div className="flex justify-between  items-center py-4 px-6 bg-TealGreen">
         <h1 className="text-2xl font-bold text-white Logo">EDVIO</h1>
 
         {/* Navigation Menu */}
