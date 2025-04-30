@@ -6,6 +6,8 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51Qs7dpBM5dvyedYSq2d5cCRXKpj5fcvxfWCmctLX3ztI3EzIiHHvQKx4W1PzSYXouNtcX5iBNzj8tLn2ZN5BwfAB00s9mL5a6z');
 
 const Payment = () => {
+    const location = useLocation();
+    const selectedCourses = location.state?.selectedCourses || [];
   
   return (
     <div className="min-h-screen bg-gray-900 py-10">
