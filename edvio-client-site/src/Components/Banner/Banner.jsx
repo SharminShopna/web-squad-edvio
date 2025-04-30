@@ -6,6 +6,7 @@ import Tilt from 'react-parallax-tilt';
 import { FaRocket, FaGraduationCap, FaUserTie, FaAward, FaChalkboardTeacher } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+
 const HeroSection = () => {
   // Enhanced marquee items with icons
   const marqueeItems = [
@@ -29,7 +30,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden h-[85vh] min-h-[650px] flex flex-col" style={{
+    <div className="relative w-full overflow-hidden h-[85vh] min-h-[650px] flex flex-col lg:pl-9" style={{
       backgroundImage: "url('/your-bg.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center",
@@ -43,22 +44,14 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Text content */}
           <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl text-cyan-50 md:text-5xl lg:text-6xl font-bold leading-tight">
               Master <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-400 h-[1.2em] inline-block">
-                <Typewriter
-                  options={{
-                    strings: ['Web Development', 'UI/UX Design', 'Data Science', 'Mobile Apps'],
-                    autoStart: true,
-                    loop: true,
-                    delay: 70,
-                    deleteSpeed: 40,
-                  }}
-                />
+                
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto lg:mx-0">
-              Join thousands mastering in-demand skills with our project-based courses and expert mentorship.
+              Join to master thousands in-demand skills with our project-based courses and expert mentorship.
             </p>
 
             {/* Vibrant teal buttons with enhanced effects */}
@@ -69,7 +62,7 @@ const HeroSection = () => {
                   whileTap={{ scale: 0.97 }}
                   className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-400/40 transition-all relative overflow-hidden group"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-cyan-50">
                     <span>Explore Courses</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -86,7 +79,7 @@ const HeroSection = () => {
                   onClick={scrollToFreeCourses}
                   className="px-6 py-3 bg-transparent border-2 border-teal-300/50 hover:border-teal-300/80 rounded-lg font-medium transition-all relative overflow-hidden group"
                 >
-                  <span className="relative z-10">Free Trial</span>
+                  <span className="relative z-10 text-cyan-50">Free Trial</span>
                   <span className="absolute inset-0 bg-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </motion.button>
               </Tilt>
@@ -99,7 +92,7 @@ const HeroSection = () => {
               <div 
                 className="aspect-square bg-contain bg-no-repeat bg-center"
                 style={{ 
-                  backgroundImage: "url('https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?t=st=1746043505~exp=1746047105~hmac=3ef96bedbc6d90aa91e52e21084cd057c8511ff9f99dab517a1f006a7003152d&w=1380')",
+                  backgroundImage: "url('https://i.ibb.co.com/WpPgbpxG/smiling-student-girl-with-coffee-folders-removebg-preview.png')",
                   filter: "drop-shadow(0 0 25px rgba(94, 234, 212, 0.4))"
                 }}
               ></div>
@@ -112,7 +105,7 @@ const HeroSection = () => {
       </div>
 
       {/* Vibrant marquee */}
-      <div className="absolute bottom-0 left-0 right-0 py-4 bg-gradient-to-r from-cyan-800/60 to-teal-800/60 backdrop-blur-md -rotate-2 origin-left border-t border-teal-300/20">
+      <div className="absolute bottom-0 left-0 z-10 right-0 py-4 bg-gradient-to-r from-cyan-800/60 to-teal-800/60 backdrop-blur-md -rotate-2 origin-left border-t border-teal-300/20">
         <Marquee speed={50} gradient={false} className="overflow-visible py-1">
           {marqueeItems.map((item, index) => (
             <div 
