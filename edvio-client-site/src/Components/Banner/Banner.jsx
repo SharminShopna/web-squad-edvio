@@ -46,7 +46,15 @@ const HeroSection = () => {
           <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
             <h1 className="text-4xl text-cyan-50 md:text-5xl lg:text-6xl font-bold leading-tight">
               Master <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-400 h-[1.2em] inline-block">
-                
+              <Typewriter
+                  options={{
+                    strings: ['Web Development', 'UI/UX Design', 'Data Science', 'Apps Development','Game Development'],
+                    autoStart: true,
+                    loop: true,
+                    delay: 70,
+                    deleteSpeed: 40,
+                  }}
+                />
               </span>
             </h1>
 
