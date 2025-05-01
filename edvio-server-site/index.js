@@ -98,8 +98,9 @@ async function run() {
     app.post("/create-payment-intent", async (req, res) => {
       try {
         const { price } = req.body;
+        console.log(price)
         const amount = parseInt(price * 100); // Convert to cents
-
+ 
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount,
           currency: "usd",
@@ -121,7 +122,6 @@ async function run() {
     app.post("/save-payment", async (req, res) => {
       try {
         const paymentData = req.body;
-
         // Basic validation
         if (!paymentData.paymentId || !paymentData.amount || !paymentData.courses || !paymentData.studentEmail) {
           return res.status(400).json({
@@ -136,7 +136,7 @@ async function run() {
         // Insert into MongoDB
         const result = await buyCourse.insertOne(paymentData);
 
-        res.status(201).json({
+        res.status(200).json({
           success: true,
           message: "Payment data saved successfully",
           data: result

@@ -16,12 +16,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Edit2 } from "react-feather";
+import { ChevronDown} from "react-feather";
 import { Button } from "../ui/button";
 
 export default function AllCourses() {
   const { courses } = useCourses();
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -96,7 +95,7 @@ export default function AllCourses() {
             className="mySwiper"
           >
             {courses.map((course) => (
-              <SwiperSlide key={course.id}>
+              <SwiperSlide key={course._id}>
                 <CourseCard course={course}></CourseCard>
               </SwiperSlide>
             ))}
