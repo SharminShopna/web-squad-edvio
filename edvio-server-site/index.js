@@ -100,6 +100,7 @@ async function run() {
         const { price } = req.body;
         const amount = parseInt(price * 100); // Convert to cents
 
+        // payment intent
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount,
           currency: "usd",   
