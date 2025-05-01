@@ -151,6 +151,36 @@ async function run() {
       }
     });
 
+    // Get the payment history
+    app.get("/payments", async (req, res) => {
+      try {
+        const { email } = req.query;
+        let query = {};
+    
+        // If email is provided as a query param, filter by it
+        if (email) {
+          query.studentEmail = email;
+        }
+    
+        // Fetch data from the collection
+        const payments = await buyCourse.find(query).sort({ paymentDate: -1 }).toArray();
+    
+        res.status(200).json({
+          success: true,
+          message: "Payments retrieved successfully",
+          data: payments
+        });
+      } catch (error) {
+        console.error("Error fetching payments:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch payments",
+          error: error.message
+        });
+      }
+    });
+    
+
     // Role
     app.get("/getRole/:email", async (req, res) => {
       const email = req.params.email;
