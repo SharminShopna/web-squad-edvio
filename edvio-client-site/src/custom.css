@@ -15,6 +15,14 @@
   background-color: var(--color-LightTeal);
   color: white;
 }
+/* Opacity variants */
+.tealGreen10 {
+  color: rgba(0, 128, 128, 0.1);
+}
+
+.bg-tealGreen40 {
+  background-color: rgba(0, 128, 128, 0.4);
+}
 
 /* Swiper arrows customization */
 .swiper-button-next,

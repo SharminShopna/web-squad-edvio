@@ -40,6 +40,7 @@ import Cart from "@/Components/Cart/Cart";
 import CategoryCourse from "@/Components/Category/CategoryCourse";
 import useOneUser from "@/Hooks/useOneUser";
 import UserDetailsPage from "@/Components/Dashboard/AdminDashBoard/UserDetailsPage";
+import AllCoursesForReview from "@/Components/Dashboard/AdminDashBoard/AllCoursesForReview";
 
 export default function RouterProvider() {
   const { userData } = useOneUser();
@@ -100,6 +101,9 @@ export default function RouterProvider() {
               path="/dashboard/user-details/:id"
               element={<UserDetailsPage />}
             ></Route>
+            <Route path="/dashboard/user-details/:id" element={<UserDetailsPage />}></Route>
+            <Route path="/dashboard/all-course" element={<AllCoursesForReview />}></Route>
+            <Route path="/dashboard/add-course" element={<InstructorAddCourse />}></Route>
           </>
         )}
 

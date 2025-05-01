@@ -34,7 +34,7 @@ export default function FreeCourses() {
   }, []);
 
   return (
-    <div data-aos="fade-up">
+    <div id="free-courses" data-aos="fade-up">
       <SectionTitle
         subHeading={
           "Unlock Knowledge for Free! Learn new skills without any cost and take the first step toward your goals"

@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../Components/Banner/Banner";
+import Banner from "../Components/HeroSection/HeroSection";
 import CommonQuestion from "../components/CommonQuestion";
 import Reviews from "../components/Reviews";
 import AllCourses from "../Components/AllCourses/AllCourses";
