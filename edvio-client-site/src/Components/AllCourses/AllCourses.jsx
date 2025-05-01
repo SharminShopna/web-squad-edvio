@@ -86,7 +86,7 @@ export default function AllCourses() {
         </div>
 
         
-        <div className="lg:w-[50%]" data-aos="fade-left">
+        <div className="lg:w-[50%]" data-aos="fade-down">
           <Swiper 
           
             slidesPerView={2}
