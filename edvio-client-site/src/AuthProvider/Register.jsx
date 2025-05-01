@@ -6,6 +6,7 @@ import UseAuth from "../Hook/UseAuth";
 import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import registerImage from "../assets/regi.jpg"
 import "../Shared/Pro.css";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 const Register = () => {
@@ -66,10 +67,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-TealGreen px-4">
+    <div style={{ backgroundImage: `url(${registerImage})`, }} className=" md:py-20 py-10 flex items-center justify-center px-4 
+             bg-no-repeat bg-cover bg-center">
       <div className="md:flex md:justify-center bg-Aquamarine shadow-lg rounded-2xl border-white/20 md:items-center">
         {/* Left Side */}
-        <div className="w-3/4 md:w-[450px] mx-auto mt-4 md:ml-4  text-white space-y-4 text-center py-6">
+        <div className="w-3/4 md:w-[450px] px-4 mx-auto mt-4 md:ml-4  text-white space-y-4 text-center py-6">
           <h3 className="md:text-3xl text-2xl font-bold">Welcome Back!</h3>
           <p className="text-white/80">
             To keep connected with us, please login with your personal info
@@ -82,7 +84,7 @@ const Register = () => {
         </div>
 
         {/* Right Side (White Background) */}
-        <div className="w-full max-w-lg bg-white shadow-2xs px-8 py-6 rounded-r-2xl">
+        <div className="w-full max-w-lg bg-white  shadow-2xs px-8 py-6  rounded-r-2xl ">
           <h2 className="text-2xl md:text-3xl font-bold text-center my-4 text-gray-800">
             Create an Account
           </h2>
