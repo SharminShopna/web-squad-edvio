@@ -181,7 +181,7 @@ async function run() {
     });
 
     // get payment by using user 
-    app.get("/user/byEmail/:email", async (req, res) => {
+    app.get("/payment/:email", async (req, res) => {
       try {
         const email = req.params.email;
     
