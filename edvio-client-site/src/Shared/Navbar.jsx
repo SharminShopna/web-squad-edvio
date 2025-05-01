@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import "../index.css";
@@ -35,7 +35,6 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { name: "Home", link: "/" },
     { name: "Courses", link: "/courses" },
     { name: "Feature", link: "/feature" },
     { name: "Blogs", link: "/blog" },
@@ -69,7 +68,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex justify-between items-center py-4 px-6 bg-TealGreen">
-        <h1 className="text-2xl font-bold text-white Logo">EDVIO</h1>
+        <Link to='/'><h1 className="text-2xl font-bold text-white Logo">EDVIO</h1></Link>
 
         {/* Navigation Menu */}
         <nav className="py-3 px-6 flex justify-between items-center z-50">
