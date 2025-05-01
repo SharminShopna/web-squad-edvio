@@ -113,7 +113,7 @@ const HeroSection = () => {
       </div>
 
       {/* Vibrant marquee */}
-      <div className="absolute bottom-0 left-0 z-10 right-0 py-4 bg-gradient-to-r from-cyan-800/60 to-teal-800/60 backdrop-blur-md -rotate-2 origin-left border-t border-teal-300/20">
+      <div className="absolute bottom-0 left-0 z-10 right-0 py-4 bg-gradient-to-r from-cyan-800/60 to-teal-800/60 backdrop-blur-md -rotate-3 origin-left border-t border-teal-300/20">
         <Marquee speed={50} gradient={false} className="overflow-visible py-1">
           {marqueeItems.map((item, index) => (
             <div 
