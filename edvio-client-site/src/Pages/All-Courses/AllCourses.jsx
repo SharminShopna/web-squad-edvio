@@ -66,13 +66,13 @@ const AllCourses = () => {
         </h1>
         <select
           onChange={handleSortChange}
-          className="p-2 border cursor-pointer rounded-lg focus:outline-none focus:ring-2 focus:ring-TealGreen"
+          className="p-2 border cursor-pointer rounded-lg  focus:outline-none  focus:ring-2 focus:ring-TealGreen"
           value={`${sortField}-${sortOrder}`}
         >
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="Purchase_order-desc">Most Popular</option>
-          <option value="duration-asc">Shortest Duration</option>
+          <option className="text-TealGreen" value="price-asc">Price: Low to High</option>
+          <option className="text-TealGreen"  value="price-desc">Price: High to Low</option>
+          <option className="text-TealGreen" value="Purchase_order-desc">Most Popular</option>
+          <option className="text-TealGreen" value="duration-asc">Shortest Duration</option>
         </select>
       </div>
     

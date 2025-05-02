@@ -33,18 +33,18 @@ export default function CategoryCourse() {
           {courses.map((course) => (
             <div
               key={course._id}
-              className="bg-white rounded-xl  shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300"
+              className="bg-neutral md:my-10 rounded-xl  shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={course.course_image}
                 alt={course.title}
                 className="h-48 w-full object-cover"
               />
-              <div className="p-4 flex text-TealGreen justify-between">
+              <div className="p-4 flex text-base-content justify-between">
                 <h2 className="text-xl font-semibold mb-2">{course.category}</h2>
                 <NavLink to={`/courseDetails/${course._id}`}>
                   {" "}
-                  <FaArrowUpRightFromSquare className="text-sm  lg:text-2xl cursor-pointer ml-auto" />
+                  <FaArrowUpRightFromSquare className="text-sm  lg:text-2xl cursor-pointer text-base-content ml-auto" />
                 </NavLink>
               </div>
             </div>

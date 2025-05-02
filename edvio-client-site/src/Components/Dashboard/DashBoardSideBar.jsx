@@ -23,7 +23,7 @@ import { FiUsers } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { LuBookPlus } from "react-icons/lu";
-import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+import { HiOutlineChatBubbleLeftRight, HiOutlineUserGroup } from "react-icons/hi2";
 import { TbUsersGroup } from "react-icons/tb";
 
 export default function DashBoardSideBar() {
@@ -47,33 +47,29 @@ export default function DashBoardSideBar() {
         subMenu: [
           { name: "All Instructor", path: "/dashboard/all-instructor" },
           { name: "Add Instructor", path: "/dashboard/add-instructor" },
-          { name: "Edit Instructor", path: "/dashboard/edit-instructor" },
-          { name: "About Instructor", path: "/dashboard/about-instructor" },
+  
         ],
       },
       { path: "#", icon: <FiUsers />, label: "Students",
         subMenu: [
           { name: "All Student", path: "/dashboard/all-student" },
           { name: "Add Student", path: "/dashboard/add-student" },
-          { name: "Edit Student", path: "/dashboard/edit-student" },
-          { name: "About Student", path: "/dashboard/about-student" },
+  
         ],
        },
       { path: "#", icon: <TbUsersGroup />, label: "Users",
         subMenu: [
           { name: "All User", path: "/dashboard/all-user" },
           { name: "Add User", path: "/dashboard/add-user" },
-          { name: "Edit User", path: "/dashboard/edit-user" },
-          { name: "About User", path: "/dashboard/about-user" },
         ],
        },
       { path: "#", icon: <LuBookPlus />, label: "Course",
         subMenu: [
           { name: "All Course", path: "/dashboard/all-course" },
           { name: "Add Course", path: "/dashboard/add-course" },
-          { name: "Edit Course", path: "/dashboard/edit-course" },
-          { name: "About Course", path: "/dashboard/about-course" },
         ],
+       },
+      { path: "#", icon: <HiOutlineUserGroup />, label: "All Members",
        },
        {
         path: "/dashboard/admin/chatbot",

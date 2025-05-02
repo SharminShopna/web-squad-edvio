@@ -40,6 +40,7 @@ import Cart from "@/Components/Cart/Cart";
 import CategoryCourse from "@/Components/Category/CategoryCourse";
 import useOneUser from "@/Hooks/useOneUser";
 import UserDetailsPage from "@/Components/Dashboard/AdminDashBoard/UserDetailsPage";
+import AllCoursesForReview from "@/Components/Dashboard/AdminDashBoard/AllCoursesForReview";
 
 export default function RouterProvider() {
   const { userData } = useOneUser();
@@ -61,14 +62,13 @@ export default function RouterProvider() {
         <Route path="contact" element={<ContactUs />} />
         <Route path="Courses" element={<AllCourses />} />
         <Route path="payment" element={<Payment />} />
-        <Route path="cart" element={<Cart></Cart>}></Route>
-        <Route path="/category/:categoryName" element={<CategoryCourse />} />
         <Route path="cart" element={<Cart />} />
-      </Route>
+        <Route path="/category/:categoryName" element={<CategoryCourse />} />
 
-      {/* Authentication Routes */}
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
+        {/* Authentication routes under MainLayOut */}
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
 
       {/* Dashboard Layout Routes */}
       <Route path="dashboard" element={<DashBoardLayOut />}>
@@ -97,7 +97,13 @@ export default function RouterProvider() {
               path="/dashboard/admin/chatbot"
               element={<AiChatBot />}
             ></Route>
+            <Route
+              path="/dashboard/user-details/:id"
+              element={<UserDetailsPage />}
+            ></Route>
             <Route path="/dashboard/user-details/:id" element={<UserDetailsPage />}></Route>
+            <Route path="/dashboard/all-course" element={<AllCoursesForReview />}></Route>
+            <Route path="/dashboard/add-course" element={<InstructorAddCourse />}></Route>
           </>
         )}
 
