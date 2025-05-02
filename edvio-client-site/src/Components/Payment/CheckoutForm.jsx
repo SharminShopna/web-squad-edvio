@@ -21,7 +21,7 @@ const CheckoutForm = ({ cartItems = [] }) => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const { clearCart } = useCart();
+  // const { clearCart } = useCart();
   const navigate = useNavigate();
 
   const CARD_ELEMENT_OPTIONS = {

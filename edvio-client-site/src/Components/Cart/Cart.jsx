@@ -3,6 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// cart
 const Cart = () => {
   const { cartItems, removeFromCart, loading, clearCart } = useCart();
   const [selectedItems, setSelectedItems] = useState([]);

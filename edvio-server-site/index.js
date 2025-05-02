@@ -100,10 +100,11 @@ async function run() {
         const { price } = req.body;
         console.log(price)
         const amount = parseInt(price * 100); // Convert to cents
- 
+
+        // payment intent
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount,
-          currency: "usd",
+          currency: "usd",   
           payment_method_types: ["card"],
         });
 
@@ -115,8 +116,6 @@ async function run() {
         res.status(500).json({ error: error.message });
       }
     });
-
-
 
     // Save payment data endpoint
     app.post("/save-payment", async (req, res) => {
@@ -150,6 +149,66 @@ async function run() {
         });
       }
     });
+
+    // Get the payment history
+    app.get("/payments", async (req, res) => {
+      try {
+        const { email } = req.query;
+        let query = {};
+    
+        // If email is provided as a query param, filter by it
+        if (email) {
+          query.studentEmail = email;
+        }
+    
+        // Fetch data from the collection
+        const payments = await buyCourse.find(query).sort({ paymentDate: -1 }).toArray();
+    
+        res.status(200).json({
+          success: true,
+          message: "Payments retrieved successfully",
+          data: payments
+        });
+      } catch (error) {
+        console.error("Error fetching payments:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch payments",
+          error: error.message
+        });
+      }
+    });
+
+    // get payment by a particular person
+    app.get("/payment/:email", async (req, res) => {
+      try {
+        const email = req.params.email;
+    
+        if (!email) {
+          return res.status(400).json({ success: false, message: "Email is required" });
+        }
+    
+        const user = await usersCollection.findOne({ email }); // Replace with your collection name
+    
+        if (!user) {
+          return res.status(404).json({ success: false, message: "User not found" });
+        }
+    
+        res.status(200).json({
+          success: true,
+          data: user
+        });
+      } catch (error) {
+        console.error("Error fetching user by email:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch user",
+          error: error.message
+        });
+      }
+    });
+    
+    
 
     // Role
     app.get("/getRole/:email", async (req, res) => {
@@ -369,7 +428,6 @@ app.get("/user/byId/:id", async (req, res) => {
     });
 
     // ADD TO CART
-
     app.post("/add-cart", async (req, res) => {
       const body = req.body;
       const response = await addToCart.insertOne(body);

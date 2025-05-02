@@ -48,8 +48,8 @@ const Navbar = () => {
       {/* Location and SignUp/SignOut */}
       <div className="text-sm py-2 px-4 flex justify-between items-center">
         <span>
-          <span className="font-bold text-TealGreen">Our Location:</span> Mirpur
-          Rd, Savar, Dhaka, Bangladesh
+          <span className="font-bold text-TealGreen">Our Location: </span>
+          Suite 500 San Francisco, CA 94103 USA
         </span>
         {user ? (
           <button className="proCardButton" onClick={logOut}>
