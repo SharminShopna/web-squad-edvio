@@ -81,6 +81,7 @@ export default function DashBoardSideBar() {
         label: "AI Chatbot",
       },
     ],
+    // instructor dashboard
     instructor: [
       { path: "/", icon: <IoHome />, label: "Home" },
       {
@@ -145,6 +146,7 @@ export default function DashBoardSideBar() {
       },
       { path: "/logout", icon: <IoLogOut />, label: "Logout" },
     ],
+    // user dashboard
     user: [
         { path: "/", 
           icon: <IoHome />, 
