@@ -253,18 +253,20 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { AuthContext } from '@/AuthProvider/AuthProvider'; // Adjust the import path as needed
+import { AuthContext } from '@/AuthProvider/AuthProvider'; 
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const PaymentHistory = () => {
-  const { user } = useContext(AuthContext); // Accessing the user from context
+  const { user } = useContext(AuthContext); 
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`http://localhost:4000/payments?email=${user.email}`) // ✅ CORRECT endpoint
+      axiosSecure
+        .get(`/payments?email=${user.email}`) 
         .then((res) => {
           console.log("Payment history:", res.data);
           const result = res.data?.data;
@@ -277,7 +279,7 @@ const PaymentHistory = () => {
           setLoading(false);
         });
     }
-  }, [user]);
+  }, [user, axiosSecure]);
 
   if (loading) return <p className="text-center mt-10 text-white">Loading payment history...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;

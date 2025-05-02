@@ -44,9 +44,9 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full shadow-md z-50">
+    <header className="w-full shadow-md z-50 fixed">
       {/* Location and SignUp/SignOut */}
-      <div className="text-sm py-2 px-4 flex justify-between items-center">
+      <div className="text-sm py-2 px-4 flex justify-between items-center bg-neutral">
         <span>
           <span className="font-bold text-TealGreen">Our Location: </span>
           Suite 500 San Francisco, CA 94103 USA
