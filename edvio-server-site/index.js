@@ -116,8 +116,6 @@ async function run() {
       }
     });
 
-
-
     // Save payment data endpoint
     app.post("/save-payment", async (req, res) => {
       try {
@@ -181,7 +179,7 @@ async function run() {
       }
     });
 
-    // get payment by using user 
+    // get payment by a particular person
     app.get("/payment/:email", async (req, res) => {
       try {
         const email = req.params.email;
@@ -430,7 +428,6 @@ app.get("/user/byId/:id", async (req, res) => {
     });
 
     // ADD TO CART
-
     app.post("/add-cart", async (req, res) => {
       const body = req.body;
       const response = await addToCart.insertOne(body);
