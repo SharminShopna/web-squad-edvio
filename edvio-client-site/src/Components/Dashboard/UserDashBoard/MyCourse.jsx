@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/AuthProvider/AuthProvider';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 const MyCourse = () => {
   const { user } = useContext(AuthContext);
@@ -11,9 +11,9 @@ const MyCourse = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:4000/bougth-courses/${user.email}`)
+        .get(`http://localhost:4000/cart-items/${user.email}`)
         .then((res) => {
-          setCourses(res.data);
+          setCourses(res.data?.data || []);
           setLoading(false);
         })
         .catch((err) => {
@@ -37,19 +37,19 @@ const MyCourse = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course, index) => (
             <motion.div
-              key={index}
+              key={course._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
               className="bg-neutral text-lightTeal rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <img
-                src={course.course_image || 'https://via.placeholder.com/400x200?text=Course+Image'}
-                alt={course.course_name}
+                src={course.image || 'https://via.placeholder.com/400x200?text=Course+Image'}
+                alt={course.courseName}
                 className="w-full h-48 object-cover"
               />
               <div className="p-5 space-y-3">
-                <h3 className="text-xl font-semibold text-base-content">{course.course_name}</h3>
+                <h3 className="text-xl font-semibold text-base-content">{course.courseName}</h3>
 
                 {/* Instructor Info */}
                 <div className="flex items-center gap-3">
