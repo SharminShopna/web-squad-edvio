@@ -561,7 +561,7 @@ app.post('/clear-purchased-courses', async (req, res) => {
 
       
 
-        app.put("/user/:email", async (req, res) => {
+    app.put("/user/:email", async (req, res) => {
           try {
             const email = req.params.email;
             const query = { email: email };
