@@ -166,7 +166,7 @@ const AboutUs = () => {
                             <p className='text-gray-200'>
                                 {section.title === "Our Mission"
                                     ? "Our mission is to empower educational institutions and learners by leveraging the power of artificial intelligence to create a more efficient, personalized, and accessible learning experience. We are committed to simplifying course management, enhancing student engagement, and supporting educators in their pursuit of academic excellence. By providing intelligent automation, real-time insights, and scalable solutions, we aim to streamline education and help both students and educators thrive in an ever-evolving academic landscape."
-                                    : "Our vision is to shape the future of education by creating a global learning ecosystem..."}
+                                    : "Our vision is to shape the future of education by creating a global learning ecosystem where technology and human potential work in harmony. We aspire to be the leading AI-driven platform that enables educational institutions to unlock new levels of success, collaboration, and growth. Our goal is to transform how learning is experienced, making it more flexible, data-driven, and inclusive. We believe in a future where AI empowers educators to teach more effectively, students to learn more efficiently, and institutions to adapt rapidly to the changing needs of modern education."}
                             </p>
                         </div>
                     </div>
@@ -200,72 +200,77 @@ const AboutUs = () => {
 
             {/* Review Section with Lottie */}
             <motion.div
-                className="mt-20 flex flex-col md:flex-row items-center justify-between gap-10"
+                className="mt-20 p-6 rounded-lg"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 2 }}
             >
-                {/* Review Form */}
-                
-                <div className="md:w-1/2 w-full">
-                    <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"} />
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {["name", "location"].map((field) => (
-                            <div key={field}>
-                                <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor={field}>
-                                    {field.charAt(0).toUpperCase() + field.slice(1)}
-                                </label>
-                                <input
-                                    type="text"
-                                    id={field}
-                                    name={field}
-                                    value={formData[field]}
-                                    onChange={handleChange}
-                                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] text-golden2"
-                                    placeholder={`Enter your ${field}`}
-                                    required
-                                />
-                            </div>
-                        ))}
-                        <div>
-                            <label className="block mb-2 text-lg font-medium text-gray-200">Rating</label>
-                            <div className="flex items-center space-x-2">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                    <label key={star} className="text-2xl cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="rating"
-                                            value={star}
-                                            checked={formData.rating === star}
-                                            onChange={handleRatingChange}
-                                            className="hidden"
-                                        />
-                                        <span className={formData.rating >= star ? 'text-yellow-400' : 'text-gray-400'}>★</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                        <div>
-                            <label className="block mb-2 text-lg font-medium text-gray-200">Review</label>
-                            <textarea
-                                name="review"
-                                value={formData.review}
-                                onChange={handleChange}
-                                rows="4"
-                                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] text-golden2"
-                                placeholder="Write your review"
-                                required
-                            ></textarea>
-                        </div>
-                        <button type="submit" className="proCardButton w-full py-3 rounded-lg">Submit Review</button>
-                    </form>
-                </div>
+                {/* Heading */}
+                <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"} />
 
-                {/* Lottie Animation */}
-                <div className="md:w-1/2 w-full flex justify-center">
-                    <Lottie animationData={reviewAnimation} loop={true} className="w-full h-[400px]" />
+                {/* Review Form & Lottie Side by Side */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+                    {/* Review Form */}
+                    <div className="md:w-1/2 w-full">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            {["name", "location"].map((field) => (
+                                <div key={field}>
+                                    <label className="block mb-2 text-lg font-medium text-gray-200" htmlFor={field}>
+                                        {field.charAt(0).toUpperCase() + field.slice(1)}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id={field}
+                                        name={field}
+                                        value={formData[field]}
+                                        onChange={handleChange}
+                                        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] text-golden2"
+                                        placeholder={`Enter your ${field}`}
+                                        required
+                                    />
+                                </div>
+                            ))}
+                            <div>
+                                <label className="block mb-2 text-lg font-medium text-gray-200">Rating</label>
+                                <div className="flex items-center space-x-2">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <label key={star} className="text-2xl cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="rating"
+                                                value={star}
+                                                checked={formData.rating === star}
+                                                onChange={handleRatingChange}
+                                                className="hidden"
+                                            />
+                                            <span className={formData.rating >= star ? 'text-yellow-400' : 'text-gray-400'}>★</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block mb-2 text-lg font-medium text-gray-200">Review</label>
+                                <textarea
+                                    name="review"
+                                    value={formData.review}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(54,143,139)] text-golden2"
+                                    placeholder="Write your review"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button type="submit" className="proCardButton w-full py-3 rounded-lg">Submit Review</button>
+                        </form>
+                    </div>
+
+                    {/* Lottie Animation */}
+                    <div className="md:w-1/2 w-full flex justify-center">
+                        <Lottie animationData={reviewAnimation} loop={true} className="w-full h-[400px] mt-12 md:mt-0" />
+                    </div>
                 </div>
             </motion.div>
+
 
             <ToastContainer />
         </div>
