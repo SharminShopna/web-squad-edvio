@@ -1,22 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IoBook, IoCard, IoCheckmarkCircle, IoTime } from 'react-icons/io5';
 import { AuthContext } from '@/AuthProvider/AuthProvider';
 import axios from 'axios';
+import {
+  IoBook,
+  IoCard,
+  IoCheckmarkCircle,
+  IoTime
+} from 'react-icons/io5';
+import UseAuth from '@/Hook/UseAuth';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const UserHome = () => {
   const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`http://localhost:4000/bougth-courses/${user.email}`)
+      axiosSecure 
+        .get(`/cart-items/${user.email}`)
         .then((res) => {
-          setCourses(res.data);
+          setCourses(res.data?.data || []);
         })
-        .catch((err) => console.error('Failed to fetch bought courses:', err));
+        .catch((err) => console.error('Failed to fetch courses:', err));
     }
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   return (
     <div className="p-6 bg-darkTeal min-h-screen text-lightTeal">
@@ -42,7 +50,7 @@ const UserHome = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card icon={<IoBook />} title="Enrolled Courses" count={courses.length} />
         <Card icon={<IoCheckmarkCircle />} title="Completed" count={0} />
-        <Card icon={<IoTime />} title="In Progress" count={courses.length } />
+        <Card icon={<IoTime />} title="In Progress" count={courses.length} />
         <Card icon={<IoCard />} title="Certificates" count={0} />
       </div>
 
@@ -56,7 +64,7 @@ const UserHome = () => {
               className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-teal-600 pb-4"
             >
               <div>
-                <h4 className="text-lg font-medium text-white">{course.course_name}</h4>
+                <h4 className="text-lg font-medium text-white">{course.courseName}</h4>
                 <p className="text-sm text-lightTeal">Progress: 60%</p>
               </div>
               <button className="mt-2 md:mt-0 px-4 py-2 bg-Aquamarine text-white rounded-md hover:bg-opacity-80 transition">
