@@ -8,6 +8,7 @@ import { AuthContext } from '@/AuthProvider/AuthProvider';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Lottie from "lottie-react";
 
 const AboutUs = () => {
     const { user } = useContext(AuthContext);
