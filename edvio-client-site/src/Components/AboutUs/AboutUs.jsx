@@ -165,7 +165,7 @@ const AboutUs = () => {
                             <SectionTitle heading={section.title} subHeading={"Edvio"} />
                             <p className='text-gray-200'>
                                 {section.title === "Our Mission"
-                                    ? "Our mission is to empower educational institutions and learners..."
+                                    ? "Our mission is to empower educational institutions and learners by leveraging the power of artificial intelligence to create a more efficient, personalized, and accessible learning experience. We are committed to simplifying course management, enhancing student engagement, and supporting educators in their pursuit of academic excellence. By providing intelligent automation, real-time insights, and scalable solutions, we aim to streamline education and help both students and educators thrive in an ever-evolving academic landscape."
                                     : "Our vision is to shape the future of education by creating a global learning ecosystem..."}
                             </p>
                         </div>
@@ -206,6 +206,7 @@ const AboutUs = () => {
                 transition={{ duration: 1, delay: 2 }}
             >
                 {/* Review Form */}
+                
                 <div className="md:w-1/2 w-full">
                     <SectionTitle heading={"Write a Review"} subHeading={"We Value Your Feedback"} />
                     <form onSubmit={handleSubmit} className="space-y-6">
