@@ -44,7 +44,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full shadow-md z-50 fixed">
+    <header className="w-full shadow-md z-50">
       {/* Location and SignUp/SignOut */}
       <div className="text-sm py-2 px-4 flex justify-between items-center bg-neutral">
         <span>
