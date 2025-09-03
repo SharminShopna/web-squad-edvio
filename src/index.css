@@ -1,8 +1,0 @@
-@import "tailwindcss";
-
-@theme {
-  --color-TealGreen: rgb(54, 143, 139);
-  --color-Aquamarine: rgb(112, 193, 179);
-  --color-LightTeal: rgb(131, 197, 190);
-  --color-PrimaryBlack: rgb(0, 0, 0);
-}

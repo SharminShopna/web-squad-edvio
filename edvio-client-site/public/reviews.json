@@ -1,0 +1,178 @@
+[
+    {
+      "name": "Amit Roy",
+      "image": "https://i.ibb.co.com/DW8tfwd/it.jpg",
+      "location": "Dhaka, Bangladesh",
+      "stars": 5,
+      "review": "The AI recommendations for courses saved me so much time. Love the personalized learning paths!"
+    },
+    {
+      "name": "Sara Ahmed",
+      "image": "https://i.ibb.co.com/Jyw4ZhX/shopna.jpg",
+      "location": "Chittagong, Bangladesh",
+      "stars": 4,
+      "review": "The progress tracking and automated feedback are super helpful. Great system!"
+    },
+    {
+      "name": "John Smith",
+      "image": "https://i.ibb.co.com/Gt2GGmh/IMG-4371.jpg",
+      "location": "New York, USA",
+      "stars": 5,
+      "review": "AI suggestions helped me choose the right courses for my career goals. Highly recommend!"
+    },
+    {
+      "name": "Mehedi Hasan",
+      "image": "https://i.ibb.co.com/7JmR6DB/IMG-4295.jpg",
+      "location": "Khulna, Bangladesh",
+      "stars": 3,
+      "review": "Loved the automated quiz generation. It saved me hours of prep time."
+    },
+    {
+      "name": "Priya Sharma",
+      "image": "https://i.ibb.co.com/GRwMxYP/IMG-3998.jpg",
+      "location": "Mumbai, India",
+      "stars": 5,
+      "review": "The performance analytics are a game-changer for tracking student progress."
+    },
+    {
+      "name": "David Miller",
+      "image": "https://i.ibb.co.com/DW8tfwd/it.jpg",
+      "location": "London, UK",
+      "stars": 5,
+      "review": "AI-powered scheduling helped balance my learning with work. Very efficient!"
+    },
+    {
+      "name": "Arif Rahman",
+      "image": "https://i.ibb.co.com/d01F64r/IMG-4306.jpg",
+      "location": "Sylhet, Bangladesh",
+      "stars": 4,
+      "review": "Adaptive learning paths made studying more effective and fun!"
+    },
+    {
+      "name": "Lisa Wong",
+      "image": "https://i.ibb.co.com/GRwMxYP/IMG-3998.jpg",
+      "location": "Beijing, China",
+      "stars": 4,
+      "review": "AI-driven content recommendations are super accurate. I found exactly what I needed."
+    },
+    {
+      "name": "Rifat Karim",
+      "image": "https://i.ibb.co.com/Jyw4ZhX/shopna.jpg",
+      "location": "Barisal, Bangladesh",
+      "stars": 3,
+      "review": "The AI tutor suggestions were spot-on. Felt like a personalized learning coach."
+    },
+    {
+      "name": "Emma Johnson",
+      "image": "https://i.ibb.co.com/d01F64r/IMG-4306.jpg",
+      "location": "Sydney, Australia",
+      "stars": 5,
+      "review": "Automated assignments and grading saved me tons of time!"
+    },
+    {
+      "name": "Tanvir Hasan",
+      "image": "https://i.ibb.co.com/vqRR8BN/IMG-4304.jpg",
+      "location": "Rajshahi, Bangladesh",
+      "stars": 4,
+      "review": "Loved the course recommendations based on my skillset. Very accurate!"
+    },
+    {
+      "name": "Sophia Lee",
+      "image": "https://i.ibb.co.com/7JmR6DB/IMG-4295.jpg",
+      "location": "Seoul, South Korea",
+      "stars": 2,
+      "review": "Real-time feedback during quizzes helped me improve instantly."
+    },
+    {
+      "name": "Md. Jashim",
+      "image": "https://i.ibb.co.com/wQ3dvyV/358494254-1518365948864091-9096935294682381400-n.jpg",
+      "location": "Comilla, Bangladesh",
+      "stars": 3,
+      "review": "The AI assistant helped me find relevant study materials quickly."
+    },
+    {
+      "name": "Robert Brown",
+      "image": "https://i.ibb.co.com/vqRR8BN/IMG-4304.jpg",
+      "location": "Los Angeles, USA",
+      "stars": 5,
+      "review": "Smart insights into performance trends helped me improve my learning strategy."
+    },
+    {
+      "name": "Fatema Begum",
+      "image": "https://i.ibb.co.com/Gt2GGmh/IMG-4371.jpg",
+      "location": "Jessore, Bangladesh",
+      "stars": 4,
+      "review": "Loved the personalized course recommendations based on my learning habits."
+    },
+    {
+      "name": "Michael Scott",
+      "image": "https://i.ibb.co.com/CnT8D96/IMG-4300.jpg",
+      "location": "Scranton, USA",
+      "stars": 3,
+      "review": "The system’s AI makes course management effortless. Great job!"
+    },
+    {
+      "name": "Aisha Khan",
+      "image": "https://i.ibb.co.com/5kHrnNX/IMG-4297.jpg",
+      "location": "Karachi, Pakistan",
+      "stars": 2,
+      "review": "AI-powered scheduling optimized my study routine perfectly!"
+    },
+    {
+      "name": "Ryan Walker",
+      "image": "https://i.ibb.co.com/wQ3dvyV/358494254-1518365948864091-9096935294682381400-n.jpg",
+      "location": "Toronto, Canada",
+      "stars": 3,
+      "review": "The AI analysis helped me figure out my weak areas and focus better."
+    },
+    {
+      "name": "Nazmul Islam",
+      "image": "https://i.ibb.co.com/6mxGW9C/flowers-276014-1920.jpg",
+      "location": "Rangpur, Bangladesh",
+      "stars": 5,
+      "review": "AI insights made my learning more productive and efficient."
+    },
+    {
+      "name": "Emily Davis",
+      "image": "https://i.ibb.co.com/5kHrnNX/IMG-4297.jpg",
+      "location": "Boston, USA",
+      "stars": 4,
+      "review": "The automated feedback after each lesson is a fantastic feature."
+    },
+    {
+      "name": "Shahin Alam",
+      "image": "https://i.ibb.co.com/Gt2GGmh/IMG-4371.jpg",
+      "location": "Narayanganj, Bangladesh",
+      "stars": 2,
+      "review": "The AI system helped me create a personalized study plan easily."
+    },
+    {
+      "name": "Olivia Martinez",
+      "image": "https://i.ibb.co.com/6mxGW9C/flowers-276014-1920.jpg",
+      "location": "Barcelona, Spain",
+      "stars": 5,
+      "review": "Great recommendations! The AI system is very intuitive."
+    },
+    {
+      "name": "Ashiqur Rahman",
+      "image": "https://i.ibb.co.com/Gt2GGmh/IMG-4371.jpg",
+      "location": "Pabna, Bangladesh",
+      "stars": 5,
+      "review": "Loved the automated progress tracking. It keeps me motivated!"
+    },
+    {
+      "name": "James Wilson",
+      "image": "https://i.ibb.co.com/DW8tfwd/it.jpg",
+      "location": "Chicago, USA",
+      "stars": 4,
+      "review": "AI grading and personalized content recommendations are top-notch!"
+    },
+    {
+      "name": "Maria Gonzalez",
+      "image": "https://i.ibb.co.com/CnT8D96/IMG-4300.jpg",
+      "location": "Mexico City, Mexico",
+      "stars": 5,
+      "review": "Best course management system I’ve used. The AI feels so smart!"
+    }
+  ]
+  
